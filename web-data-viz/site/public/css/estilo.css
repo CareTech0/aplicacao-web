@@ -4,7 +4,7 @@
   font-family: 'Montserrat', sans-serif;
 }
 
-body {
+html {
   overflow-x: hidden;
 }
 
@@ -19,7 +19,7 @@ body {
   background-color: #A6C0E4;
   padding: 10px;
   height: 70px;
-  width: 100%;
+  width: 97.45vw;
 }
 
 .logo {
@@ -137,4 +137,151 @@ body {
 .third-slide {
   width: 100%;
   background-color: #A9B3CD;
+}
+
+.section-services {
+  height: 100vh;
+  background-color: #D9D9D9;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.section-services .text-elements {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.section-services .text-elements h1 {
+  color: #081F3F;
+  font-size: 40px;
+}
+
+.service-icons {
+  display: flex;
+  width: 40%;
+  justify-content: space-around;
+}
+
+.service-icons img {
+  display: flex;
+  align-items: center;
+  width: 55px;
+}
+
+.container-icons-1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 30%;
+}
+
+.container-icons-2 {
+  display: flex;
+  align-items: center;
+  width: 30%;
+  justify-content: center;
+}
+
+.container-icons-3 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 30%;
+}
+
+.background-icons {
+  padding: 30px;
+  background-color: #163561;
+  border-radius: 60px;
+}
+
+.icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  width: 35%;
+  text-align: center;
+}
+
+#ram-icon {
+  margin-right: 25%;
+  margin-bottom: 100%;
+}
+
+#rede-icon {
+  margin-right: 50%;
+}
+
+#cpu-icon {
+  margin-bottom: 40%;
+}
+
+.section-extra-info {
+  height: 100vh;
+  width: 100%;
+}
+
+.container-extra-info {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+}
+
+.extra-info-1 {
+  width: 25%;
+  background-image: url('../assets/imgs/image\ 20.png');
+}
+
+.extra-info-2 {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  background-color: #163561;
+}
+
+.extra-info-3 {
+  width: 25%;
+  background-image: url('../assets/imgs/Rectangle\ 113.png');
+}
+
+.extra-info-4 {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  background-color: #163561;
+}
+
+.container-extra-info-itens {
+  color: #FFF;
+  height: 100%;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 5rem;
+  align-items: center;
+}
+
+.container-extra-info-itens button {
+  color: #FFF;
+  border: 1px solid #FFF;
+  border-radius: 10px;
+  padding: 25px;
+  background-color: #163561;
+  cursor: pointer;
+}
+
+.container-extra-info-itens button:hover {
+  transition: 1s ease;
+  background-color: #ffffffc2;
+  color: #000000;
+  transform: scale(1.1);
 }
