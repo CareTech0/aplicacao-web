@@ -108,28 +108,35 @@ button:hover {
     }
 
     main {
-        flex-direction: column;
+        flex-direction: column-reverse;
         height: 100vh;
-        justify-content: space-around;
+        justify-content: space-between;
+        gap: 5rem;
     }
 
     .login-container {
         height: 50%;
         width: 100%;
-        position: relative;
+        position: absolute;
         top: 50px;
+        z-index: 1;
     }
 
     .logo-container {
-        height: 50%;
+        height: 10px;
         width: 100%;
-        align-items: end;
+        height: 100px;
         justify-content: end;
-        position: relative;
         right: 15px;
+        z-index: 2;
+        align-items: end;
     }
 
     .logo-container img {
         width: 250px;
+    }
+
+    a {
+        position: relative;
     }
 }
