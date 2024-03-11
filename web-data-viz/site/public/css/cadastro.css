@@ -83,3 +83,58 @@ a {
 a:hover {
     color: #FFF;
 }
+
+@media screen and (max-width: 760px) {
+    body {
+        background-image: url('../assets/imgs/loginnn\ 2.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .container {
+        flex-direction: column;
+    }
+
+    .logo-container {
+        justify-content: left;
+        width: 90%;
+        position: relative;
+        left: 20px;
+        top: 20px;
+        align-items: start;
+    }
+
+    .logo-container img {
+        width: 300px;
+    }
+
+    .form-container {
+        width: 90%;
+        position: relative;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: -300px;
+    }
+
+    .title {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        font-size: 12px;
+    }
+
+    .inputs-box {
+        align-items: center;
+        width: 100%;
+    }
+
+    .inputs-box input {
+        height: 20px;
+        width: 100%;
+    }
+
+    .subtitle {
+        font-size: 12px;
+    }
+}
