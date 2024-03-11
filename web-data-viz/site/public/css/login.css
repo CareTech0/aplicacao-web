@@ -97,5 +97,39 @@ button:hover {
 }
 
 .cad-box a:hover {
+    cursor: pointer;
     color: #284474;
+}
+
+@media screen and (max-width: 760px) {
+    body {
+        background-image: url('../assets/imgs/mobilelogin.png');
+        background-size: cover;
+    }
+
+    main {
+        flex-direction: column;
+        height: 100vh;
+        justify-content: space-around;
+    }
+
+    .login-container {
+        height: 50%;
+        width: 100%;
+        position: relative;
+        top: 50px;
+    }
+
+    .logo-container {
+        height: 50%;
+        width: 100%;
+        align-items: end;
+        justify-content: end;
+        position: relative;
+        right: 15px;
+    }
+
+    .logo-container img {
+        width: 250px;
+    }
 }
