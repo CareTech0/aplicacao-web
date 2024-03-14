@@ -363,7 +363,7 @@ margin-top: 10px;
 }
 
 .client-subtext {
-  width: 100%;
+  width: 75%;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -377,11 +377,13 @@ margin-top: 10px;
 .client-name {
   font-weight: lighter;
   color: #767676;
+  font-size: 17px;
 }
 
 .client-work {
   color: #767676;
   font-weight: 500;
+  font-size: 15px;
 }
 
 .section-values {
@@ -457,6 +459,7 @@ margin-top: 10px;
 .contact-subtitle {
   display: flex;
   color: #37609B;
+  font-size: 20px;
   font-weight: 400;
   width: 100%;
   justify-content: center;
@@ -468,8 +471,10 @@ margin-top: 10px;
   width: 100%;
   justify-content: center;
   align-items: center;
-  font-size: 40px;
+  font-size: 35px;
 }
+
+
 
 .icons-box {
   width: 100%;
@@ -490,7 +495,7 @@ margin-top: 10px;
 }
 
 .contact-icons p {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 500;
 }
 
@@ -892,7 +897,7 @@ footer .ph {
   }
 
   .contact-icons h1 {
-    font-size: 14px;
+    font-size: 12px;
   }
 
   .contact-icons p {
