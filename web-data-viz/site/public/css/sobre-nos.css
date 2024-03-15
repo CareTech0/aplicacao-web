@@ -16,14 +16,16 @@
     background-image: url(../assets/imgs/banner-sobre-nos.png);
     background-repeat: no-repeat;
     background-size: cover;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgb(0, 0, 0);
     /* opacity: 0.5; */
+    filter: blur(1px);
 }
 
 .titulo-sobre-nos{
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: 64px;
+    color: white;
 }
 
 .div-titulo-sobre-nos{
@@ -83,4 +85,18 @@
     justify-content: center;
     align-items: center;
 
+}
+
+@media screen and (max-width: 760px) {
+    .container-slide-sobre{
+        height: 60vh;
+    }
+    
+    .titulo-sobre-nos{
+        font-size: 44px;
+    }
+
+    .container-content{
+        display: flex;
+    }
 }
