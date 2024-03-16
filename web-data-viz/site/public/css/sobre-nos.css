@@ -16,10 +16,8 @@
     background-image: url(../assets/imgs/banner-sobre-nos.png);
     background-repeat: no-repeat;
     background-size: cover;
-    background-color: rgba(0, 0, 0, 0.178);
-    opacity: 0.5;
-    /* opacity: 0.5; */
 }
+
 
 .titulo-sobre-nos{
     font-family: 'Montserrat', sans-serif;
@@ -28,9 +26,6 @@
     color: black;
 }
 
-.div-titulo-sobre-nos{
-    opacity: 1;
-}
 
 .content {
     width: 100%;
@@ -58,8 +53,11 @@
 
 .imagem{
     width: 40%;
-    height: 50vh;
-    background-color: black;
+    height: 50vh;    
+}
+
+.imagem > img {
+    width: 500px;
 }
 
 .titulo{
