@@ -48,7 +48,7 @@
 
         </div>
 
-        <div class="logo-container">
+        <div class="logo-container show ">
             <img src="assets/imgs/logoazul 1.png" alt="">
         </div>
     </main>
@@ -58,8 +58,13 @@
 </html>
 
 <script>
+document.addEventListener("DOMContentLoaded", function() {
 
+        var loginContainer = document.querySelector('.login-container');
 
+        loginContainer.classList.add('show');
+    });
+    
     function entrar() {
         aguardar();
 

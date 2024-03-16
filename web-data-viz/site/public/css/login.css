@@ -24,7 +24,10 @@ main {
     align-items: center;
     justify-content: space-between;
     text-align: center;
-    gap: 1rem;
+    gap: 3rem;
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: opacity 2s ease, transform 1.5s ease;
 }
 
 .logo-container {
@@ -36,6 +39,11 @@ main {
     justify-content: center;
 }
 
+.login-container.show {
+    opacity: 1;
+    transform: translateX(0%);
+}
+
 .title {
     display: flex;
     flex-direction: column;
@@ -43,6 +51,9 @@ main {
     gap: 0.5rem;
 }
 
+.title > h1 {
+    font-size: 28px;
+}
 .form {
     display: flex;
     flex-direction: column;
@@ -80,13 +91,12 @@ button {
     background-color: #284474;
     border-radius: 70px;
     border: none;
-    height: 50px;
+    height: 38px;
     cursor: pointer;
 }
 
 button:hover {
     background-color: #2844749d;
-    transform: scale(1.1);
     transition: 1s ease-out;
 }
 
@@ -94,6 +104,10 @@ button:hover {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+}
+
+.cad-box  { 
+    font-size: 13px;
 }
 
 .cad-box a:hover {

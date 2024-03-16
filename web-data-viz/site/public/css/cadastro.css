@@ -33,6 +33,14 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+}
+
+.form-container.show {
+    opacity: 1;
+    transform: translateX(0%);
 }
 
 .inputs-box {
@@ -52,6 +60,7 @@ body {
     background-color: rgba(92,130,196,255);
     border: solid 1px #FFF;    
     width: 300px;
+    font-size: 11px;
 }
 
 input::placeholder {
@@ -72,8 +81,7 @@ button {
 }
 
 button:hover {
-    background-color: #284474b0;
-    transform: scale(1.1);
+    background-color: #284474b0;    
     transition: 1s ease-out;
 }
 
@@ -84,6 +92,14 @@ a {
 
 a:hover {
     color: #FFF;
+}
+
+.title {
+    font-size: 14px;
+    margin-right: 58px;
+}
+.subtitle {
+    font-size: 13px;
 }
 
 @media screen and (max-width: 760px) {
@@ -132,7 +148,7 @@ a:hover {
     }
 
     .inputs-box input {
-        height: 20px;
+        height: 23px;
         width: 100%;
     }
 
