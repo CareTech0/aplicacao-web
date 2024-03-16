@@ -16,16 +16,16 @@
     background-image: url(../assets/imgs/banner-sobre-nos.png);
     background-repeat: no-repeat;
     background-size: cover;
-    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.178);
+    opacity: 0.5;
     /* opacity: 0.5; */
-    filter: blur(1px);
 }
 
 .titulo-sobre-nos{
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: 64px;
-    color: white;
+    color: black;
 }
 
 .div-titulo-sobre-nos{
