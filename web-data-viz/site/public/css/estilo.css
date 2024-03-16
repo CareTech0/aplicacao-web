@@ -713,6 +713,8 @@ footer .ph {
 }
 
 @media screen and (max-width: 760px) {
+  
+
   .container-header div {
     display: none;
   }
