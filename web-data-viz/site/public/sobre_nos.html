@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CareTech | Página Inicial</title>
     <link rel="icon" href="./assets/icon/icons8-caduceu-50.png">
-    <link rel="stylesheet" href="css/sobre-nos.css">
     <link rel="stylesheet" href="./css/estilo.css">
+    <link rel="stylesheet" href="css/sobre-nos.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,19 +31,19 @@
         <div class="container-header">
   
           <div>
-            <a href="#carousel">QUEM SOMOS</a>
+            <a href="index.html#carousel">QUEM SOMOS</a>
           </div>
           <div>
-            <a href="#services">SERVIÇOS</a>
+            <a href="index.html#services">SERVIÇOS</a>
           </div>
           <div>
-            <a href="#contact">CONTATO</a>
+            <a href="index.html#contact">CONTATO</a>
           </div>
           <div>
             <a href="login.html">LOGIN</a>
           </div>
   
-          <div class="menu-hamburguer">
+          <div class="menu-hamburguer" onclick="abrirMenu()">
             <img src="assets/imgs/Vector.png" alt="">
           </div>
   
@@ -51,7 +51,7 @@
   
       </header>
       <main>
-        <section>
+        <section class="main-section">
         <div class="container-slide-sobre">
             <div class="slide-img">
                 <div class="div-titulo-sobre-nos">
@@ -73,10 +73,13 @@
                     <div class="botao">
                         <span>QUER NOS CONHECER?</span> 
                     </div>
-                </div>
-                <div class="imagem">
-                  <img src="assets/imgs/imagemEquipe2.png" alt="">
-                </div>
+                    <div class="imagem2">
+                      <img src="assets/imgs/imagemEquipe2.png">
+                    </div>
+                  </div>
+                  <div class="imagem">
+                    <img src="assets/imgs/imagemEquipe2.png">
+                  </div>
             </div>
         </div>
         </section>
@@ -139,6 +142,28 @@
             </div>
     
           </section>
+
+          <div  class="menu-cell" id="menu_cell">
+            <div class="menu-header">
+              <img src="assets/imgs/logoBranco.png" width="150px">
+              <img src="assets/imgs/Vector.png" alt="" width="20px" onclick="fecharMenu()">
+            </div>
+            <ul>
+             <li>
+              <a href="#" onclick="fecharMenu()">Quem Somos</a>
+            </li> 
+            <li>
+              <a href="index.html#services" onclick="fecharMenu()">Serviços</a>
+            </li> 
+            <li>
+              <a href="index.html#contact" onclick="fecharMenu()">Contato</a>
+            </li> 
+            <li>
+              <a href="index.html#login.html" onclick="fecharMenu()">Login</a>
+            </li>
+            </ul>
+          </div>
+
           <footer>
 
             <div class="social-container">
@@ -205,4 +230,6 @@
           </footer>
       </main>
 
-</body>
+      <script src="js/indexScript.js"></script>
+    </body>
+</html>

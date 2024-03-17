@@ -52,8 +52,13 @@
 }
 
 .imagem{
+    background-image: url('assets/imgs/imagemEquipe2.png');
     width: 40%;
     height: 50vh;    
+}
+
+.imagem2 {
+    display: none;
 }
 
 .imagem > img {
@@ -86,6 +91,7 @@
 }
 
 @media screen and (max-width: 760px) {
+
     .container-slide-sobre{
         height: 60vh;
     }
@@ -96,5 +102,32 @@
 
     .container-content{
         display: flex;
+        flex-direction: column;
+        justify-content: start;
+    }
+
+    .texto{
+        width: 98%;
+    }
+
+    .imagem {
+        display: none;
+    }
+
+    .imagem2 {
+        display: block;
+    }
+
+    .imagem2 img{
+      width: 350px;
+      margin: -20px 0 0;
+    }
+
+    .container-values{
+        margin: 268px 0 61px 5%;
+    }
+
+    div.img-footer{
+        display: none;
     }
 }
