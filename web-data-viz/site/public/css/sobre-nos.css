@@ -102,6 +102,15 @@
     .container-slide-sobre{
         height: 60vh;
     }
+
+    .titulo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        margin-top: 150px;
+        margin-bottom: 100px;
+    }
     
     .titulo-sobre-nos{
         font-size: 44px;
@@ -114,11 +123,10 @@
     }
 
     .texto{
-        width: 98%;
-    }
-
-    .imagem {
-        display: none;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .imagem2 {
@@ -136,5 +144,28 @@
 
     div.img-footer{
         display: none;
+    }
+
+    .container-botao {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 50px;
+    }
+
+    .imagem {
+        display: none;
+    }
+
+    .imagem2 {
+        margin-top: 50px;
+    }
+
+    .container-values {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        transform: translate(0%, -40%);
     }
 }
