@@ -719,7 +719,7 @@ footer .ph {
   height: 100vh;
   position: fixed;
   text-align: center;
-  background-color: #37609B;
+  background-color: #13131388;
   justify-content: start;
   flex-direction: column;
   top: 0;
@@ -731,8 +731,14 @@ footer .ph {
   display: flex;
   justify-content: space-between;
   width: 95%;
+  height: 70px;
   align-items: center;
-  margin: 5px auto;
+  margin-bottom: 1.3px;
+
+}
+
+.menu-header > #logoCel {
+padding: 10px;
 }
 
 .menu-cell ul{
@@ -743,22 +749,26 @@ footer .ph {
 
 .menu-cell ul li {
   display: flex;
-  background-color: #2b4f81;
+  background-color: #1b1b1b7e;
   border-bottom: 1px solid gray;
 }
 
 .menu-cell ul li a {
-  padding: 10px;
+  padding: 9px;
   color: white;
   text-decoration: none;
-  font-size: 24px;
+  font-size: 18px;
   width: 100%;
   text-align: start;
 }
 
 @media screen and (max-width: 760px) {
 
-  .container-header div {
+  .logo > img {
+    display: none;
+  } 
+
+  .container-header div {    
     display: none;
   }
 
@@ -793,7 +803,7 @@ footer .ph {
   }
 
   .carousel img {
-    width: 200px;
+    width: 500px;
   }
 
   .section-services {
