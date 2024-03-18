@@ -108,8 +108,8 @@
         align-items: center;
         justify-content: center;
         width: 100%;
-        margin-top: 150px;
-        margin-bottom: 100px;
+        margin-top: 430px;
+        margin-bottom: 20px;
     }
     
     .titulo-sobre-nos{
@@ -129,13 +129,20 @@
         align-items: center;
     }
 
+    .content {
+        height: 120vh;
+    }
+
     .imagem2 {
         display: block;
     }
 
     .imagem2 img{
       width: 350px;
-      margin: -20px 0 0;
+      margin: -20px;
+    }
+
+    .section-values {
     }
 
     .container-values{
@@ -159,6 +166,11 @@
 
     .imagem2 {
         margin-top: 50px;
+    }
+
+    .paragrafo {
+        font-size: 16px;
+        text-align: center;
     }
 
     .container-values {
