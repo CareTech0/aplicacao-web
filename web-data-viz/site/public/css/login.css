@@ -115,7 +115,7 @@ button:hover {
     color: #284474;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 450px) {
     body {
         background-image: url('../assets/imgs/mobilelogin.png');
         background-size: cover;
@@ -128,11 +128,12 @@ button:hover {
     }
 
     .login-container {
-        height: 50%;
+        height: 30%;
         width: 100%;
         position: absolute;
         top: 25px;
         z-index: 1;
+        gap: 1rem;
     }
 
     .logo-container {
@@ -147,6 +148,8 @@ button:hover {
 
     .logo-container img {
         width: 250px;
+        position: relative;
+        transform: translate(0%, 800%);
     }
 
     a {
