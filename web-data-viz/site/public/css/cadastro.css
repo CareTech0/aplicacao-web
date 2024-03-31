@@ -107,6 +107,8 @@ a:hover {
         background-image: url('../assets/imgs/loginnn\ 2.png');
         background-size: cover;
         background-repeat: no-repeat;
+        overflow-y: hidden;
+        overflow-x: hidden;
     }
 
     .container {
