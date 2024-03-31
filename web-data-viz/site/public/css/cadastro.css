@@ -102,7 +102,7 @@ a:hover {
     font-size: 13px;
 }
 
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 450px) {
     body {
         background-image: url('../assets/imgs/loginnn\ 2.png');
         background-size: cover;
@@ -130,8 +130,7 @@ a:hover {
         width: 90%;
         position: relative;
         align-items: center;
-        gap: 0.5rem;
-        margin-top: -300px;
+        margin-top: -240px;
     }
 
     .title {
@@ -144,12 +143,12 @@ a:hover {
 
     .inputs-box {
         align-items: center;
-        width: 100%;
+        width: 300px;
     }
 
     .inputs-box input {
-        height: 23px;
-        width: 100%;
+        height: 15px;
+        width: 300px;
     }
 
     .subtitle {
