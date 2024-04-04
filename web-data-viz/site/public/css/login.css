@@ -274,7 +274,9 @@ form.sign-in-form {
   .container {
     min-height: 800px;
     height: 100vh;
+    overflow-y: auto;
   }
+
   .signin-signup {
     width: 100%;
     top: 95%;
