@@ -10,7 +10,7 @@ $(document).ready(function () {
 
 function abrirMenu(){
   const menu = document.getElementById("menu_cell")
-  const header = document.getElementById("cabecalho")
+  const cabecalho = document.getElementById("cabecalho")
 
   menu.style.display = "flex"
   cabecalho.style.display = "none"
