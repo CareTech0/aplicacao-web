@@ -606,11 +606,11 @@ input[type="checkbox"]:not(:checked)+.slider {
     font-size: 15px;   
 }
 
-
-.modal-titulo span i {
-    font-size: 24px;
+.modal-titulo-novo-usuario span i {
+    font-size: 23px;
     padding: 10px;
 }
+
 
 .modal-titulo span h2 {
     color: #3E4245;
@@ -628,8 +628,22 @@ input[type="checkbox"]:not(:checked)+.slider {
     align-items: center;
 }
 
+#confirmDelete {
+    background-color: #F84C4C;
+    /* Cor de fundo vermelha */
+    color: #fff;
+    /* Cor do texto branco */
+    border: none;
+    /* Sem borda */
+    padding: 10px 20px;
+    /* Espaçamento interno */
+    cursor: pointer;
+    /* Cursor de mão ao passar */
+    border-radius: 15px;
+}
 
-/* modal editar & adicionar usuário */
+
+/* modal adicionar usuário */
 
 .modal {
     display: none;
@@ -644,6 +658,151 @@ input[type="checkbox"]:not(:checked)+.slider {
     background-color: rgba(0, 0, 0, 0.4);
 }
 
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 27%;
+    border-radius: 20px;
+
+}
+
+.modal-content-novo-usuario {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 27%;
+    border-radius: 20px;
+}
+
+.modal-titulo-novo-usuario {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: 1.5px solid #D9D9D9;
+    font-size: 14px;   
+}
+
+
+.modal-titulo span i {
+    font-size: 24px;
+    padding: 10px;
+}
+.inputs-modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    padding: 20px;
+    gap: 15px;
+}
+
+.inputs-modal-novo-usuario {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    padding: 20px;
+    gap: 15px;
+}
+
+
+
+.inputs-modal label {
+    margin-bottom: 5px;
+    text-align: left; 
+}
+
+.inputs-modal-novo-usuario label {
+    margin-bottom: 5px;
+    text-align: left; 
+}
+
+
+
+.content-input-modal-novo-usuario input {
+    width: 278px;
+    height: 10px;
+    padding: 10px;
+    border: 1px solid #D9D9D9;
+    border-radius: 15px;
+    box-shadow: 0 1px 1px rgba(231, 101, 101, 0.1);
+    background-color: #F7F7F7;
+    font-size: 13px;  
+    display: flex;
+    flex-direction: column;
+    align-items: center;   
+}
+
+.content-input-modal-novo-usuario input {
+    width: 278px;
+    height: 10px;
+    padding: 10px;
+    border: 1px solid #D9D9D9;
+    border-radius: 15px;
+    box-shadow: 0 1px 1px rgba(231, 101, 101, 0.1);
+    background-color: #F7F7F7;
+    font-size: 13px;  
+    display: flex;
+    flex-direction: column;
+    align-items: center;   
+}
+
+
+.content-input-modal-novo-usuario span {
+    margin-right: 10px;
+    font-weight: 600;
+    color: #747474;
+}
+
+.content-input-modal-novo-usuario input:focus {
+    outline: none;
+    border-color: #c0c0c0;
+}
+
+.content-input-modal-novo-usuario>
+select {
+    background-color: #F7F7F7;
+    border: 1px solid #D9D9D9;    
+    margin-bottom: 10px;
+    border-radius: 20px;
+    padding: 10px;
+
+}
+
+.modal-content-novo-usuario button[type="submit"] {
+    background-color: #8FC9FB;
+    /* Cor de fundo azul */
+    color: #fff;
+    /* Cor do texto branco */
+    border: none;
+    /* Sem borda */
+    padding: 7px 15px;
+    /* Espaçamento interno */
+    cursor: pointer;
+    /* Cursor de mão ao passar */
+    border-radius: 10px;
+    width: 38%;
+    font-size: 13px;
+}
+
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* modal de editar  */
 
 .modal-content {
     background-color: #fefefe;
@@ -689,7 +848,7 @@ input[type="checkbox"]:not(:checked)+.slider {
     color: #747474;
 }
 
-.content-input-modal input:focus {
+.content-input input:focus {
     outline: none;
     border-color: #c0c0c0;
 }
@@ -700,9 +859,7 @@ select {
     border: 1px solid #D9D9D9;    
     margin-bottom: 10px;
     border-radius: 20px;
-    padding: 9px;
-    width: 160px;
-    font-size: 12px;
+    padding: 10px;
 
 }
 
@@ -735,18 +892,4 @@ select {
     color: black;
     text-decoration: none;
     cursor: pointer;
-}
-
-#confirmDelete {
-    background-color: #F84C4C;
-    /* Cor de fundo vermelha */
-    color: #fff;
-    /* Cor do texto branco */
-    border: none;
-    /* Sem borda */
-    padding: 10px 20px;
-    /* Espaçamento interno */
-    cursor: pointer;
-    /* Cursor de mão ao passar */
-    border-radius: 15px;
 }
