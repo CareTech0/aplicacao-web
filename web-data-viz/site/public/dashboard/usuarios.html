@@ -184,7 +184,7 @@
 
     <!-- Modal Excluir Usuário -->
     <div class="modal-excluir" id="deleteModal">
-        <div class="modal-content">
+        <div class="modal-content-excluir">
             <span class="close">&times;</span>
 
             <div class="modal-titulo">
@@ -197,7 +197,7 @@
                     desfeita.</p>
             </div>
 
-            <div class="modal-botao">
+            <div class="modal-botao-excluir">
                 <button id="confirmDelete">EXCLUIR CONTA </button>
             </div>
         </div>
@@ -205,34 +205,39 @@
 
 
     <!-- Modal adicionar novo usuario -->
-    <div class="modal" id="myModal">
-        <div class="modal-content-adicionar">
-            <span class="icon"><i class="fa-solid fa-user-xmark"></i></span>
+    <div class="modal" id="newUserModal">
+        <div class="modal-content">
+
             <span class="close">&times;</span>
 
-            <span class="icon"><i class="bi bi-person-plus-fill"></i></span>
-            <div class="titulo-modal">
+            <div class="modal-titulo">
+                <span class="icon"><i class="bi bi-person-gear"></i></span>
                 <h2>ADICIONAR NOVO USUÁRIO</h2>
             </div>
+
             <div class="inputs-modal">
-                <label for="nome">Nome:</label>
-                <input type="text" id="nome" name="nome" required>
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-                <label for="email">Senha:</label>
-                <input type="email" id="email" name="email" required>
 
-                <label for="perfil">Perfil:</label>
-                <select id="perfil" name="perfil">
-                    <option value="administrador">Administrador</option>
-                    <option value="usuario">Usuário comum</option>
-                </select>
+                <div class="content-input-modal">
+                    <span> Nome: </span>
+                    <input type="text">
+                </div>
 
-                <button type="submit">CADASTRAR</button>
+                <div class="content-input-modal">
+                    <span> E-mail:</span>
+                    <input type="text">
+                </div>
+
+                <div class="content-input-modal">
+                    <span> Tipo de acesso:</span>
+                    <select id="perfil" name="perfil">
+                        <option value="administrador">Administrador</option>
+                        <option value="usuario">Usuário comum</option>
+                    </select>
+                </div>
+                <button type="submit">SALVAR</button>
 
             </div>
         </div>
-    </div>
 
     <!-- Modal editar usuario -->
     <div class="modal" id="editModal">
@@ -276,57 +281,65 @@
 </html>
 
 <script>
-    // Get all elements with class "opcoes-usuario"
-    var optionIcons = document.querySelectorAll('.opcoes-usuario span');
+     //  elementos dos modais
+    const deleteModal = document.getElementById('deleteModal');
+    const newUserModal = document.getElementById('newUserModal');
+    const editModal = document.getElementById('editModal');
 
-    // Loop through each icon and add a click event listener
-    optionIcons.forEach(function (icon) {
-        icon.addEventListener('click', function () {
-            // Get the modal target from the data-target attribute
-            var modalTarget = icon.getAttribute('data-target');
-            // Get the corresponding modal element
-            var modal = document.querySelector(modalTarget);
-            // Display the modal
-            modal.style.display = "block";
+    //  botões que abrem os modais
+    const deleteButtons = document.querySelectorAll('.delete-user');
+    const newButton = document.querySelector('.botao-cadastrar-usuario');
+    const editButtons = document.querySelectorAll('.edit-user');
+
+    // botões de fechar dos modais
+    const closeButtons = document.querySelectorAll('.close');
+
+    // funcoes para abrir os modais
+    function abrirDeleteModal() { 
+        deleteModal.style.display = 'block';
+    }
+    
+    function abrirNewUserModal() {
+        newUserModal.style.display = 'block';
+    }
+    
+    function abrirEditModal() {
+        editModal.style.display = 'block';
+    }
+
+   // eventos de clique nos botões que abrem os modais
+deleteButtons.forEach(function(button) {
+    button.addEventListener('click', function() {
+        abrirDeleteModal(); 
+    });
+});
+
+newButton.addEventListener('click', function() {
+    abrirNewUserModal(); 
+});
+
+editButtons.forEach(function(button) {
+    button.addEventListener('click', function() {
+        abrirEditModal(); 
+    });
+});
+
+    // evento de clique nos botões de fechar dos modais
+    closeButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            deleteModal.style.display = 'none';
+            newUserModal.style.display = 'none';
+            editModal.style.display = 'none'; 
         });
     });
 
-    // Get all elements with class "close" inside modals
-    var closeButtons = document.querySelectorAll('.modal-content .close');
-
-    // Loop through each close button and add a click event listener
-    closeButtons.forEach(function (button) {
-        button.addEventListener('click', function () {
-            // Get the closest modal to the clicked close button
-            var modal = button.closest('.modal');
-            // Hide the modal
-            modal.style.display = "none";
-        });
-    });
-
-    // Get the modal
-    var modal = document.getElementById("myModal");
-
-    // Get the button that opens the modal
-    var btn = document.querySelector('.botao-cadastrar-usuario');
-
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-
-    // When the user clicks the button, open the modal 
-    btn.onclick = function () {
-        modal.style.display = "block";
-    }
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function () {
-        modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function (event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
+    // Fechar o modal quando clicar fora dele
+    window.addEventListener('click', function(event) {
+        if (event.target == deleteModal || event.target == newUserModal || event.target == editModal) {
+            deleteModal.style.display = 'none';
+            newUserModal.style.display = 'none';
+            editModal.style.display = 'none';
+            newModal.style.display = 'none';
         }
-    }
+    });
 </script>

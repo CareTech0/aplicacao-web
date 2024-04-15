@@ -37,7 +37,7 @@ body {
     height: 406px;
     width: 230px;
     position: relative;
-    /* Defina a posição relativa */
+
 }
 
 .menu ul {
@@ -528,7 +528,6 @@ input[type="checkbox"]:not(:checked)+.slider {
     margin-left: 10px;
 }
 
-.tipo-box-usuarios h1 {}
 
 .perfil-box-usuarios h1 {
     font-size: 12px;
@@ -574,6 +573,8 @@ input[type="checkbox"]:not(:checked)+.slider {
 
 }
 
+/* estilos do modal */
+
 .modal-excluir {
     display: none;
     position: fixed;
@@ -587,17 +588,14 @@ input[type="checkbox"]:not(:checked)+.slider {
     background-color: rgba(0, 0, 0, 0.4);
 }
 
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgb(0, 0, 0);
-    background-color: rgba(0, 0, 0, 0.4);
+.modal-content-excluir {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 39%;
+    border-radius: 20px;
+
 }
 
 .modal-titulo {
@@ -607,6 +605,7 @@ input[type="checkbox"]:not(:checked)+.slider {
     border-bottom: 1.5px solid #D9D9D9;
     font-size: 15px;   
 }
+
 
 .modal-titulo span i {
     font-size: 24px;
@@ -623,11 +622,28 @@ input[type="checkbox"]:not(:checked)+.slider {
     font-weight: 500;
 }
 
-.modal-botao {
+.modal-botao-excluir {
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
+
+/* modal editar & adicionar usuário */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
 
 .modal-content {
     background-color: #fefefe;
@@ -640,21 +656,12 @@ input[type="checkbox"]:not(:checked)+.slider {
 }
 
 
-.modal-content-excluir {
-    background-color: #fefefe;
-    margin: 10% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 39%;
-    border-radius: 20px;
-
-}
-
 .inputs-modal {
     display: flex;
     flex-direction: column;
     align-items: center; 
     padding: 20px;
+    gap: 15px;
 }
 
 .inputs-modal label {
@@ -682,7 +689,7 @@ input[type="checkbox"]:not(:checked)+.slider {
     color: #747474;
 }
 
-.content-input input:focus {
+.content-input-modal input:focus {
     outline: none;
     border-color: #c0c0c0;
 }
@@ -693,8 +700,9 @@ select {
     border: 1px solid #D9D9D9;    
     margin-bottom: 10px;
     border-radius: 20px;
-    width: 100%;
-    padding: 10px;
+    padding: 9px;
+    width: 160px;
+    font-size: 12px;
 
 }
 
