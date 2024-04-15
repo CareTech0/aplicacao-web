@@ -720,20 +720,7 @@ input[type="checkbox"]:not(:checked)+.slider {
 }
 
 
-
-.content-input-modal-novo-usuario input {
-    width: 278px;
-    height: 10px;
-    padding: 10px;
-    border: 1px solid #D9D9D9;
-    border-radius: 15px;
-    box-shadow: 0 1px 1px rgba(231, 101, 101, 0.1);
-    background-color: #F7F7F7;
-    font-size: 13px;  
-    display: flex;
-    flex-direction: column;
-    align-items: center;   
-}
+.
 
 .content-input-modal-novo-usuario input {
     width: 278px;
@@ -773,15 +760,10 @@ select {
 
 .modal-content-novo-usuario button[type="submit"] {
     background-color: #8FC9FB;
-    /* Cor de fundo azul */
     color: #fff;
-    /* Cor do texto branco */
     border: none;
-    /* Sem borda */
     padding: 7px 15px;
-    /* Espaçamento interno */
     cursor: pointer;
-    /* Cursor de mão ao passar */
     border-radius: 10px;
     width: 38%;
     font-size: 13px;
@@ -864,16 +846,11 @@ select {
 }
 
 .modal-content button[type="submit"] {
-    background-color: #8FC9FB;
-    /* Cor de fundo azul */
+    background-color: #8FC9FB;   
     color: #fff;
-    /* Cor do texto branco */
-    border: none;
-    /* Sem borda */
-    padding: 7px 15px;
-    /* Espaçamento interno */
-    cursor: pointer;
-    /* Cursor de mão ao passar */
+    border: none;    
+    padding: 7px 15px;  
+    cursor: pointer;   
     border-radius: 10px;
     width: 38%;
     font-size: 13px;
@@ -893,3 +870,48 @@ select {
     text-decoration: none;
     cursor: pointer;
 }
+
+/* estilos do tooltips */
+
+
+
+.tooltip-container {
+    position: relative;
+    display: inline-block;
+  }
+
+  .tooltip-container .tooltip-icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+    line-height: 20px;
+    cursor: pointer;
+  }
+
+  .tooltip-text {
+    visibility: hidden;
+    width: 120px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 10px;
+
+  }
+
+  .tooltip-container:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+  }

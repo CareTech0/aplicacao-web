@@ -237,18 +237,25 @@
                 <input type="password">
             </div>
              
-            <div class="tooltip-container">
-                <span class="tooltip-icon">i</span>
-                <div class="tooltip-text">Esta é a mensagem do tooltip.</div>
-              </div>
-              
+            
             <div class="content-input-modal-novo-usuario">
+                
+                <div class="titulo-tipo-acesso"> 
                 <span> Tipo de acesso:</span>
-                <select id="perfil" name="perfil">
-                    <option value="administrador">Administrador</option>
-                    <option value="usuario">Usuário comum</option>
-                </select>
+                </div>
+
+                <div class="tooltip-container">
+                    <span class="tooltip-icon">i</span>
+                    <div class="tooltip-text"><b>Administradores:</b> Podem fazer bla bla <br> <b>Usuário comum:</b> Apenas visualização da dashboard </div>
+                  </div>
+                
             </div>
+
+            <select id="perfil" name="perfil">
+                <option value="administrador">Administrador</option>
+                <option value="usuario">Usuário comum</option>
+            </select> 
+
             <button type="submit">SALVAR</button>
 
         </div>
