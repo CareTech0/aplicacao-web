@@ -7,6 +7,9 @@
     <title>CareTech</title>
     <link rel="stylesheet" href="dashboard.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha384-nS9pNb+Uo+QnUAQBjQB80Nue+iyi1pqifQsbgjxcgZvPBJqfvpRwW9K0HJAu8k+j" crossorigin="anonymous">
+
 
 </head>
 
@@ -25,7 +28,7 @@
                     </a>
                 </li>
                 <li class="item-menu">
-                    <a href="#">
+                    <a href="cadastrarMaquina.html">
                         <span class="icon"><i class="bi bi-pc-display"></i></span>
                         <span class="txt-link">Cadastrar máquina</span>
                     </a>
@@ -56,6 +59,7 @@
 
             <div class="content-usuarios">
 
+
                 <div class="content-titulo-usuarios">
 
                     <div class="titulo-cadastrar-usuarios">
@@ -64,9 +68,9 @@
                     </div>
 
                     <div class="botao-cadastrar-usuario">
-                        <span class="icon-cadastrar-maquina"><i class="bi bi-plus-circle"></i></span>
-                        <span class="txt-cadastrar-maquina"><a href="../dashboard/cadastrarMaquina.html">NOVO
-                                USUÁRIO</a></span>
+                        <span class="icon-cadastrar-user"><i class="bi bi-plus-circle"></i></span>
+                        <span class="txt-cadastrar-usuario">NOVO
+                            USUÁRIO</span>
 
                     </div>
 
@@ -77,21 +81,21 @@
                 <div class="content-visualizar-usuarios">
                     <div class="box-usuarios">
                         <div class="titulo-box-usuarios">
-                            
-                                <div class="tipo-box-usuarios">
-                                    <h1>Nome</h1>
-                                    <p>Endereço de e-mail</p>
-                                </div>
 
-                                <div class="perfil-box-usuarios">
-                                    <h1>Perfil</h1>
-                                </div>
+                            <div class="tipo-box-usuarios">
+                                <h1>Nome</h1>
+                                <p>Endereço de e-mail</p>
+                            </div>
 
-                                <div class="perfil-box-usuarios">
-                                    <h1>Editar</h1>
-                                </div>
+                            <div class="perfil-box-usuarios">
+                                <h1>Perfil</h1>
+                            </div>
 
-                            
+                            <div class="perfil-box-usuarios">
+                                <h1>Editar</h1>
+                            </div>
+
+
                         </div>
 
                         <div class="conteudo-usuario">
@@ -105,69 +109,10 @@
                             </div>
 
                             <div class="opcoes-usuario">
-                                <span><i class="bi bi-trash3"></i></i></span>
-                                <span><i class="bi bi-pencil-square"></i></span>
-                            </div>
-                        </div>
-
-                        <div class="conteudo-usuario">
-                            <div class="dados-usuario">
-                                <h1>Nome do usuário aqui</h1>
-                                <p>Endereço de email aqui</p>
-                            </div>
-
-                            <div class="perfil-usuario">
-                                <h1>Administrador</h1>
-                            </div>
-
-                            <div class="opcoes-usuario">
-                                <span><i class="bi bi-trash3"></i></i></span>
-                                <span><i class="bi bi-pencil-square"></i></span>
-                            </div>
-                        </div>
-                        <div class="conteudo-usuario">
-                            <div class="dados-usuario">
-                                <h1>Nome do usuário aqui</h1>
-                                <p>Endereço de email aqui</p>
-                            </div>
-
-                            <div class="perfil-usuario">
-                                <h1>Administrador</h1>
-                            </div>
-
-                            <div class="opcoes-usuario">
-                                <span><i class="bi bi-trash3"></i></i></span>
-                                <span><i class="bi bi-pencil-square"></i></span>
-                            </div>
-                        </div>
-                        <div class="conteudo-usuario">
-                            <div class="dados-usuario">
-                                <h1>Nome do usuário aqui</h1>
-                                <p>Endereço de email aqui</p>
-                            </div>
-
-                            <div class="perfil-usuario">
-                                <h1>Administrador</h1>
-                            </div>
-
-                            <div class="opcoes-usuario">
-                                <span><i class="bi bi-trash3"></i></i></span>
-                                <span><i class="bi bi-pencil-square"></i></span>
-                            </div>
-                        </div>
-                        <div class="conteudo-usuario">
-                            <div class="dados-usuario">
-                                <h1>Nome do usuário aqui</h1>
-                                <p>Endereço de email aqui</p>
-                            </div>
-
-                            <div class="perfil-usuario">
-                                <h1>Administrador</h1>
-                            </div>
-
-                            <div class="opcoes-usuario">
-                                <span><i class="bi bi-trash3"></i></i></span>
-                                <span><i class="bi bi-pencil-square"></i></span>
+                                <span class="delete-user" data-target="#deleteModal"><i
+                                        class="bi bi-trash3"></i></i></span>
+                                <span class="edit-user" data-target="#editModal"><i
+                                        class="bi bi-pencil-square"></i></span>
                             </div>
                         </div>
 
@@ -182,11 +127,50 @@
                             </div>
 
                             <div class="opcoes-usuario">
-                                <span><i class="bi bi-trash3"></i></i></span>
-                                <span><i class="bi bi-pencil-square"></i></span>
+                                <span class="delete-user" data-target="#deleteModal"><i
+                                        class="bi bi-trash3"></i></i></span>
+                                <span class="edit-user" data-target="#editModal"><i
+                                        class="bi bi-pencil-square"></i></span>
                             </div>
                         </div>
-                        
+                        <div class="conteudo-usuario">
+                            <div class="dados-usuario">
+                                <h1>Nome do usuário aqui</h1>
+                                <p>Endereço de email aqui</p>
+                            </div>
+
+                            <div class="perfil-usuario">
+                                <h1>Administrador</h1>
+                            </div>
+
+                            <div class="opcoes-usuario">
+                                <span class="delete-user" data-target="#deleteModal"><i
+                                        class="bi bi-trash3"></i></i></span>
+                                <span class="edit-user" data-target="#editModal"><i
+                                        class="bi bi-pencil-square"></i></span>
+                            </div>
+                        </div>
+                        <div class="conteudo-usuario">
+                            <div class="dados-usuario">
+                                <h1>Nome do usuário aqui</h1>
+                                <p>Endereço de email aqui</p>
+                            </div>
+
+                            <div class="perfil-usuario">
+                                <h1>Administrador</h1>
+                            </div>
+
+                            <div class="opcoes-usuario">
+                                <span class="delete-user" data-target="#deleteModal"><i
+                                        class="bi bi-trash3"></i></i></span>
+                                <span class="edit-user" data-target="#editModal"><i
+                                        class="bi bi-pencil-square"></i></span>
+                            </div>
+                        </div>
+
+
+
+
 
                     </div>
                 </div>
@@ -197,6 +181,152 @@
 
         </div>
     </div>
+
+    <!-- Modal Excluir Usuário -->
+    <div class="modal-excluir" id="deleteModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+
+            <div class="modal-titulo">
+                <span> <i class="bi bi-person-x-fill"></i> </span>
+                <h2>DELETAR USUÁRIO</h2>
+            </div>
+
+            <div class="modal-mensagem">
+                <p>Deletar a conta irá remover todas as informações do nosso banco de dados. Essa ação não pode ser
+                    desfeita.</p>
+            </div>
+
+            <div class="modal-botao">
+                <button id="confirmDelete">EXCLUIR CONTA </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal adicionar novo usuario -->
+    <div class="modal" id="myModal">
+        <div class="modal-content-adicionar">
+            <span class="icon"><i class="fa-solid fa-user-xmark"></i></span>
+            <span class="close">&times;</span>
+
+            <span class="icon"><i class="bi bi-person-plus-fill"></i></span>
+            <div class="titulo-modal">
+                <h2>ADICIONAR NOVO USUÁRIO</h2>
+            </div>
+            <div class="inputs-modal">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="email">Senha:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="perfil">Perfil:</label>
+                <select id="perfil" name="perfil">
+                    <option value="administrador">Administrador</option>
+                    <option value="usuario">Usuário comum</option>
+                </select>
+
+                <button type="submit">CADASTRAR</button>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal editar usuario -->
+    <div class="modal" id="editModal">
+        <div class="modal-content">
+
+            <span class="close">&times;</span>
+
+            <div class="modal-titulo">
+                <span class="icon"><i class="bi bi-person-gear"></i></span>
+                <h2>EDITAR USUÁRIO</h2>
+            </div>
+
+            <div class="inputs-modal">
+
+                <div class="content-input-modal">
+                    <span> Nome: </span>
+                    <input type="text">
+                </div>
+
+                <div class="content-input-modal">
+                    <span> E-mail:</span>
+                    <input type="text">
+                </div>
+
+                <div class="content-input-modal">
+                    <span> Tipo de acesso:</span>
+                    <select id="perfil" name="perfil">
+                        <option value="administrador">Administrador</option>
+                        <option value="usuario">Usuário comum</option>
+                    </select>
+                </div>
+                <button type="submit">SALVAR</button>
+
+            </div>
+        </div>
+
+
 </body>
 
+
 </html>
+
+<script>
+    // Get all elements with class "opcoes-usuario"
+    var optionIcons = document.querySelectorAll('.opcoes-usuario span');
+
+    // Loop through each icon and add a click event listener
+    optionIcons.forEach(function (icon) {
+        icon.addEventListener('click', function () {
+            // Get the modal target from the data-target attribute
+            var modalTarget = icon.getAttribute('data-target');
+            // Get the corresponding modal element
+            var modal = document.querySelector(modalTarget);
+            // Display the modal
+            modal.style.display = "block";
+        });
+    });
+
+    // Get all elements with class "close" inside modals
+    var closeButtons = document.querySelectorAll('.modal-content .close');
+
+    // Loop through each close button and add a click event listener
+    closeButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            // Get the closest modal to the clicked close button
+            var modal = button.closest('.modal');
+            // Hide the modal
+            modal.style.display = "none";
+        });
+    });
+
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the button that opens the modal
+    var btn = document.querySelector('.botao-cadastrar-usuario');
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal 
+    btn.onclick = function () {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>

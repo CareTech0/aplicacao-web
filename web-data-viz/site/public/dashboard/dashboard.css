@@ -185,26 +185,23 @@ body {
     width: 38px;
 }
 
-.container-alertas{
-    width: 150px;
+.container-alertas {
+    width: 131px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+    gap: 5px;
 }
 
 
 .icon-alerta img {
     width: 40px;
-    height: 40px;     
+    height: 40px;
 }
 
-.icon-energia img {
-    width: 65px;
-    height: 40px;  
- }
-
-.icon-energia {
-    display: flex;
+.icon-onOff {
     width: 40px;
+    margin-top: 3px;
+
 }
 
 .content-maquinas {
@@ -242,92 +239,105 @@ body {
     display: none;
 }
 
-/*toogle switch*/ 
+
+/*toogle switch*/
 /* The switch - the box around the slider */
 .switch {
     position: relative;
     display: inline-block;
-    width: 100px; /* Largura do botão */
-    height: 34px; /* Altura do botão */
-  }
-  
-  .switch input {
+    width: 100px;
+    /* Largura do botão */
+    height: 34px;
+    /* Altura do botão */
+}
+
+.switch input {
     opacity: 0;
     width: 0;
     height: 0;
 
-  }
-  
-  .slider {
-    position: absolute;    
+}
+
+.slider {
+    position: absolute;
     top: 0;
     bottom: 0;
     width: 66%;
     transition: .4s;
     border-radius: 34px;
-    
-  }
-  
-  .slider:before {
+
+}
+
+.slider:before {
     position: absolute;
     content: "";
-    height: 27px; /* Altura da bola */
-    width: 27px; /* Largura da bola */
-    top: 3px; /* Ajuste vertical para centralizar a bola */
+    height: 27px;
+    /* Altura da bola */
+    width: 27px;
+    /* Largura da bola */
+    top: 3px;
+    /* Ajuste vertical para centralizar a bola */
     background-color: white;
     border-radius: 50%;
     transition: .4s;
-  }
-  
-  input:checked + .slider {
-    background-color: green; /* Cor de fundo quando ligado */
-  }
-  
-  input:checked + .slider:before {
-    transform: translateX(114%); /* Posição da bola quando ligado */
-  }
-  
-  .slider.round {
+}
+
+input:checked+.slider {
+    background-color: green;
+    /* Cor de fundo quando ligado */
+}
+
+input:checked+.slider:before {
+    transform: translateX(114%);
+    /* Posição da bola quando ligado */
+}
+
+.slider.round {
     border-radius: 34px;
-  }
-  
-  .slider.round:before {
+}
+
+.slider.round:before {
     border-radius: 51%;
-  }
-  
-  /* Estilos para o texto ON e OFF */
-  .slider::before {
-    right: 35px; /* Posição da bola quando desligado */
-  }
-  
-  .slider::after {
+}
+
+/* Estilos para o texto ON e OFF */
+.slider::before {
+    right: 35px;
+    /* Posição da bola quando desligado */
+}
+
+.slider::after {
     position: absolute;
     content: "OFF";
     top: 50%;
-    right: 4px; /* Posição do texto OFF quando desligado */
+    right: 4px;
+    /* Posição do texto OFF quando desligado */
     transform: translateY(-50%);
     color: white;
     transition: .4s;
     font-size: 13px;
-  }
-  
-  input:checked + .slider::before {
-    left: 2px; /* Posição da bola quando ligado */
-  }
-  
-  input:checked + .slider::after {
+}
+
+input:checked+.slider::before {
+    left: 2px;
+    /* Posição da bola quando ligado */
+}
+
+input:checked+.slider::after {
     content: "ON";
-    right: calc(50% + 4px); /* Posição do texto ON quando ligado */
-  }
-  
-  /* Adicionando cor de fundo vermelha quando desligado */
-  input[type="checkbox"]:not(:checked) + .slider {
-    background-color: red; /* Cor de fundo quando desligado */
-  }
-  
+    right: calc(50% + 4px);
+    /* Posição do texto ON quando ligado */
+}
+
+/* Adicionando cor de fundo vermelha quando desligado */
+input[type="checkbox"]:not(:checked)+.slider {
+    background-color: red;
+    /* Cor de fundo quando desligado */
+}
+
 /*cadastrar maquina pagina */
 .content-cadastrar {
-    background: #FFFFFF; 
+    background: #FFFFFF;
     height: 490px;
     width: 453px;
     border-radius: 40px;
@@ -384,7 +394,6 @@ body {
     box-shadow: 0 1px 1px rgba(231, 101, 101, 0.1);
     background-color: #F7F7F7;
     font-size: 13px;
-
 }
 
 .content-input span {
@@ -418,9 +427,8 @@ body {
 }
 
 /* estilos da pagina usuarios abaixo */
-
 .content-usuarios {
-    background: #FFFFFF; 
+    background: #FFFFFF;
     height: 482px;
     width: 79%;
     border-radius: 12px;
@@ -443,14 +451,15 @@ body {
 
 .titulo-cadastrar-usuarios {
     font-size: 29px;
-    font-weight: 700;    
+    font-weight: 700;
     border-bottom: 1.5px solid #D9D9D9;
     padding-bottom: 15px;
+    color: #3E4245;
 }
 
 .titulo-cadastrar-usuarios p {
     font-size: 13px;
-    
+    color: #3E4245;
 }
 
 
@@ -458,78 +467,93 @@ body {
     background-color: #4586BF;
     color: #fff;
     cursor: pointer;
-    width: 25%;
+    width: 20%;
     border-radius: 20px;
     height: 38px;
     display: flex;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-   
+
 
 }
 
+.icon-cadastrar-user {
+    font-size: 15px;
+    font-weight: 100;
+    margin-right: 10px;
+}
+
+.txt-cadastrar-usuario {
+    text-decoration: none;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: 500;
+}
+
 .content-visualizar-usuarios {
- width: 100%;
- height: 80% ;
- justify-content: center;
- display: flex;
- align-items: center;
+    width: 100%;
+    height: 75%;
+    justify-content: center;
+    display: flex;
+    align-items: center;
 }
 
 .box-usuarios {
     width: 71%;
     height: 85%;
-    background-color: #FBFBFB;
-  
-   
 }
 
 .caixinha-tipo-perfil {
-    display: flex; 
-    width: 58%;     
+    display: flex;
+    width: 58%;
     justify-content: space-around;
     align-items: center;
 }
 
 .titulo-box-usuarios {
-    width:  100%;
+    width: 100%;
     background-color: #F2F2F2;
     height: 17%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    
+
 }
 
-.tipo-box-usuarios h1, .dados-usuario h1 {
-    font-size: 12px;    
+.tipo-box-usuarios h1,
+.dados-usuario h1 {
+    font-size: 12px;
     color: #747474;
+    margin-left: 10px;
 }
 
-.perfil-box-usuarios h1{
-    font-size: 12px;    
+.tipo-box-usuarios h1 {}
+
+.perfil-box-usuarios h1 {
+    font-size: 12px;
     color: #747474;
-    
+
 }
 
 .perfil-usuario h1 {
-    font-size: 12px;    
-    color: #747474;    
+    font-size: 12px;
+    color: #747474;
 }
 
-.tipo-box-usuarios p, .dados-usuario p {
-    font-size: 10px;    
+.tipo-box-usuarios p,
+.dados-usuario p {
+    font-size: 10px;
     color: #747474;
     font-weight: 600px;
 }
 
 .conteudo-usuario {
-    border-bottom: 2px solid  #F2F2F2;
-    border-left: 2px solid  #F2F2F2;    
-    border-right: 2px solid  #F2F2F2;    
-
-    width:  100%;    
+    border-bottom: 2px solid #F2F2F2;
+    border-left: 2px solid #F2F2F2;
+    border-right: 2px solid #F2F2F2;
+    background-color: #FBFBFB;
+    width: 100%;
     height: 17%;
     display: flex;
     align-items: center;
@@ -540,12 +564,181 @@ body {
 .opcoes-usuario {
     display: flex;
     width: 49px;
-    justify-content: space-between;      
+    justify-content: space-between;
 }
 
-.opcoes-usuario span > i {
+.opcoes-usuario span>i {
     color: #565656;
     font-size: 17px;
     cursor: pointer;
-   
+
+}
+
+.modal-excluir {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-titulo {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: 1.5px solid #D9D9D9;
+    font-size: 15px;   
+}
+
+.modal-titulo span i {
+    font-size: 24px;
+    padding: 10px;
+}
+
+.modal-titulo span h2 {
+    color: #3E4245;
+}
+
+.modal-mensagem {
+    font-size: 14px;
+    padding: 16px;
+    font-weight: 500;
+}
+
+.modal-botao {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 27%;
+    border-radius: 20px;
+
+}
+
+
+.modal-content-excluir {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 39%;
+    border-radius: 20px;
+
+}
+
+.inputs-modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    padding: 20px;
+}
+
+.inputs-modal label {
+    margin-bottom: 5px;
+    text-align: left; 
+}
+
+.content-input-modal input {
+    width: 278px;
+    height: 10px;
+    padding: 10px;
+    border: 1px solid #D9D9D9;
+    border-radius: 15px;
+    box-shadow: 0 1px 1px rgba(231, 101, 101, 0.1);
+    background-color: #F7F7F7;
+    font-size: 13px;  
+    display: flex;
+    flex-direction: column;
+    align-items: center;   
+}
+
+.content-input-modal span {
+    margin-right: 10px;
+    font-weight: 600;
+    color: #747474;
+}
+
+.content-input input:focus {
+    outline: none;
+    border-color: #c0c0c0;
+}
+
+.content-input-modal>
+select {
+    background-color: #F7F7F7;
+    border: 1px solid #D9D9D9;    
+    margin-bottom: 10px;
+    border-radius: 20px;
+    width: 100%;
+    padding: 10px;
+
+}
+
+.modal-content button[type="submit"] {
+    background-color: #8FC9FB;
+    /* Cor de fundo azul */
+    color: #fff;
+    /* Cor do texto branco */
+    border: none;
+    /* Sem borda */
+    padding: 7px 15px;
+    /* Espaçamento interno */
+    cursor: pointer;
+    /* Cursor de mão ao passar */
+    border-radius: 10px;
+    width: 38%;
+    font-size: 13px;
+}
+
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#confirmDelete {
+    background-color: #F84C4C;
+    /* Cor de fundo vermelha */
+    color: #fff;
+    /* Cor do texto branco */
+    border: none;
+    /* Sem borda */
+    padding: 10px 20px;
+    /* Espaçamento interno */
+    cursor: pointer;
+    /* Cursor de mão ao passar */
+    border-radius: 15px;
 }

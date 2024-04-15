@@ -32,7 +32,7 @@
                     </a>
                 </li>
                 <li class="item-menu">
-                    <a href="#">
+                    <a href="..\dashboard\usuarios.html">
                         <span class="icon"><i class="bi bi-person-fill"></i></span>
                         <span class="txt-link">Usuários</span>
                     </a>
@@ -83,10 +83,12 @@
                         <img src="..\assets\imgs\alerta.png" alt="">
                     </div>
 
-                    <label class="switch">
-                        <input type="checkbox">
-                        <span class="slider round"></span>
-                      </label>
+                    <div class="icon-onOff">
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
                 </div>
 
             </div>
@@ -106,9 +108,11 @@
                     <div class="icon-alerta">
                         <img src="..\assets\imgs\check.png" alt="">
                     </div>
-
-                    <div class="icon-energia">
-                        <img src="..\assets\imgs\ligado.png" alt="">
+                    <div class="icon-onOff">
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
                     </div>
                 </div>
 
@@ -130,8 +134,11 @@
                         <img src="..\assets\imgs\x.png" alt="">
                     </div>
 
-                    <div class="icon-energia">
-                        <img src="..\assets\imgs\off.png" alt="">
+                    <div class="icon-onOff">
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
                     </div>
                 </div>
             </div>
@@ -152,8 +159,11 @@
                         <img src="..\assets\imgs\check.png" alt="">
                     </div>
 
-                    <div class="icon-energia">
-                        <img src="..\assets\imgs\ligado.png" alt="">
+                    <div class="icon-onOff">
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
                     </div>
                 </div>
 
@@ -174,8 +184,11 @@
                         <img src="..\assets\imgs\alerta.png" alt="">
                     </div>
 
-                    <div class="icon-energia">
-                        <img src="..\assets\imgs\off.png" alt="">
+                    <div class="icon-onOff">
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
                     </div>
                 </div>
             </div>
@@ -187,16 +200,16 @@
 </body>
 
 <script>
-   document.addEventListener("DOMContentLoaded", function() {
-            const toggleButtons = document.querySelectorAll('.switch');
+    document.addEventListener("DOMContentLoaded", function () {
+        const toggleButtons = document.querySelectorAll('.switch');
 
-            toggleButtons.forEach(function(toggleButton) {
-                toggleButton.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                });
+        toggleButtons.forEach(function (toggleButton) {
+            toggleButton.addEventListener('click', function (event) {
+                event.preventDefault();
+                event.stopPropagation();
             });
         });
-  </script>
+    });
+</script>
 
 </html>
