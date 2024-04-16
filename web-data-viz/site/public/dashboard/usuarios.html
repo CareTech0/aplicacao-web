@@ -238,25 +238,31 @@
             </div>
              
             
-            <div class="content-input-modal-novo-usuario">
+            <div class="content-input-modal-novo-usuario-tooltip">
                 
                 <div class="titulo-tipo-acesso"> 
                 <span> Tipo de acesso:</span>
                 </div>
 
-                <div class="tooltip-container">
+                <div class="box-tooltip">
+                  <div class="tooltip-container">
                     <span class="tooltip-icon">i</span>
                     <div class="tooltip-text"><b>Administradores:</b> Podem fazer bla bla <br> <b>Usuário comum:</b> Apenas visualização da dashboard </div>
                   </div>
+                </div>
+
+                  <div class="content-input-modal">
+                    <select id="perfil" name="perfil">
+                        <option value="administrador">Administrador</option>
+                        <option value="usuario">Usuário comum</option>
+                    </select>
+                </div>
+                
                 
             </div>
-
-            <select id="perfil" name="perfil">
-                <option value="administrador">Administrador</option>
-                <option value="usuario">Usuário comum</option>
-            </select> 
-
             <button type="submit">SALVAR</button>
+            
+            
 
         </div>
     </div>
