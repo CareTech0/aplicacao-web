@@ -398,6 +398,8 @@ input[type="checkbox"]:not(:checked)+.slider {
 
 .content-input span {
     margin-right: 10px;
+    font-weight: 600;
+    color: #747474;
 }
 
 .content-input input:focus {
@@ -451,10 +453,9 @@ input[type="checkbox"]:not(:checked)+.slider {
 
 .titulo-cadastrar-usuarios {
     font-size: 29px;
-    font-weight: 700;
+    font-weight: 600;
     border-bottom: 1.5px solid #D9D9D9;
     padding-bottom: 15px;
-    color: #3E4245;
 }
 
 .titulo-cadastrar-usuarios p {
@@ -517,7 +518,7 @@ input[type="checkbox"]:not(:checked)+.slider {
     height: 17%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
 
 }
 
@@ -525,7 +526,6 @@ input[type="checkbox"]:not(:checked)+.slider {
 .dados-usuario h1 {
     font-size: 12px;
     color: #747474;
-    margin-left: 10px;
 }
 
 
@@ -547,6 +547,7 @@ input[type="checkbox"]:not(:checked)+.slider {
     font-weight: 600px;
 }
 
+
 .conteudo-usuario {
     border-bottom: 2px solid #F2F2F2;
     border-left: 2px solid #F2F2F2;
@@ -559,6 +560,8 @@ input[type="checkbox"]:not(:checked)+.slider {
     justify-content: space-around;
     box-sizing: border-box;
 }
+
+
 
 .opcoes-usuario {
     display: flex;
@@ -671,7 +674,7 @@ input[type="checkbox"]:not(:checked)+.slider {
 
 .modal-content-novo-usuario {
     background-color: #fefefe;
-    margin: 10% auto;
+    margin: 5% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 27%;
@@ -712,6 +715,8 @@ input[type="checkbox"]:not(:checked)+.slider {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-weight: 600;
+    color: #747474;
 }
 
 .inputs-modal label {
@@ -893,8 +898,8 @@ input[type="checkbox"]:not(:checked)+.slider {
     background-color: #007bff;
     color: #fff;
     text-align: center;
-    line-height: 20px;
     cursor: pointer;
+    font-size: 11px;
 }
 
 .tooltip-text {
