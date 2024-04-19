@@ -155,68 +155,58 @@
     document.addEventListener('DOMContentLoaded', function () {
         google.charts.load('current', { 'packages': ['corechart'] });
         google.charts.setOnLoadCallback(drawChart);
-
+    
         function drawChart() {
-            // Dados iniciais de exemplo para o gráfico
             var data = google.visualization.arrayToDataTable([
                 ['Tempo', 'Uso de CPU'],
-                ['00:00', 50],
-                ['01:00', 70],
-                ['02:00', 80],
-                ['03:00', 60],
-                // Adicione mais dados conforme necessário
+                ['09:00', 94],
+                ['09:10', 96],
+                ['09:20', 95],
+                ['09:30', 100],
             ]);
-
-            // Opções do gráfico
+    
             var options = {
                 title: 'Monitoramento da CPU',
                 curveType: 'function',
-                legend: { position: 'none' }, // Removendo a legenda
-                areaOpacity: 0.3, // Adicionando opacidade à área
+                legend: { position: 'none' },
+                areaOpacity: 0.3,
                 hAxis: {
                     title: 'Tempo',
-                    textStyle: { color: '#999' }, // Cor do texto do eixo X
+                    textStyle: { color: '#999' },
                 },
                 vAxis: {
                     title: 'Uso de CPU (%)',
-                    textStyle: { color: '#999' }, // Cor do texto do eixo Y
+                    textStyle: { color: '#999' },
                 },
-                lineWidth: 2, // Espessura da linha do gráfico
-                colors: ['#007bff'], // Cor do gráfico
-                backgroundColor: 'transparent', // Cor de fundo transparente
+                lineWidth: 2,
+                colors: ['#007bff'],
+                backgroundColor: 'transparent',
             };
 
-            // Criando uma instância do gráfico de área
+            var optionsPequena = {
+                curveType: 'none', 
+                legend: { position: 'none' }, 
+                areaOpacity: 0.3, 
+                hAxis: {
+                    title: 'Tempo',
+                    textStyle: { color: '#666' }, 
+                },
+                vAxis: {
+                    title: 'Uso de CPU (%)',
+                    textStyle: { color: '#666' }, 
+                },
+                lineWidth: 1, 
+                colors: ['#ff5733'], 
+                backgroundColor: 'transparent',
+            };
+    
+    
             var chart = new google.visualization.AreaChart(document.getElementById('cpu-chart'));
             var chartPequena = new google.visualization.AreaChart(document.getElementById('cpu-chart-pequena'));
-
-           
-            // Função para atualizar os dados do gráfico
-            function updateChart() {
-                // Simulação de obtenção de novos dados
-                var newData = [
-                    ['Tempo', 'Uso de CPU'],
-                    ['00:00', Math.random() * 100],
-                    ['01:00', Math.random() * 100],
-                    ['02:00', Math.random() * 100],
-                    ['03:00', Math.random() * 100],
-                    // Adicione mais dados conforme necessário
-                ];
-
-                // Atualizando os dados do gráfico
-                data = google.visualization.arrayToDataTable(newData);
-
-                // Redesenhando o gráfico com os novos dados
-                chart.draw(data, options);
-            }
-
-            
-            
-            // Chamando a função updateChart a cada segundo (1000 milissegundos)
-            setInterval(updateChart, 2000);        
-        }
+    
+            chart.draw(data, options);
+            chartPequena.draw(data, optionsPequena);        }
     });
-
 </script>
 
 </html>
