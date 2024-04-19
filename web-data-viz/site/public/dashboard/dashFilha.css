@@ -1,0 +1,239 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Montserrat", sans-serif;
+
+
+}
+
+
+body {
+    background-color: #4586BF;
+    display: flex;
+}
+
+.logomarca img {
+    width: 250px;
+    height: auto;
+    margin-bottom: 53px;
+}
+
+.menu {
+    margin-left: 16px;
+    background-color: #f5f5f5;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    height: 406px;
+    width: 230px;
+    position: relative;
+
+}
+
+.menu ul {
+    list-style-type: none;
+}
+
+.menu ul li.item-menu:hover {
+    background: #8FC9FB;
+    border-radius: 7px;
+}
+
+.menu ul li.item-menu {
+    transition: .3s;
+}
+
+.item-menu a:hover {
+    color: #fff;
+
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: #656565;
+    display: flex;
+    margin-bottom: 15px;
+    line-height: 30px;
+    margin-left: 10px;
+}
+
+.menu ul li a .txt-link {
+    margin-left: 7px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+
+.item-menu a span>i {
+    color: #292929;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.item-menu-deslogar {
+    cursor: pointer;
+    position: absolute;
+    bottom: 0;
+    left: 28%;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.txt-link a {
+    text-decoration: none;
+    color: #292929;
+}
+
+.container {
+    flex: 1;
+    max-width: 1000px;
+    height: 495px;
+    background-color: #f5f5f5;
+    margin: 18px auto;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    /* overflow: auto; */
+}
+
+.container-global {
+    width: 100%;
+    height: 100%;
+}
+
+.caixa-titulo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+}
+
+.botao-voltar-caixa {
+    display: flex;
+    justify-content: flex-start;
+    height: 99px;
+
+}
+
+.botao-voltar {
+    width: 100px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+}
+
+.botao-voltar span i {
+    color: #4586BF;
+    font-size: 20px;
+}
+
+.botao-voltar>span {
+    font-weight: 600;
+    
+}
+
+.content-titulo {
+    display: flex;
+    align-items: center;
+
+}
+
+.content-img img {
+    width: 95px;
+
+}
+
+.content-img {
+    width: 100px;
+    margin-right: 10px;
+}
+
+.titulo-cadastrar {
+    font-size: 29px;
+    font-weight: 600;
+    border-bottom: 1.5px solid #D9D9D9;
+    padding-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.titulo-cadastrar p {
+    font-size: 13px;
+    color: #3E4245;
+}
+
+.container-cpu {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.container-grafico-cpu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.box-grafico {
+    background: white;
+    width: 80%;
+    height: 260px;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.box-grafico-menor {
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: white;
+    width: 96%;
+    height: 38%;
+    display: flex;
+    flex-direction: column;
+}
+
+.titulo-grafico-menor {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.titulo-grafico-menor span {
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.chart-pequeno { 
+    width: 200px;
+height: 100px;    
+}
+
+.container-grafico-menor {
+    width: 26%;
+    display: flex;
+    flex-direction: column;
+    margin-top: -33px;    
+    align-items: center;
+    gap: 5px;
+}
+
+
+.container-conteudo {
+    display: flex;
+    height: 83%;
+}
+
+.conteudo-grafico {
+    width: 100%;
+    height: 80%;
+}

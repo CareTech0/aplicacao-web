@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareTech</title>
+    <link rel="stylesheet" href="dashFilha.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+</head>
+
+<body>
+    <header>
+        <div class="logomarca">
+            <img src="logoBranco.png" alt="logoCareTech">
+        </div>
+
+        <nav class="menu">
+            <ul>
+                <li class="item-menu">
+                    <a href="..\dashboard\dashboard.html">
+                        <span class="icon"><i class="bi bi-columns-gap"></i></span>
+                        <span class="txt-link">Dashboard</span>
+                    </a>
+                </li>
+                <li class="item-menu">
+                    <a href="..\dashboard\cadastrarMaquina.html">
+                        <span class="icon"><i class="bi bi-pc-display"></i></span>
+                        <span class="txt-link">Cadastrar máquina</span>
+                    </a>
+                </li>
+                <li class="item-menu">
+                    <a href="..\dashboard\usuarios.html">
+                        <span class="icon"><i class="bi bi-person-fill"></i></span>
+                        <span class="txt-link">Usuários</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="item-menu-deslogar">
+                <span class="icon"><i class="bi bi-box-arrow-right"></i></span>
+                <span class="txt-link">
+                    <a href="../login.html">Deslogar</a>
+                </span>
+
+            </div>
+
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+
+        <div class="container-global">
+            <div class="caixa-titulo">
+
+                <div class="botao-voltar-caixa">
+
+                    <div class="botao-voltar">
+
+                        <span><i class="bi bi-arrow-left"></i> VOLTAR </span>
+                    </div>
+                </div>
+
+                <div class="content-titulo">
+
+                    <div class="content-img">
+                        <img src="..\assets\imgs\pngMaquina.png">
+                    </div>
+
+                    <div class="titulo-cadastrar">
+                        <span>Máquina xx</span>
+                        <p>Selecione ao lado o recurso desejado para mais detalhes.</p>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="container-conteudo">
+
+
+                <div class="container-grafico-menor">
+
+                    <div class="box-grafico-menor">
+                        <div class="titulo-grafico-menor">
+                            <span>CPU</span>
+                        </div>
+                        <div class="chart-pequeno" id="cpu-chart-pequena">
+
+                        </div>
+                    </div>
+
+                    <div class="box-grafico-menor">
+                        <div class="titulo-grafico-menor">
+                            <span>RAM</span>
+                        </div>
+                        <div class="conteudo-grafico">
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="box-grafico-menor">
+                        <div class="titulo-grafico-menor">
+                            <span>DISCO</span>
+                        </div>
+                        <div class="conteudo-grafico">
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="box-grafico-menor">
+                        <div class="titulo-grafico-menor">
+                            <span>REDE</span>
+                        </div>
+                        <div class="conteudo-grafico">
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="container-cpu">
+                    <div class="container-grafico-cpu">
+                        <div class="box-grafico" id="cpu-chart">
+
+                        </div>
+                    </div>
+
+                    <div class="content-informacoes-cpu">
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+    </div>
+    </div>
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            // Dados iniciais de exemplo para o gráfico
+            var data = google.visualization.arrayToDataTable([
+                ['Tempo', 'Uso de CPU'],
+                ['00:00', 50],
+                ['01:00', 70],
+                ['02:00', 80],
+                ['03:00', 60],
+                // Adicione mais dados conforme necessário
+            ]);
+
+            // Opções do gráfico
+            var options = {
+                title: 'Monitoramento da CPU',
+                curveType: 'function',
+                legend: { position: 'none' }, // Removendo a legenda
+                areaOpacity: 0.3, // Adicionando opacidade à área
+                hAxis: {
+                    title: 'Tempo',
+                    textStyle: { color: '#999' }, // Cor do texto do eixo X
+                },
+                vAxis: {
+                    title: 'Uso de CPU (%)',
+                    textStyle: { color: '#999' }, // Cor do texto do eixo Y
+                },
+                lineWidth: 2, // Espessura da linha do gráfico
+                colors: ['#007bff'], // Cor do gráfico
+                backgroundColor: 'transparent', // Cor de fundo transparente
+            };
+
+            // Criando uma instância do gráfico de área
+            var chart = new google.visualization.AreaChart(document.getElementById('cpu-chart'));
+            var chartPequena = new google.visualization.AreaChart(document.getElementById('cpu-chart-pequena'));
+
+           
+            // Função para atualizar os dados do gráfico
+            function updateChart() {
+                // Simulação de obtenção de novos dados
+                var newData = [
+                    ['Tempo', 'Uso de CPU'],
+                    ['00:00', Math.random() * 100],
+                    ['01:00', Math.random() * 100],
+                    ['02:00', Math.random() * 100],
+                    ['03:00', Math.random() * 100],
+                    // Adicione mais dados conforme necessário
+                ];
+
+                // Atualizando os dados do gráfico
+                data = google.visualization.arrayToDataTable(newData);
+
+                // Redesenhando o gráfico com os novos dados
+                chart.draw(data, options);
+            }
+
+            
+            
+            // Chamando a função updateChart a cada segundo (1000 milissegundos)
+            setInterval(updateChart, 2000);        
+        }
+    });
+
+</script>
+
+</html>

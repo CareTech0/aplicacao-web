@@ -59,25 +59,27 @@
 
             <div class="content-usuarios">
 
-
-                <div class="content-titulo-usuarios">
-
+                <div class="caixa-titulo"> 
+                 <div class="content-titulo-usuarios">
+                    
+                    <div class="content-img-usuario"> 
+                        <img src="../assets/imgs/iconUser.png">
+                     </div>
                     <div class="titulo-cadastrar-usuarios">
-                        <span>USUÁRIOS</span>
-                        <p>Gerencie seus usuários e permissões aqui.</p>
-                    </div>
-
-                    <div class="botao-cadastrar-usuario">
-                        <span class="icon-cadastrar-user"><i class="bi bi-plus-circle"></i></span>
-                        <span class="txt-cadastrar-usuario">NOVO
-                            USUÁRIO</span>
-
-                    </div>
-
-
+                        
+                         <span>USUÁRIOS</span>
+                         <p>Gerencie seus usuários e permissões aqui.</p>                       
+                        
+                     </div>                
 
                 </div>
 
+                <div class="botao-cadastrar-usuario">
+                    <span class="icon-cadastrar-user"><i class="bi bi-plus-circle"></i></span>
+                    <span class="txt-cadastrar-usuario">NOVO
+                        USUÁRIO</span>
+                </div>  
+            </div>
                 <div class="content-visualizar-usuarios">
                     <div class="box-usuarios">
                         <div class="titulo-box-usuarios">
@@ -293,17 +295,64 @@
                 <input type="text">
             </div>
 
-            <div class="content-input-modal">
+            
+            <div class="content-input-modal-novo-usuario-tooltip">
+                
+                <div class="titulo-tipo-acesso"> 
                 <span> Tipo de acesso:</span>
-                <select id="perfil" name="perfil">
-                    <option value="administrador">Administrador</option>
-                    <option value="usuario">Usuário comum</option>
-                </select>
+                </div>
+
+                <div class="box-tooltip">
+                  <div class="tooltip-container">
+                    <span class="tooltip-icon">i</span>
+                    <div class="tooltip-text"><b>Administradores:</b> Podem fazer bla bla <br> <b>Usuário comum:</b> Apenas visualização da dashboard </div>
+                  </div>
+                </div>
+
+                  <div class="content-input-modal">
+                    <select id="perfil" name="perfil">
+                        <option value="administrador">Administrador</option>
+                        <option value="usuario">Usuário comum</option>
+                    </select>
+                </div>
+                
+                
             </div>
             <button type="submit">SALVAR</button>
-
         </div>
     </div>
+
+    <!-- modal de cadastrar maquina -->
+
+</body>
+<div class="modal" id="maquinaModal">
+    <div class="modal-content">
+
+        <span class="close">&times;</span>
+
+        <div class="modal-titulo">
+            <span class="icon"><i class="bi bi-person-gear"></i></span>
+            <h2>CADASTRAR MÁQUINA</h2>
+        </div>
+
+        <div class="inputs-modal">
+
+            <div class="content-input-modal">
+                <span> Campo: </span>
+                <input type="text">
+            </div>
+
+            <div class="content-input-modal">
+                <span> Campo:</span>
+                <input type="text">
+            </div>
+
+                        
+            <button type="submit">SALVAR</button>
+        </div>
+    </div>
+
+
 
 </html>
 
@@ -312,11 +361,13 @@
     const deleteModal = document.getElementById('deleteModal');
     const newUserModal = document.getElementById('newUserModal');
     const editModal = document.getElementById('editModal');
+    
 
     //  botões que abrem os modais
     const deleteButtons = document.querySelectorAll('.delete-user');
     const newButton = document.querySelector('.botao-cadastrar-usuario');
     const editButtons = document.querySelectorAll('.edit-user');
+    
 
     // botões de fechar dos modais
     const closeButtons = document.querySelectorAll('.close');
@@ -335,6 +386,8 @@
         console.log('Entrei no abrirEditModal')
     }
 
+  
+
    // eventos de clique nos botões que abrem os modais
 deleteButtons.forEach(function(button) {
     button.addEventListener('click', function() {
@@ -347,6 +400,7 @@ newButton.addEventListener('click', function() {
     abrirNewUserModal(); 
 });
 
+
 editButtons.forEach(function(button) {
     button.addEventListener('click', function() {
         abrirEditModal(); 
@@ -354,14 +408,14 @@ editButtons.forEach(function(button) {
     });
 });
 
+
     // evento de clique nos botões de fechar dos modais
     closeButtons.forEach(function(button) {
         button.addEventListener('click', function() {
             deleteModal.style.display = 'none';
             newUserModal.style.display = 'none';
-            editModal.style.display = 'none'; 
-            
-        });
+            editModal.style.display = 'none';             
+       });
     });
 
     // Fechar o modal quando clicar fora dele
@@ -371,6 +425,7 @@ editButtons.forEach(function(button) {
             newUserModal.style.display = 'none';
             editModal.style.display = 'none';
             newModal.style.display = 'none';
+           
         }
     });
 </script>
