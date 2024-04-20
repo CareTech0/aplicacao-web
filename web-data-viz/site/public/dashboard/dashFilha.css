@@ -135,7 +135,7 @@ body {
 
 .botao-voltar>span {
     font-weight: 600;
-    
+
 }
 
 .content-titulo {
@@ -178,9 +178,13 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 15px;
 
 }
 
+.titulo-grafico { 
+    width: 100%;
+}
 
 .box-grafico {
     background: white;
@@ -195,9 +199,10 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     background: white;
     width: 96%;
-    height: 38%;
+    height: 23%;
     display: flex;
     flex-direction: column;
+    cursor: pointer;
 }
 
 .titulo-grafico-menor {
@@ -213,18 +218,20 @@ body {
     font-size: 16px;
 }
 
-.chart-pequeno { 
+.chart-pequeno {
     width: 200px;
-height: 100px;    
+    height: 100px;
+    margin-bottom: 10px;
 }
 
 .container-grafico-menor {
-    width: 26%;
+    width: 23%;
     display: flex;
     flex-direction: column;
-    margin-top: -33px;    
+    margin-top: -56px;
+    margin-left: 32px;
     align-items: center;
-    gap: 5px;
+    gap: 11px;
 }
 
 
