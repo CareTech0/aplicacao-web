@@ -7,8 +7,9 @@
     <title>CareTech</title>
     <link rel="stylesheet" href="../css/dashboardFilha.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>  
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="../js/scriptDash.js"></script>
+    
 </head>
 
 <body>
@@ -85,7 +86,7 @@
 
                 <div class="container-grafico-menor">
 
-                    <div class="box-grafico-menor" onclick="direcionarCPU()">
+                    <div class="box-grafico-menor">
                         <div class="titulo-grafico-menor">
                             <span>CPU</span>
                         </div>
@@ -94,7 +95,7 @@
                         </div>
                     </div>
 
-                    <div class="box-grafico-menor" onclick="direcionarRAM()">
+                    <div class="box-grafico-menor"  onclick="direcionarRAM()">
                         <div class="titulo-grafico-menor">
                             <span>RAM</span>
                         </div>
@@ -105,7 +106,7 @@
 
 
 
-                    <div class="box-grafico-menor" onclick="direcionarDISCO()">
+                    <div class="box-grafico-menor"  onclick="direcionarDISCO()">
                         <div class="titulo-grafico-menor">
                             <span>DISCO</span>
                         </div>
@@ -116,9 +117,9 @@
 
 
 
-                    <div class="box-grafico-menor" onclick="direcionarREDE()">
+                    <div class="box-grafico-menor"  onclick="direcionarREDE()">
                         <div class="titulo-grafico-menor">
-                            <span>REDE</span  >
+                            <span>REDE</span>
                         </div>
                         <div class="chart-pequeno" id="rede-chart-pequena">
 
@@ -131,7 +132,7 @@
                 <div class="container-cpu">
                     <div class="container-grafico-cpu">
                         
-                        <div class="box-grafico" id="disco-chart">
+                        <div class="box-grafico" id="cpu-chart">
                             
                         </div>
                     </div>
@@ -154,21 +155,24 @@
 </html>
 
 <script>
-    google.charts.load('current', { 'packages': ['corechart'] });
+    
+
+
+google.charts.load('current', { 'packages': ['corechart'] });
 google.charts.setOnLoadCallback(drawCharts);
 
-function drawCharts() { 
-
-    var discoData = google.visualization.arrayToDataTable([
-        ['Tempo', 'Uso de Disco'],
-        ['09:00', 60],
-        ['09:10', 55],
-        ['09:20', 70],
-        ['09:30', 45],
+function drawCharts() {
+    
+    var cpuData = google.visualization.arrayToDataTable([
+        ['Tempo', 'Uso de CPU'],
+        ['09:00', 99],
+        ['09:10', 96],
+        ['09:20', 95],
+        ['09:30', 100],
     ]);
 
-    var discoOptions = {
-        title: 'Monitoramento de Disco',
+    var cpuOptions = {
+        title: 'Monitoramento da CPU',
         titleTextStyle: {
             fontSize: 18, 
             textAlign: 'center' 
@@ -184,65 +188,9 @@ function drawCharts() {
             textStyle: { color: '#999' },
         },
         lineWidth: 2,
-        colors: ['#ffcc00'],
+        colors: ['#007bff'],
         backgroundColor: 'transparent',
     };
-
-    var discoOptionsPequena = {
-        curveType: 'function',
-        legend: { position: 'none' },
-        areaOpacity: 0.3,
-        hAxis: {
-            title: 'Tempo',
-            textStyle: { color: '#999' },
-        },
-        vAxis: {
-            textStyle: { color: '#999' },
-        },
-        lineWidth: 2,
-        colors: ['#ffcc00'],
-        backgroundColor: 'transparent',
-    };
-
-    var discoChartPequena = new google.visualization.AreaChart(document.getElementById('disco-chart-pequena'));
-    discoChartPequena.draw(discoData, discoOptionsPequena);
-    var discoChart = new google.visualization.AreaChart(document.getElementById('disco-chart'));
-    discoChart.draw(discoData, discoOptions);
-
-    var ramData = google.visualization.arrayToDataTable([
-        ['Tempo', 'Uso de RAM'],
-        ['09:00', 50],
-        ['09:10', 55],
-        ['09:20', 78],
-        ['09:30', 90],
-    ]);
-
-    var ramOptionsPequena = {
-        curveType: 'function',
-        legend: { position: 'none' },
-        areaOpacity: 0.3,
-        hAxis: {
-            title: 'Tempo',
-            textStyle: { color: '#999' },
-        },
-        vAxis: {
-            textStyle: { color: '#999' },
-        },
-        lineWidth: 2,
-        colors: ['#00cc66'],
-        backgroundColor: 'transparent',
-    };
-
-    var ramChartPequena = new google.visualization.AreaChart(document.getElementById('ram-chart-pequena'));
-    ramChartPequena.draw(ramData, ramOptionsPequena);
-
-    var cpuData = google.visualization.arrayToDataTable([
-        ['Tempo', 'Uso de CPU'],
-        ['09:00', 99],
-        ['09:10', 96],
-        ['09:20', 95],
-        ['09:30', 100],
-    ]); 
 
     var cpuOptionsPequena = {
         curveType: 'function',
@@ -259,8 +207,67 @@ function drawCharts() {
         colors: ['#007bff'],
         backgroundColor: 'transparent',
     };
+
+    var cpuChart = new google.visualization.AreaChart(document.getElementById('cpu-chart'));
+    cpuChart.draw(cpuData, cpuOptions);
+
     var cpuChartPequena = new google.visualization.AreaChart(document.getElementById('cpu-chart-pequena'));
     cpuChartPequena.draw(cpuData, cpuOptionsPequena);
+
+    
+    var ramData = google.visualization.arrayToDataTable([
+        ['Tempo', 'Uso de RAM'],
+        ['09:00', 50],
+        ['09:10', 55],
+        ['09:20', 78],
+        ['09:30', 90],
+    ]);
+
+    var ramOptions = {
+        curveType: 'function',
+        legend: { position: 'none' },
+        areaOpacity: 0.3,
+        hAxis: {
+            title: 'Tempo',
+            textStyle: { color: '#999' },
+        },
+        vAxis: {
+            textStyle: { color: '#999' },
+        },
+        lineWidth: 2,
+        colors: ['#00cc66'],
+        backgroundColor: 'transparent',
+    };
+
+    var ramChartPequena = new google.visualization.AreaChart(document.getElementById('ram-chart-pequena'));
+    ramChartPequena.draw(ramData, ramOptions);
+
+    var discoData = google.visualization.arrayToDataTable([
+        ['Tempo', 'Uso de Disco'],
+        ['09:00', 60],
+        ['09:10', 55],
+        ['09:20', 70],
+        ['09:30', 45],
+    ]);
+
+    var discoOptions = {
+        curveType: 'function',
+        legend: { position: 'none' },
+        areaOpacity: 0.3,
+        hAxis: {
+            title: 'Tempo',
+            textStyle: { color: '#999' },
+        },
+        vAxis: {
+            textStyle: { color: '#999' },
+        },
+        lineWidth: 2,
+        colors: ['#ffcc00'],
+        backgroundColor: 'transparent',
+    };
+
+    var discoChartPequena = new google.visualization.AreaChart(document.getElementById('disco-chart-pequena'));
+    discoChartPequena.draw(discoData, discoOptions);
 
     var redeData = google.visualization.arrayToDataTable([
         ['Tempo', 'Uso de Rede'],
@@ -289,5 +296,8 @@ function drawCharts() {
     var redeChartPequena = new google.visualization.AreaChart(document.getElementById('rede-chart-pequena'));
     redeChartPequena.draw(redeData, redeOptions);
 
+
+
+    
 }
 </script>

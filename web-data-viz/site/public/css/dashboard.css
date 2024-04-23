@@ -214,6 +214,7 @@ body {
     box-shadow: 0 4px 3px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
     margin-left: 15px;
+    cursor: pointer;
 
 }
 

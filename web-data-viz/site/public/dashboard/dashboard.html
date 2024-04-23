@@ -5,16 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CareTech</title>
-    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
+    <script src="../js/scriptDash.js"></script>
 
 </head>
 
 <body>
     <header>
         <div class="logomarca">
-            <img src="logoBranco.png" alt="logoCareTech">
+            <img src="../assets/imgs/logoBrancoDash.png" alt="logoCareTech">
         </div>
 
         <nav class="menu">
@@ -55,7 +55,7 @@
         <div class="container-notificacoes">
             <div class="titulo-notificacoes">
                 <h1>Olá, Amanda!</h1>
-                <p>Você tem <span>x novas ocorrências.</span></p>
+                <p>Você tem <span>3 novas ocorrências.</span></p>
             </div>
         </div>
 
@@ -67,7 +67,7 @@
 
         <div class="container-maquinas">
 
-            <div class="content-maquinas">
+            <div class="content-maquinas" onclick="direcionarCPU()">
 
                 <div class="icon-maquina">
                     <img src="..\assets\imgs\pngMaquina.png">
@@ -75,7 +75,7 @@
 
                 <div class="titulo-maquina">
                     <span>Máquina</span>
-                    <span>xx</span>
+                    <span>01</span>
                 </div>
 
                 <div class="container-alertas">
@@ -93,7 +93,7 @@
 
             </div>
 
-            <div class="content-maquinas">
+            <div class="content-maquinas" onclick="direcionarCPU()">
 
                 <div class="icon-maquina">
                     <img src="..\assets\imgs\pngMaquina.png">
@@ -101,7 +101,7 @@
 
                 <div class="titulo-maquina">
                     <span>Máquina</span>
-                    <span>xx</span>
+                    <span>02</span>
                 </div>
 
                 <div class="container-alertas">
@@ -118,7 +118,7 @@
 
             </div>
 
-            <div class="content-maquinas">
+            <div class="content-maquinas" onclick="direcionarCPU()">
 
                 <div class="icon-maquina">
                     <img src="..\assets\imgs\pngMaquina.png">
@@ -126,7 +126,7 @@
 
                 <div class="titulo-maquina">
                     <span>Máquina</span>
-                    <span>xx</span>
+                    <span>03</span>
                 </div>
 
                 <div class="container-alertas">
@@ -143,15 +143,14 @@
                 </div>
             </div>
 
-            <div class="content-maquinas">
-
+            <div class="content-maquinas" onclick="direcionarCPU()">
                 <div class="icon-maquina">
                     <img src="..\assets\imgs\pngMaquina.png">
                 </div>
 
                 <div class="titulo-maquina">
                     <span>Máquina</span>
-                    <span>xx</span>
+                    <span>04</span>
                 </div>
 
                 <div class="container-alertas">
@@ -170,13 +169,13 @@
 
             </div>
 
-            <div class="content-maquinas">
+            <div class="content-maquinas" onclick="direcionarCPU()">
                 <div class="icon-maquina">
                     <img src="..\assets\imgs\pngMaquina.png">
                 </div>
                 <div class="titulo-maquina">
                     <span>Máquina</span>
-                    <span>xx</span>
+                    <span>05</span>
                 </div>
 
                 <div class="container-alertas">
@@ -184,7 +183,7 @@
                         <img src="..\assets\imgs\alerta.png" alt="">
                     </div>
 
-                     <div class="icon-onOff">
+                    <div class="icon-onOff">
                         <label class="switch">
                             <input type="checkbox">
                             <span class="slider round"></span>
