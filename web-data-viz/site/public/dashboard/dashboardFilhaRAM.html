@@ -7,7 +7,7 @@
     <title>CareTech</title>
     <link rel="stylesheet" href="../css/dashboardFilha.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>   
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="../js/scriptDash.js"></script>
 </head>
 
@@ -37,12 +37,19 @@
                         <span class="txt-link">Usuários</span>
                     </a>
                 </li>
+                <li class="item-menu">
+                    <a href="..\dashboard\usuarios.html">
+                        <span class="icon"><i class="bi bi-ban"></i></span>
+                        <span class="txt-link">Bloqueio de sites</span>
+                    </a>
+                </li>
             </ul>
 
             <div class="item-menu-deslogar">
                 <span class="icon"><i class="bi bi-box-arrow-right"></i></span>
                 <span class="txt-link">
-                    <a href="../login.html">Deslogar</a>
+                    <span>Deslogar</span>
+
                 </span>
 
             </div>
@@ -117,7 +124,7 @@
 
 
                     <div class="box-grafico-menor" onclick="direcionarREDE()">
-                        <div class="titulo-grafico-menor"> 
+                        <div class="titulo-grafico-menor">
                             <span>REDE</span>
                         </div>
                         <div class="chart-pequeno" id="rede-chart-pequena">
@@ -130,9 +137,9 @@
 
                 <div class="container-cpu">
                     <div class="container-grafico-cpu">
-                        
+
                         <div class="box-grafico" id="ram-chart">
-                            
+
                         </div>
                     </div>
 
@@ -148,150 +155,168 @@
 
 
     </div>
-    
+
 </body>
+<div class="modal-excluir" id="deslogarModal">
+    <div class="modal-content-excluir">
+        <span class="close">&times;</span>
+
+        <div class="modal-titulo">
+            <span> <i class="bi bi-box-arrow-right"></i> </span>
+            <h2>DESLOGAR DA CONTA</h2>
+        </div>
+
+        <div class="modal-mensagem">
+            <p>Tem certeza que deseja encerrar sua sessão?</p>
+        </div>
+
+        <div class="modal-botao-excluir">
+            <button id="confirmDeslogar"> <a href="../login.html">DESLOGAR SESSÃO</a></button>
+        </div>
+    </div>
+</div>
 
 </html>
 
 <script>
 
-google.charts.load('current', { 'packages': ['corechart'] });
-google.charts.setOnLoadCallback(drawCharts);
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawCharts);
 
-function drawCharts() { 
+    function drawCharts() {
 
-    var ramData = google.visualization.arrayToDataTable([
-        ['Tempo', 'Uso de RAM'],
-        ['09:00', 50],
-        ['09:10', 55],
-        ['09:20', 78],
-        ['09:30', 90],
-    ]);
+        var ramData = google.visualization.arrayToDataTable([
+            ['Tempo', 'Uso de RAM'],
+            ['09:00', 50],
+            ['09:10', 55],
+            ['09:20', 78],
+            ['09:30', 90],
+        ]);
 
-    var ramOptions = {
-        title: 'Monitoramento da RAM',
-        titleTextStyle: {
-            fontSize: 18, 
-            textAlign: 'center' 
-        },
-        curveType: 'function',
-        legend: { position: 'none' },
-        areaOpacity: 0.3,
-        hAxis: {
-            title: 'Tempo',
-            textStyle: { color: '#999' },
-        },
-        vAxis: {
-            textStyle: { color: '#999' },
-        },
-        lineWidth: 2,
-        colors: ['#00cc66'],
-        backgroundColor: 'transparent',
-    };
+        var ramOptions = {
+            title: 'Monitoramento da RAM',
+            titleTextStyle: {
+                fontSize: 18,
+                textAlign: 'center'
+            },           
+            curveType: 'function',
+            legend: { position: 'none' },
+            areaOpacity: 0.3,
+            hAxis: {
+                title: 'Tempo',
+                textStyle: { color: '#999' },
+            },
+            vAxis: {
+                textStyle: { color: '#999' },
+            },
+            lineWidth: 2,
+            colors: ['#00cc66'],
+            backgroundColor: 'transparent',
+        };
 
-    var ramOptionsPequena = {
-        curveType: 'function',
-        legend: { position: 'none' },
-        areaOpacity: 0.3,
-        hAxis: {
-            title: 'Tempo',
-            textStyle: { color: '#999' },
-        },
-        vAxis: {
-            textStyle: { color: '#999' },
-        },
-        lineWidth: 2,
-        colors: ['#00cc66'],
-        backgroundColor: 'transparent',
-    };
+        var ramOptionsPequena = {
+            curveType: 'function',
+            legend: { position: 'none' },
+            areaOpacity: 0.3,           
+            hAxis: {
+                title: 'Tempo',
+                textStyle: { color: '#999' },
+            },
+            vAxis: {
+                textStyle: { color: '#999' },
+            },
+            lineWidth: 2,
+            colors: ['#00cc66'],
+            backgroundColor: 'transparent',
+        };
 
-    var ramChart = new google.visualization.AreaChart(document.getElementById('ram-chart'));
-    ramChart.draw(ramData, ramOptions);
+        var ramChart = new google.visualization.AreaChart(document.getElementById('ram-chart'));
+        ramChart.draw(ramData, ramOptions);
 
-    var ramChartPequena = new google.visualization.AreaChart(document.getElementById('ram-chart-pequena'));
-    ramChartPequena.draw(ramData, ramOptionsPequena);
-
-     
-    var cpuData = google.visualization.arrayToDataTable([
-        ['Tempo', 'Uso de CPU'],
-        ['09:00', 99],
-        ['09:10', 96],
-        ['09:20', 95],
-        ['09:30', 100],
-    ]);
-
-    var cpuOptionsPequena = {
-        curveType: 'function',
-        legend: { position: 'none' },
-        areaOpacity: 0.3,
-        hAxis: {
-            title: 'Tempo',
-            textStyle: { color: '#999' },
-        },
-        vAxis: {
-            textStyle: { color: '#999' },
-        },
-        lineWidth: 2,
-        colors: ['#007bff'],
-        backgroundColor: 'transparent',
-    };
-    var cpuChartPequena = new google.visualization.AreaChart(document.getElementById('cpu-chart-pequena'));
-    cpuChartPequena.draw(cpuData, cpuOptionsPequena);
+        var ramChartPequena = new google.visualization.AreaChart(document.getElementById('ram-chart-pequena'));
+        ramChartPequena.draw(ramData, ramOptionsPequena);
 
 
-    var discoData = google.visualization.arrayToDataTable([
-        ['Tempo', 'Uso de Disco'],
-        ['09:00', 60],
-        ['09:10', 55],
-        ['09:20', 70],
-        ['09:30', 45],
-    ]);
+        var cpuData = google.visualization.arrayToDataTable([
+            ['Tempo', 'Uso de CPU'],
+            ['09:00', 99],
+            ['09:10', 96],
+            ['09:20', 95],
+            ['09:30', 100],
+        ]);
 
-    var discoOptions = {
-        curveType: 'function',
-        legend: { position: 'none' },
-        areaOpacity: 0.3,
-        hAxis: {
-            title: 'Tempo',
-            textStyle: { color: '#999' },
-        },
-        vAxis: {
-            textStyle: { color: '#999' },
-        },
-        lineWidth: 2,
-        colors: ['#ffcc00'],
-        backgroundColor: 'transparent',
-    };
+        var cpuOptionsPequena = {
+            curveType: 'function',
+            legend: { position: 'none' },
+            areaOpacity: 0.3,
+            hAxis: {
+                title: 'Tempo',
+                textStyle: { color: '#999' },
+            },
+            vAxis: {
+                textStyle: { color: '#999' },
+            },
+            lineWidth: 2,
+            colors: ['#007bff'],
+            backgroundColor: 'transparent',
+        };
+        var cpuChartPequena = new google.visualization.AreaChart(document.getElementById('cpu-chart-pequena'));
+        cpuChartPequena.draw(cpuData, cpuOptionsPequena);
 
-    var discoChartPequena = new google.visualization.AreaChart(document.getElementById('disco-chart-pequena'));
-    discoChartPequena.draw(discoData, discoOptions);
 
-    var redeData = google.visualization.arrayToDataTable([
-        ['Tempo', 'Uso de Rede'],
-        ['09:00', 50],
-        ['09:10', 55],
-        ['09:20', 53],
-        ['09:30', 60],
-    ]);
+        var discoData = google.visualization.arrayToDataTable([
+            ['Tempo', 'Uso de Disco'],
+            ['09:00', 60],
+            ['09:10', 55],
+            ['09:20', 70],
+            ['09:30', 45],
+        ]);
 
-    var redeOptions = {        
-        curveType: 'function',
-        legend: { position: 'none' },
-        areaOpacity: 0.3,
-        hAxis: {
-            title: 'Tempo',
-            textStyle: { color: '#999' },
-        },
-        vAxis: {
-            textStyle: { color: '#999' },
-        },
-        lineWidth: 2,
-        colors: ['#ff9966'],
-        backgroundColor: 'transparent',
-    };
+        var discoOptions = {
+            curveType: 'function',
+            legend: { position: 'none' },
+            areaOpacity: 0.3,
+            hAxis: {
+                title: 'Tempo',
+                textStyle: { color: '#999' },
+            },
+            vAxis: {
+                textStyle: { color: '#999' },
+            },
+            lineWidth: 2,
+            colors: ['#ffcc00'],
+            backgroundColor: 'transparent',
+        };
 
-    var redeChartPequena = new google.visualization.AreaChart(document.getElementById('rede-chart-pequena'));
-    redeChartPequena.draw(redeData, redeOptions);
+        var discoChartPequena = new google.visualization.AreaChart(document.getElementById('disco-chart-pequena'));
+        discoChartPequena.draw(discoData, discoOptions);
 
-}
+        var redeData = google.visualization.arrayToDataTable([
+            ['Tempo', 'Uso de Rede'],
+            ['09:00', 50],
+            ['09:10', 55],
+            ['09:20', 53],
+            ['09:30', 60],
+        ]);
+
+        var redeOptions = {
+            curveType: 'function',
+            legend: { position: 'none' },
+            areaOpacity: 0.3,
+            hAxis: {
+                title: 'Tempo',
+                textStyle: { color: '#999' },
+            },
+            vAxis: {
+                textStyle: { color: '#999' },
+            },
+            lineWidth: 2,
+            colors: ['#ff9966'],
+            backgroundColor: 'transparent',
+        };
+
+        var redeChartPequena = new google.visualization.AreaChart(document.getElementById('rede-chart-pequena'));
+        redeChartPequena.draw(redeData, redeOptions);
+
+    }
 </script>

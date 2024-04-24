@@ -37,12 +37,19 @@
                         <span class="txt-link">Usuários</span>
                     </a>
                 </li>
+                <li class="item-menu">
+                    <a href="..\dashboard\usuarios.html">
+                        <span class="icon"><i class="bi bi-ban"></i></span>
+                        <span class="txt-link">Bloqueio de sites</span>
+                    </a>
+                </li>
             </ul>
 
             <div class="item-menu-deslogar">
                 <span class="icon"><i class="bi bi-box-arrow-right"></i></span>
                 <span class="txt-link">
-                    <a href="../login.html">Deslogar</a>
+                    <span>Deslogar</span>
+
                 </span>
 
             </div>
@@ -150,6 +157,24 @@
     </div>
     
 </body>
+<div class="modal-excluir" id="deslogarModal">
+    <div class="modal-content-excluir">
+        <span class="close">&times;</span>
+
+        <div class="modal-titulo">
+            <span> <i class="bi bi-box-arrow-right"></i> </span>
+            <h2>DESLOGAR DA CONTA</h2>
+        </div>
+
+        <div class="modal-mensagem">
+            <p>Tem certeza que deseja encerrar sua sessão?</p>
+        </div>
+
+        <div class="modal-botao-excluir">
+            <button id="confirmDeslogar"> <a href="../login.html">DESLOGAR SESSÃO</a></button>
+        </div>
+    </div>
+</div>
 
 </html>
 
