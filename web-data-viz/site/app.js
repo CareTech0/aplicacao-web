@@ -4,19 +4,26 @@ process.env.AMBIENTE_PROCESSO = "desenvolvimento";
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
-const PORTA = process.env.AMBIENTE_PROCESSO == "desenvolvimento" ? 3303 : 8080;
-
 const app = express();
 
+app.engine("html", require("ejs").renderFile);
+app.set("view engine", "html");
+app.set("views", (path.join(__dirname, "/public")));
+
+const PORTA = process.env.AMBIENTE_PROCESSO == "desenvolvimento" ? 3303 : 8080;
+
+app.use(cors());
+
 const indexRouter = require("./src/routes/index");
+const dashboardRouter = require("./src/routes/dashboard");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use(cors());
 
 app.use("/index", indexRouter);
+app.use("/dashboard", dashboardRouter);
 
 app.listen(PORTA, function () {
     console.log(`Servidor do seu site já está rodando! Acesse o caminho a seguir para visualizar: http://localhost:${PORTA} \n

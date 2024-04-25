@@ -42,7 +42,7 @@ formularioLogin.addEventListener('submit', (event) => {
                 sessionStorage.FK_EMPRESA = json.fk_empresa;
 
                 setTimeout(function () {
-                    window.location = './dashboardVo.html'
+                    window.location = '/dashboard'
                 }, 1000)
             })
         } else {
