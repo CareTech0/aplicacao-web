@@ -218,7 +218,12 @@ body {
 
 }
 
-
+.item-menu a span>i {
+    color: #292929;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 4px;
+}
 
 ::-webkit-scrollbar {
     width: 12px;
