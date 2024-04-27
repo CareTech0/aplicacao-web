@@ -21,7 +21,7 @@
                 <li class="item-menu">
                     <a href="..\dashboard\dashboard.html">
                         <span class="icon"><i class="bi bi-columns-gap"></i></span>
-                        <span class="txt-link">Dashboard</span>
+                        <span class="txt-link">Visão geral</span>
                     </a>
                 </li>
                 <li class="item-menu">
@@ -75,7 +75,7 @@
 
                 <div class="container-sites">
                     <div class="titulo-site">
-                        <span>LISTA DE SITES</span>
+                        <span>SITES CADASTRADOS</span>
                     </div>
 
                     <div class="container-sites-cadastrados">
@@ -112,7 +112,7 @@
                                 <div class="box-site">
                                     <div class="conteudo-site">
                                         <div class="url-site">
-                                            <span>www.facebook.com</span>
+                                            <span>www.shopee.com</span>
                                         </div>
 
                                         <div class="opcoes-usuario">
@@ -126,7 +126,7 @@
                                     <div class="box-site">
                                         <div class="conteudo-site">
                                             <div class="url-site">
-                                                <span>www.facebook.com</span>
+                                                <span>www.shein.com</span>
                                             </div>
 
                                             <div class="opcoes-usuario">
@@ -155,16 +155,13 @@
                                     </div>
 
                                 </div>
-                                
-                                    
-                               
+
+
+
                             </div>
 
 
                         </div>
-
-                       
-
 
 
                     </div>
@@ -185,7 +182,99 @@
                         </div>
                     </div>
                 </div>
-</body>
+
+
+<!-- Modal Excluir site -->
+<div class="modal-excluir-site" id="deleteModal">
+    <div class="modal-content-excluir-site">
+        <span class="close">&times;</span>
+        <div class="modal-titulo">
+            <span><i class="bi bi-person-x-fill"></i></span>
+            <h2>DESBLOQUEAR SITE</h2>
+        </div>
+        <div class="modal-mensagem">
+            <p>Tem certeza de que quer desbloquear este site?</p>
+        </div>
+        <div class="modal-botao-excluir-site">
+            <button id="confirmDelete">DESBLOQUEAR</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal editar site -->
+<div class="modal-editar-site" id="editModal">
+    <div class="modal-content-editar-site">
+        <span class="close">&times;</span>
+        <div class="modal-titulo">
+            <span><i class="bi bi-person-x-fill"></i></span>
+            <h2>EDITAR SITE</h2>
+        </div>
+        <div class="modal-mensagem">
+            <p>Confirmar edição deste site?</p>
+        </div>
+        <div class="modal-botao-editar-site">
+            <button id="confirmEdit">EDITAR</button>
+        </div>
+    </div>
+</div>
+
+
 </body>
 
 </html>
+
+
+<script>
+
+    // Elementos dos modais
+    const deleteModal = document.getElementById('deleteModal');
+    const editModal = document.getElementById('editModal');
+
+    // Botões que abrem os modais
+    const deleteButtons = document.querySelectorAll('.delete-user');
+    const editButtons = document.querySelectorAll('.edit-user');
+
+
+    // Botões de fechar dos modais
+    const closeButtons = document.querySelectorAll('.close');
+
+    // Função para abrir o modal de exclusão
+    function abrirDeleteModal() {
+        deleteModal.style.display = 'block';
+    }
+
+    function abrirEditModal() {
+        editModal.style.display = 'block';
+    }
+
+
+    // Eventos de clique nos botões que abrem os modais
+    deleteButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            abrirDeleteModal();
+        });
+    });
+
+    editButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            abrirEditModal(); 
+            
+        });
+    });
+
+    // Evento de clique nos botões de fechar dos modais
+    closeButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            deleteModal.style.display = 'none';
+            editModal.style.display = 'none';       
+        });
+    });
+
+    // Fechar o modal quando clicar fora dele
+    window.addEventListener('click', function (event) {
+        if (event.target == deleteModal) {
+            deleteModal.style.display = 'none';
+            editModal.style.display = 'none';
+        }
+    });
+</script>

@@ -655,7 +655,7 @@ input[type="checkbox"]:not(:checked)+.slider {
     font-weight: 500;
 }
 
-.modal-botao-excluir {
+.modal-botao-excluir{
     display: flex;
     justify-content: center;
     align-items: center;
