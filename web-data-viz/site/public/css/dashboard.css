@@ -416,6 +416,7 @@ input[type="checkbox"]:not(:checked)+.slider {
     border-color: #c0c0c0;
 }
 
+
 .botao-cadastrar {
     background-color: #4586BF;
     border-radius: 10px;
@@ -436,6 +437,7 @@ input[type="checkbox"]:not(:checked)+.slider {
     font-weight: 500;
     color: #FFFFFF;
 }
+
 
 /* estilos da pagina usuarios abaixo */
 .content-usuarios {

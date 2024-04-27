@@ -25,6 +25,12 @@
                     </a>
                 </li>
                 <li class="item-menu">
+                    <a href="..\dashboard\dashboard.html">
+                        <span class="icon"><i class="bi bi-graph-up"></i></span>
+                        <span class="txt-link">Visão detalhada</span>
+                    </a>
+                </li>
+                <li class="item-menu">
                     <a href="cadastrarMaquina.html">
                         <span class="icon"><i class="bi bi-pc-display"></i></span>
                         <span class="txt-link">Cadastrar máquina</span>
@@ -84,7 +90,8 @@
 
                             <div class="conteudo-site">
                                 <div class="url-site">
-                                    <span>www.instagram.com</span>
+                                    <span class="titulo-sites"> Instagram</span>
+                                    <span class="sub-sites">www.instagram.com</span>
                                 </div>
 
                                 <div class="opcoes-usuario">
@@ -98,7 +105,8 @@
                             <div class="box-site">
                                 <div class="conteudo-site">
                                     <div class="url-site">
-                                        <span>www.facebook.com</span>
+                                        <span class="titulo-sites"> Instagram</span>
+                                        <span class="sub-sites">www.instagram.com</span>
                                     </div>
 
                                     <div class="opcoes-usuario">
@@ -112,7 +120,8 @@
                                 <div class="box-site">
                                     <div class="conteudo-site">
                                         <div class="url-site">
-                                            <span>www.shopee.com</span>
+                                            <span class="titulo-sites"> Instagram</span>
+                                            <span class="sub-sites">www.instagram.com</span>
                                         </div>
 
                                         <div class="opcoes-usuario">
@@ -126,9 +135,9 @@
                                     <div class="box-site">
                                         <div class="conteudo-site">
                                             <div class="url-site">
-                                                <span>www.shein.com</span>
+                                                <span class="titulo-sites"> Instagram</span>
+                                                <span class="sub-sites">www.instagram.com</span>
                                             </div>
-
                                             <div class="opcoes-usuario">
                                                 <span class="delete-user" data-target="#deleteModal"><i
                                                         class="bi bi-trash3"></i></i></span>
@@ -140,9 +149,9 @@
                                         <div class="box-site">
                                             <div class="conteudo-site">
                                                 <div class="url-site">
-                                                    <span>www.facebook.com</span>
+                                                    <span class="titulo-sites"> Instagram</span>
+                                                    <span class="sub-sites">www.instagram.com</span>
                                                 </div>
-
                                                 <div class="opcoes-usuario">
                                                     <span class="delete-user" data-target="#deleteModal"><i
                                                             class="bi bi-trash3"></i></i></span>
@@ -184,39 +193,39 @@
                 </div>
 
 
-<!-- Modal Excluir site -->
-<div class="modal-excluir-site" id="deleteModal">
-    <div class="modal-content-excluir-site">
-        <span class="close">&times;</span>
-        <div class="modal-titulo">
-            <span><i class="bi bi-person-x-fill"></i></span>
-            <h2>DESBLOQUEAR SITE</h2>
-        </div>
-        <div class="modal-mensagem">
-            <p>Tem certeza de que quer desbloquear este site?</p>
-        </div>
-        <div class="modal-botao-excluir-site">
-            <button id="confirmDelete">DESBLOQUEAR</button>
-        </div>
-    </div>
-</div>
+                <!-- Modal Excluir site -->
+                <div class="modal-excluir-site" id="deleteModal">
+                    <div class="modal-content-excluir-site">
+                        <span class="close">&times;</span>
+                        <div class="modal-titulo">
+                            <span><i class="bi bi-person-x-fill"></i></span>
+                            <h2>DESBLOQUEAR SITE</h2>
+                        </div>
+                        <div class="modal-mensagem">
+                            <p>Tem certeza de que quer desbloquear este site?</p>
+                        </div>
+                        <div class="modal-botao-excluir-site">
+                            <button id="confirmDelete">DESBLOQUEAR</button>
+                        </div>
+                    </div>
+                </div>
 
-<!-- Modal editar site -->
-<div class="modal-editar-site" id="editModal">
-    <div class="modal-content-editar-site">
-        <span class="close">&times;</span>
-        <div class="modal-titulo">
-            <span><i class="bi bi-person-x-fill"></i></span>
-            <h2>EDITAR SITE</h2>
-        </div>
-        <div class="modal-mensagem">
-            <p>Confirmar edição deste site?</p>
-        </div>
-        <div class="modal-botao-editar-site">
-            <button id="confirmEdit">EDITAR</button>
-        </div>
-    </div>
-</div>
+                <!-- Modal editar site -->
+                <div class="modal-editar-site" id="editModal">
+                    <div class="modal-content-editar-site">
+                        <span class="close">&times;</span>
+                        <div class="modal-titulo">
+                            <span><i class="bi bi-person-x-fill"></i></span>
+                            <h2>EDITAR SITE</h2>
+                        </div>
+                        <div class="modal-mensagem">
+                            <p>Confirmar edição deste site?</p>
+                        </div>
+                        <div class="modal-botao-editar-site">
+                            <button id="confirmEdit">EDITAR</button>
+                        </div>
+                    </div>
+                </div>
 
 
 </body>
@@ -255,10 +264,10 @@
         });
     });
 
-    editButtons.forEach(function(button) {
-        button.addEventListener('click', function() {
-            abrirEditModal(); 
-            
+    editButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            abrirEditModal();
+
         });
     });
 
@@ -266,7 +275,7 @@
     closeButtons.forEach(function (button) {
         button.addEventListener('click', function () {
             deleteModal.style.display = 'none';
-            editModal.style.display = 'none';       
+            editModal.style.display = 'none';
         });
     });
 

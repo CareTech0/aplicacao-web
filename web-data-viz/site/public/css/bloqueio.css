@@ -262,7 +262,7 @@ body {
 
 .conteudo-site {
   background-color: #f7f7f7;
-  height: 30px;
+  height: 34px;
   width: 400px;
   border-radius: 10px;
   border: 2px solid #d9d9d9;
@@ -271,21 +271,26 @@ body {
   align-items: center;
 }
 
-.conteudo-site .url-site > span {
-    justify-content: flex-start;
-    display: flex;
-    align-items: center;
-    height: 30px;
-    width: 200px;
-    font-size: 13px;
-    cursor: pointer;
+.sub-sites {
+  justify-content: flex-start;
+  display: flex;
+  align-items: center;
+  width: 200px;
+  font-size: 10px;
+  cursor: pointer;
 }
 
 .url-site {
-    display: flex;
-    justify-content: center;
-    width: 284px;
+  display: flex;
+  justify-content: center;
+  width: 284px;
+  flex-direction: column;
+  margin-left: 22px;
+}
 
+.titulo-sites {
+ font-weight: 600; 
+ font-size: 13px;
 }
 
 .botao {
