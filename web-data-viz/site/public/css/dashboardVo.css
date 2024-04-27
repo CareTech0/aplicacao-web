@@ -107,7 +107,7 @@ body {
     border-radius: 15px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     position: relative;
-    overflow: auto;
+    
 }
 
 .box {
@@ -135,8 +135,7 @@ body {
   .row {  
     gap: 20px;
     display: flex;   
-    justify-content: center;
-    height: 143px;
+    justify-content: center;    
     height: 30%;
 }
   
@@ -158,17 +157,21 @@ body {
 
 }
 
-.chart-box {
-    width: 48%;
-    height: 60%;
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    margin: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-
-  .row-graphics { 
+.box-chart {
     display: flex;
-    height: 31%;
-  }
+   flex-direction: column;
+}
+
+
+.container-chart-first { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    height: 150px;
+}
+.content-chart {
+    background-color: white;
+    height: 130px;
+    width: 500px;
+}
