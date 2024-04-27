@@ -161,11 +161,11 @@ body {
 }
 
 .box-charts1 {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 176px;
-    width: 100%;
+  display: flex;
+  justify-content: space-between;  
+  height: 365px;
+  width: 52%;
+  flex-direction: column;
 }
 
 .chart1, .chart2, .chart3 {

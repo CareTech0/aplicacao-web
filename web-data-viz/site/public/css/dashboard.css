@@ -595,9 +595,16 @@ input[type="checkbox"]:not(:checked)+.slider {
 
 }
 
+.perfil-usuario { 
+    display: flex;
+}
+
 .perfil-usuario h1 {
     font-size: 12px;
     color: #747474;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .tipo-box-usuarios p {
@@ -641,6 +648,9 @@ input[type="checkbox"]:not(:checked)+.slider {
     cursor: pointer;
 
 }
+
+
+
 
 /* estilos do modal */
 
@@ -697,7 +707,11 @@ input[type="checkbox"]:not(:checked)+.slider {
     align-items: center;
        
 }
-
+.modal-botao-excluir {
+display: flex;
+justify-content: center;
+       
+}
 .modal-botao-excluir > button a {
     text-decoration: none;
     color: white;
@@ -979,7 +993,7 @@ input[type="checkbox"]:not(:checked)+.slider {
     color: #fff;
     text-align: center;
     border-radius: 6px;
-    padding: 5px 0;
+    padding: 8px;
     position: absolute;
     z-index: 1;
     bottom: 125%;
@@ -996,6 +1010,61 @@ input[type="checkbox"]:not(:checked)+.slider {
 }
 
 .tooltip-container:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* estilos do tooltips pagina priincipal */
+
+.box-tooltip-principal { 
+    display: flex;
+    height: 44px;
+    align-items: start;
+    margin-right: 6px;
+}
+
+.tooltip-container-principal {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip-container-principal .tooltip-icon-principal {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    font-size: 11px;
+}
+
+.tooltip-text-principal {
+    visibility: hidden;
+    width: 120px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 9px;
+
+}
+
+
+.tooltip-icon-principal > span {
+    font-size: 8px;
+}
+
+.tooltip-container-principal:hover .tooltip-text-principal {
     visibility: visible;
     opacity: 1;
 }
