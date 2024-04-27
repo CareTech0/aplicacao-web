@@ -35,6 +35,8 @@ function drawChart1() {
 
     var options = {
         curveType: 'function',
+        width: '100%',
+        height: '100%', 
         legend: { position: 'bottom' }
     };
 
@@ -54,6 +56,8 @@ function drawChart2() {
 
     var options = {
         legend: { position: 'none' },
+        width: '100%',
+        height: '100%', 
     };
 
     var chart = new google.visualization.BarChart(document.getElementById('chart2'));

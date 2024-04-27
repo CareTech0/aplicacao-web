@@ -105,11 +105,11 @@ body {
 }
 
 .row {
-    gap: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 126px;
+  gap: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 105px;
   }
 
   
@@ -118,20 +118,22 @@ body {
     background-color: #fff;
     padding: 7px;
     border-radius: 10px;
-    height: 101px;
+    height: 86px;
     box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1);
 }
 
 .box-title {
-    font-size: 12px;
-    text-align: center;
-    border-bottom: 1px solid #aaaaaa;
-    border-bottom-width: 1px;
-    height: 37px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+  font-size: 11px;
+  text-align: center;
+  border-bottom: 1px solid #aaaaaa;
+  border-bottom-width: 1px;
+  height: 23px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-weight: 600;
+  padding-bottom: 3px;
 }
 
 .box-number {
@@ -164,12 +166,24 @@ body {
     width: 100%;
 }
 
-.chart1, .chart2, .chart3, .chart4 {
+.chart1, .chart2, .chart3 {
     background: white;
     height: 90%;
     width: 48%;
     border-radius: 0px 10px 0px 10px;
     overflow: hidden;
+}
+
+ .chart4 {
+  background: white;
+  height: 90%;
+  width: 48%;
+  border-radius: 0px 10px 0px 10px;
+  overflow: scroll;
+  overflow-x: hidden;
+  position: relative;
+
+  
 }
 
 .titulo-chart {
@@ -183,4 +197,75 @@ body {
     font-size: 15px;
     border-radius: 10px 10px 0px 0px;
     
+}
+
+.titulo-chart-table  { 
+  width: 100%;
+  height: 20%;   
+  background-color: #4586bf;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  border-radius: 10px 10px 0px 0px;
+  position: sticky;
+  top: 0;
+    z-index: 1;
+}
+
+.grafico {
+  width: 90%;
+  height: calc(100% - 37px); /* Subtrai a altura do título */
+}
+
+.graficoT { 
+  max-height: 300px; /* Altura máxima da tabela */
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+
+table {
+  width: 80%;
+  border-collapse: collapse;
+  overflow: scroll;
+}
+th, td {
+  border: 1px solid black;
+  padding: 6.0px;
+  text-align: left;
+}
+th {
+  background-color: #f2f2f2;
+}
+
+.tabela-titulo {
+  position: sticky;
+  top: 37px; /* Altura do titulo-chart */
+  z-index: 1;
+}
+
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #dddddd;
+  border-radius: 0 6px 6px 0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8fc9fb;
+  border-radius: 15px;
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+.tabela { 
+  
 }
