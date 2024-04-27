@@ -381,14 +381,13 @@ input[type="checkbox"]:not(:checked)+.slider {
 }
 
 .container-input {
-    height: 350px;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    align-items: flex-end;
+    height: 356px;
+    display: flex;    
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
+    gap: 24px;
 }
-
 
 
 .content-input input {
@@ -406,6 +405,10 @@ input[type="checkbox"]:not(:checked)+.slider {
     margin-right: 10px;
     font-weight: 600;
     color: #747474;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
 }
 
 .content-input input:focus {
@@ -608,7 +611,7 @@ input[type="checkbox"]:not(:checked)+.slider {
 
 /* estilos do modal */
 
-.modal-excluir {
+.modal-excluir{
     display: none;
     position: fixed;
     z-index: 1;
@@ -655,7 +658,7 @@ input[type="checkbox"]:not(:checked)+.slider {
     font-weight: 500;
 }
 
-.modal-botao-excluir{
+.modal-botao-excluir-site {
     display: flex;
     justify-content: center;
     align-items: center;
