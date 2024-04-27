@@ -1,240 +1,186 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
 * {
-    margin: 0;
-    padding: 0;
-    font-family: "Montserrat", sans-serif;
-
-
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", sans-serif;
 }
 
-
 body {
-    background-color: #4586BF;
-    display: flex;
+  background-color: #4586bf;
+  display: flex;
 }
 
 .logomarca img {
-    width: 250px;
-    height: auto;
-    margin-bottom: 53px;
+  width: 250px;
+  height: auto;
+  margin-bottom: 53px;
 }
 
-
 .txt-cadastrar-maquina a {
-    text-decoration: none;
-    color: #FFFFFF;
+  text-decoration: none;
+  color: #ffffff;
 }
 
 .menu {
-    margin-left: 16px;
-    background-color: #f5f5f5;
-    padding: 20px;
-    box-sizing: border-box;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 20px;
-    height: 406px;
-    width: 230px;
-    position: relative;
-
+  margin-left: 16px;
+  background-color: #f5f5f5;
+  padding: 20px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  height: 406px;
+  width: 230px;
+  position: relative;
 }
 
 .menu ul {
-    list-style-type: none;
+  list-style-type: none;
 }
 
 .menu ul li.item-menu:hover {
-    background: #8FC9FB;
-    border-radius: 7px;
+  background: #8fc9fb;
+  border-radius: 7px;
 }
 
 .menu ul li.item-menu {
-    transition: .3s;
+  transition: 0.3s;
 }
 
 .item-menu a:hover {
-    color: #fff;
-
+  color: #fff;
 }
 
 .menu ul li a {
-    text-decoration: none;
-    color: #656565;
-    display: flex;
-    margin-bottom: 15px;
-    line-height: 30px;
-    margin-left: 10px;
+  text-decoration: none;
+  color: #656565;
+  display: flex;
+  margin-bottom: 15px;
+  line-height: 30px;
+  margin-left: 10px;
 }
 
 .menu ul li a .txt-link {
-    margin-left: 7px;
-    font-size: 13px;
-    font-weight: 500;
+  margin-left: 7px;
+  font-size: 13px;
+  font-weight: 500;
 }
 
-
-.item-menu a span>i {
-    color: #292929;
-    font-size: 18px;
-    cursor: pointer;
-    padding: 4px;
+.item-menu a span > i {
+  color: #292929;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px;
 }
 
 .item-menu-deslogar {
-    cursor: pointer;
-    position: absolute;
-    bottom: 0;
-    left: 28%;
-    margin-bottom: 10px;
-    font-weight: 500;
+  cursor: pointer;
+  position: absolute;
+  bottom: 0;
+  left: 28%;
+  margin-bottom: 10px;
+  font-weight: 500;
 }
 
 .txt-link a {
-    text-decoration: none;
-    color: #292929;
+  text-decoration: none;
+  color: #292929;
 }
 
-
-
 .container {
-    flex: 1;
-    max-width: 73.2%;
-    height: 495px;
-    background-color: #f5f5f5;
-    margin: 18px auto;
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: relative;
+  flex: 1;
+  max-width: 1000px;
+  height: 495px;
+  background-color: #f5f5f5;
+  margin: 18px auto;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.box-title-content {
+    font-size: 15px;
+    width: 500px;
+}
+
+.row {
+    gap: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 126px;
   }
 
+  
 .box {
-    width: 181px;
+    width: 188px;
     background-color: #fff;
     padding: 7px;
-    border-radius: 10px;   
-    height: 94px;
-    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1)
-  }
-  
-  .title { 
-font-size: 25px;
-  }
+    border-radius: 10px;
+    height: 101px;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1);
+}
 
-  .box-title { 
-    justify-content: center;
-    display: flex;
-    align-items: center;
-    height: 37px;
-    width: 400px;
-    margin-top: -20px;
-  }
-
-  .box h2 {
-    margin-top: 0;
+.box-title {
     font-size: 12px;
     text-align: center;
-    border-bottom: 1px solid #aaaaaa; 
+    border-bottom: 1px solid #aaaaaa;
     border-bottom-width: 1px;
     height: 37px;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-  }
-
-  .row {  
-    gap: 20px;
-    display: flex;   
-    justify-content: center;  
-    align-items: center;
-    height: 126px;
 }
-  
+
 .box-number {
-    font-size: 30px;
-    font-weight: 500;
-    text-align: center;
-    height: 45px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  font-size: 30px;
+  font-weight: 600;
+  text-align: center;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.box-label {
-    display: flex;
-    justify-content: flex-end;
+.box-type {
     font-size: 12px;
-
-
-}
-
-.box-chart {
+    font-weight: 600;
+    width: 100%;
+    justify-content: flex-end;
     display: flex;
-   flex-direction: column;
-   height: 371px;
-   
-
 }
 
-.container-chart-first { 
+.container-charts {
+    height: 340px;
+}
+
+.box-charts1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 176px;
+    width: 100%;
+}
+
+.chart1, .chart2, .chart3, .chart4 {
+    background: white;
+    height: 90%;
+    width: 48%;
+    border-radius: 0px 10px 0px 10px;
+    overflow: hidden;
+}
+
+.titulo-chart {
+    width: 100%;
+    height: 20%;   
+    background-color: #4586bf;
+    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 16px;
-    height: 100%;
+    font-size: 15px;
+    border-radius: 10px 10px 0px 0px;
     
-}
-.content-chart {
-    background-color: white;
-    height: 90%;
-    width: 500px;
-    border-radius: 5px;
-    
-}
-
-#chart4 table {
-    width: 94%;; 
-    border-collapse: collapse; 
-    margin-top: 5px; 
-
-}
-
-#chart4 th, #chart4 td {
-    border: 1px solid #e9e9e9; 
-    padding: 8px; 
-    text-align: center; 
-}
-
-#chart4 th {
-    background-color: #7ab7fd; 
-    color: white;
-    font-weight: 500;
-    align-items: center;
-}
-
-#chart4 tr:nth-child(even) {
-    background-color: #fdfdfd; 
-}
-
-#chart4 tr:hover {
-    background-color: rgb(241, 241, 241)
-}
-
-#chart4 th, #chart4 td {
-    padding: 3px; 
-}
-
-#chart4 th:first-child, #chart4 td:first-child {
-    font-weight: 500;
-}
-
-.chart-title {
-    background-color: #8FC8FB;
-    color: white; 
-    padding: 4px;
-    font-size: 16px; 
-    font-weight: bold;
-    text-align: center; 
 }

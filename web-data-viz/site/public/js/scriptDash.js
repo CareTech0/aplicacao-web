@@ -1,3 +1,4 @@
+
 function direcionarRAM() {    
       window.location.href = "dashboardFilhaRAM.html";
 } 
@@ -18,6 +19,71 @@ function voltar() {
 } 
 
 document.addEventListener("DOMContentLoaded", function () {
+google.charts.load('current', { 'packages': ['corechart'] });
+google.charts.setOnLoadCallback(drawChart1);
+google.charts.setOnLoadCallback(drawChart2);
+google.charts.setOnLoadCallback(drawChart3);
+
+function drawChart1() {
+    var data = google.visualization.arrayToDataTable([
+        ['Data', 'Quantidade'],
+        ['Segunda', 10],
+        ['Terça', 15],
+        ['Quarta', 20],
+        ['Quinta', 25]
+    ]);
+
+    var options = {
+        curveType: 'function',
+        legend: { position: 'bottom' }
+    };
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart1'));
+
+    chart.draw(data, options);
+}
+
+function drawChart2() {
+    var data = google.visualization.arrayToDataTable([
+        ['Dia', 'Percentual'],
+        ['Segunda', 20],
+        ['Terça', 35],
+        ['Quarta', 45],
+        ['Quinta', 60]
+    ]);
+
+    var options = {
+        legend: { position: 'none' },
+    };
+
+    var chart = new google.visualization.BarChart(document.getElementById('chart2'));
+
+    chart.draw(data, options);
+}
+
+function drawChart3() {
+    var data = google.visualization.arrayToDataTable([
+        ['Máquina', 'Uso de RAM '],
+        ['Máquina 1', 80],
+        ['Máquina 2', 50],
+        ['Máquina 3', 90]
+    ]);
+
+    var options = {
+        // title: '', -->
+        legend: { position: 'none' },
+        hAxis: { title: 'Máquinas' },
+        vAxis: { title: 'Percentual de Uso de RAM', minValue: 0, maxValue: 100 }
+    };
+
+    var chart = new google.visualization.ColumnChart(document.getElementById('chart3'));
+
+    chart.draw(data, options);
+}
+
+
+
+
     const deslogarModal = document.getElementById('deslogarModal');
     const closeButtons = document.querySelectorAll('.close');
     const spanDeslogar = document.querySelector('.item-menu-deslogar');
@@ -41,6 +107,8 @@ document.addEventListener("DOMContentLoaded", function () {
             deslogarModal.style.display = 'none';        
         }
     });
+
+    
     }); 
 
-  
+    
