@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
         integrity="sha384-nS9pNb+Uo+QnUAQBjQB80Nue+iyi1pqifQsbgjxcgZvPBJqfvpRwW9K0HJAu8k+j" crossorigin="anonymous">
 
-        <script src="../js/scriptDash.js"></script>
+    <script src="../js/scriptDash.js"></script>
 
 </head>
 
@@ -23,7 +23,7 @@
         <nav class="menu">
             <ul>
                 <li class="item-menu">
-                    <a href="..\dashboard\dashboardVo.html">                
+                    <a href="..\dashboard\dashboardVo.html">
                         <span class="icon"><i class="bi bi-columns-gap"></i></span>
                         <span class="txt-link">Visão geral</span>
                     </a>
@@ -73,29 +73,29 @@
 
             <div class="content-usuarios">
 
-                <div class="caixa-titulo"> 
-                 <div class="content-titulo-usuarios">
-                    
-                    <div class="content-img-usuario"> 
-                        <img src="../assets/imgs/iconUser.png">
-                     </div>
-                    <div class="titulo-cadastrar-usuarios">
-                        
-                         <span>USUÁRIOS</span>
-                         <p>Gerencie seus usuários e permissões aqui.</p>                       
-                        
-                     </div>                
+                <div class="caixa-titulo">
+                    <div class="content-titulo-usuarios">
 
+                        <div class="content-img-usuario">
+                            <img src="../assets/imgs/iconUser.png">
+                        </div>
+                        <div class="titulo-cadastrar-usuarios">
+
+                            <span>USUÁRIOS</span>
+                            <p>Gerencie seus usuários e permissões aqui.</p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="botao-cadastrar-usuario">
+                        <span class="icon-cadastrar-user"><i class="bi bi-plus-circle"></i></span>
+                        <span class="txt-cadastrar-usuario">NOVO USUÁRIO</span>
+                    </div>
                 </div>
-
-                <div class="botao-cadastrar-usuario">
-                    <span class="icon-cadastrar-user"><i class="bi bi-plus-circle"></i></span>
-                    <span class="txt-cadastrar-usuario">NOVO USUÁRIO</span>
-                </div>  
-            </div>
                 <div class="content-visualizar-usuarios">
                     <div class="box-usuarios">
-                        <div class="titulo-box-usuari7os">
+                        <div class="titulo-box-usuarios">
 
                             <div class="tipo-box-usuarios">
                                 <h1>Nome</h1>
@@ -236,89 +236,90 @@
 
 
     <!-- Modal adicionar novo usuário -->
-<div class="modal" id="newUserModal">
-    <div class="modal-content-novo-usuario">
+    <div class="modal" id="newUserModal">
+        <div class="modal-content-novo-usuario">
 
-        <span class="close">&times;</span>
+            <span class="close">&times;</span>
 
-        <div class="modal-titulo-novo-usuario">
-            <span class="icon"><i class="bi bi-person-gear"></i></span>
-            <h2>ADICIONAR USUÁRIO</h2>
-        </div>
-
-        <div class="inputs-modal-novo-usuario">
-
-            <div class="content-input-modal-novo-usuario">
-                <span> Nome: </span>
-                <input type="text">
+            <div class="modal-titulo-novo-usuario">
+                <span class="icon"><i class="bi bi-person-gear"></i></span>
+                <h2>ADICIONAR USUÁRIO</h2>
             </div>
 
-            <div class="content-input-modal-novo-usuario">
-                <span> E-mail:</span>
-                <input type="text">
-            </div>
+            <div class="inputs-modal-novo-usuario">
 
-            <div class="content-input-modal-novo-usuario">
-                <span> Senha: </span>
-                <input type="password">
-            </div>
-
-            <div class="content-input-modal-novo-usuario">
-                <span> Confirmar senha:</span>
-                <input type="password">
-            </div>
-             
-            
-            <div class="content-input-modal-novo-usuario-tooltip">
-                
-                <div class="titulo-tipo-acesso"> 
-                <span> Tipo de acesso:</span>
+                <div class="content-input-modal-novo-usuario">
+                    <span> Nome: </span>
+                    <input type="text">
                 </div>
 
-                <div class="box-tooltip">
-                  <div class="tooltip-container">
-                    <span class="tooltip-icon">i</span>
-                    <div class="tooltip-text"><b>Administradores:</b> Podem fazer bla bla <br> <b>Usuário comum:</b> Apenas visualização da dashboard </div>
-                  </div>
+                <div class="content-input-modal-novo-usuario">
+                    <span> E-mail:</span>
+                    <input type="text">
                 </div>
 
-                  <div class="content-input-modal">
-                    <select id="perfil" name="perfil">
-                        <option value="administrador">Administrador</option>
-                        <option value="usuario">Usuário comum</option>
-                    </select>
+                <div class="content-input-modal-novo-usuario">
+                    <span> Senha: </span>
+                    <input type="password">
                 </div>
-                
-                
+
+                <div class="content-input-modal-novo-usuario">
+                    <span> Confirmar senha:</span>
+                    <input type="password">
+                </div>
+
+
+                <div class="content-input-modal-novo-usuario-tooltip">
+
+                    <div class="titulo-tipo-acesso">
+                        <span> Tipo de acesso:</span>
+                    </div>
+
+                    <div class="box-tooltip">
+                        <div class="tooltip-container">
+                            <span class="tooltip-icon">i</span>
+                            <div class="tooltip-text"><b>Administradores:</b> Podem cadastrar máquinas, editar e excluir máquinas adicionar usuários, <br> <b>Usuário
+                                    comum:</b> Apenas visualização da dashboard </div>
+                        </div>
+                    </div>
+
+                    <div class="content-input-modal">
+                        <select id="perfil" name="perfil">
+                            <option value="administrador">Administrador</option>
+                            <option value="usuario">Usuário comum</option>
+                        </select>
+                    </div>
+
+
+                </div>
+                <button type="submit">SALVAR</button>
+
+
+
             </div>
-            <button type="submit">SALVAR</button>
-            
-            
-
         </div>
     </div>
-</div>
 
-<div class="modal-excluir" id="deslogarModal">
-    <div class="modal-content-excluir">
-        <span class="close">&times;</span>
+    <div class="modal-excluir" id="deslogarModal">
+        <div class="modal-content-excluir">
+            <span class="close">&times;</span>
 
-        <div class="modal-titulo">
-            <span> <i class="bi bi-box-arrow-right"></i> </span>
-            <h2>DESLOGAR DA CONTA</h2>
-        </div>
+            <div class="modal-titulo">
+                <span> <i class="bi bi-box-arrow-right"></i> </span>
+                <h2>DESLOGAR DA CONTA</h2>
+            </div>
 
-        <div class="modal-mensagem">
-            <p>Tem certeza que deseja encerrar sua sessão?</p>
-        </div>
+            <div class="modal-mensagem">
+                <p>Tem certeza que deseja encerrar sua sessão?</p>
+            </div>
 
-        <div class="modal-botao-excluir">
-            <button id="confirmDeslogar"> <a href="../login.html">DESLOGAR SESSÃO</a></button>
+            <div class="modal-botao-excluir">
+                <button id="confirmDeslogar"> <a href="../login.html">DESLOGAR SESSÃO</a></button>
+            </div>
         </div>
     </div>
-</div>
 
-<!-- Modal editar usuário -->
+    <!-- Modal editar usuário -->
 
 </body>
 <div class="modal" id="editModal">
@@ -343,28 +344,29 @@
                 <input type="text">
             </div>
 
-            
+
             <div class="content-input-modal-novo-usuario-tooltip">
-                
-                <div class="titulo-tipo-acesso"> 
-                <span> Tipo de acesso:</span>
+
+                <div class="titulo-tipo-acesso">
+                    <span> Tipo de acesso:</span>
                 </div>
 
                 <div class="box-tooltip">
-                  <div class="tooltip-container">
-                    <span class="tooltip-icon">i</span>
-                    <div class="tooltip-text"><b>Administradores:</b> Podem fazer bla bla <br> <b>Usuário comum:</b> Apenas visualização da dashboard </div>
-                  </div>
+                    <div class="tooltip-container">
+                        <span class="tooltip-icon">i</span>
+                        <div class="tooltip-text"><b>Administradores:</b> Podem fazer bla bla <br> <b>Usuário comum:</b>
+                            Apenas visualização da dashboard </div>
+                    </div>
                 </div>
 
-                  <div class="content-input-modal">
+                <div class="content-input-modal">
                     <select id="perfil" name="perfil">
                         <option value="administrador">Administrador</option>
                         <option value="usuario">Usuário comum</option>
                     </select>
                 </div>
-                
-                
+
+
             </div>
             <button type="submit">SALVAR</button>
         </div>
@@ -372,108 +374,108 @@
 
     <!-- modal de cadastrar maquina -->
 
-</body>
-<div class="modal" id="maquinaModal">
-    <div class="modal-content">
+    </body>
+    <div class="modal" id="maquinaModal">
+        <div class="modal-content">
 
-        <span class="close">&times;</span>
+            <span class="close">&times;</span>
 
-        <div class="modal-titulo">
-            <span class="icon"><i class="bi bi-person-gear"></i></span>
-            <h2>CADASTRAR MÁQUINA</h2>
-        </div>
-
-        <div class="inputs-modal">
-
-            <div class="content-input-modal">
-                <span> Campo: </span>
-                <input type="text">
+            <div class="modal-titulo">
+                <span class="icon"><i class="bi bi-person-gear"></i></span>
+                <h2>CADASTRAR MÁQUINA</h2>
             </div>
 
-            <div class="content-input-modal">
-                <span> Campo:</span>
-                <input type="text">
-            </div>
+            <div class="inputs-modal">
 
-                        
-            <button type="submit">SALVAR</button>
+                <div class="content-input-modal">
+                    <span> Campo: </span>
+                    <input type="text">
+                </div>
+
+                <div class="content-input-modal">
+                    <span> Campo:</span>
+                    <input type="text">
+                </div>
+
+
+                <button type="submit">SALVAR</button>
+            </div>
         </div>
-    </div>
 
 
 
 </html>
 
 <script>
-     //  elementos dos modais
+    //  elementos dos modais
     const deleteModal = document.getElementById('deleteModal');
     const newUserModal = document.getElementById('newUserModal');
     const editModal = document.getElementById('editModal');
-    
+
 
     //  botões que abrem os modais
     const deleteButtons = document.querySelectorAll('.delete-user');
     const newButton = document.querySelector('.botao-cadastrar-usuario');
     const editButtons = document.querySelectorAll('.edit-user');
-    
+
 
     // botões de fechar dos modais
     const closeButtons = document.querySelectorAll('.close');
 
     // funcoes para abrir os modais
-    function abrirDeleteModal() { 
+    function abrirDeleteModal() {
         deleteModal.style.display = 'block';
     }
-    
+
     function abrirNewUserModal() {
         newUserModal.style.display = 'block';
     }
-    
+
     function abrirEditModal() {
         editModal.style.display = 'block';
         console.log('Entrei no abrirEditModal')
     }
 
-  
 
-   // eventos de clique nos botões que abrem os modais
-deleteButtons.forEach(function(button) {
-    button.addEventListener('click', function() {
-        abrirDeleteModal(); 
+
+    // eventos de clique nos botões que abrem os modais
+    deleteButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            abrirDeleteModal();
+        });
     });
-});
 
 
-newButton.addEventListener('click', function() {
-    abrirNewUserModal(); 
-});
-
-
-editButtons.forEach(function(button) {
-    button.addEventListener('click', function() {
-        abrirEditModal(); 
-        console.log('entrou no evento de clique do editModal')
+    newButton.addEventListener('click', function () {
+        abrirNewUserModal();
     });
-});
+
+
+    editButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            abrirEditModal();
+            console.log('entrou no evento de clique do editModal')
+        });
+    });
 
 
     // evento de clique nos botões de fechar dos modais
-    closeButtons.forEach(function(button) {
-        button.addEventListener('click', function() {
+    closeButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
             deleteModal.style.display = 'none';
             newUserModal.style.display = 'none';
-            editModal.style.display = 'none';             
-       });
+            editModal.style.display = 'none';
+        });
     });
 
     // Fechar o modal quando clicar fora dele
-    window.addEventListener('click', function(event) {
+    window.addEventListener('click', function (event) {
         if (event.target == deleteModal || event.target == newUserModal || event.target == editModal) {
             deleteModal.style.display = 'none';
             newUserModal.style.display = 'none';
             editModal.style.display = 'none';
             newModal.style.display = 'none';
-           
+
         }
     });
 </script>

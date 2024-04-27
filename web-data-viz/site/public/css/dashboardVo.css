@@ -102,6 +102,8 @@ body {
 .box-title-content {
     font-size: 15px;
     width: 500px;
+    margin-top: -11px;
+    margin-bottom: 10px;
 }
 
 .row {
