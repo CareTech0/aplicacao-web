@@ -106,12 +106,28 @@ body {
     margin-bottom: 10px;
 }
 
+
+.container-one { 
+  width: 100%;
+  height: 227px;
+  display: flex;
+}
+
+.container-two { 
+  width: 100%;
+  height: 244px;
+  display: flex;
+}
+
 .row {
   gap: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 105px;
+  height: 221px;
+  width: 436px;
+  flex-direction: column;
+  flex-wrap: wrap;
   }
 
   
@@ -122,6 +138,7 @@ body {
     border-radius: 10px;
     height: 86px;
     box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1);
+    
 }
 
 .box-title {
@@ -160,69 +177,13 @@ body {
     height: 340px;
 }
 
-.box-charts1 {
-  display: flex;
-  justify-content: space-between;  
-  height: 365px;
-  width: 52%;
-  flex-direction: column;
-}
-
-.chart1, .chart2, .chart3 {
-    background: white;
-    height: 90%;
-    width: 100%;
-    border-radius: 0px 10px 0px 10px;
-    overflow: hidden;
-}
-
- .chart4 {
-  background: white;
-  height: 90%;
-  width: 48%;
-  border-radius: 0px 10px 0px 10px;
-  overflow: scroll;
-  overflow-x: hidden;
-  position: relative;
-
-  
-}
-
-.titulo-chart {
-    width: 100%;
-    height: 20%;   
-    background-color: #4586bf;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 15px;
-    border-radius: 10px 10px 0px 0px;
-    
-}
-
-.titulo-chart-table  { 
-  width: 100%;
-  height: 20%;   
-  background-color: #4586bf;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 15px;
-  border-radius: 10px 10px 0px 0px;
-  position: sticky;
-  top: 0;
-    z-index: 1;
-}
-
 .grafico {
   width: 90%;
-  height: calc(100% - 37px); /* Subtrai a altura do título */
+  height: calc(100% - 37px); 
 }
 
 .graficoT { 
-  max-height: 300px; /* Altura máxima da tabela */
+  max-height: 300px; 
   position: relative;
   display: flex;
   justify-content: center;
@@ -268,6 +229,37 @@ th {
   display: none;
 }
 
-.tabela { 
-  
+.chart { 
+  background-color: #ffffff;
+  height: 216px;
+  width: 93%;
 }
+
+.chart-two { 
+  background-color: #ffffff;
+  height: 210px;
+  width: 93%;
+}
+
+
+.chart-three { 
+ background-color: #ffffff;
+    height: 218px;
+    width: 72%;
+}
+
+.box-chart { 
+  width: 57%;
+  justify-content: center;
+  display: flex;
+  
+  height: 100%;
+}
+
+.box-chart-two { 
+  width: 50%;
+  justify-content: center;
+  display: flex;
+  align-items: center; 
+}
+
