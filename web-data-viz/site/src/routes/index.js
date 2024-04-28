@@ -9,7 +9,11 @@ router.get("/", function (req, res) {
 
 router.post('/login', function (req, res) {
     loginController.autenticar(req, res);
-})
+});
+
+router.post('/cadastrar', function (req, res) {
+    loginController.cadastrar(req, res);
+});
 
 
 module.exports = router;

@@ -1,11 +1,18 @@
 const database = require("../database/config");
 
 function autenticar(email, senha){
-    console.log("loginFinal")
+    console.log("loginFinal");
     const instrucao = `
-        select * from user_dash where email = '${email}' and senha = '${senha}';
+        select * from usuario where email = '${email}' and senha = '${senha}';
     `;
     return database.executar(instrucao);
 }
 
-module.exports = { autenticar }
+function cadastrar(razao_socail, email_empresa, cnpj){
+    console.log("cadastroFinal");
+    const instrucao = `insert into empresa (razao_social, email_empresa, cnpj) VALUES ('${razao_socail}', '${email_empresa}', '${cnpj}')`;
+
+    return database.executar(instrucao);
+}
+
+module.exports = { autenticar, cadastrar }

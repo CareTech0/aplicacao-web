@@ -1,8 +1,8 @@
 const sign_in_btn = document.querySelector("#sign-in-btn");
 const sign_up_btn = document.querySelector("#sign-up-btn");
 const container = document.querySelector(".container");
-const btnLogin = document.getElementById("btn_login");
-const formularioLogin = document.getElementById("form_login");
+const formularioLogin = document.getElementById('form_login');
+const formularioCadastro = document.getElementById('form_cad');
 
 sign_up_btn.addEventListener("click", () => {
     container.classList.add("sign-up-mode");
@@ -54,3 +54,45 @@ formularioLogin.addEventListener('submit', (event) => {
     return false
 
 });
+
+formularioCadastro.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    let razaoSocial = document.getElementById("cad_razao_social").value;
+    let emailEmpresa = document.getElementById("cad_email").value;
+    let cnpj = document.getElementById("cad_cnpj").value;
+
+    fetch("/index/cadastrar", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            razao_socail: razaoSocial,
+            email_empresa: emailEmpresa,
+            cnpj: cnpj,
+        }),
+    })
+    .then(function (resposta){
+        console.log("resposta: ", resposta);
+        if(resposta.ok) {
+            document.getElementById("cad_razao_social").value = "";
+            document.getElementById("cad_email").value = "";
+            document.getElementById("cad_cnpj").value = "";
+            container.classList.remove("sign-up-mode");
+        } else {
+            alert("Erro ao cadastrar");
+        }
+    }).catch(function (resposta){
+        console.log(`#ERRO: ${resposta}`);
+        alert("Erro no banco");
+    })
+});
+
+function mascaraCNPJ(campoCNPJ) {
+    campoCNPJ.value = campoCNPJ.value.replace(/\D/g, ''); // Remove tudo que não é dígito
+    campoCNPJ.value = campoCNPJ.value.replace(/^(\d{2})(\d)/, '$1.$2'); // Coloca ponto entre o segundo e o terceiro dígitos
+    campoCNPJ.value = campoCNPJ.value.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3'); // Coloca ponto entre o quinto e o sexto dígitos
+    campoCNPJ.value = campoCNPJ.value.replace(/\.(\d{3})(\d)/, '.$1/$2'); // Coloca barra entre o oitavo e o nono dígitos
+    campoCNPJ.value = campoCNPJ.value.replace(/(\d{4})(\d)/, '$1-$2'); // Coloca traço entre o 12º e o 13º dígitos
+}

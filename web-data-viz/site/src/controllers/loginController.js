@@ -36,4 +36,25 @@ function autenticar(req, res){
     )
 }
 
-module.exports = { autenticar }
+function cadastrar(req, res){
+    const razaoSocial = req.body.razao_socail;
+    const email_empresa = req.body.email_empresa;
+    const cnpj = req.body.cnpj;
+
+    loginModel.cadastrar(razaoSocial, email_empresa, cnpj)
+    .then(
+        function (resultado) {
+            res.json(resultado);
+        }
+    )
+    .catch (function (erro){
+        console.log(erro);
+        console.log(
+            "\nHouve um erro ao realizar o cadastro! Erro: ",
+            erro.sqlMessage
+        );
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+module.exports = { autenticar, cadastrar }

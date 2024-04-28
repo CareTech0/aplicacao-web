@@ -9,9 +9,9 @@
   </head>
   <body>
     <div class="container">
-      <div class="forms-container" id="form_login">
+      <div class="forms-container">
         <div class="signin-signup">
-          <form action="#" class="sign-in-form">
+          <form action="#" class="sign-in-form" id="form_login">
             <h2 class="title">Sign in</h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
@@ -38,29 +38,22 @@
               </a>
             </div>
           </form>
-          <form action="#" class="sign-up-form">
+
+          <form action="#" class="sign-up-form" id="form_cad">
             <h2 class="title">Cadastre-se</h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Nome de usuário" />
+              <input type="text" placeholder="Razão Social" id="cad_razao_social" />
             </div>
             <div class="input-field">
                 <i class="fa fa-building-o" aria-hidden="true"></i>
-                <input type="text" placeholder="CNPJ">
+                <input type="text" placeholder="CNPJ" id="cad_cnpj" maxlength="18" oninput="mascaraCNPJ(this)">
             </div>
             <div class="input-field">
               <i class="fas fa-envelope"></i>
-              <input type="email" placeholder="Email" />
+              <input type="email" placeholder="Email" id="cad_email"/>
             </div>
-            <div class="input-field">
-              <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Senha" />
-            </div>
-            <div class="input-field">
-                <i class="fas fa-lock"></i>
-                <input type="password" placeholder="Confirmar senha" />
-              </div>
-            <input type="submit" class="btn" value="Sign up" />
+            <input type="submit" class="btn" value="Cadastre-se" />
             <p class="social-text">Or Sign up with social platforms</p>
             <div class="social-media">
               <a href="#" class="social-icon">
