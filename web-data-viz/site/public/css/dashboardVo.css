@@ -171,7 +171,7 @@ body {
 .chart1, .chart2, .chart3 {
     background: white;
     height: 90%;
-    width: 48%;
+    width: 100%;
     border-radius: 0px 10px 0px 10px;
     overflow: hidden;
 }

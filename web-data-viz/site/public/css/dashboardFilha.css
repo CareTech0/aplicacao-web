@@ -333,3 +333,29 @@ body {
   width: 600px;
   font-size: 12px;
 }
+
+.botao-excluir-maquina { 
+  background-color: #f84c4c;
+  width: 150px;
+  border-radius: 10px;
+  color: white;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.caixa-botao-excluir-maquina{ 
+width: 200px;
+}
+
+.content-informacoes-cpu { 
+  display: flex;
+  justify-content: flex-end;
+  height: 70px;
+  align-items: center;
+ 
+}
