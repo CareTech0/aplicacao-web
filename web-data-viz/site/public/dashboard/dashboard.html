@@ -64,17 +64,22 @@
     </header>
 
     <div class="container">
-        <div class="container-notificacoes">
-            <div class="titulo-notificacoes">
-                <h1>Olá, Amanda!</h1>
-                <p>Você tem <span>3 novas ocorrências.</span></p>
+        <div>
+            <div class="container-notificacoes">
+                <div class="titulo-notificacoes">
+                    <h2>Olá,</h2>
+                    <p>Você tem <span>3 novas ocorrências.</span></p>
+                </div>
             </div>
-        </div>
+            <div>
 
-        <div class="botao-cadastrar-maquina">
-            <span class="icon-cadastrar-maquina"><i class="bi bi-plus-circle"></i></span>
-            <span class="txt-cadastrar-maquina"><a href="../dashboard/cadastrarMaquina.html">CADASTRAR
-                    MÁQUINA</a></span>
+            </div>
+            
+            <div class="botao-cadastrar-maquina">
+                <span class="icon-cadastrar-maquina"><i class="bi bi-plus-circle"></i></span>
+                <span class="txt-cadastrar-maquina"><a href="../dashboard/cadastrarMaquina.html">CADASTRAR
+                        MÁQUINA</a></span>
+            </div>
         </div>
 
         <div class="container-maquinas">
@@ -102,17 +107,17 @@
                             <div class="icon-alerta">
                                 <img src="..\assets\imgs\alerta.png" alt="">
                             </div>
-        
+
                             <div class="icon-onOff">
                                 <label class="switch">
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="toggleMaquina1" id="toggleMaquina1" checked>
                                     <span class="slider round"></span>
                                 </label>
                             </div>
                         </div>
 
                     </div>
-                </div>                
+                </div>
 
 
 
@@ -131,26 +136,26 @@
 
                         <div class="status-maquina">
                             <span>
-                                <b>Status:</b> Ideal <br>
+                                <b>Status:</b> Condição ideal <br>
                                 <b>Condição:</b> Ligada
                             </span>
                         </div>
 
                         <div class="container-alertas">
                             <div class="icon-alerta">
-                                <img src="..\assets\imgs\alerta.png" alt="">
+                                <img src="..\assets\imgs\check.png" alt="">
                             </div>
-        
+
                             <div class="icon-onOff">
                                 <label class="switch">
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="toggleMaquina2" id="toggleMaquina2" checked>
                                     <span class="slider round"></span>
                                 </label>
                             </div>
                         </div>
 
                     </div>
-                </div>                
+                </div>
 
 
 
@@ -169,26 +174,26 @@
 
                         <div class="status-maquina">
                             <span>
-                                <b>Status:</b> Em estado de alerta <br>
+                                <b>Status:</b> Condição ideal <br>
                                 <b>Condição:</b> Ligada
                             </span>
                         </div>
 
                         <div class="container-alertas">
                             <div class="icon-alerta">
-                                <img src="..\assets\imgs\alerta.png" alt="">
+                                <img src="..\assets\imgs\check.png" alt="">
                             </div>
-        
+
                             <div class="icon-onOff">
                                 <label class="switch">
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="toggleMaquina3" id="toggleMaquina3" checked>
                                     <span class="slider round"></span>
                                 </label>
                             </div>
                         </div>
 
                     </div>
-                </div>                
+                </div>
 
 
 
@@ -208,16 +213,16 @@
 
                         <div class="status-maquina">
                             <span>
-                                <b>Status:</b> Em estado de alerta <br>
-                                <b>Condição:</b> Ligada
+                                <b>Status:</b> Condição ideal <br>
+                                <b>Condição:</b> Desligada
                             </span>
                         </div>
 
                         <div class="container-alertas">
                             <div class="icon-alerta">
-                                <img src="..\assets\imgs\alerta.png" alt="">
+                                <img src="..\assets\imgs\check.png" alt="">
                             </div>
-        
+
                             <div class="icon-onOff">
                                 <label class="switch">
                                     <input type="checkbox">
@@ -227,7 +232,7 @@
                         </div>
 
                     </div>
-                </div>                
+                </div>
 
 
 
@@ -255,17 +260,17 @@
                             <div class="icon-alerta">
                                 <img src="..\assets\imgs\alerta.png" alt="">
                             </div>
-        
+
                             <div class="icon-onOff">
                                 <label class="switch">
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="toggleMaquina5" id="toggleMaquina5" checked>
                                     <span class="slider round"></span>
                                 </label>
                             </div>
                         </div>
 
                     </div>
-                </div>                
+                </div>
 
 
 
@@ -284,30 +289,31 @@
 
                         <div class="status-maquina">
                             <span>
-                                <b>Status:</b> Em estado de alerta <br>
+                                <b>Status:</b> Em estado crítico <br>
                                 <b>Condição:</b> Ligada
                             </span>
                         </div>
 
                         <div class="container-alertas">
                             <div class="icon-alerta">
-                                <img src="..\assets\imgs\alerta.png" alt="">
+                                <img src="..\assets\imgs\x.png" alt="">
                             </div>
-        
+
                             <div class="icon-onOff">
                                 <label class="switch">
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="toggleMaquina6" id="toggleMaquina6" id="toggleMaquina6"
+                                        checked>
                                     <span class="slider round"></span>
                                 </label>
                             </div>
                         </div>
 
                     </div>
-                </div>                
+                </div>
 
 
 
-            </div> 
+            </div>
             <div class="content-maquinas" onclick="direcionarCPU()">
 
                 <div class="box-contains-icon-title">
@@ -322,16 +328,16 @@
 
                         <div class="status-maquina">
                             <span>
-                                <b>Status:</b> Em estado de alerta <br>
-                                <b>Condição:</b> Ligada
+                                <b>Status:</b> Condição ideal <br>
+                                <b>Condição:</b> Desligada
                             </span>
                         </div>
 
                         <div class="container-alertas">
                             <div class="icon-alerta">
-                                <img src="..\assets\imgs\alerta.png" alt="">
+                                <img src="..\assets\imgs\check.png" alt="">
                             </div>
-        
+
                             <div class="icon-onOff">
                                 <label class="switch">
                                     <input type="checkbox">
@@ -341,7 +347,7 @@
                         </div>
 
                     </div>
-                </div>                
+                </div>
 
 
 
