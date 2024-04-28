@@ -28,12 +28,14 @@ function drawChart1() {
     var data = google.visualization.arrayToDataTable([
         ['Data', 'Quantidade'],
         ['Segunda', 10],
-        ['Terça', 15],
-        ['Quarta', 20],
-        ['Quinta', 25]
+        ['Terça', 35],
+        ['Quarta', 10],
+        ['Quinta', 30],
+        ['Sexta', 25]
     ]);
 
     var options = {
+        title: 'MÁQUINAS COM PROBLEMAS RECORRENTES NA SEMANA',
         curveType: 'function',
         width: '100%',
         height: '100%', 
@@ -55,6 +57,7 @@ function drawChart2() {
     ]);
 
     var options = {
+        title: 'LOGIN FORA DO HORÁRIO ESPERADO NA ÚLTIMA SEMANA',
         legend: { position: 'none' },
         width: '100%',
         height: '100%', 
@@ -64,6 +67,7 @@ function drawChart2() {
 
     chart.draw(data, options);
 }
+
 
 function drawChart3() {
     var data = google.visualization.arrayToDataTable([

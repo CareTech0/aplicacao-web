@@ -233,27 +233,30 @@ th {
 .chart { 
   background-color: #ffffff;
   height: 216px;
-  width: 93%;
+  width: 93%;  
+}
+
+.chart, .chart-two, .chart-three, .graficoT {
+  border-radius: 12px;
 }
 
 .chart-two { 
   background-color: #ffffff;
   height: 210px;
-  width: 93%;
+  width: 93%; 
 }
 
 
 .chart-three { 
- background-color: #ffffff;
-    height: 218px;
-    width: 72%;
+  background-color: #ffffff;
+  height: 179px;
+  width: 89%;
 }
 
 .box-chart { 
   width: 57%;
   justify-content: center;
-  display: flex;
-  
+  display: flex;  
   height: 100%;
 }
 
