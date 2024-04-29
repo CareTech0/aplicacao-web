@@ -607,6 +607,15 @@ input[type="checkbox"]:not(:checked)+.slider {
 
 .perfil-usuario { 
     display: flex;
+    width: 120px;
+    justify-content: flex-start;
+    
+}
+
+.perf-type { 
+    width: 100px;
+    display: flex;
+    justify-content: center;
 }
 
 .perfil-usuario h1 {

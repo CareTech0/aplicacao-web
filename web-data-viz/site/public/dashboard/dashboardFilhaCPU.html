@@ -144,11 +144,13 @@
                 <div class="box-dos-graficos">
                     <div class="informacoes-maquina">
                         <div class="conteudo-maquina">
-                            <span><b>Configurações:</b> <br>
-                            <span><b>Total de RAM:</b></span> xxxxxxxxxx <br>
-                            <span><b>Total de DISCO:</b></span> xxxxxxxxxx <br>
-                            <span><b>Modelo do processador:</b> xxxxxxxxxx </span><br>
-                            <span><b>Velocidade do processador:</b> xxxxxxxxxx </span>
+                            <span><b class="titulo-config">CONFIGURAÇÕES DO MÁQUINA:</b> <br>
+                                <div class="box-config">
+                                    <span><b>Total de RAM:</b> xxxxxxxxxx </span> 
+                                    <span><b>Total de DISCO:</b> xxxxxxxxxx </span> 
+                                    <span><b>Modelo do processador:</b> xxxxxxxxxx </span>
+                                    <span><b>Velocidade do processador:</b> xxxxxxxxxx </span>
+                                </div>
                         </div>
                     </div>
 
@@ -213,14 +215,14 @@
     function drawCharts() {
 
         var cpuData = google.visualization.arrayToDataTable([
-        ['Tempo', 'Uso de CPU'],
-        ['09:00', 99],
-        ['09:10', 96],
-        ['09:20', 95],
-        ['09:30', 100],
-    ]);
+            ['Tempo', 'Uso de CPU'],
+            ['09:00', 99],
+            ['09:10', 96],
+            ['09:20', 95],
+            ['09:30', 100],
+        ]);
 
-    
+
 
         var cpuOptions = {
             title: 'Monitoramento da CPU',

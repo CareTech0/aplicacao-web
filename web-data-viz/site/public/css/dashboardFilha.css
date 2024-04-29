@@ -334,6 +334,19 @@ body {
   font-size: 12px;
 }
 
+.titulo-config { 
+  font-size: 14px;
+}
+
+.box-config { 
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-left: 10px;
+  margin-top: 5px;
+}
+
 .botao-excluir-maquina { 
   background-color: #f84c4c;
   width: 150px;
