@@ -36,7 +36,6 @@ function drawChart1() {
 
     var options = {
         title: 'MÁQUINAS COM PROBLEMAS RECORRENTES NA SEMANA',
-        curveType: 'function',
         width: '100%',
         height: '100%', 
         legend: { position: 'bottom' }

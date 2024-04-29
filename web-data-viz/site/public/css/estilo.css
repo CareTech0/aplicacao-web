@@ -51,13 +51,13 @@ margin-top: 10px;
 
 .container-header a {
   text-decoration: none;
-  color: #000;
+  color: #ffffff;
   padding: 10px;
 }
 
 .container-header a:hover {
   border-radius: 15px;
-  color: #163561;
+  color: #1c3a57;
 }
 
 .section-carousel {
@@ -91,10 +91,6 @@ margin-top: 10px;
   width: 100%;
 }
 
-.carousel-elements p {
-  font-size: 20px;
-  width: 100%;
-}
 
 .carousel-buttons {
   display: flex;
@@ -107,7 +103,6 @@ margin-top: 10px;
   border: none;
   padding: 14px;
   border-radius: 20px;
-  color: #FFF;
   cursor: pointer;
 }
 
@@ -117,27 +112,85 @@ margin-top: 10px;
 }
 
 .dark-title {
-  color: #163561;
+  color: #ffffff; 
+
 }
 
-.dark-back {
-  background-color: #163561;
+
+.botao1-slide2 {
+  background-color: #90BEDA;
+  font-weight: 500;
+  color: white;
+ 
 }
 
-.light-title {
-  color: #5773A4;
+.botao2-slide2  {
+  background-color: #E3E9F6;
+  font-weight: 600;
 }
+
+.botao1-slide3  {
+  background-color: #F6FAFF;
+  color: #3F8EBF;
+  font-weight: 600;
+}
+
+.botao2-slide3  {
+  background-color: #3F8EBF;
+  font-weight: 600;
+  color: white;
+}
+
+.titulo1-slide3 {
+  color: #27475A;
+}
+
+.titulo-slide1 {
+color: #254B80;
+}
+
+.titulo-slide2 { 
+color: white;
+}
+
+.descricao-slide3 { 
+  font-size: 20px;
+  color: rgb(255, 255, 255)
+  
+}
+.titulo2-slide3 {
+  color: #ffffff;
+}
+
 
 .light-title-2 {
-  color: #DDE9FE;
+  color: #ffffff;
 }
 
-.light-back{
-  background-color: #5773A4;
+.descricao-slide2 { 
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
 }
 
-.light-back-2 {
-  background-color: #A9B3CD;
+.titulo1-slide1 {
+color: #445E96;
+}
+
+.titulo2-slide2 {
+color: #ffffff;
+}
+
+.botao1-slide1 {
+  background-color: #445E96;
+  color: white;
+  font-weight: 600;
+}
+
+.botao2-slide1 {
+  background-color: #f5fbff;
+  color:#445E96;
+  font-weight: 600;
 }
 
 .first-slide {
@@ -147,17 +200,17 @@ margin-top: 10px;
 
 .second-slide {
   width: 100%;
-  background-color: #5273A1;
+  background-color: #3F8EBF;
 }
 
 .third-slide {
   width: 100%;
-  background-color: #A9B3CD;
+  background-color: #90BEDA;
 }
 
 .section-services {
   height: 100vh;
-  background-color: #D9D9D9;
+  background-color: #f5f5f5;
   display: flex;
   justify-content: space-evenly;
 }
@@ -172,7 +225,7 @@ margin-top: 10px;
 }
 
 .section-services .text-elements h1 {
-  color: #081F3F;
+  color: #34517b;
   font-size: 35px;
 }
 
@@ -213,7 +266,7 @@ margin-top: 10px;
 
 .background-icons {
   padding: 30px;
-  background-color: #163561;
+  background-color: #3F8EBF;
   border-radius: 60px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
 }
@@ -271,7 +324,7 @@ margin-top: 10px;
   width: 25%;
   display: flex;
   justify-content: center;
-  background-color: #163561;
+  background-color: #3F8EBF;
 }
 
 .extra-info-3 {
@@ -285,7 +338,7 @@ margin-top: 10px;
   width: 25%;
   display: flex;
   justify-content: center;
-  background-color: #163561;
+  background-color: #3F8EBF;
 }
 
 .container-extra-info-itens {
@@ -304,7 +357,7 @@ margin-top: 10px;
   border: 1px solid #FFF;
   border-radius: 10px;
   padding: 16px;
-  background-color: #163561;
+  background-color: #3F8EBF;
   cursor: pointer;
 }
 
@@ -317,7 +370,7 @@ margin-top: 10px;
 
 .section-clients {
   height: 100vh;
-  background-color: #D9D9D9;
+  background-color: #f5f5f5;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -455,7 +508,7 @@ margin-top: 10px;
 
 .section-contact {
   height: 80vh;
-  background-color: #D9D9D9;
+  background-color: #f5f5f5;
 }
 
 .container-contact {
@@ -502,7 +555,7 @@ margin-top: 10px;
 }
 
 .contact-icons h1 {
-  color: #1451A9;
+  color: #3F8EBF;
   font-size: 19px;
 }
 
@@ -512,7 +565,7 @@ margin-top: 10px;
 }
 
 .contact-img {
-  background-color: #000;
+  background-color: #266f9c;
   border-radius: 50px;
   width: 92px; 
   height: 92px;  
@@ -527,7 +580,7 @@ margin-top: 10px;
   width: 40px;
 }
 footer {
-  background-color: #0e0e0e;
+  background-color: #444;
   height: 20vh;
   width: 100%;
   display: flex;
@@ -576,7 +629,7 @@ footer h1 {
 }
 
 .container-forms {
-  background-color: #37609B;
+  background-color: #445e96;
   height: 100%;
   width: 60%;
   display: flex;
@@ -812,6 +865,7 @@ padding: 10px;
     width: 300px;
   }
 
+ 
   .carousel-buttons {
     text-align: center;
     width: 300px;
@@ -1041,3 +1095,20 @@ padding: 10px;
 
 }
 
+::-webkit-scrollbar {
+  width: 17px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f3f3f3;
+  border-radius: 0 6px 6px 0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3e76a7;
+  border-radius: 15px;
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}
