@@ -5,305 +5,334 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CareTech</title>
-    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/usuarios.css">
+    <link rel="icon" href="../assets/icon/icon.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-        integrity="sha384-nS9pNb+Uo+QnUAQBjQB80Nue+iyi1pqifQsbgjxcgZvPBJqfvpRwW9K0HJAu8k+j" crossorigin="anonymous">
-
     <script src="../js/scriptDash.js"></script>
-
 </head>
 
 <body>
-    <header>
-        <div class="logomarca">
-            <img src="../assets/imgs/logoBrancoDash.png" alt="logoCareTech">
+    <div class="container-global">
+        <div class="box-menu">
+            <div class="logomarca">
+                <img src="../assets/imgs/logoBrancoDash.png" alt="logoCareTech">
+            </div>
+
+            <div class="container-menu">
+                <div class="content-menu">
+                    <nav class="menu">
+                        <ul>
+                            <li class="item-menu">
+                                <div class="caixa-cor">
+                                    <a href="..\dashboard\dashboardVo.html">
+                                        <span class="icon"><i class="bi bi-columns-gap"></i></span>
+                                        <span class="txt-link">Visão geral</span>
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="item-menu">
+                                <div class="caixa-cor">
+                                    <a href="..\dashboard\dashboard.html">
+                                        <span class="icon"><i class="bi bi-graph-up"></i></span>
+                                        <span class="txt-link">Visão detalhada</span>
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="item-menu">
+                                <div class="caixa-cor">
+                                    <a href="..\dashboard\cadastrarMaquina.html">
+                                        <span class="icon"><i class="bi bi-pc-display"></i></span>
+                                        <span class="txt-link">Cadastrar máquina</span>
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="item-menu">
+                                <div class="caixa-cor">
+                                    <a href="..\dashboard\usuarios.html">
+                                        <span class="icon"><i class="bi bi-person-fill"></i></span>
+                                        <span class="txt-link">Usuários</span>
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="item-menu">
+                                <div class="caixa-cor">
+                                    <a href="..\dashboard\bloqueio.html">
+                                        <span class="icon"><i class="bi bi-ban"></i></span>
+                                        <span class="txt-link">Bloqueio de sites</span>
+                                    </a>
+                                </div>
+                            </li>
+
+
+                        </ul>
+
+                        <div class="box-deslogar">
+                            <div class="item-menu-deslogar">
+                                <span class="icon"><i class="bi bi-box-arrow-right"></i></span>
+                                <span class="txt-link">
+                                    <a href="../login.html">Deslogar</a>
+                                </span>
+                            </div>
+                        </div>
+                    </nav>
+
+                </div>
+
+
+            </div>
+
+
         </div>
 
-        <nav class="menu">
-            <ul>
-                <li class="item-menu">
-                    <a href="..\dashboard\dashboardVo.html">
-                        <span class="icon"><i class="bi bi-columns-gap"></i></span>
-                        <span class="txt-link">Visão geral</span>
-                    </a>
-                </li>
-                <li class="item-menu">
-                    <a href="..\dashboard\dashboard.html">
-                        <span class="icon"><i class="bi bi-graph-up"></i></span>
-                        <span class="txt-link">Visão detalhada</span>
-                    </a>
-                </li>
-                <li class="item-menu">
-                    <a href="cadastrarMaquina.html">
-                        <span class="icon"><i class="bi bi-pc-display"></i></span>
-                        <span class="txt-link">Cadastrar máquina</span>
-                    </a>
-                </li>
-                <li class="item-menu">
-                    <a href="#">
-                        <span class="icon"><i class="bi bi-person-fill"></i></span>
-                        <span class="txt-link">Usuários</span>
-                    </a>
-                </li>
-                <li class="item-menu">
-                    <a href="..\dashboard\bloqueio.html">
-                        <span class="icon"><i class="bi bi-ban"></i></span>
-                        <span class="txt-link">Bloqueio de sites</span>
-                    </a>
-                </li>
-            </ul>
+        <div class="caixa-container">
+            <div class="container">
 
-            <div class="item-menu-deslogar">
-                <span class="icon"><i class="bi bi-box-arrow-right"></i></span>
-                <span class="txt-link">
-                    <span>Deslogar</span>
-                </span>
+                <div class="container-cadastro">
 
+                    <div class="content-usuarios">
 
-            </div>
+                        <div class="caixa-titulo">
+                            <div class="content-titulo-usuarios">
 
-            </div>
-        </nav>
-    </header>
-
-    <div class="container">
-
-        <div class="container-cadastro">
-
-            <div class="content-usuarios">
-
-                <div class="caixa-titulo">
-                    <div class="content-titulo-usuarios">
-
-                        <div class="content-img-usuario">
-                            <img src="../assets/imgs/iconUser.png">
-                        </div>
-                        <div class="titulo-cadastrar-usuarios">
-
-                            <span>USUÁRIOS</span>
-                            <p>Gerencie seus usuários e permissões aqui.</p>
-
-                        </div>
-
-                    </div>
-
-                    <div class="botao-cadastrar-usuario">
-                        <span class="icon-cadastrar-user"><i class="bi bi-plus-circle"></i></span>
-                        <span class="txt-cadastrar-usuario">NOVO USUÁRIO</span>
-                    </div>
-                </div>
-                <div class="content-visualizar-usuarios">
-                    <div class="box-usuarios">
-                        <div class="titulo-box-usuarios">
-
-                            <div class="tipo-box-usuarios">
-                                <h1>Nome</h1>
-                                <p>Endereço de e-mail</p>
-                            </div>
-
-                            <div class="perfil-box-usuarios">
-                                <h1>Perfil</h1>
-                            </div>
-
-                            <div class="perfil-box-usuarios">
-                                <h1>Editar</h1>
-                            </div>
-
-
-                        </div>
-
-                        <div class="conteudo-usuario">
-                            <div class="dados-usuario">
-                                <h1>Tiago Silva</h1>
-                                <p>thiago.nascimento@sptech.school
-                                <p>
-                            </div>
-
-                            <div class="perfil-usuario">
-                                <div class="perf-type">
-                                    <h1>Administrador</h1>
+                                <div class="content-img-usuario">
+                                    <img src="../assets/imgs/iconUser.png">
                                 </div>
-                                <div class="box-tooltip-principal">
-                                    <div class="tooltip-container-principal">
-                                        <span class="tooltip-icon-principal">i</span>
-                                        <div class="tooltip-text-principal"><b>Administradores:</b> têm controle total
-                                            sobre máquinas,
-                                            usuários e bloqueio de sites.
-                                            <br>
+                                <div class="titulo-cadastrar-usuarios">
+
+                                    <span>USUÁRIOS</span>
+                                    <p>Gerencie seus usuários e permissões aqui.</p>
+
+                                </div>
+
+                            </div>
+
+                            <div class="botao-cadastrar-usuario">
+                                <span class="icon-cadastrar-user"><i class="bi bi-plus-circle"></i></span>
+                                <span class="txt-cadastrar-usuario">NOVO USUÁRIO</span>
+                            </div>
+                        </div>
+                        <div class="content-visualizar-usuarios">
+                            <div class="box-usuarios">
+                                <div class="titulo-box-usuarios">
+
+                                    <div class="tipo-box-usuarios">
+                                        <h1>Nome</h1>
+                                        <p>Endereço de e-mail</p>
+                                    </div>
+
+                                    <div class="perfil-box-usuarios">
+                                        <h1>Perfil</h1>
+                                    </div>
+
+                                    <div class="perfil-box-usuarios">
+                                        <h1>Editar</h1>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="conteudo-usuario">
+                                    <div class="dados-usuario">
+                                        <h1>Tiago Silva</h1>
+                                        <p>thiago.nascimento@sptech.school
+                                        <p>
+                                    </div>
+
+                                    <div class="perfil-usuario">
+                                        <div class="perf-type">
+                                            <h1>Administrador</h1>
+                                        </div>
+                                        <div class="box-tooltip-principal">
+                                            <div class="tooltip-container-principal">
+                                                <span class="tooltip-icon-principal">i</span>
+                                                <div class="tooltip-text-principal"><b>Administradores:</b> têm controle
+                                                    total
+                                                    sobre máquinas,
+                                                    usuários e bloqueio de sites.
+                                                    <br>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
+
+
+
+                                    <div class="opcoes-usuario">
+                                        <span class="delete-user" data-target="#deleteModal"><i
+                                                class="bi bi-trash3"></i></i></span>
+                                        <span class="edit-user" data-target="#editModal"><i
+                                                class="bi bi-pencil-square"></i></span>
+                                    </div>
                                 </div>
-                            </div>
 
+                                <div class="conteudo-usuario">
+                                    <div class="dados-usuario">
+                                        <h1>Wandik Menezes</h1>
+                                        <p>Wandik.Menezes@sptech.school
+                                        <p>
+                                    </div>
 
-
-                            <div class="opcoes-usuario">
-                                <span class="delete-user" data-target="#deleteModal"><i
-                                        class="bi bi-trash3"></i></i></span>
-                                <span class="edit-user" data-target="#editModal"><i
-                                        class="bi bi-pencil-square"></i></span>
-                            </div>
-                        </div>
-
-                        <div class="conteudo-usuario">
-                            <div class="dados-usuario">
-                                <h1>Wandik Menezes</h1>
-                                <p>Wandik.Menezes@sptech.school
-                                <p>
-                            </div>
-
-                            <div class="perfil-usuario">
-                                <div class="perf-type">
-                                    <h1>Visualização</h1>
-                                </div>
-                                <div class="box-tooltip-principal">
-                                    <div class="tooltip-container-principal">
-                                        <span class="tooltip-icon-principal">i</span>
-                                        <div class="tooltip-text-principal">
-                                            <span><b>Usuário comum:</b>
-                                                Apenas visualização da dashboard <br> </span>
+                                    <div class="perfil-usuario">
+                                        <div class="perf-type">
+                                            <h1>Visualização</h1>
+                                        </div>
+                                        <div class="box-tooltip-principal">
+                                            <div class="tooltip-container-principal">
+                                                <span class="tooltip-icon-principal">i</span>
+                                                <div class="tooltip-text-principal">
+                                                    <span><b>Usuário comum:</b>
+                                                        Apenas visualização da dashboard <br> </span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
 
 
 
-                            <div class="opcoes-usuario">
-                                <span class="delete-user" data-target="#deleteModal"><i
-                                        class="bi bi-trash3"></i></i></span>
-                                <span class="edit-user" data-target="#editModal"><i
-                                        class="bi bi-pencil-square"></i></span>
-                            </div>
-                        </div>
-
-                        <div class="conteudo-usuario" id="usuariosContainer"></div>
-
-                        <div class="conteudo-usuario" id="usuariosContainer"></div>
-                        <div class="conteudo-usuario" id="usuariosContainer"></div>
-
-                    </div>
-
-
-
-
-                </div>
-            </div>
-
-            <!-- Modal Excluir Usuário -->
-            <div class="modal-excluir" id="deleteModal">
-                <div class="modal-content-excluir">
-                    <span class="close">&times;</span>
-
-                    <div class="modal-titulo">
-                        <span> <i class="bi bi-person-x-fill"></i> </span>
-                        <h2>DELETAR USUÁRIO</h2>
-                    </div>
-
-                    <div class="modal-mensagem">
-                        <p>Deletar a conta irá remover todas as informações do nosso banco de dados. Essa ação não pode
-                            ser
-                            desfeita.</p>
-                    </div>
-
-                    <div class="modal-botao-excluir">
-                        <button id="confirmDelete">EXCLUIR CONTA </button>
-                    </div>
-                </div>
-            </div>
-
-
-            <!-- Modal adicionar novo usuário -->
-            <div class="modal" id="newUserModal">
-                <div class="modal-content-novo-usuario">
-
-                    <span class="close">&times;</span>
-
-                    <div class="modal-titulo-novo-usuario">
-                        <span class="icon"><i class="bi bi-person-gear"></i></span>
-                        <h2>ADICIONAR USUÁRIO</h2>
-                    </div>
-
-                    <div class="inputs-modal-novo-usuario">
-
-                        <div class="content-input-modal-novo-usuario">
-                            <span> Nome: </span>
-                            <input type="text" name="nome">
-                        </div>
-
-                        <div class="content-input-modal-novo-usuario">
-                            <span> E-mail:</span>
-                            <input type="text" name="email">
-                        </div>
-
-                        <div class="content-input-modal-novo-usuario">
-                            <span> Senha: </span>
-                            <input type="password">
-                        </div>
-
-                        <div class="content-input-modal-novo-usuario">
-                            <span> Confirmar senha:</span>
-                            <input type="password">
-                        </div>
-
-
-                        <div class="content-input-modal-novo-usuario-tooltip">
-
-                            <div class="titulo-tipo-acesso">
-                                <span> Tipo de acesso:</span>
-                            </div>
-
-                            <div class="box-tooltip">
-                                <div class="tooltip-container">
-                                    <span class="tooltip-icon">i</span>
-                                    <div class="tooltip-text"><b>Administradores:</b> têm controle total sobre máquinas,
-                                        usuários e bloqueio de sites.
-                                        <br> <br>
-                                        <b>Usuário comum:</b> Apenas visualização da dashboard.
+                                    <div class="opcoes-usuario">
+                                        <span class="delete-user" data-target="#deleteModal"><i
+                                                class="bi bi-trash3"></i></i></span>
+                                        <span class="edit-user" data-target="#editModal"><i
+                                                class="bi bi-pencil-square"></i></span>
                                     </div>
                                 </div>
+
+                                <div class="conteudo-usuario" id="usuariosContainer"></div>
+
+                                <div class="conteudo-usuario" id="usuariosContainer"></div>
+                                <div class="conteudo-usuario" id="usuariosContainer"></div>
+
                             </div>
 
-                            <div class="content-input-modal">
-                                <select id="perfil" name="perfil">
-                                    <option value="administrador">Administrador</option>
-                                    <option value="usuario">Usuário comum</option>
-                                </select>
-                            </div>
+
 
 
                         </div>
-                        <button type="submit" id="saveNewUser">SALVAR</button>
+                    </div>
+
+                    <!-- Modal Excluir Usuário -->
+                    <div class="modal-excluir" id="deleteModal">
+                        <div class="modal-content-excluir">
+                            <span class="close">&times;</span>
+
+                            <div class="modal-titulo">
+                                <span> <i class="bi bi-person-x-fill"></i> </span>
+                                <h2>DELETAR USUÁRIO</h2>
+                            </div>
+
+                            <div class="modal-mensagem">
+                                <p>Deletar a conta irá remover todas as informações do nosso banco de dados. Essa ação
+                                    não pode
+                                    ser
+                                    desfeita.</p>
+                            </div>
+
+                            <div class="modal-botao-excluir">
+                                <button id="confirmDelete">EXCLUIR CONTA </button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Modal adicionar novo usuário -->
+                    <div class="modal" id="newUserModal">
+                        <div class="modal-content-novo-usuario">
+
+                            <span class="close">&times;</span>
+
+                            <div class="modal-titulo-novo-usuario">
+                                <span class="icon"><i class="bi bi-person-gear"></i></span>
+                                <h2>ADICIONAR USUÁRIO</h2>
+                            </div>
+
+                            <div class="inputs-modal-novo-usuario">
+
+                                <div class="content-input-modal-novo-usuario">
+                                    <span> Nome: </span>
+                                    <input type="text" name="nome">
+                                </div>
+
+                                <div class="content-input-modal-novo-usuario">
+                                    <span> E-mail:</span>
+                                    <input type="text" name="email">
+                                </div>
+
+                                <div class="content-input-modal-novo-usuario">
+                                    <span> Senha: </span>
+                                    <input type="password">
+                                </div>
+
+                                <div class="content-input-modal-novo-usuario">
+                                    <span> Confirmar senha:</span>
+                                    <input type="password">
+                                </div>
+
+
+                                <div class="content-input-modal-novo-usuario-tooltip">
+
+                                    <div class="titulo-tipo-acesso">
+                                        <span> Tipo de acesso:</span>
+                                    </div>
+
+                                    <div class="box-tooltip">
+                                        <div class="tooltip-container">
+                                            <span class="tooltip-icon">i</span>
+                                            <div class="tooltip-text"><b>Administradores:</b> têm controle total sobre
+                                                máquinas,
+                                                usuários e bloqueio de sites.
+                                                <br> <br>
+                                                <b>Usuário comum:</b> Apenas visualização da dashboard.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="content-input-modal">
+                                        <select id="perfil" name="perfil">
+                                            <option value="administrador">Administrador</option>
+                                            <option value="usuario">Usuário comum</option>
+                                        </select>
+                                    </div>
+
+
+                                </div>
+                                <button type="submit" id="saveNewUser">SALVAR</button>
 
 
 
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <div class="modal-excluir" id="deslogarModal">
-                <div class="modal-content-excluir">
-                    <span class="close">&times;</span>
-
-                    <div class="modal-titulo">
-                        <span> <i class="bi bi-box-arrow-right"></i> </span>
-                        <h2>DESLOGAR DA CONTA</h2>
-                    </div>
-
-                    <div class="modal-mensagem">
-                        <p>Tem certeza que deseja encerrar sua sessão?</p>
-                    </div>
-
-                    <div class="modal-botao-excluir">
-                        <button id="confirmDeslogar"> <a href="../login.html">DESLOGAR SESSÃO</a></button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Modal editar usuário -->
-
 </body>
+
+<div class="modal-excluir" id="deslogarModal">
+    <div class="modal-content-excluir">
+        <span class="close">&times;</span>
+
+        <div class="modal-titulo">
+            <span> <i class="bi bi-box-arrow-right"></i></span>
+            <h2>DESLOGAR DA CONTA</h2>
+        </div>
+
+        <div class="modal-mensagem">
+            <p>Tem certeza que deseja encerrar sua sessão?</p>
+        </div>
+
+        <div class="modal-botao-excluir">
+            <button id="confirmDeslogar"> <a href="../login.html">DESLOGAR SESSÃO</a></button>
+        </div>
+    </div>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="aviso">Por favor, preencha todos os campos.</p>
+        </div>
+    </div>
+
+</div>
+
 <div class="modal" id="editModal">
     <div class="modal-content">
 
@@ -326,37 +355,9 @@
                 <input type="text">
             </div>
 
-
-            <div class="content-input-modal-novo-usuario-tooltip">
-
-                <div class="titulo-tipo-acesso">
-                    <span> Tipo de acesso:</span>
-                </div>
-
-                <div class="box-tooltip">
-                    <div class="tooltip-container">
-                        <span class="tooltip-icon">i</span>
-                        <div class="tooltip-text"><b>Administradores:</b> têm controle total sobre máquinas,
-                            usuários e bloqueio de sites.
-                            <br> <br>
-                            <b>Usuário comum:</b>
-                            Apenas visualização da dashboard
-                        </div>
-                    </div>
-                </div>
-                <div class="content-input-modal">
-                    <select id="perfil" name="perfil">
-                        <option value="administrador">Administrador</option>
-                        <option value="usuario">Usuário comum</option>
-                    </select>
-                </div>
-
-
-            </div>
-            <button type="submit">SALVAR</button>
         </div>
     </div>
-
+</div>
 
 </html>
 

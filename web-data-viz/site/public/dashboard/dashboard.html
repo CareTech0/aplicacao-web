@@ -6,13 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CareTech</title>
     <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="icon" href="../assets/icon/icon.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="../js/scriptDash.js"></script>
 
 </head>
 
 <body>
-    <header>
+    <div>
         <div class="logomarca">
             <img src="../assets/imgs/logoBrancoDash.png" alt="logoCareTech">
         </div>
@@ -54,306 +55,298 @@
             <div class="item-menu-deslogar">
                 <span class="icon"><i class="bi bi-box-arrow-right"></i></span>
                 <span class="txt-link">
-                    <span>Deslogar</span>
+                    <a href="../login.html">Deslogar</a>
                 </span>
 
             </div>
-
-            </div>
         </nav>
-    </header>
+    </div>
 
-    <div class="container">
-        <div>
-            <div class="container-notificacoes">
-                <div class="titulo-notificacoes">
-                    <h2>Olá,</h2>
-                    <p>Você tem <span>3 novas ocorrências.</span></p>
-                </div>
-            </div>
-            <div>
-
-            </div>
-            
-            <div class="botao-cadastrar-maquina">
-                <span class="icon-cadastrar-maquina"><i class="bi bi-plus-circle"></i></span>
-                <span class="txt-cadastrar-maquina"><a href="../dashboard/cadastrarMaquina.html">CADASTRAR
-                        MÁQUINA</a></span>
-            </div>
-        </div>
-
-        <div class="container-maquinas">
-
-            <div class="content-maquinas" onclick="direcionarCPU()">
-
-                <div class="box-contains-icon-title">
-                    <div class="icon-maquina">
-                        <img src="..\assets\imgs\pngMaquina.png">
-                    </div>
-
-                    <div class="informacoes-maquina">
-                        <div class="titulo-maquina">
-                            <span>MÁQUINA 01</span>
-                        </div>
-
-                        <div class="status-maquina">
-                            <span>
-                                <b>Status:</b> Em estado de alerta <br>
-                                <b>Condição:</b> Ligada
-                            </span>
-                        </div>
-
-                        <div class="container-alertas">
-                            <div class="icon-alerta">
-                                <img src="..\assets\imgs\alerta.png" alt="">
-                            </div>
-
-                            <div class="icon-onOff">
-                                <label class="switch">
-                                    <input type="checkbox" id="toggleMaquina1" id="toggleMaquina1" checked>
-                                    <span class="slider round"></span>
-                                </label>
-                            </div>
-                        </div>
-
+    <div class="caixa-container">
+        <div class="container">
+            <div class="box-superior">
+                <div class="caixa-botao">
+                    <div class="botao-cadastrar-maquina">
+                        <span class="icon-cadastrar-maquina"><i class="bi bi-plus-circle"></i></span>
+                        <span class="txt-cadastrar-maquina"><a href="../dashboard/cadastrarMaquina.html">CADASTRAR
+                                MÁQUINA</a></span>
                     </div>
                 </div>
-
-
-
             </div>
-            <div class="content-maquinas" onclick="direcionarCPU()">
 
-                <div class="box-contains-icon-title">
-                    <div class="icon-maquina">
-                        <img src="..\assets\imgs\pngMaquina.png">
-                    </div>
+            <div class="container-maquinas">
 
-                    <div class="informacoes-maquina">
-                        <div class="titulo-maquina">
-                            <span>MÁQUINA 02</span>
+                <div class="content-maquinas" onclick="direcionarCPU()">
+
+                    <div class="box-contains-icon-title">
+                        <div class="icon-maquina">
+                            <img src="..\assets\imgs\pngMaquina.png">
                         </div>
 
-                        <div class="status-maquina">
-                            <span>
-                                <b>Status:</b> Condição ideal <br>
-                                <b>Condição:</b> Ligada
-                            </span>
-                        </div>
-
-                        <div class="container-alertas">
-                            <div class="icon-alerta">
-                                <img src="..\assets\imgs\check.png" alt="">
+                        <div class="informacoes-maquina">
+                            <div class="titulo-maquina">
+                                <span>MÁQUINA 01</span>
                             </div>
 
-                            <div class="icon-onOff">
-                                <label class="switch">
-                                    <input type="checkbox" id="toggleMaquina2" id="toggleMaquina2" checked>
-                                    <span class="slider round"></span>
-                                </label>
+                            <div class="status-maquina">
+                                <span>
+                                    <b>Status:</b> Em estado de alerta <br>
+                                    <b>Condição:</b> Ligada
+                                </span>
                             </div>
+
+                            <div class="container-alertas">
+                                <div class="icon-alerta">
+                                    <img src="..\assets\imgs\alerta.png" alt="">
+                                </div>
+
+                                <div class="icon-onOff">
+                                    <label class="switch">
+                                        <input type="checkbox" id="toggleMaquina1" id="toggleMaquina1" checked>
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <div class="content-maquinas" onclick="direcionarCPU()">
+
+                    <div class="box-contains-icon-title">
+                        <div class="icon-maquina">
+                            <img src="..\assets\imgs\pngMaquina.png">
                         </div>
 
+                        <div class="informacoes-maquina">
+                            <div class="titulo-maquina">
+                                <span>MÁQUINA 02</span>
+                            </div>
+
+                            <div class="status-maquina">
+                                <span>
+                                    <b>Status:</b> Condição ideal <br>
+                                    <b>Condição:</b> Ligada
+                                </span>
+                            </div>
+
+                            <div class="container-alertas">
+                                <div class="icon-alerta">
+                                    <img src="..\assets\imgs\check.png" alt="">
+                                </div>
+
+                                <div class="icon-onOff">
+                                    <label class="switch">
+                                        <input type="checkbox" id="toggleMaquina2" id="toggleMaquina2" checked>
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
+
+
+
+                </div>
+                <div class="content-maquinas" onclick="direcionarCPU()">
+
+                    <div class="box-contains-icon-title">
+                        <div class="icon-maquina">
+                            <img src="..\assets\imgs\pngMaquina.png">
+                        </div>
+
+                        <div class="informacoes-maquina">
+                            <div class="titulo-maquina">
+                                <span>MÁQUINA 03</span>
+                            </div>
+
+                            <div class="status-maquina">
+                                <span>
+                                    <b>Status:</b> Condição ideal <br>
+                                    <b>Condição:</b> Ligada
+                                </span>
+                            </div>
+
+                            <div class="container-alertas">
+                                <div class="icon-alerta">
+                                    <img src="..\assets\imgs\check.png" alt="">
+                                </div>
+
+                                <div class="icon-onOff">
+                                    <label class="switch">
+                                        <input type="checkbox" id="toggleMaquina3" id="toggleMaquina3" checked>
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
                 </div>
 
+                <div class="content-maquinas" onclick="direcionarCPU()">
 
-
-            </div>
-            <div class="content-maquinas" onclick="direcionarCPU()">
-
-                <div class="box-contains-icon-title">
-                    <div class="icon-maquina">
-                        <img src="..\assets\imgs\pngMaquina.png">
-                    </div>
-
-                    <div class="informacoes-maquina">
-                        <div class="titulo-maquina">
-                            <span>MÁQUINA 03</span>
+                    <div class="box-contains-icon-title">
+                        <div class="icon-maquina">
+                            <img src="..\assets\imgs\pngMaquina.png">
                         </div>
 
-                        <div class="status-maquina">
-                            <span>
-                                <b>Status:</b> Condição ideal <br>
-                                <b>Condição:</b> Ligada
-                            </span>
-                        </div>
-
-                        <div class="container-alertas">
-                            <div class="icon-alerta">
-                                <img src="..\assets\imgs\check.png" alt="">
+                        <div class="informacoes-maquina">
+                            <div class="titulo-maquina">
+                                <span>MÁQUINA 04</span>
                             </div>
 
-                            <div class="icon-onOff">
-                                <label class="switch">
-                                    <input type="checkbox" id="toggleMaquina3" id="toggleMaquina3" checked>
-                                    <span class="slider round"></span>
-                                </label>
+                            <div class="status-maquina">
+                                <span>
+                                    <b>Status:</b> Condição ideal <br>
+                                    <b>Condição:</b> Desligada
+                                </span>
                             </div>
-                        </div>
 
+                            <div class="container-alertas">
+                                <div class="icon-alerta">
+                                    <img src="..\assets\imgs\check.png" alt="">
+                                </div>
+
+                                <div class="icon-onOff">
+                                    <label class="switch">
+                                        <input type="checkbox">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
+
+
+
                 </div>
+                <div class="content-maquinas" onclick="direcionarCPU()">
 
-
-
-            </div>
-
-            <div class="content-maquinas" onclick="direcionarCPU()">
-
-                <div class="box-contains-icon-title">
-                    <div class="icon-maquina">
-                        <img src="..\assets\imgs\pngMaquina.png">
-                    </div>
-
-                    <div class="informacoes-maquina">
-                        <div class="titulo-maquina">
-                            <span>MÁQUINA 04</span>
+                    <div class="box-contains-icon-title">
+                        <div class="icon-maquina">
+                            <img src="..\assets\imgs\pngMaquina.png">
                         </div>
 
-                        <div class="status-maquina">
-                            <span>
-                                <b>Status:</b> Condição ideal <br>
-                                <b>Condição:</b> Desligada
-                            </span>
-                        </div>
-
-                        <div class="container-alertas">
-                            <div class="icon-alerta">
-                                <img src="..\assets\imgs\check.png" alt="">
+                        <div class="informacoes-maquina">
+                            <div class="titulo-maquina">
+                                <span>MÁQUINA 05</span>
                             </div>
 
-                            <div class="icon-onOff">
-                                <label class="switch">
-                                    <input type="checkbox">
-                                    <span class="slider round"></span>
-                                </label>
+                            <div class="status-maquina">
+                                <span>
+                                    <b>Status:</b> Em estado de alerta <br>
+                                    <b>Condição:</b> Ligada
+                                </span>
                             </div>
-                        </div>
 
+                            <div class="container-alertas">
+                                <div class="icon-alerta">
+                                    <img src="..\assets\imgs\alerta.png" alt="">
+                                </div>
+
+                                <div class="icon-onOff">
+                                    <label class="switch">
+                                        <input type="checkbox" id="toggleMaquina5" id="toggleMaquina5" checked>
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
+
+
+
                 </div>
+                <div class="content-maquinas" onclick="direcionarCPU()">
 
-
-
-            </div>
-            <div class="content-maquinas" onclick="direcionarCPU()">
-
-                <div class="box-contains-icon-title">
-                    <div class="icon-maquina">
-                        <img src="..\assets\imgs\pngMaquina.png">
-                    </div>
-
-                    <div class="informacoes-maquina">
-                        <div class="titulo-maquina">
-                            <span>MÁQUINA 05</span>
+                    <div class="box-contains-icon-title">
+                        <div class="icon-maquina">
+                            <img src="..\assets\imgs\pngMaquina.png">
                         </div>
 
-                        <div class="status-maquina">
-                            <span>
-                                <b>Status:</b> Em estado de alerta <br>
-                                <b>Condição:</b> Ligada
-                            </span>
-                        </div>
-
-                        <div class="container-alertas">
-                            <div class="icon-alerta">
-                                <img src="..\assets\imgs\alerta.png" alt="">
+                        <div class="informacoes-maquina">
+                            <div class="titulo-maquina">
+                                <span>MÁQUINA 06</span>
                             </div>
 
-                            <div class="icon-onOff">
-                                <label class="switch">
-                                    <input type="checkbox" id="toggleMaquina5" id="toggleMaquina5" checked>
-                                    <span class="slider round"></span>
-                                </label>
+                            <div class="status-maquina">
+                                <span>
+                                    <b>Status:</b> Em estado crítico <br>
+                                    <b>Condição:</b> Ligada
+                                </span>
                             </div>
-                        </div>
 
+                            <div class="container-alertas">
+                                <div class="icon-alerta">
+                                    <img src="..\assets\imgs\x.png" alt="">
+                                </div>
+
+                                <div class="icon-onOff">
+                                    <label class="switch">
+                                        <input type="checkbox" id="toggleMaquina6" id="toggleMaquina6"
+                                            id="toggleMaquina6" checked>
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
+
+
+
                 </div>
+                <div class="content-maquinas" onclick="direcionarCPU()">
 
-
-
-            </div>
-            <div class="content-maquinas" onclick="direcionarCPU()">
-
-                <div class="box-contains-icon-title">
-                    <div class="icon-maquina">
-                        <img src="..\assets\imgs\pngMaquina.png">
-                    </div>
-
-                    <div class="informacoes-maquina">
-                        <div class="titulo-maquina">
-                            <span>MÁQUINA 06</span>
+                    <div class="box-contains-icon-title">
+                        <div class="icon-maquina">
+                            <img src="..\assets\imgs\pngMaquina.png">
                         </div>
 
-                        <div class="status-maquina">
-                            <span>
-                                <b>Status:</b> Em estado crítico <br>
-                                <b>Condição:</b> Ligada
-                            </span>
-                        </div>
-
-                        <div class="container-alertas">
-                            <div class="icon-alerta">
-                                <img src="..\assets\imgs\x.png" alt="">
+                        <div class="informacoes-maquina">
+                            <div class="titulo-maquina">
+                                <span>MÁQUINA 07</span>
                             </div>
 
-                            <div class="icon-onOff">
-                                <label class="switch">
-                                    <input type="checkbox" id="toggleMaquina6" id="toggleMaquina6" id="toggleMaquina6"
-                                        checked>
-                                    <span class="slider round"></span>
-                                </label>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-
-
-            </div>
-            <div class="content-maquinas" onclick="direcionarCPU()">
-
-                <div class="box-contains-icon-title">
-                    <div class="icon-maquina">
-                        <img src="..\assets\imgs\pngMaquina.png">
-                    </div>
-
-                    <div class="informacoes-maquina">
-                        <div class="titulo-maquina">
-                            <span>MÁQUINA 07</span>
-                        </div>
-
-                        <div class="status-maquina">
-                            <span>
-                                <b>Status:</b> Condição ideal <br>
-                                <b>Condição:</b> Desligada
-                            </span>
-                        </div>
-
-                        <div class="container-alertas">
-                            <div class="icon-alerta">
-                                <img src="..\assets\imgs\check.png" alt="">
+                            <div class="status-maquina">
+                                <span>
+                                    <b>Status:</b> Condição ideal <br>
+                                    <b>Condição:</b> Desligada
+                                </span>
                             </div>
 
-                            <div class="icon-onOff">
-                                <label class="switch">
-                                    <input type="checkbox">
-                                    <span class="slider round"></span>
-                                </label>
-                            </div>
-                        </div>
+                            <div class="container-alertas">
+                                <div class="icon-alerta">
+                                    <img src="..\assets\imgs\check.png" alt="">
+                                </div>
 
+                                <div class="icon-onOff">
+                                    <label class="switch">
+                                        <input type="checkbox">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
+
+
+
                 </div>
 
 
-
             </div>
-
-
         </div>
     </div>
 </body>
@@ -376,26 +369,4 @@
         </div>
     </div>
 </div>
-
-
-<script>
-
-    // ja dos toggle buttons, para ficar congelado
-    document.addEventListener("DOMContentLoaded", function () {
-        const toggleButtons = document.querySelectorAll('.switch');
-
-        toggleButtons.forEach(function (toggleButton) {
-            toggleButton.addEventListener('click', function (event) {
-                event.preventDefault();
-                event.stopPropagation();
-            });
-        });
-
-
-    });
-
-
-
-</script>
-
 </html>
