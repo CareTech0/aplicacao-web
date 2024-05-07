@@ -47,10 +47,10 @@
                                 </div>
                             </li>
                             <li class="item-menu">
-                                <div class="caixa-cor">
+                                <div class="caixa-cor-aqui">
                                     <a href="..\dashboard\usuarios.html">
                                         <span class="icon"><i class="bi bi-person-fill"></i></span>
-                                        <span class="txt-link">Usuários</span>
+                                        <span class="txt-link-aqui">Usuários</span>
                                     </a>
                                 </div>
                             </li>
@@ -362,6 +362,18 @@
 </html>
 
 <script>
+
+    var menuItem = document.querySelectorAll(".item-menu");
+
+    function selectLink() {
+        menuItem.forEach((item) => item.classList.remove("ativo"));
+        this.classList.add("ativo");
+    }
+
+    menuItem.forEach((item) =>
+        item.addEventListener('click', selectLink)
+    )
+
     //  elementos dos modais
     const deleteModal = document.getElementById('deleteModal');
     const newUserModal = document.getElementById('newUserModal');

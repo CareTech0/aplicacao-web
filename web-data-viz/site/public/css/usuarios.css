@@ -15,6 +15,12 @@ body {
     display: flex;
 }
 
+ul li.ativo { 
+    background: #8fc9fb;
+    border-radius: 7px;
+  }
+  
+
 .container-global { 
     width: 100%;
     height: 100vh;
@@ -107,6 +113,18 @@ body {
       
 }
 
+.caixa-cor-aqui { 
+    background: #8FC9FB;
+    width: 73%;
+    border-radius: 5px;
+}
+
+.caixa-cor-aqui a span { 
+    color: white;
+}
+
+
+
 .menu ul li a {
     text-decoration: none;
     color: #656565;
@@ -118,6 +136,12 @@ body {
 }
 
 .menu ul li a .txt-link {
+    margin-left: 7px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.menu ul li a .txt-link-aqui {
     margin-left: 7px;
     font-size: 14px;
     font-weight: 500;
@@ -152,11 +176,16 @@ body {
     color: #292929;
 }
 
+.txt-link-aqui a {
+    text-decoration: none;
+    color: white;
+}
+
 .caixa-container { 
     display: flex;
     align-items: center;
     width: 80%; 
-       height: 99.9%;
+    height: 99.9%;
     justify-content: flex-start;
 }
 
@@ -171,7 +200,6 @@ body {
     justify-content: center;
     align-items: center;
 }
-
 
 
 .container-cadastro {

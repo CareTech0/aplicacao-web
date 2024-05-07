@@ -39,10 +39,10 @@
                                 </div>
                             </li>
                             <li class="item-menu">
-                                <div class="caixa-cor">
+                                <div class="caixa-cor-aqui">
                                     <a href="..\dashboard\cadastrarMaquina.html">
                                         <span class="icon"><i class="bi bi-pc-display"></i></span>
-                                        <span class="txt-link">Cadastrar máquina</span>
+                                        <span class="txt-link-aqui">Cadastrar máquina</span>
                                     </a>
                                 </div>
                             </li>
@@ -162,3 +162,16 @@
 
 
 </html>
+
+<script>
+    var menuItem = document.querySelectorAll(".item-menu");
+
+    function selectLink() {
+        menuItem.forEach((item) => item.classList.remove("ativo"));
+        this.classList.add("ativo");
+    }
+
+    menuItem.forEach((item) =>
+        item.addEventListener('click', selectLink)
+    );
+</script>

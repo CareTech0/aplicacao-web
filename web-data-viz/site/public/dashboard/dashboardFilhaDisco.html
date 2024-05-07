@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../css/dashboardFilha.css">
     <link rel="icon" href="../assets/icon/icon.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>  
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="../js/scriptDash.js"></script>
 </head>
 
@@ -68,117 +68,13 @@
     <div class="container">
 
         <div class="container-global">
-            <div class="caixa-titulo">
+       
 
-                <div class="botao-voltar-caixa" onclick="voltar()">
-
-                    <div class="botao-voltar">
-
-                        <span><i class="bi bi-arrow-left"></i> VOLTAR </span>
-                    </div>
-                </div>
-
-                <div class="content-titulo">
-
-                    <div class="content-img">
-                        <img src="..\assets\imgs\pngMaquina.png">
-                    </div>
-
-                    <div class="titulo-cadastrar">
-                        <span>Máquina 01</span>
-                        <p>Selecione ao lado o recurso desejado para mais detalhes.</p>
-
-                    </div>
-
-
-
-                </div>
-            </div>
-
-            <div class="container-conteudo">
-
-
-                <div class="container-grafico-menor">
-
-                    <div class="box-grafico-menor" onclick="direcionarCPU()">
-                        <div class="titulo-grafico-menor">
-                            <span>CPU</span>
-                        </div>
-                        <div class="chart-pequeno" id="cpu-chart-pequena">
-
-                        </div>
-                    </div>
-
-                    <div class="box-grafico-menor" onclick="direcionarRAM()">
-                        <div class="titulo-grafico-menor">
-                            <span>RAM</span>
-                        </div>
-                        <div class="chart-pequeno" id="ram-chart-pequena">
-
-                        </div>
-                    </div>
-
-
-
-                    <div class="box-grafico-menor" onclick="direcionarDISCO()">
-                        <div class="titulo-grafico-menor">
-                            <span>DISCO</span>
-                        </div>
-                        <div class="chart-pequeno" id="disco-chart-pequena">
-
-                        </div>
-                    </div>
-
-
-
-                    <div class="box-grafico-menor" onclick="direcionarREDE()">
-                        <div class="titulo-grafico-menor">
-                            <span>REDE</span  >
-                        </div>
-                        <div class="chart-pequeno" id="rede-chart-pequena">
-
-                        </div>
-                    </div>
-
-
-                </div>
-                <div class="box-dos-graficos">
-                    <div class="informacoes-maquina">
-                        <div class="conteudo-maquina">
-                            <span><b class="titulo-config">CONFIGURAÇÕES DO MÁQUINA:</b> <br>
-                                <div class="box-config">
-                                    <span><b>Total de RAM:</b> xxxxxxxxxx </span> 
-                                    <span><b>Total de DISCO:</b> xxxxxxxxxx </span> 
-                                    <span><b>Modelo do processador:</b> xxxxxxxxxx </span>
-                                    <span><b>Velocidade do processador:</b> xxxxxxxxxx </span>
-                                </div>
-                        </div>
-                    </div>
-                <div class="container-cpu">
-                    <div class="container-grafico-cpu">
-                        
-                        <div class="box-grafico" id="disco-chart">
-                            
-                        </div>
-                    </div>
-
-                    <div class="content-informacoes-cpu">
-                        <div class="caixa-botao-excluir-maquina">
-                            <div class="botao-excluir-maquina">
-                                <span>DELETAR MÁQUINA</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
         </div>
 
-
-
-
     </div>
-    
+
 </body>
 <div class="modal-excluir" id="deslogarModal">
     <div class="modal-content-excluir">
@@ -203,139 +99,139 @@
 
 <script>
     google.charts.load('current', { 'packages': ['corechart'] });
-google.charts.setOnLoadCallback(drawCharts);
+    google.charts.setOnLoadCallback(drawCharts);
 
-function drawCharts() { 
+    function drawCharts() {
 
-    var discoData = google.visualization.arrayToDataTable([
-        ['Tempo', 'Uso de Disco'],
-        ['09:00', 60],
-        ['09:10', 55],
-        ['09:20', 70],
-        ['09:30', 45],
-    ]);
+        var discoData = google.visualization.arrayToDataTable([
+            ['Tempo', 'Uso de Disco'],
+            ['09:00', 60],
+            ['09:10', 55],
+            ['09:20', 70],
+            ['09:30', 45],
+        ]);
 
-    var discoOptions = {
-        title: 'Monitoramento de Disco',
-        titleTextStyle: {
-            fontSize: 18, 
-            textAlign: 'center' 
-        },
-        curveType: 'function',
-        legend: { position: 'none' },
-        areaOpacity: 0.3,
-        hAxis: {
-            title: 'Tempo',
-            textStyle: { color: '#999' },
-        },
-        vAxis: {
-            textStyle: { color: '#999' },
-        },
-        lineWidth: 2,
-        colors: ['#ffcc00'],
-        backgroundColor: 'transparent',
-    };
+        var discoOptions = {
+            title: 'Monitoramento de Disco',
+            titleTextStyle: {
+                fontSize: 18,
+                textAlign: 'center'
+            },
+            curveType: 'function',
+            legend: { position: 'none' },
+            areaOpacity: 0.3,
+            hAxis: {
+                title: 'Tempo',
+                textStyle: { color: '#999' },
+            },
+            vAxis: {
+                textStyle: { color: '#999' },
+            },
+            lineWidth: 2,
+            colors: ['#ffcc00'],
+            backgroundColor: 'transparent',
+        };
 
-    var discoOptionsPequena = {
-        curveType: 'function',
-        legend: { position: 'none' },
-        areaOpacity: 0.3,
-        hAxis: {
-            title: 'Tempo',
-            textStyle: { color: '#999' },
-        },
-        vAxis: {
-            textStyle: { color: '#999' },
-        },
-        lineWidth: 2,
-        colors: ['#ffcc00'],
-        backgroundColor: 'transparent',
-    };
+        var discoOptionsPequena = {
+            curveType: 'function',
+            legend: { position: 'none' },
+            areaOpacity: 0.3,
+            hAxis: {
+                title: 'Tempo',
+                textStyle: { color: '#999' },
+            },
+            vAxis: {
+                textStyle: { color: '#999' },
+            },
+            lineWidth: 2,
+            colors: ['#ffcc00'],
+            backgroundColor: 'transparent',
+        };
 
-    var discoChartPequena = new google.visualization.AreaChart(document.getElementById('disco-chart-pequena'));
-    discoChartPequena.draw(discoData, discoOptionsPequena);
-    var discoChart = new google.visualization.AreaChart(document.getElementById('disco-chart'));
-    discoChart.draw(discoData, discoOptions);
+        var discoChartPequena = new google.visualization.AreaChart(document.getElementById('disco-chart-pequena'));
+        discoChartPequena.draw(discoData, discoOptionsPequena);
+        var discoChart = new google.visualization.AreaChart(document.getElementById('disco-chart'));
+        discoChart.draw(discoData, discoOptions);
 
-    var ramData = google.visualization.arrayToDataTable([
-        ['Tempo', 'Uso de RAM'],
-        ['09:00', 50],
-        ['09:10', 55],
-        ['09:20', 78],
-        ['09:30', 90],
-    ]);
+        var ramData = google.visualization.arrayToDataTable([
+            ['Tempo', 'Uso de RAM'],
+            ['09:00', 50],
+            ['09:10', 55],
+            ['09:20', 78],
+            ['09:30', 90],
+        ]);
 
-    var ramOptionsPequena = {
-        curveType: 'function',
-        legend: { position: 'none' },
-        areaOpacity: 0.3,
-        hAxis: {
-            title: 'Tempo',
-            textStyle: { color: '#999' },
-        },
-        vAxis: {
-            textStyle: { color: '#999' },
-        },
-        lineWidth: 2,
-        colors: ['#00cc66'],
-        backgroundColor: 'transparent',
-    };
+        var ramOptionsPequena = {
+            curveType: 'function',
+            legend: { position: 'none' },
+            areaOpacity: 0.3,
+            hAxis: {
+                title: 'Tempo',
+                textStyle: { color: '#999' },
+            },
+            vAxis: {
+                textStyle: { color: '#999' },
+            },
+            lineWidth: 2,
+            colors: ['#00cc66'],
+            backgroundColor: 'transparent',
+        };
 
-    var ramChartPequena = new google.visualization.AreaChart(document.getElementById('ram-chart-pequena'));
-    ramChartPequena.draw(ramData, ramOptionsPequena);
+        var ramChartPequena = new google.visualization.AreaChart(document.getElementById('ram-chart-pequena'));
+        ramChartPequena.draw(ramData, ramOptionsPequena);
 
-    var cpuData = google.visualization.arrayToDataTable([
-        ['Tempo', 'Uso de CPU'],
-        ['09:00', 99],
-        ['09:10', 96],
-        ['09:20', 95],
-        ['09:30', 100],
-    ]); 
+        var cpuData = google.visualization.arrayToDataTable([
+            ['Tempo', 'Uso de CPU'],
+            ['09:00', 99],
+            ['09:10', 96],
+            ['09:20', 95],
+            ['09:30', 100],
+        ]);
 
-    var cpuOptionsPequena = {
-        curveType: 'function',
-        legend: { position: 'none' },
-        areaOpacity: 0.3,
-        hAxis: {
-            title: 'Tempo',
-            textStyle: { color: '#999' },
-        },
-        vAxis: {
-            textStyle: { color: '#999' },
-        },
-        lineWidth: 2,
-        colors: ['#007bff'],
-        backgroundColor: 'transparent',
-    };
-    var cpuChartPequena = new google.visualization.AreaChart(document.getElementById('cpu-chart-pequena'));
-    cpuChartPequena.draw(cpuData, cpuOptionsPequena);
+        var cpuOptionsPequena = {
+            curveType: 'function',
+            legend: { position: 'none' },
+            areaOpacity: 0.3,
+            hAxis: {
+                title: 'Tempo',
+                textStyle: { color: '#999' },
+            },
+            vAxis: {
+                textStyle: { color: '#999' },
+            },
+            lineWidth: 2,
+            colors: ['#007bff'],
+            backgroundColor: 'transparent',
+        };
+        var cpuChartPequena = new google.visualization.AreaChart(document.getElementById('cpu-chart-pequena'));
+        cpuChartPequena.draw(cpuData, cpuOptionsPequena);
 
-    var redeData = google.visualization.arrayToDataTable([
-        ['Tempo', 'Uso de Rede'],
-        ['09:00', 50],
-        ['09:10', 55],
-        ['09:20', 53],
-        ['09:30', 60],
-    ]);
+        var redeData = google.visualization.arrayToDataTable([
+            ['Tempo', 'Uso de Rede'],
+            ['09:00', 50],
+            ['09:10', 55],
+            ['09:20', 53],
+            ['09:30', 60],
+        ]);
 
-    var redeOptions = {        
-        curveType: 'function',
-        legend: { position: 'none' },
-        areaOpacity: 0.3,
-        hAxis: {
-            title: 'Tempo',
-            textStyle: { color: '#999' },
-        },
-        vAxis: {
-            textStyle: { color: '#999' },
-        },
-        lineWidth: 2,
-        colors: ['#ff9966'],
-        backgroundColor: 'transparent',
-    };
+        var redeOptions = {
+            curveType: 'function',
+            legend: { position: 'none' },
+            areaOpacity: 0.3,
+            hAxis: {
+                title: 'Tempo',
+                textStyle: { color: '#999' },
+            },
+            vAxis: {
+                textStyle: { color: '#999' },
+            },
+            lineWidth: 2,
+            colors: ['#ff9966'],
+            backgroundColor: 'transparent',
+        };
 
-    var redeChartPequena = new google.visualization.AreaChart(document.getElementById('rede-chart-pequena'));
-    redeChartPequena.draw(redeData, redeOptions);
+        var redeChartPequena = new google.visualization.AreaChart(document.getElementById('rede-chart-pequena'));
+        redeChartPequena.draw(redeData, redeOptions);
 
-}
+    }
 </script>

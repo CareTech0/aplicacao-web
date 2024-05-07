@@ -23,3 +23,4 @@ function fecharMenu(){
   header.style.display = "flex"
   menu.style.display = "none"
 }
+
