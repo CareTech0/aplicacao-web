@@ -50,6 +50,13 @@ ul li.ativo {
   align-items: center;
 }
 
+.container-adicionar-site-botao {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 55%;
+}
+
 .content-menu {
   height: 100%;
   width: 96%;
@@ -193,6 +200,12 @@ ul li.ativo {
     align-items: center;
 }
 
+.conteudo-pagina { 
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 .content-cadastrar {
     background: #ffffff;
     height: 87%;
@@ -200,19 +213,18 @@ ul li.ativo {
     border-radius: 40px;
     box-shadow: 0 4px 3px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
-    padding-top: 20px;
 }
 
 .content-titulo {
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 19%;
 }
 
 .titulo-cadastrar {
   font-size: 25px;
   font-weight: 700;
-  margin-bottom: 20px;
   border-bottom: 1.5px solid #d9d9d9;
   padding-bottom: 5px;
 }
@@ -222,29 +234,44 @@ ul li.ativo {
 }
 
 .icon-cadastrar > img {
-  width: 80px;
-  margin-right: 10px;
+  width: 75px
+}
+
+.icon-cadastrar { 
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  width: 16%;
 }
 
 .container-sites {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 372px;
+  height: 84%;
 }
 
 .titulo-site > span {
-    font-weight: 600;
-    width: 45%;
+  font-weight: 600;
+  width: 46%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 17px;
+}
+
+.titulo-site { 
+  height: 7%;
+    width: 100%;
     display: flex;
-    justify-content: flex-end;
 }
 
 .container-sites-cadastrados {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  height: 172px;
+  height: 46%;
   overflow: auto;
 }
 
@@ -276,6 +303,8 @@ ul li.ativo {
 .titulo-sites {
     width: 100%;
     display: flex;
+    font-size: 13px;
+    font-weight: 500;
 }
 
 .sub-sites {
@@ -504,7 +533,7 @@ ul li.ativo {
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
+    
   }
   
   .botao-conteudo {
@@ -517,4 +546,5 @@ ul li.ativo {
     color: white;
     border-radius: 3px;
     font-size: 13px;
+    cursor: pointer;
   }
