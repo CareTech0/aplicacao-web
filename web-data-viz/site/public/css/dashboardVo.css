@@ -178,6 +178,7 @@ body {
   height: 93%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 .all-content { 
@@ -190,20 +191,24 @@ body {
 .div-titulos {
   display: flex;
   width: 100%;
-  height: 40px;
+  height: 15%;
+
   justify-content: space-between;
 }
 
 .box-title-content {
   font-size: 25px;
   font-weight: 600;
-  width: 400px;
-  height: 31px;
-  border-bottom: 1px solid rgb(151, 151, 151);
+  width: 42%;
+  height: 63%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .box-title-content span {
   display: flex;
+  border-bottom: 1px solid rgb(151, 151, 151);
 }
 
 .mais-detalhes { 
@@ -238,6 +243,7 @@ body {
     width: 100%;
     height: 227px;
     display: flex;
+    justify-content: center;
   }
 
   .row {

@@ -205,27 +205,31 @@ ul li.ativo {
 .container-cadastro {
     display: flex;
     justify-content: center;
-    width: 66%;
+    width: 73%;
     height: 100%;
     align-items: center;
-
 }
 
 .content-usuarios {
     background: #FFFFFF;
-    height: 80%;
+    height: 87%;
     width: 100%;
     border-radius: 12px;
-    box-shadow: 0 4px 3px rgba(0, 0, 0, 0.1);
-    box-sizing: border-box;
-    padding-top: 20px;
-    overflow: auto;
+    box-shadow: 0 4px 3px rgba(0, 0, 0, 0.1);  
 }
 
 .caixa-titulo {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+}
+
+.todo-conteudo { 
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
 }
 
 .content-titulo-usuarios {

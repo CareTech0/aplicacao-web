@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
+
 * {
   margin: 0;
   padding: 0;
@@ -20,6 +21,15 @@ ul li.ativo {
   background: #8fc9fb;
   width: 73%;
   border-radius: 5px;
+}
+
+.conteudo { 
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 .caixa-cor-aqui a span {
@@ -187,19 +197,22 @@ ul li.ativo {
 }
 
 .content-cadastrar {
-  background: #ffffff;
-  height: 451px;
-  width: 453px;
-  border-radius: 40px;
-  box-shadow: 0 4px 3px rgba(0, 0, 0, 0.1);
-  box-sizing: border-box;
-  padding-top: 20px;
+    background: #ffffff;
+    border-radius: 40px;
+    box-shadow: 0 4px 3px rgba(0, 0, 0, 0.1);
+    height: 77%;
+    width: 37%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .container-cadastro {
-  display: flex;
-  justify-content: center;
-  align-content: center;
+      display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    align-items: center;
 }
 
 .icon-cadastrar > img {
@@ -211,23 +224,23 @@ ul li.ativo {
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 25%;
 }
 
 .titulo-cadastrar {
   font-size: 20px;
   font-weight: 600;
-  margin-bottom: 20px;
   border-bottom: 1.5px solid #d9d9d9;
   padding-bottom: 5px;
 }
 
 .container-input {
-  height: 313px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
 
 .caixa-das-inputs {

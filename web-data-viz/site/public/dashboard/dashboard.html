@@ -85,8 +85,62 @@
         <div class="caixa-container">
             <div class="container">
 
+                <div class="container-superior">
+                    <div class="container-bread">
+                        <div id="breadcrumbs" class="breadcrumbs">
+                            <nav>
+                                <ol>
+                                    <li>
+                                        <a href="dashboardVo.html">VISÃO GERAL DAS MÁQUINAS</a>
+                                    </li>
+
+                                    <li class="atual">
+                                        DETALHES POR MÁQUINA
+                                    </li>
+                                </ol>
+                            </nav>
+                        </div>
+
+                        <div class="container-legendas">
+                            <div class="titulo-legendas">
+                                <span>LEGENDAS:</span>
+                            </div>
+                            <div class="fundo-legenda-status">
+                                <div class="legenda-status1">
+                                    <img>
+                                    <span>Critico</span>
+                                </div>
+                                <div class="legenda-status2">
+                                    <img>
+                                    <span>Critico</span>
+                                </div>
+                                <div class="legenda-status3">
+                                    <img>
+                                    <span>Critico</span>
+                                </div>
+                            </div>
+                            <div class="fundo-legenda-condicao">
+                                <div class="legenda-condicao1">
+                                    <img>
+                                    <span>Ligada</span>
+                                </div>
+                                <div class="legenda-condicao2">
+                                    <img>
+                                    <span>Desligada</span>
+                                </div>                                
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                
+<div class="container-inferior">
+    
+</div>
             </div>
         </div>
+    </div>
+    </div>
 
     </div>
 
@@ -112,3 +166,52 @@
 </div>
 
 </html>
+
+<script>
+    // breadcrumps aqui embaixo
+
+    /*  var titulos = {
+          "dashboard.html": "DETALHES POR MÁQUINA",
+          "outrapagina.html": "TÍTULO DA OUTRA PÁGINA"
+      };
+  
+      function definirTituloPagina() {
+          var paginaAtual = window.location.pathname.split("/").pop();
+          var titulo = titulos[paginaAtual];
+          if (titulo) {
+              document.getElementById("tituloPagina").textContent = titulo;
+          }
+      }
+  
+      function criarBreadcrumbs() {
+          var breadcrumbsContainer = document.getElementById("breadcrumbs");
+          breadcrumbsContainer.innerHTML = "";
+  
+          var paginaAtual = window.location.pathname.split("/").pop();
+          var titulo = titulos[paginaAtual] || "Página Atual";
+          document.getElementById("tituloPagina").textContent = titulo;
+  
+          var partesUrl = window.location.pathname.split("/").filter(Boolean);
+  
+          var partesAcumuladas = "";
+          partesUrl.forEach(function (part, index) {
+              partesAcumuladas += "/" + part;
+  
+              var link = document.createElement("a");
+              link.href = partesAcumuladas;
+              link.textContent = titulos[part] || part;
+  
+              if (index > 0) {
+                  breadcrumbsContainer.appendChild(document.createTextNode(" / "));
+              }
+              breadcrumbsContainer.appendChild(link);
+          });
+  
+  
+      }
+  
+      window.addEventListener("DOMContentLoaded", function () {
+          definirTituloPagina();
+          criarBreadcrumbs();
+      });*/
+</script>
