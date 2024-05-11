@@ -6,21 +6,27 @@ $(document).ready(function () {
     pauseOnClick: false,
     speed: 1000,
   });
+
+  const coresPreSelecionadas = ['#A6C0E4', '#3F8EBF', '#90BEDA'];
+  
+  function changeHeaderColor(index) {
+    let element = document.querySelector('.header');
+    let cor = coresPreSelecionadas[index];
+    element.style.backgroundColor = cor;
+  }
+
+  $(".carousel").on('afterChange', function(event, slick, currentSlide) {
+    changeHeaderColor(currentSlide % coresPreSelecionadas.length);
+  });
+
+  $(".carousel").on('afterChange', function(event, slick, currentSlide) {
+    changeHeaderColor(currentSlide % coresPreSelecionadas.length);
+  });
+
+  changeHeaderColor(0);
 });
 
-function abrirMenu(){
-  const menu = document.getElementById("menu_cell")
-  const cabecalho = document.getElementById("cabecalho")
+const hamburger = document.querySelector(".hamburger");
+const nav = document.querySelector(".nav");
 
-  menu.style.display = "flex"
-  cabecalho.style.display = "none"
-}
-
-function fecharMenu(){
-  const menu = document.getElementById("menu_cell")
-  const header = document.getElementById("cabecalho")
-
-  header.style.display = "flex"
-  menu.style.display = "none"
-}
-
+hamburger.addEventListener("click", () => nav.classList.toggle("active"));
