@@ -13,6 +13,8 @@ body {
   --cor-principal: #4586bf;
   --cor-menuatual: #040b11;
   --cor-menupassado: #949494;
+  --cor-cinza: #D6D6D6;
+  --cor-verde: #66CC73;
 }
 
 .container-bread {
@@ -393,6 +395,58 @@ body {
 }
 
 .subtitulo {
+
+}
+
+.container-botao {
+  display: flex;
+  width: 58%;
+  justify-content: space-around;
+  align-items: center;
+  height: 18%;
+}
+
+.box-botao {
+  width: 50%;
+  height: 73%;
+}
+
+.fundo-botao {
+  background-color: var(--cor-verde);
+  border-radius: 21px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.fundo-botao > span {
+  color: white;
+  font-size: 14px;
+}
+
+.box-botao-filtro { 
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.fundo-botao-filtro { 
+  background-color: white;
+  border-radius: 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 74%;
+  height: 73%;
+  border: var(--cor-cinza) solid 2px;
+}
+
+.fundo-botao-filtro > span { 
 }
 
 .caixa-cor-aqui {
