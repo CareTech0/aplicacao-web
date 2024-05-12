@@ -231,6 +231,10 @@ form.sign-in-form {
   transform: translateX(800px);
 }
 
+.invalid-message {
+  display: none;
+}
+
 /* ANIMATION */
 
 .container.sign-up-mode:before {
@@ -271,15 +275,18 @@ form.sign-in-form {
 }
 
 @media (max-width: 412px) {
-  .container {
-    min-height: 800px;
+
+  .forms-container {
     height: 100vh;
+  }
+
+  .container {
     overflow-y: auto;
   }
 
   .signin-signup {
     width: 100%;
-    top: 95%;
+    top: 65%;
     transform: translate(-50%, -100%);
     transition: 1s 0.8s ease-in-out;
   }

@@ -46,13 +46,13 @@ formularioLogin.addEventListener('submit', (event) => {
                 }, 1000)
             })
         } else {
-            alert("Erro");
+            var element = document.querySelector('.invalid-message');
+            element.style.display = 'block';
         }
     }).catch(function (erro) {
         console.log(erro);
     })
     return false
-
 });
 
 formularioCadastro.addEventListener('submit', (event) => {
