@@ -6,7 +6,7 @@
 
 <div align="start">
 
- <p align="center">
+ <p align="start">
   <a href="https://skillicons.dev">
     <img src="https://skillicons.dev/icons?i=html,css,js" />
   </a>
