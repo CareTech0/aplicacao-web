@@ -14,6 +14,7 @@ body {
   --cor-menuatual: #040b11;
   --cor-menupassado: #949494;
   --cor-cinza: #D6D6D6;
+  --cor-cinzaclaro: #F1F1F1;
   --cor-verde: #66CC73;
 }
 
@@ -287,7 +288,7 @@ body {
 
 .container-superior {
   width: 100%;
-  height: 40%;
+  height: 34%;
   display: flex;
 }
 
@@ -303,6 +304,8 @@ body {
   flex-direction: column;
   height: 100%;
 }
+
+
 
 .titulo-legendas {
   display: flex;
@@ -400,7 +403,7 @@ body {
 
 .container-botao {
   display: flex;
-  width: 58%;
+  width: 67%;
   justify-content: space-around;
   align-items: center;
   height: 18%;
@@ -409,16 +412,20 @@ body {
 .box-botao {
   width: 50%;
   height: 73%;
-}
-
-.fundo-botao {
-  background-color: var(--cor-verde);
-  border-radius: 21px;
-  height: 100%;
-  width: 100%;
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.fundo-botao {
+   background-color: var(--cor-verde);
+    border-radius: 21px;
+    height: 100%;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   
 }
 
@@ -433,6 +440,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100%;
+  cursor: pointer;
 }
 
 .fundo-botao-filtro { 
@@ -447,6 +455,64 @@ body {
 }
 
 .fundo-botao-filtro > span { 
+}
+
+.container-inferior { 
+  width: 100%;
+  height: 64%;
+  display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.box-maquinas { 
+  width: 95%;
+  height: 94%;
+  
+}
+
+.background-maquinas { 
+  background-color: var(--cor-principal);
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+
+.container-maquinas { 
+width: 100%;
+height: 100%;
+display: grid;
+grid-template-columns: repeat(auto-fill, 30%);
+grid-template-rows: 300px 300px;
+}
+
+.coluna-maquinas { 
+width: 100%;
+height: 20%;
+display: flex;
+}
+
+.caixa-maquina {
+  background-color: white;
+  border-radius: 15px;
+  width: 30%;
+  height: 20%;
+  display: flex;
+}
+
+.box-icon-maquina { 
+  width: 40%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box-info-maquina {
+  width: 60%;
+  height: 100%;
+  flex-direction: column;
+  display: flex;
 }
 
 .caixa-cor-aqui {
