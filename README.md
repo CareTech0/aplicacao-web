@@ -1,13 +1,23 @@
 # CareTech
 
-## Tecnologias Utilizadas
+## 🚀 Tecnologias utilizadas
 
-### Front-end
-- ![JavaScript](https://skillicons.dev/png/dev/logos/javascript.svg) 
-- ![HTML](https://skillicons.dev/png/dev/logos/html.svg)
-- ![CSS](https://skillicons.dev/png/dev/logos/css.svg) 
-- ![Figma](https://skillicons.dev/png/dev/logos/figma.svg) 
+### Front-end:
 
-### Back-end
-- ![Java](https://skillicons.dev/png/dev/logos/java.svg) 
-- ![Node.js](https://skillicons.dev/png/dev/logos/nodejs.svg)
+<div align="center">
+
+ <p align="center"><br>
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=html,css,js" />
+  </a>
+
+ ### Back-end:
+ 
+<p align="center"><br>
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=java,nodejs" />
+  </a>
+ 
+</div>
+
+<br>
