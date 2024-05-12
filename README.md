@@ -1,5 +1,5 @@
 <div align="center">
- <img src="web-data-viz/site/public/assets/imgs/logoazul 1.png" width="300em">
+ <img src="web-data-viz/site/public/assets/imgs/logoazul 1.png" width="350em">
 </div>
 
 ## 🚀 Tecnologias utilizadas
@@ -13,3 +13,7 @@
   
 
 </div>
+
+## 📷 Screenshots
+
+
