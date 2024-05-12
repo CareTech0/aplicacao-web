@@ -1,5 +1,6 @@
-# CareTech
-
+<div align="center">
+ <img src="../aplicacao-web/web-data-viz/site/public/assets/imgs/logoazul 1.png" width="350em">
+</div>
 ## 🚀 Tecnologias utilizadas
 
 <div align="start">
