@@ -6,7 +6,7 @@ Nosso projeto oferece uma solução de monitoramento para otimizar o desempenho 
 
 ## 🚀 Tecnologias utilizadas
 
-<div align="start">
+<div align="center">
 
  <p align="start">
   <a href="https://skillicons.dev">
