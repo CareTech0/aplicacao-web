@@ -16,6 +16,7 @@ body {
   --cor-cinza: #d6d6d6;
   --cor-cinzaclaro: #f1f1f1;
   --cor-verde: #66cc73;
+  --azul-claro: #8fc9fb;
 }
 
 .container-bread {
@@ -457,10 +458,10 @@ body {
   width: 77%;
 }
 
-.container-filtro { 
+.container-filtro {
   z-index: 2;
-  width: 209px;
-  height: 200px;
+  width: 220px;
+  height: 208px;
   top: 212px;
   position: absolute;
   left: 633px;
@@ -473,6 +474,69 @@ body {
   z-index: 2;
   position: absolute;
   border: var(--cor-cinza) solid 2px;
+  flex-direction: column;
+}
+
+.box-do-filtro {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box-botoes-filtro {
+  display: flex;
+  width: 100%;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.opcoes-filtro {
+  display: flex;
+  flex-direction: column;
+}
+
+.titulofilter {
+}
+
+.checkboxfilters {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.container-checkbox {
+  
+}
+
+
+.checkbox {
+  background-color: #eee;
+  border: 1px solid #ccc;
+}
+
+.botao-cancelar {
+  background-color: var(--cor-cinzaclaro);
+  border-radius: 5px;
+  cursor: pointer;
+  width: 40%;
+}
+
+.conteudo-botao > span {
+  font-size: 13px;
+}
+
+.botao-confirmar {
+  background-color: #8fc9fb;
+  border-radius: 5px;
+  width: 40%;
+  cursor: pointer;
+}
+
+.conteudo-botao-confirmar > span {
+  color: white;
+  font-size: 13px;
 }
 
 .flexbotao {
@@ -542,7 +606,6 @@ body {
   justify-content: center;
   align-items: center;
   width: 100%;
-  
 }
 
 .box-informacoes {
@@ -555,22 +618,22 @@ body {
 
 .caixa-status {
   display: flex;
-    align-items: start;
-    font-size: 14px;
-    width: 95%;
-    justify-content: space-evenly;
+  align-items: start;
+  font-size: 14px;
+  width: 95%;
+  justify-content: space-evenly;
 }
 
 .imagemstatus {
   width: 30px;
 }
 
-
 .imagemcondicao {
   width: 30px;
 }
 
-#condicao, #status {
+#condicao,
+#status {
   font-weight: 500;
 }
 
@@ -609,7 +672,6 @@ body {
   display: flex;
   align-items: center;
   width: 62%;
- 
 }
 
 .patrimonio-titulo {
