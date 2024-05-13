@@ -835,7 +835,6 @@ padding: 10px;
 
 @media screen and (max-width: 412px) {
 
-
   .nav {
     justify-content: space-around;
     gap: 4rem;
