@@ -13,9 +13,9 @@ body {
   --cor-principal: #4586bf;
   --cor-menuatual: #040b11;
   --cor-menupassado: #949494;
-  --cor-cinza: #D6D6D6;
-  --cor-cinzaclaro: #F1F1F1;
-  --cor-verde: #66CC73;
+  --cor-cinza: #d6d6d6;
+  --cor-cinzaclaro: #f1f1f1;
+  --cor-verde: #66cc73;
 }
 
 .container-bread {
@@ -305,8 +305,6 @@ body {
   height: 100%;
 }
 
-
-
 .titulo-legendas {
   display: flex;
   justify-content: center;
@@ -380,10 +378,9 @@ body {
 
 .container-titulo {
   display: flex;
-    height: 50%;
-    align-items: center;
-    justify-content: center;
-  
+  height: 50%;
+  align-items: center;
+  justify-content: center;
 }
 
 .titulo-pagina {
@@ -398,7 +395,6 @@ body {
 }
 
 .subtitulo {
-
 }
 
 .container-botao {
@@ -411,7 +407,7 @@ body {
 
 .box-botao {
   width: 50%;
-  height: 73%;
+  height: 84%;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -419,22 +415,21 @@ body {
 }
 
 .fundo-botao {
-   background-color: var(--cor-verde);
-    border-radius: 21px;
-    height: 100%;
-    width: 90%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  
+  background-color: var(--cor-verde);
+  border-radius: 21px;
+  height: 100%;
+  width: 90%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
-.fundo-botao > span {
+.flexbotao > span {
   color: white;
   font-size: 14px;
 }
 
-.box-botao-filtro { 
+.box-botao-filtro {
   width: 40%;
   display: flex;
   justify-content: center;
@@ -443,7 +438,7 @@ body {
   cursor: pointer;
 }
 
-.fundo-botao-filtro { 
+.fundo-botao-filtro {
   background-color: white;
   border-radius: 1px;
   display: flex;
@@ -454,53 +449,67 @@ body {
   border: var(--cor-cinza) solid 2px;
 }
 
-.fundo-botao-filtro > span { 
+.textfilter {
+  font-size: 14px;
 }
 
-.container-inferior { 
+.flex-filter {
+  width: 77%;
+}
+
+.flexbotao {
+}
+
+.container-inferior {
   width: 100%;
   height: 64%;
   display: flex;
-justify-content: center;
-align-items: center;
+  justify-content: center;
+  align-items: center;
 }
 
-.box-maquinas { 
+.box-maquinas {
   width: 95%;
   height: 94%;
-  
+
 }
 
-.background-maquinas { 
+.background-maquinas {
   background-color: var(--cor-principal);
   width: 100%;
   height: 100%;
   border-radius: 5px;
+  display: flex;
+  flex-wrap: wrap;
+    
+  overflow: auto;
 }
+
 
 .container-maquinas { 
-width: 100%;
-height: 100%;
-display: grid;
-grid-template-columns: repeat(auto-fill, 30%);
-grid-template-rows: 300px 300px;
+  width: 25%;
+  height: 48%;
+
 }
 
-.coluna-maquinas { 
-width: 100%;
-height: 20%;
-display: flex;
+
+.coluna-maquinas {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .caixa-maquina {
   background-color: white;
   border-radius: 15px;
-  width: 30%;
-  height: 20%;
+  width: 90%;
+  height: 87%;
   display: flex;
 }
 
-.box-icon-maquina { 
+.box-icon-maquina {
   width: 40%;
   height: 100%;
   display: flex;
@@ -513,6 +522,7 @@ display: flex;
   height: 100%;
   flex-direction: column;
   display: flex;
+  align-items: center;
 }
 
 .caixa-cor-aqui {
