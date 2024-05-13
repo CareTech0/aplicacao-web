@@ -13,8 +13,10 @@ a {
 }
 
 .header {
-  background: #3f8ebf;
+  background: #00000010;
   padding-inline: 16px;
+  position: absolute;
+  z-index: 2;
 }
 
 .header img {
@@ -78,6 +80,7 @@ a {
   background-image: url(../assets/imgs/banner-sobre-nos.png);
   background-repeat: no-repeat;
   background-size: cover;
+  position: relative;
 }
 
 .titulo-sobre-nos {
