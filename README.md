@@ -29,7 +29,7 @@ Nosso projeto oferece uma solução de monitoramento para otimizar o desempenho 
     <sub style="font-family: 'Montserrat', sans-serif;"><b>Amanda Geovanna</b></sub>
   </a><br />
   <a href="https://github.com/amandageovanna" style="text-decoration: none;">
-    <img src="https://skillicons.dev/icons?i=github" width="40" />
+    <img src="https://skillicons.dev/icons?i=github" width="25" />
   </a>
 </td>
   
@@ -39,7 +39,7 @@ Nosso projeto oferece uma solução de monitoramento para otimizar o desempenho 
     <sub style="font-family: 'Montserrat', sans-serif;"><b>Henrique Crispino</b></sub>
   </a><br />
   <a href="https://github.com/Henrique-Crispino" style="text-decoration: none;">
-    <img src="https://skillicons.dev/icons?i=github" width="40" />
+    <img src="https://skillicons.dev/icons?i=github" width="25" />
   </a>
 </td>
 
@@ -49,7 +49,7 @@ Nosso projeto oferece uma solução de monitoramento para otimizar o desempenho 
     <sub style="font-family: 'Montserrat', sans-serif;"><b>Matheus Munari</b></sub>
   </a><br />
   <a href="https://github.com/Matheus-Munari" style="text-decoration: none;">
-    <img src="https://skillicons.dev/icons?i=github&mode=dark" width="40" />
+    <img src="https://skillicons.dev/icons?i=github&mode=dark" width="25" />
   </a>
 </td>
 
@@ -59,7 +59,7 @@ Nosso projeto oferece uma solução de monitoramento para otimizar o desempenho 
     <sub style="font-family: 'Montserrat', sans-serif;"><b>Matheus Souza</b></sub>
   </a><br />
   <a href="https://github.com/mhssouza" style="text-decoration: none;">
-    <img src="https://skillicons.dev/icons?i=github&mode=dark" width="40" />
+    <img src="https://skillicons.dev/icons?i=github&mode=dark" width="25" />
   </a>
 </td>
 
@@ -69,7 +69,7 @@ Nosso projeto oferece uma solução de monitoramento para otimizar o desempenho 
     <sub style="font-family: 'Montserrat', sans-serif;"><b>Thawan Bueno</b></sub>
   </a><br />
   <a href="https://github.com/thawanBruno" style="text-decoration: none;">
-    <img src="https://skillicons.dev/icons?i=github&mode=dark" width="40" />
+    <img src="https://skillicons.dev/icons?i=github&mode=dark" width="25" />
   </a>
 </td>
 
