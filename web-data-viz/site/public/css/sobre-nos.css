@@ -1,183 +1,240 @@
 * {
-    margin: 0;
-    padding: 0;
-    font-family: 'Montserrat', sans-serif;
-  }
-
-.container-slide-sobre{
-    margin: 0%;
-    padding: 0%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 100%;
-    height: 97vh;
-    background-image: url(../assets/imgs/banner-sobre-nos.png);
-    background-repeat: no-repeat;
-    background-size: cover;
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", sans-serif;
 }
 
-
-.titulo-sobre-nos{
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 64px;
-    color: black;
+a {
+  text-decoration: none;
 }
 
+.hide {
+  display: none;
+}
+
+.header {
+  background: #3f8ebf;
+  padding-inline: 16px;
+}
+
+.header img {
+  width: 20%;
+}
+
+.nav {
+  max-width: 1280px;
+  height: 70px;
+  margin-inline: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 48px;
+}
+
+.nav-list {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-list a {
+  font-size: 18px;
+  color: #fff;
+  padding-block: 16px;
+}
+
+.hamburger {
+  display: none;
+  border: none;
+  background: none;
+  border-top: 3px solid #fff;
+  cursor: pointer;
+}
+
+.hamburger::after,
+.hamburger::before {
+  content: " ";
+  display: block;
+  width: 30px;
+  height: 3px;
+  background: #fff;
+  margin-top: 5px;
+  position: relative;
+  transition: 0.3s;
+}
+
+.container-slide-sobre {
+  margin: 0%;
+  padding: 0%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  height: 97vh;
+  background-image: url(../assets/imgs/banner-sobre-nos.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.titulo-sobre-nos {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  font-size: 64px;
+  color: black;
+}
 
 .content {
-    width: 100%;
-    height: 95vh;
-    background-color: #D9D9D9;
-    display: flex;
-    justify-content: space-between;
+  width: 100%;
+  height: 95vh;
+  background-color: #d9d9d9;
+  display: flex;
+  justify-content: space-between;
 }
 
-.container-content{
-    width: 90%;
-    margin: 0 5%;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+.container-content {
+  width: 90%;
+  margin: 0 5%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
-.texto{
-    width: 40%;
-    height: 50vh;
-    display: flex;
-    flex-direction: column;
-    gap: 10%;
+.texto {
+  width: 40%;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  gap: 10%;
 }
 
-.imagem{
-    background-image: url('assets/imgs/imagemEquipe2.png');
-    width: 40%;
-    height: 50vh;    
+.imagem {
+  background-image: url("assets/imgs/imagemEquipe2.png");
+  width: 40%;
+  height: 50vh;
 }
 
 .imagem2 {
-    display: none;
+  display: none;
 }
 
 .imagem > img {
-    width: 500px;
+  width: 500px;
 }
 
-.titulo{
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 38px;
-    border-bottom: 16px solid #34517B;
-    width: 45%;
-    justify-content: center;
+.titulo {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  font-size: 38px;
+  border-bottom: 16px solid #34517b;
+  width: 45%;
+  justify-content: center;
 }
 
-.paragrafo{
-    font-weight: 400;
-    font-size: 17px;
+.paragrafo {
+  font-weight: 400;
+  font-size: 17px;
 }
 
 .container-botao {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
-
-.botao{
-    color: aliceblue;
-    background-color: black;
-    width: 250px;
-    height: 43px;
-    display: flex;
-    justify-content: center;
-    align-items: center;    
-    cursor: pointer;
+.botao {
+  color: aliceblue;
+  background-color: black;
+  width: 250px;
+  height: 43px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
-
 
 @media screen and (max-width: 760px) {
+  .container-slide-sobre {
+    height: 60vh;
+  }
 
-    .container-slide-sobre{
-        height: 60vh;
-    }
+  .titulo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 430px;
+    margin-bottom: 20px;
+  }
 
-    .titulo {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        margin-top: 430px;
-        margin-bottom: 20px;
-    }
-    
-    .titulo-sobre-nos{
-        font-size: 44px;
-    }
+  .titulo-sobre-nos {
+    font-size: 44px;
+  }
 
-    .container-content{
-        display: flex;
-        flex-direction: column;
-        justify-content: start;
-    }
+  .container-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+  }
 
-    .texto{
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+  .texto {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-    .content {
-        height: 120vh;
-    }
+  .content {
+    height: 120vh;
+  }
 
-    .imagem2 {
-        display: block;
-    }
+  .imagem2 {
+    display: block;
+  }
 
-    .imagem2 img{
-      width: 350px;
-      margin: -20px;
-    }
+  .imagem2 img {
+    width: 350px;
+    margin: -20px;
+  }
 
-    .section-values {
-    }
+  .section-values {
+  }
 
-    .container-values{
-        margin: 268px 0 61px 5%;
-    }
+  .container-values {
+    margin: 268px 0 61px 5%;
+  }
 
-    div.img-footer{
-        display: none;
-    }
+  div.img-footer {
+    display: none;
+  }
 
-    .container-botao {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 50px;
-    }
+  .container-botao {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+  }
 
-    .imagem {
-        display: none;
-    }
+  .imagem {
+    display: none;
+  }
 
-    .imagem2 {
-        margin-top: 50px;
-    }
+  .imagem2 {
+    margin-top: 50px;
+  }
 
-    .paragrafo {
-        font-size: 16px;
-        text-align: center;
-    }
+  .paragrafo {
+    font-size: 16px;
+    text-align: center;
+  }
 
-    .container-values {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        transform: translate(0%, -40%);
-    }
+  .container-values {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transform: translate(0%, -40%);
+  }
 }
