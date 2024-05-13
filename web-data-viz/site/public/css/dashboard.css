@@ -471,7 +471,6 @@ body {
 .box-maquinas {
   width: 95%;
   height: 94%;
-
 }
 
 .background-maquinas {
@@ -481,20 +480,20 @@ body {
   border-radius: 5px;
   display: flex;
   flex-wrap: wrap;
-    
+
   overflow: auto;
 }
 
-
-.container-maquinas { 
-  width: 25%;
+.container-maquinas {
+  width: 30%;
   height: 48%;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-
 .coluna-maquinas {
-  width: 100%;
+  width: 90%;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -504,25 +503,100 @@ body {
 .caixa-maquina {
   background-color: white;
   border-radius: 15px;
-  width: 90%;
+  width: 100%;
   height: 87%;
   display: flex;
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
 }
 
 .box-icon-maquina {
-  width: 40%;
+  width: 38%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+.caixadotitulo {
+  display: flex;
+  height: 30%;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  
+}
+
+.box-informacoes {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  justify-content: space-around;
+  height: 54%;
+}
+
+.caixa-status {
+  display: flex;
+    align-items: start;
+    font-size: 14px;
+    width: 95%;
+    justify-content: space-evenly;
+}
+
+.imagemstatus {
+  width: 30px;
+}
+
+
+.imagemcondicao {
+  width: 30px;
+}
+
+#condicao, #status {
+  font-weight: 500;
+}
+
+.caixa-condicao {
+  display: flex;
+  align-items: start;
+  width: 95%;
+  font-size: 14px;
+  justify-content: space-evenly;
+}
+
+.caixa-condicao > span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 55%;
+}
+
+.caixa-status > span {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 39%;
+}
+
+.imagem-maquina > img {
+  display: flex;
+  width: 100px;
+}
+
 .box-info-maquina {
-  width: 60%;
   height: 100%;
   flex-direction: column;
   display: flex;
   align-items: center;
+  width: 62%;
+ 
+}
+
+.patrimonio-titulo {
+  font-size: 20px;
+  font-weight: 600;
 }
 
 .caixa-cor-aqui {
