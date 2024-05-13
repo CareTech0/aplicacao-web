@@ -18,8 +18,11 @@ a {
 }
 
 .header {
-  background: #3F8EBF;
+  background: #00000000;
   padding-inline: 16px;
+  position: absolute;
+  z-index: 2;
+  width: 100%;
 }
 
 .header img {
@@ -73,6 +76,8 @@ a {
 
 .section-carousel {
   width: 100%;
+  position: relative;
+  z-index: 1;
 }
 
 .carousel img {
@@ -124,7 +129,6 @@ a {
 
 .dark-title {
   color: #ffffff; 
-
 }
 
 
