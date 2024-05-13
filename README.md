@@ -10,7 +10,7 @@ Nosso projeto oferece uma solução de monitoramento para otimizar o desempenho 
 
  <p align="start">
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=html,css,js,java,nodejs,mysql" />  
+    <img src="https://skillicons.dev/icons?i=html,css,js,java,nodejs,mysql,jquery" />  
   </a>
   
 
@@ -28,7 +28,7 @@ Nosso projeto oferece uma solução de monitoramento para otimizar o desempenho 
     <img src="/web-data-viz/site/public/assets/equipe/amanda.jpg" style="border-radius: 50%; height: 120px; width: 100px;" /><br />
     <sub style="font-family: 'Montserrat', sans-serif;"><b>Amanda Geovanna</b></sub>
   </a><br />
-  <a href="https://github.com/amandageovanna" style="text-decoration: none;">
+  <a href="https://github.com/amandageovanna" style="text-decoration: none;"> 
     <img src="https://skillicons.dev/icons?i=github" width="25" />
   </a>
 </td>
