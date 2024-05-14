@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css/usuarios.css">
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/modais/modalDeslogar.css">
+    <link rel="stylesheet" href="../css/modais/modalUsuarios.css">
 
     <link rel="icon" href="../assets/icon/icon.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -208,103 +209,105 @@
 
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Modal Excluir Usuário -->
-                    <div class="modal-excluir" id="deleteModal">
-                        <div class="modal-content-excluir">
-                            <span class="close">&times;</span>
-
-                            <div class="modal-titulo">
-                                <span> <i class="bi bi-person-x-fill"></i> </span>
-                                <h2>DELETAR USUÁRIO</h2>
-                            </div>
-
-                            <div class="modal-mensagem">
-                                <p>Deletar a conta irá remover todas as informações do nosso banco de dados. Essa ação
-                                    não pode
-                                    ser
-                                    desfeita.</p>
-                            </div>
-
-                            <div class="modal-botao-excluir">
-                                <button id="confirmDelete">EXCLUIR CONTA </button>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <!-- Modal adicionar novo usuário -->
-                    <div class="modal" id="newUserModal">
-                        <div class="modal-content-novo-usuario">
-
-                            <span class="close">&times;</span>
-
-                            <div class="modal-titulo-novo-usuario">
-                                <span class="icon"><i class="bi bi-person-gear"></i></span>
-                                <h2>ADICIONAR USUÁRIO</h2>
-                            </div>
-
-                            <div class="inputs-modal-novo-usuario">
-
-                                <div class="content-input-modal-novo-usuario">
-                                    <span> Nome: </span>
-                                    <input type="text" name="nome">
-                                </div>
-
-                                <div class="content-input-modal-novo-usuario">
-                                    <span> E-mail:</span>
-                                    <input type="text" name="email">
-                                </div>
-
-                                <div class="content-input-modal-novo-usuario">
-                                    <span> Senha: </span>
-                                    <input type="password">
-                                </div>
-
-                                <div class="content-input-modal-novo-usuario">
-                                    <span> Confirmar senha:</span>
-                                    <input type="password">
-                                </div>
-
-
-                                <div class="content-input-modal-novo-usuario-tooltip">
-
-                                    <div class="titulo-tipo-acesso">
-                                        <span> Tipo de acesso:</span>
-                                    </div>
-
-                                    <div class="box-tooltip">
-                                        <div class="tooltip-container">
-                                            <span class="tooltip-icon">i</span>
-                                            <div class="tooltip-text"><b>Administradores:</b> têm controle total sobre
-                                                máquinas,
-                                                usuários e bloqueio de sites.
-                                                <br> <br>
-                                                <b>Usuário comum:</b> Apenas visualização da dashboard.
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="content-input-modal">
-                                        <select id="perfil" name="perfil">
-                                            <option value="administrador">Administrador</option>
-                                            <option value="usuario">Usuário comum</option>
-                                        </select>
-                                    </div>
-
-
-                                </div>
-                                <button type="submit" id="saveNewUser">SALVAR</button>
-
-
-
-                            </div>
-                        </div>
-                    </div>
+                    </div>                    
                 </div>
             </div>
 </body>
+
+<!-- Modal Excluir Usuário -->
+<div class="modal-excluir" id="deleteModal">
+    <div class="modal-content-excluir">
+        <span class="close">&times;</span>
+
+        <div class="modal-titulo">
+            <span> <i class="bi bi-person-x-fill"></i> </span>
+            <h2>DELETAR USUÁRIO</h2>
+        </div>
+
+        <div class="modal-mensagem">
+            <p>Deletar a conta irá remover todas as informações do nosso banco de dados. Essa ação
+                não pode
+                ser
+                desfeita.</p>
+        </div>
+
+        <div class="modal-botao-excluir">
+            <button id="confirmDelete">EXCLUIR CONTA </button>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal adicionar novo usuário -->
+<div class="modal" id="newUserModal">
+    <div class="modal-content-novo-usuario">
+
+        <span class="close">&times;</span>
+
+        <div class="modal-titulo-novo-usuario">
+            <span class="icon"><i class="bi bi-person-gear"></i></span>
+            <h2>ADICIONAR USUÁRIO</h2>
+        </div>
+
+        <div class="inputs-modal-novo-usuario">
+
+            <div class="content-input-modal-novo-usuario">
+                <span> Nome: </span>
+                <input type="text" name="nome">
+            </div>
+
+            <div class="content-input-modal-novo-usuario">
+                <span> E-mail:</span>
+                <input type="text" name="email">
+            </div>
+
+            <div class="content-input-modal-novo-usuario">
+                <span> Senha: </span>
+                <input type="password">
+            </div>
+
+            <div class="content-input-modal-novo-usuario">
+                <span> Confirmar senha:</span>
+                <input type="password">
+            </div>
+
+
+            <div class="content-input-modal-novo-usuario-tooltip">
+
+                <div class="titulo-tipo-acesso">
+                    <span> Tipo de acesso:</span>
+                </div>
+
+                <div class="box-tooltip">
+                    <div class="tooltip-container">
+                        <span class="tooltip-icon">i</span>
+                        <div class="tooltip-text"><b>Administradores:</b> têm controle total sobre
+                            máquinas,
+                            usuários e bloqueio de sites.
+                            <br> <br>
+                            <b>Usuário comum:</b> Apenas visualização da dashboard.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-input-modal">
+                    <select id="perfil" name="perfil">
+                        <option value="administrador">Administrador</option>
+                        <option value="usuario">Usuário comum</option>
+                    </select>
+                </div>
+
+
+            </div>
+            <button type="submit" id="saveNewUser">SALVAR</button>
+
+
+
+        </div>
+    </div>
+</div>
+
+<!-- modal deslogar -->
 
 <div class="modalDeslogar" id="deslogarModal">
     <div class="modal-content-deslogar">
@@ -326,27 +329,70 @@
 
 </div>
 
+<!-- modal editar usuario -->
 <div class="modal" id="editModal">
-    <div class="modal-content">
+    <div class="modal-content-novo-usuario">
 
         <span class="close">&times;</span>
 
-        <div class="modal-titulo">
+        <div class="modal-titulo-novo-usuario">
             <span class="icon"><i class="bi bi-person-gear"></i></span>
             <h2>EDITAR USUÁRIO</h2>
         </div>
 
-        <div class="inputs-modal">
+        <div class="inputs-modal-novo-usuario">
 
-            <div class="content-input-modal">
+            <div class="content-input-modal-novo-usuario">
                 <span> Nome: </span>
-                <input type="text">
+                <input type="text" name="nome">
             </div>
 
-            <div class="content-input-modal">
+            <div class="content-input-modal-novo-usuario">
                 <span> E-mail:</span>
-                <input type="text">
+                <input type="text" name="email">
             </div>
+
+            <div class="content-input-modal-novo-usuario">
+                <span> Senha: </span>
+                <input type="password">
+            </div>
+
+            <div class="content-input-modal-novo-usuario">
+                <span> Confirmar senha:</span>
+                <input type="password">
+            </div>
+
+
+            <div class="content-input-modal-novo-usuario-tooltip">
+
+                <div class="titulo-tipo-acesso">
+                    <span> Tipo de acesso:</span>
+                </div>
+
+                <div class="box-tooltip">
+                    <div class="tooltip-container">
+                        <span class="tooltip-icon">i</span>
+                        <div class="tooltip-text"><b>Administradores:</b> têm controle total sobre
+                            máquinas,
+                            usuários e bloqueio de sites.
+                            <br> <br>
+                            <b>Usuário comum:</b> Apenas visualização da dashboard.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-input-modal">
+                    <select id="perfil" name="perfil">
+                        <option value="administrador">Administrador</option>
+                        <option value="usuario">Usuário comum</option>
+                    </select>
+                </div>
+
+
+            </div>
+            <button type="submit" id="saveNewUser">SALVAR</button>
+
+
 
         </div>
     </div>
