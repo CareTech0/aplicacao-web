@@ -112,82 +112,82 @@
 
                         <div class="container-botao">
                             <div class="box-botao">
-                                <div class="fundo-botao">
+                                <div class="fundo-botao" id="botaoGerenciar">
                                     <div class="flexbotao">
                                         <span class="icon"><i class="bi bi-plus-circle"></i></span>
                                         <span>GERENCIAR MÁQUINAS</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="box-botao-filtro">
+                            <div class="box-botao-filtro" id="botaoFiltro" onclick="abrirFiltro()">
                                 <div class="fundo-botao-filtro">
                                     <div class="flex-filter">
                                         <span class="icon"><i class="bi bi-funnel"></i></span>
                                         <span class="textfilter">FILTRO</span>
                                     </div>
                                 </div>
-                            </div>
-
-                        </div>
-                        <div class="container-filtro">
-                            <div class="fundo-filtro">
-                                <div class="box-do-filtro">
-                                    <span>FILTRAR POR</span>
-                                </div>
-
-                                <div class="opcoes-filtro">
-
-                                    <div class="titulofilter">
-                                        <span>Status</span>
-                                    </div>
-
-                                    <div class="checkboxfilters">
-                                        <label class="container-checkbox">
-                                            <input type="checkbox" checked="checked"> Crítico
-                                            
-                                        </label>
-                                        <label class="container-checkbox">
-                                            <input type="checkbox"> Alerta
-                                            
-                                        </label>
-                                        <label class="container-checkbox">
-                                            <input type="checkbox"> Ideal
-                                           
-                                        </label>
-                                    </div>
-                                                                      
-
-                                    <div class="titulofilter">
-                                        <span>Condição</span>
-                                    </div>
-                                    <div class="checkboxfilters">
-                                        <label class="container-checkbox">
-                                            <input type="checkbox"> Ligado
-                                            
-                                        </label>
-                                        <label class="container-checkbox">
-                                            <input type="checkbox"> Desligado
-                                            
-                                        </label>                                        
-                                    </div>
-                                </div>
-
-                                <div class="box-botoes-filtro">
-                                    <div class="botao-cancelar">
-                                        <div class="conteudo-botao">
-                                            <span>
-                                                CANCELAR
-                                            </span>
+                                <div class="container-filtro">
+                                    <div class="fundo-filtro" id="filtro">
+                                        <div class="box-do-filtro">
+                                            <span>FILTRAR POR</span>
+                                        </div>
+        
+                                        <div class="opcoes-filtro">
+        
+                                            <div class="titulofilter">
+                                                <span style="font-weight: 600;">Status</span>
+                                            </div>
+        
+                                            <div class="checkboxfilters">
+                                                <label class="container-checkbox">
+                                                    <input type="checkbox" checked="checked"> Crítico
+        
+                                                </label>
+                                                <label class="container-checkbox">
+                                                    <input type="checkbox"> Alerta
+        
+                                                </label>
+                                                <label class="container-checkbox">
+                                                    <input type="checkbox"> Ideal
+        
+                                                </label>
+                                            </div>
+        
+        
+                                            <div class="titulofilter">
+                                                <span style="font-weight: 600;">Condição</span>
+                                            </div>
+                                            <div class="checkboxfilters">
+                                                <label class="container-checkbox">
+                                                    <input type="checkbox"> Ligado
+        
+                                                </label>
+                                                <label class="container-checkbox">
+                                                    <input type="checkbox"> Desligado
+        
+                                                </label>
+                                            </div>
+                                        </div>
+        
+                                        <div class="box-botoes-filtro">
+                                            <div class="botao-cancelar">
+                                                <div class="conteudo-botao">
+                                                    <span>
+                                                        CANCELAR
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="botao-confirmar">
+                                                <div class="conteudo-botao-confirmar">
+                                                    <span>
+                                                        CONFIRMAR
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="botao-confirmar">
-                                        <div class="conteudo-botao-confirmar">
-                                            <span>
-                                                CONFIRMAR
-                                            </span>
-                                        </div>
-                                    </div>
                                 </div>
+        
                             </div>
                         </div>
                     </div>
@@ -294,21 +294,45 @@
 
 </body>
 
-<div class="modal-excluir" id="deslogarModal">
-    <div class="modal-content-excluir">
+<div class="modal-gerenciar" id="botaoGerenciar">
+    <div class="modal-content">
         <span class="close">&times;</span>
 
-        <div class="modal-titulo">
-            <span> <i class="bi bi-box-arrow-right"></i> </span>
-            <h2>DESLOGAR DA CONTA</h2>
-        </div>
+        <div class="content-titulo">
+            <div class="icon-cadastrar">
+                <img src="..\assets\imgs\pngMaquina.png">
+            </div>
 
-        <div class="modal-mensagem">
-            <p>Tem certeza que deseja encerrar sua sessão?</p>
-        </div>
+            <div class="titulo-cadastrar">
+                <span>CADASTRO DE MÁQUINAS</span>
+            </div>
 
-        <div class="modal-botao-excluir">
-            <button id="confirmDeslogar"> <a href="../login.html">DESLOGAR SESSÃO</a></button>
+        </div>
+        <div class="container-modal-gerenciar">
+
+            <div class="container-botao-modal">
+                <div>
+                    <div class="fundo-botao-criar">
+                        <span>CRIAR NOVA MÁQUINA</span>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="fundo-botao-gerenciar">
+                        <span>GERENCIAR MÁQUINA</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="container-inputs-criar">
+
+
+            </div>
+
+            <div class="modal-botao-cadastrar">
+                <button id="confirmCadastrar"> <a href="../login.html">CADASTRAR</a></button>
+            </div>
         </div>
     </div>
 </div>
@@ -316,50 +340,5 @@
 </html>
 
 <script>
-    // breadcrumps aqui embaixo
 
-    /*  var titulos = {
-          "dashboard.html": "DETALHES POR MÁQUINA",
-          "outrapagina.html": "TÍTULO DA OUTRA PÁGINA"
-      };
-  
-      function definirTituloPagina() {
-          var paginaAtual = window.location.pathname.split("/").pop();
-          var titulo = titulos[paginaAtual];
-          if (titulo) {
-              document.getElementById("tituloPagina").textContent = titulo;
-          }
-      }
-  
-      function criarBreadcrumbs() {
-          var breadcrumbsContainer = document.getElementById("breadcrumbs");
-          breadcrumbsContainer.innerHTML = "";
-  
-          var paginaAtual = window.location.pathname.split("/").pop();
-          var titulo = titulos[paginaAtual] || "Página Atual";
-          document.getElementById("tituloPagina").textContent = titulo;
-  
-          var partesUrl = window.location.pathname.split("/").filter(Boolean);
-  
-          var partesAcumuladas = "";
-          partesUrl.forEach(function (part, index) {
-              partesAcumuladas += "/" + part;
-  
-              var link = document.createElement("a");
-              link.href = partesAcumuladas;
-              link.textContent = titulos[part] || part;
-  
-              if (index > 0) {
-                  breadcrumbsContainer.appendChild(document.createTextNode(" / "));
-              }
-              breadcrumbsContainer.appendChild(link);
-          });
-  
-  
-      }
-  
-      window.addEventListener("DOMContentLoaded", function () {
-          definirTituloPagina();
-          criarBreadcrumbs();
-      });*/
 </script>

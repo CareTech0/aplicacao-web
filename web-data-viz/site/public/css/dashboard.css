@@ -207,7 +207,7 @@ body {
   height: 99.9%;
 }
 
-.modal-excluir {
+.modal-gerenciar {
   display: none;
   position: fixed;
   z-index: 1;
@@ -216,64 +216,71 @@ body {
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-.modal-content-excluir {
+.modal-content {
   background-color: #fefefe;
-  margin: 10% auto;
-  padding: 20px;
+    padding: 20px;
   border: 1px solid #888;
   width: 29%;
   border-radius: 20px;
 }
 
-.modal-titulo {
+.content-titulo {
   display: flex;
-  justify-content: flex-start;
   align-items: center;
+  justify-content: center;
+  height: 25%;
+}
+
+.icon-cadastrar > img {
+  width: 80px;
+  margin-right: 10px;
+}
+
+.titulo-cadastrar {
+  font-size: 20px;
+  font-weight: 600;
   border-bottom: 1.5px solid #d9d9d9;
-  font-size: 15px;
+  padding-bottom: 5px;
 }
 
-.modal-titulo-novo-usuario span i {
-  font-size: 23px;
-  padding: 10px;
-}
-
-.modal-titulo span h2 {
-  color: #3e4245;
-}
-
-.modal-mensagem {
-  font-size: 14px;
-  padding: 16px;
-  font-weight: 500;
-}
-
-.modal-botao-excluir-site {
+.container-botao-modal {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
+  justify-content: space-around;
 }
-.modal-botao-excluir {
-  display: flex;
-  justify-content: center;
+
+.fundo-botao-criar {
+  background-color: var(--azul-claro);
+  width: 100%;
 }
-.modal-botao-excluir > button a {
-  text-decoration: none;
+
+.fundo-botao-criar > span {
   color: white;
 }
 
-#confirmDelete,
-#confirmDeslogar {
-  background-color: #f84c4c;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  border-radius: 15px;
+.fundo-botao-gerenciar {
+  background-color: var(--cor-principal);
+  width: 100%;
+}
+
+.fundo-botao-gerenciar > span {
+  color: white;
+}
+
+.modal-botao-cadastrar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#COnfirm
+
+.modal-botao-cadastrar > button a {
+  text-decoration: none;
+  color: white;
 }
 
 .container {
@@ -291,6 +298,7 @@ body {
   width: 100%;
   height: 34%;
   display: flex;
+  position: relative;
 }
 
 .container-esquerda {
@@ -436,7 +444,6 @@ body {
   justify-content: center;
   align-items: center;
   height: 100%;
-  cursor: pointer;
 }
 
 .fundo-botao-filtro {
@@ -448,6 +455,7 @@ body {
   width: 74%;
   height: 73%;
   border: var(--cor-cinza) solid 2px;
+  cursor: pointer;
 }
 
 .textfilter {
@@ -460,21 +468,20 @@ body {
 
 .container-filtro {
   z-index: 2;
-  width: 220px;
-  height: 208px;
-  top: 212px;
+  width: 234px;
+  height: 214px;
   position: absolute;
-  left: 633px;
+    top: 87%;
+    left: 27.61%;
 }
 
 .fundo-filtro {
   background-color: white;
   width: 100%;
   height: 100%;
-  z-index: 2;
   position: absolute;
   border: var(--cor-cinza) solid 2px;
-  flex-direction: column;
+  display: none;
 }
 
 .box-do-filtro {
@@ -487,9 +494,8 @@ body {
 .box-botoes-filtro {
   display: flex;
   width: 100%;
-  display: flex;
-  width: 100%;
   justify-content: space-around;
+  height: 15%;
 }
 
 .opcoes-filtro {
@@ -507,9 +513,7 @@ body {
 }
 
 .container-checkbox {
-  
 }
-
 
 .checkbox {
   background-color: #eee;
@@ -521,10 +525,14 @@ body {
   border-radius: 5px;
   cursor: pointer;
   width: 40%;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .conteudo-botao > span {
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .botao-confirmar {
@@ -532,6 +540,10 @@ body {
   border-radius: 5px;
   width: 40%;
   cursor: pointer;
+  height: 90%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
 }
 
 .conteudo-botao-confirmar > span {
@@ -722,4 +734,8 @@ body {
 /* Button */
 ::-webkit-scrollbar-button {
   display: none;
+}
+
+@media (min-width: 1350px) {
+  
 }
