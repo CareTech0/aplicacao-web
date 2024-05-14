@@ -7,10 +7,12 @@
     <title>CareTech</title>
     <link rel="stylesheet" href="../css/dashboardVo.css">
     <link rel="stylesheet" href="../css/base.css">
-    <link rel="stylesheet" href="../css/modal.css">
+    <link rel="stylesheet" href="../css/modais/modalDeslogar.css">
     <link rel="icon" href="../assets/icon/icon.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+   
     <script src="../js/scriptDash.js"></script>
+    <script src="../js/modais/modalDeslogar.js" defer></script>
 </head>
 
 <body>
@@ -227,33 +229,25 @@
     </div>
 </body>
 
-<div class="modal-excluir" id="deslogarModal">
-    <div class="modal-content-excluir">
-        <span class="close">&times;</span>
+<div class="modalDeslogar" id="deslogarModal">
+    <div class="modal-content-deslogar">
+        <span class="closeDeslogar">&times;</span>
 
-        <div class="modal-titulo">
+        <div class="modal-titulo-deslogar">
             <span> <i class="bi bi-box-arrow-right"></i></span>
             <h2>DESLOGAR DA CONTA</h2>
         </div>
 
-        <div class="modal-mensagem">
+        <div class="modal-mensagem-deslogar">
             <p>Tem certeza que deseja encerrar sua sessão?</p>
         </div>
 
-        <div class="modal-botao-excluir">
-            <button id="confirmDeslogar"> <a href="../login.html">DESLOGAR SESSÃO</a></button>
+        <div class="modal-botao-deslogar">
+            <button id="confirmarDeslogar"> <a href="../login.html">DESLOGAR SESSÃO</a></button>
         </div>
     </div>
 
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <p id="aviso">Por favor, preencha todos os campos.</p>
-        </div>
-    </div>
-
-
-</html>
+</div>
 
 <script src="https://www.gstatic.com/charts/loader.js"></script>
 <script>
@@ -308,31 +302,8 @@
           );
       
           chart.draw(data, options);
-        }
-           
-        const deslogarModal = document.getElementById("deslogarModal");
-        const closeButtons = document.querySelectorAll(".close");
-        const spanDeslogar = document.querySelector(".item-menu-deslogar");
-      
-        function abrirDeslogarModal() {
-          deslogarModal.style.display = "block";
-        }
-      
-        spanDeslogar.addEventListener("click", function () {
-          abrirDeslogarModal();
-        });
-      
-        closeButtons.forEach(function (button) {
-          button.addEventListener("click", function () {
-            deslogarModal.style.display = "none";
-          });
-        });
-      
-        window.addEventListener("click", function (event) {
-          if (event.target == deslogarModal) {
-            deslogarModal.style.display = "none";
-          }
-        });
+        }           
+        
       });
       
 </script>

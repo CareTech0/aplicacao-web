@@ -1,5 +1,4 @@
-/* modal aqui */
-.modal-excluir {
+.modalDeslogar {
     display: none;
     position: fixed;
     z-index: 1;
@@ -12,7 +11,7 @@
     background-color: rgba(0, 0, 0, 0.4);
   }
   
-  .modal-content-excluir {
+  .modal-content-deslogar{
     background-color: #fefefe;
     margin: 10% auto;
     padding: 20px;
@@ -21,39 +20,33 @@
     border-radius: 20px;
   }
   
-  .modal-titulo {
+  .modal-titulo-deslogar {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     border-bottom: 1.5px solid #d9d9d9;
     font-size: 15px;
-  }
-  
-  .modal-titulo-novo-usuario span i {
-    font-size: 23px;
-    padding: 10px;
-  }
-  
-  .modal-titulo span h2 {
+  }  
+  .modal-titulo-deslogar span h2 {
     color: #3e4245;
   }
   
-  .modal-mensagem {
+  .modal-mensagem-deslogar {
     font-size: 14px;
     padding: 16px;
     font-weight: 500;
   }
   
-  .modal-botao-excluir {
+  .modal-botao-deslogar {
     display: flex;
     justify-content: center;
   }
-  .modal-botao-excluir > button a {
+  .modal-botao-deslogar > button a {
     text-decoration: none;
     color: white;
   }
   
-  #confirmDeslogar {
+  #confirmarDeslogar {
     background-color: #f84c4c;
     color: #fff;
     border: none;
@@ -61,4 +54,27 @@
     cursor: pointer;
     border-radius: 15px;
   }
-  /* fim do modal */
+
+  
+.item-menu-deslogar {
+    cursor: pointer;
+    font-weight: 500;
+    width: 38%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .closeDeslogar {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.closeDeslogar:hover,
+.closeDeslogar:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}

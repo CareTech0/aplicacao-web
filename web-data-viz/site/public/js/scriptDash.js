@@ -17,13 +17,6 @@ function voltar() {
   window.location.href = "dashboard.html";
 }
 
-const button = document.querySelector("fundo-botao");
-  const modal = document.querySelector("dialog");
-
-  button.onclick = function () {
-    modal.showModal();
-  };
-
 document.addEventListener("DOMContentLoaded", function () {
   function abrirFiltro() {
     var filtro = document.getElementById("filtro");
