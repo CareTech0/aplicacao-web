@@ -1,3 +1,5 @@
+
+
 document.addEventListener("DOMContentLoaded", function () {
   function abrirFiltro() {
     var filtro = document.getElementById("filtro");
@@ -54,3 +56,4 @@ function abrirModal() {
 document.addEventListener("DOMContentLoaded", function () {
   abrirModal();
 });
+

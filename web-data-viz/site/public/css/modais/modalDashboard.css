@@ -1,3 +1,13 @@
+:root {
+    --cor-principal: #4586bf;
+    --cor-menuatual: #040b11;
+    --cor-menupassado: #949494;
+    --cor-cinza: #d6d6d6;
+    --cor-cinzaclaro: #f1f1f1;
+    --cor-verde: #66cc73;
+    --azul-claro: #8fc9fb;
+  }
+
 .modal {
     display: none;
     position: fixed;
@@ -13,11 +23,11 @@
 
 .modal-content {
     background-color: #fefefe;
-    margin: 10% auto;
     padding: 24px;
     border: 1px solid #888;
     width: 27%;
     border-radius: 20px;
+    height: 71%;
 
 }
 
@@ -25,6 +35,10 @@
     display: flex;
     align-items: center;
 }
+
+.container-modal { 
+    height: 82%;
+} 
 
 
 .titulo-cadastrar {
@@ -38,11 +52,53 @@
     width: 100%;
   }
 
-  .container-botao-modal { 
+  .box-botao-criar {
     display: flex;
+    width: 50%;
+    cursor: pointer;
+    height: 100%;
+    justify-content: center;
   }
 
+.box-botao-gerenciar { 
+    display: flex;
+    width: 50%;
+    height: 100%;
+    justify-content: center;
+}
+
+  .container-botao-modal { 
+    display: flex;
+    height: 11%;
+    width: 100%;
+  }
+
+  .fundo-botao-gerenciar {
+    background-color: var(--cor-principal);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 14px;
+    height: 93%;
+    width: 79%;
+    cursor: pointer;
+  }
+
+  .fundo-botao-criar { 
+    background-color: var(--azul-claro);
+    color: white;
+    height: 93%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 14px;
+    width: 79%;
+  }
   
+  .fundo-botao-criar  > span, .fundo-botao-gerenciar > span {
+    font-size: 13px;
+  }
 .icon-cadastrar { 
     width: 18%;
 }
