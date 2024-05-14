@@ -15,7 +15,7 @@
 
     <link rel="icon" href="../assets/icon/icon.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  
+
 
 
 
@@ -314,70 +314,97 @@
 
 
 <div id="gerenciarModal" class="modal">
-    <div class="modal-content">
-        <span class="close closeDeslogar">&times;</span>
-        <div class="content">
-            <div class="icon-cadastrar">
-                <img src="..\assets\imgs\pngMaquina.png">
-            </div>
-
-            <div class="titulo-cadastrar">
-                <span>CADASTRO DE MÁQUINAS</span>
-            </div>
-
-        </div>
-
-        <div class="container-modal">
-
-            <div class="container-botao-modal">
-                <div class="box-botao-criar">
-                    <div class="fundo-botao-criar">
-                        <span>CRIAR NOVA MÁQUINA</span>
-                    </div>
+    |<div class="box-centralizar-modal">
+        <div class="modal-content">
+            <span class="close closeDeslogar">&times;</span>
+            <div class="content">
+                <div class="icon-cadastrar">
+                    <img src="..\assets\imgs\pngMaquina.png">
                 </div>
 
-                <div class="box-botao-gerenciar">
-                    <div class="fundo-botao-gerenciar" id="sessaoGerenciarMaquinas">
-                        <span>GERENCIAR MÁQUINA</span>
-                    </div>
+                <div class="titulo-cadastrar">
+                    <span>CADASTRO DE MÁQUINAS</span>
                 </div>
 
             </div>
 
-            <div id="telaCriar" style="display:block;" class="container-inputs-criar">
-                <div class="box-inputs">
-                    <div class="input-group">
-                        <label for="patrimonio">Patrimônio:</label>
-                        <input type="text" id="patrimonio">
+            <div class="container-modal">
+
+                <div class="container-botao-modal">
+                    <div class="box-botao-criar">
+                        <div class="fundo-botao-criar">
+                            <span>CRIAR NOVA MÁQUINA</span>
+                        </div>
                     </div>
-                    <div class="input-group">
-                        <label for="localizacao">Localização:</label>
-                        <input type="text" id="localizacao">
+
+                    <div class="box-botao-gerenciar">
+                        <div class="fundo-botao-gerenciar" id="sessaoGerenciarMaquinas">
+                            <span>GERENCIAR MÁQUINA</span>
+                        </div>
                     </div>
-                    <div class="input-group">
-                        <label for="login">Login:</label>
-                        <input type="text" id="login">
+
+                </div>
+
+                <div id="telaCriar" style="display:block;" class="container-inputs-criar">
+                    <div class="box-inputs">
+                        <div class="input-group">
+                            <label for="patrimonio">Patrimônio:</label>
+                            <input type="text" id="patrimonio">
+                        </div>
+                        <div class="input-group">
+                            <label for="localizacao">Localização:</label>
+                            <input type="text" id="localizacao">
+                        </div>
+                        <div class="input-group">
+                            <label for="login">Login:</label>
+                            <input type="text" id="login">
+                        </div>
+                        <div class="input-group">
+                            <label for="senha">Senha:</label>
+                            <input type="text" id="senha">
+                        </div>
+
                     </div>
-                    <div class="input-group">
-                        <label for="senha">Senha:</label>
-                        <input type="text" id="senha">
-                    </div>
-            
+
                     <div class="modal-botao-cadastrar">
                         <button id="confirmCadastrar"> <a href="../login.html">CADASTRAR</a></button>
                     </div>
                 </div>
-            </div>
 
 
-            <div id="telaGerenciar" style="display:none;" class="container-inputs-gerenciar">
-                <!-- Conteúdo para a tela de gerenciamento -->
+                <div id="telaGerenciar" style="display:none;" class="container-inputs-gerenciar">
+                    <!-- tela de gerenciamento -->
 
-                <div class="input-group">
-                    <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                    <button type="button" class="btn btn-outline-primary" data-mdb-ripple-init>search</button>
-                  </div>
+                    <div class="caixa-buscar">
+                        <div class="input-group">
+                            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+                                aria-describedby="search-addon" />
+                            <button type="button" class="btn btn-outline-primary" data-mdb-ripple-init>search</button>
+                        </div>
+                    </div>
 
+                    <div class="container-gerenciar">
+                       
+                            <div>
+                                <div class="box-localizacao">
+                                    <span>LOCALIZAÇÃO</span>
+                                </div>
+
+                                <div class="caixa-gerenciar-cadastrados">
+                                    <div>
+                                        <span>Mesa 01</span>
+                                    </div>
+                                    <div class="opcoes-usuario">
+                                        <span class="delete-user" data-target="#deleteModal"><i
+                                                class="bi bi-trash3"></i></i></span>
+                                        <span class="edit-user" data-target="#editModal"><i
+                                                class="bi bi-pencil-square"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -387,8 +414,22 @@
 </html>
 
 <script>
-    document.getElementById('btnGerenciarMaquinas').addEventListener('click', function () {
-        document.getElementById('telaCriar').style.display = 'none';
-        document.getElementById('telaGerenciar').style.display = 'block';
+    // Selecionando os elementos relevantes
+    const telaCriar = document.getElementById('telaCriar');
+    const telaGerenciar = document.getElementById('telaGerenciar');
+    const botaoCriar = document.querySelector('.box-botao-criar');
+    const botaoGerenciar = document.querySelector('.box-botao-gerenciar');
+
+    // Adicionando eventos de clique aos botões
+    botaoCriar.addEventListener('click', function () {
+        // Esconder a tela de gerenciamento e mostrar a tela de criação
+        telaGerenciar.style.display = 'none';
+        telaCriar.style.display = 'block';
+    });
+
+    botaoGerenciar.addEventListener('click', function () {
+        // Esconder a tela de criação e mostrar a tela de gerenciamento
+        telaCriar.style.display = 'none';
+        telaGerenciar.style.display = 'block';
     });
 </script>

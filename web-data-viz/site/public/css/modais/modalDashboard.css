@@ -12,12 +12,17 @@
     display: none;
     position: fixed;
     z-index: 2;
-    left: 0;
-    top: 0;
+    width: 100%;
+    height: 100%;    
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.box-centralizar-modal { 
     width: 100%;
     height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -31,13 +36,27 @@
 
 }
 
+.input-group { 
+    
+}
+.container-inputs-gerenciar {
+    width: 100%;  
+      height: 68%;
+}
+
+
 .content { 
     display: flex;
     align-items: center;
 }
 
 .container-modal { 
-    height: 82%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
 } 
 
 
@@ -139,7 +158,37 @@
     cursor: pointer;
 }
 
+.modal-botao-cadastrar { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .modal-botao-cadastrar button a {
     color: #fff;
     text-decoration: none;
+}
+
+.opcoes-usuario {
+    display: flex;
+    width: 49px;
+    justify-content: space-between;
+}
+
+.opcoes-usuario span>i {
+    color: #565656;
+    font-size: 17px;
+    cursor: pointer;
+
+}
+
+.caixa-buscar { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.caixa-gerenciar-cadastrados { 
+    display: flex;
+    justify-content: space-between;
 }
