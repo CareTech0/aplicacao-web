@@ -115,3 +115,31 @@
     padding: 20px;
     gap: 15px;
 }
+
+.input-group input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #D9D9D9;
+    border-radius: 20px;
+    box-sizing: border-box;
+    background-color: #F7F7F7;
+}
+
+.input-group input[type="text"]:focus {
+    border-color: var(--cor-menupassado);
+    outline: none;
+}
+
+.modal-botao-cadastrar button {
+    background-color: var(--cor-verde);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal-botao-cadastrar button a {
+    color: #fff;
+    text-decoration: none;
+}
