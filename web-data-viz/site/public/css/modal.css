@@ -1,0 +1,58 @@
+.modal-gerenciar {
+    display: block;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  
+  .modal-content {
+    background-color: #fefefe;
+      padding: 20px;
+    border: 1px solid #888;
+    width: 29%;
+    border-radius: 20px;
+  }
+  
+
+.container-botao-modal {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+  }
+
+
+  
+  .fundo-botao-criar {
+    background-color: var(--azul-claro);
+    width: 100%;
+  }
+  
+  .fundo-botao-criar > span {
+    color: white;
+  }
+  
+  .fundo-botao-gerenciar {
+    background-color: var(--cor-principal);
+    width: 100%;
+  }
+  
+  .fundo-botao-gerenciar > span {
+    color: white;
+  }
+  
+  .modal-botao-cadastrar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-botao-cadastrar > button a {
+    text-decoration: none;
+    color: white;
+  }
+  
