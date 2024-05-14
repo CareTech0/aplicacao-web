@@ -1,5 +1,6 @@
-.modal-gerenciar {
-    display: block;
+/* modal aqui */
+.modal-excluir {
+    display: none;
     position: fixed;
     z-index: 1;
     left: 0;
@@ -7,52 +8,57 @@
     width: 100%;
     height: 100%;
     overflow: auto;
+    background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.4);
   }
   
-  .modal-content {
+  .modal-content-excluir {
     background-color: #fefefe;
-      padding: 20px;
+    margin: 10% auto;
+    padding: 20px;
     border: 1px solid #888;
     width: 29%;
     border-radius: 20px;
   }
   
-
-.container-botao-modal {
+  .modal-titulo {
     display: flex;
-    width: 100%;
-    justify-content: space-around;
-  }
-
-
-  
-  .fundo-botao-criar {
-    background-color: var(--azul-claro);
-    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: 1.5px solid #d9d9d9;
+    font-size: 15px;
   }
   
-  .fundo-botao-criar > span {
-    color: white;
+  .modal-titulo-novo-usuario span i {
+    font-size: 23px;
+    padding: 10px;
   }
   
-  .fundo-botao-gerenciar {
-    background-color: var(--cor-principal);
-    width: 100%;
+  .modal-titulo span h2 {
+    color: #3e4245;
   }
   
-  .fundo-botao-gerenciar > span {
-    color: white;
+  .modal-mensagem {
+    font-size: 14px;
+    padding: 16px;
+    font-weight: 500;
   }
   
-  .modal-botao-cadastrar {
+  .modal-botao-excluir {
     display: flex;
     justify-content: center;
-    align-items: center;
   }
-  
-  .modal-botao-cadastrar > button a {
+  .modal-botao-excluir > button a {
     text-decoration: none;
     color: white;
   }
   
+  #confirmDeslogar {
+    background-color: #f84c4c;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 15px;
+  }
+  /* fim do modal */
