@@ -208,7 +208,7 @@ body {
 }
 
 .modal-gerenciar {
-  display: none;
+  display: block;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -473,7 +473,10 @@ body {
   position: absolute;
     top: 87%;
     left: 27.61%;
+    
 }
+
+
 
 .fundo-filtro {
   background-color: white;
@@ -736,6 +739,3 @@ body {
   display: none;
 }
 
-@media (min-width: 1350px) {
-  
-}
