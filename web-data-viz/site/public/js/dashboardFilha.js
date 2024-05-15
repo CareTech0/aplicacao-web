@@ -1,8 +1,16 @@
-google.charts.load('current', {'packages':['corechart']});
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.load('current', {'packages':['gauge']});
 
-google.charts.setOnLoadCallback(gerarGraficoMemoriaRamUso);
-google.charts.setOnLoadCallback(gerarGraficoDiscoUso);
-google.charts.setOnLoadCallback(gerarGraficoUtilizacaoCPU);
+    google.charts.setOnLoadCallback(init);
+
+function init() {
+    gerarGraficoMemoriaRamUso();
+    gerarGraficoDiscoUso();
+    gerarGraficoUtilizacaoCPU();
+    criarGraficosRede();
+    
+}
+
 
 function gerarGraficoMemoriaRamUso() {
     let totalMemory = 16; // Total de memória RAM disponível (em GB)
@@ -22,7 +30,7 @@ function gerarGraficoMemoriaRamUso() {
         pieHole: 0.5,
         pieSliceText: 'percentage', 
         pieSliceTextStyle: {
-            color: '#ffffff',
+            color: '#000000',
             fontSize: '12px',
             bold: true
         },
@@ -34,7 +42,8 @@ function gerarGraficoMemoriaRamUso() {
         tooltip: { trigger: 'none' }, // Desativar tooltips
         enableInteractivity: false, // Desativar interatividade
         chartArea: {  width: '77%', height: '76%' }, // Definir a área do gráfico para 100% do contêiner
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
+        
      
     };
 
@@ -57,7 +66,7 @@ function gerarGraficoDiscoUso() {
 
     var options = {
         pieHole: 0.5,
-        pieSliceText: 'percentage', 
+        pieSliceText: 'percentage',        
         pieSliceTextStyle: {
             color: '#ffffff',
             fontSize: '12px',
@@ -114,4 +123,38 @@ function gerarGraficoUtilizacaoCPU() {
 
     var chart = new google.visualization.LineChart(document.getElementById('graficoUtilizacaoCPU'));
     chart.draw(data, options);
+}
+
+function criarGraficosRede() {
+    var ctx1 = document.getElementById('chartRede1').getContext('2d');
+    var doughnutChart1 = new Chart(ctx1, {
+      type: 'doughnut',
+      data: {
+        datasets: [{
+          data: [75, 25],
+          backgroundColor: ["#4CAF50", "#f0f0f0"]
+        }]
+      },
+      options: {
+        rotation: 270, // start angle in degrees
+        circumference: 180, 
+        cutout: '70%'// sweep angle in degrees
+      }
+    });
+
+    var ctx2 = document.getElementById('chartRede2').getContext('2d');
+    var doughnutChart2 = new Chart(ctx2, {
+      type: 'doughnut',
+      data: {       
+        datasets: [{
+          data: [50, 50],
+          backgroundColor: ["#2196F3", "#f0f0f0"]
+        }]
+      },
+      options: {
+        rotation: 270, // start angle in degrees
+        circumference: 180, // sweep angle in degrees
+        cutout: '70%'
+      }
+    });
 }
