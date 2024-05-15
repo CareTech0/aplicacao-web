@@ -162,6 +162,7 @@ body {
   width: 100%;
   justify-content: space-evenly;
   height: 31%;
+  flex-direction: row-reverse;
 }
 .legenda-status1 > span,
 .legenda-status2 > span,
@@ -302,6 +303,11 @@ body {
   text-anchor: middle; /* Define a âncora do texto */
   dominant-baseline: middle; /* Define a linha de base dominante */
   overflow: hidden; 
+}
+
+.container-grafico-esquerda { 
+  width: 69%;
+  height: 100%;
 }
 
 .container-do-grafico { 

@@ -31,7 +31,8 @@ function gerarGraficoMemoriaRamUso() {
         legend: 'none', // Ocultar a legenda
         tooltip: { trigger: 'none' }, // Desativar tooltips
         enableInteractivity: false, // Desativar interatividade
-        chartArea: { width: '90%', height: '90%' }, // Definir a área do gráfico para 100% do contêiner
+        chartArea: { width: '80%', height: '90%' }, // Definir a área do gráfico para 100% do contêiner
+        backgroundColor: 'transparent'
      
     };
 
