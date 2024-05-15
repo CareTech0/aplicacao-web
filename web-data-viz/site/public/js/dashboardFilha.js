@@ -79,7 +79,7 @@ function gerarGraficoDiscoUso() {
         legend: 'none', // Ocultar a legenda
         tooltip: { trigger: 'none' }, // Desativar tooltips
         enableInteractivity: false, // Desativar interatividade
-        chartArea: { width: '70%', height: '73%' }, // Definir a área do gráfico para 100% do contêiner
+        chartArea: { width: '77%', height: '76%' }, // Definir a área do gráfico para 100% do contêiner
         backgroundColor: 'transparent'
     };
 

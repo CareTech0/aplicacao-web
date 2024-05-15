@@ -45,6 +45,7 @@ body {
 width: 100%;
 height: 15%;
 display: flex;
+flex-direction: column;
 }
 
 .container-superior {
@@ -82,12 +83,11 @@ display: flex;
   flex-direction: column;
   height: 100%;
   width: 100%;
-  justify-content: space-evenly;
+  gap: 10px;
 }
 .content-legenda {
   display: flex;
-  justify-content: center;
-  height: 55%;
+  height: 81%;
   flex-direction: column;
   gap: 7px;
   align-items: center;
@@ -114,9 +114,8 @@ display: flex;
 .conteudo-legenda {
   display: flex;
   justify-content: center;
-  height: 28%;
+  height: 38%;
   flex-direction: column;
-  gap: 7px;
   align-items: center;
 }
 
@@ -168,7 +167,7 @@ display: flex;
   display: flex;
   width: 100%;
   justify-content: space-evenly;
-  height: 31%;
+  height: 32%;
   flex-direction: row-reverse;
 }
 .legenda-status1 > span,
@@ -235,12 +234,18 @@ display: flex;
   width: 100px;
 }
 
-.container-informacoes-mauqina {
+.container-informacoes-maquina {
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: 67%;
+  align-items: center;
 }
 
+.box-patrimonio-maquina > span {
+font-size: 18px;
+font-weight: 500;
+}
 .container-inferior {
   display: flex;
   width: 100%;
@@ -275,8 +280,8 @@ display: flex;
 
 .titulo-grafico-disco,
 .titulo-grafico-rede,
-.titulo-grafico-memoria,
-.titulo-grafico-cpu {
+.titulo-grafico-memoria
+{
   width: 100%;
   height: 16%;  
   align-items: center;
@@ -285,8 +290,12 @@ display: flex;
   display: flex;
 }
 
-.conteudo { 
-
+.titulo-grafico-cpu { 
+  width: 100%;
+  height: 16%;  
+  align-items: center;
+  justify-content: center;
+  display: flex;
 }
 
 .box-grafico-memoria,
@@ -304,7 +313,7 @@ display: flex;
   fill: #040b11;
 }
 .container-grafico-esquerda {
-  width: 69%;
+  width: 50%;
   height: 100%;
   display: flex;
   align-items: center;
@@ -345,18 +354,23 @@ display: flex;
 
 .container-grafico-esquerda-cpu {
   height: 100%;
-  width: 69%;
+  width: 70%;
 }
 
 .container-do-grafico-cpu { 
   height: 100%;
   width: 100%;
+  display: flex;
 }
 .caixa-flex-grafico-cpu { 
 
 }
 
 .container-grafico-direita-cpu {
+
+  width: 30%;
+    height: 100%;
+    display: flex;
 }
 
 .container-do-grafico-rede {
