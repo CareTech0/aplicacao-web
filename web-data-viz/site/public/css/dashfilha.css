@@ -6,95 +6,19 @@
   font-family: "Montserrat", sans-serif;
 }
 
+:root {
+  --cor-principal: #4586bf;
+  --cor-menuatual: #040b11;
+  --cor-menupassado: #949494;
+  --cor-cinza: #d6d6d6;
+  --cor-cinzaclaro: #f1f1f1;
+  --cor-verde: #66cc73;
+  --azul-claro: #8fc9fb;
+}
+
 body {
   background-color: #4586bf;
   display: flex;
-}
-
-
-.caixa1 { 
-    height: 100%;
-    width: 30%;
-}
-
-.caixa2 { 
-    width: 75%;
-}
-
-.box-menu {
-  height: 100%;
-  width: 20%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
-
-.txt-cadastrar-maquina a {
-  text-decoration: none;
-  color: #ffffff;
-}
-
-.caixa-botao-excluir-maquina { 
-    width: 23%;
-    display: flex;
-}
-
-.menu ul li.item-menu {
-  transition: 0.3s;
-  width: 100%;
-  height: 14%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.item-menu a:hover {
-  color: #fff;
-}
-
-.menu ul li a {
-  text-decoration: none;
-  color: #656565;
-  display: flex;
-  justify-content: flex-start;
-  width: 100%;
-  height: 36px;
-  align-items: center;
-}
-
-.menu ul li a .txt-link {
-  margin-left: 7px;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.box-deslogar {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 12%;
-}
-
-.item-menu a span > i {
-  color: #292929;
-  font-size: 18px;
-  cursor: pointer;
-  padding: 4px;
-}
-
-.item-menu-deslogar {
-  cursor: pointer;
-  font-weight: 500;
-  width: 38%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.txt-link a {
-  text-decoration: none;
-  color: #292929;
 }
 
 .caixa-container {
@@ -105,257 +29,179 @@ body {
   height: 99.9%;
 }
 
-.content-img img {
-    width: 107px;
-}
-
-.content-img {
-  width: 100px;
-  margin-right: 10px;
-}
-
-.content-titulo {
-    display: flex;
-    align-items: center;
-    height: 21%;
-    width: 72%;
-    justify-content: center;
-}
-
-.titulo-cadastrar {
-  font-size: 29px;
-  font-weight: 600;
-  border-bottom: 1.5px solid #d9d9d9;
-  padding-bottom: 15px;
-  display: flex;
-  flex-direction: column;
-}
-
-.container-grafico-menor {
-    width: 73%;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    height: 95%;
-    flex-direction: column;
-}
-
-.box-grafico-menor {
-    border-radius: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    background: white;
-    width: 100%;
-    height: 22%;
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
-}
-
-
-.titulo-grafico-menor {
-    width: 100%;
-    height: 15%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.titulo-grafico-menor span {
-  font-weight: 700;
-  font-size: 16px;
-}
-
-.chart-pequeno {
-    width: 100%;
-    height: 100%;
-    margin-bottom: 10px;
-}
-
-.titulo-cadastrar p {
-  font-size: 13px;
-  color: #3e4245;
-}
-
-.box-dos-graficos {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 71%;
-}
-
-.conteudo-maquina {
-    width: 73%;
-
-}
-
-.botao-voltar {
-    cursor: pointer;
-    display: flex;
-    justify-content: flex-start;
-    height: 38%;
-    width: 38%;
-}
-
-.botao-voltar span i {
-  color: #4586bf;
-  font-size: 20px;
-}
-
-.botao-voltar > span {
-  font-weight: 600;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 88%;
-}
-.botao-voltar-caixa { 
-    height: 9%;
-    display: flex;
-    align-items: center;
-}
-.modal-excluir {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgb(0, 0, 0);
-  background-color: rgba(0, 0, 0, 0.4);
-}
-
-.modal-content-excluir {
-  background-color: #fefefe;
-  margin: 10% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 29%;
-  border-radius: 20px;
-}
-
-.modal-titulo {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  border-bottom: 1.5px solid #d9d9d9;
-  font-size: 15px;
-}
-
-.modal-titulo-novo-usuario span i {
-  font-size: 23px;
-  padding: 10px;
-}
-
-.modal-titulo span h2 {
-  color: #3e4245;
-}
-
-.modal-mensagem {
-  font-size: 14px;
-  padding: 16px;
-  font-weight: 500;
-}
-
-.modal-botao-excluir-site {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.modal-botao-excluir {
-  display: flex;
-  justify-content: center;
-}
-.modal-botao-excluir > button a {
-  text-decoration: none;
-  color: white;
-}
-
-#confirmDelete,
-#confirmDeslogar {
-  background-color: #f84c4c;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  border-radius: 15px;
-}
-
-/*  */
-
 .container {
   background-color: #f5f5f5;
   border-radius: 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
- 
+  overflow: auto;
   width: 98%;
   height: 93%;
   display: flex;
+  flex-direction: column;
 }
 
-.container-cadastro {
+.container-superior {
+  width: 100%;
+  height: 34%;
+  display: flex;
+  position: relative;
+}
+
+.container-esquerda {
+  display: flex;
+  flex-direction: column;
+  width: 66%;
+}
+
+.container-legendas {
+  width: 34%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.titulo-legendas {
   display: flex;
   justify-content: center;
-  width: 66%;
+  align-items: center;
+  height: 31%;
+}
+
+.titulo-legendas > span {
+  font-weight: 600;
+}
+
+.caixas-legendas { 
+  display: flex;
+  flex-direction: column;
   height: 100%;
+  width: 100%;
+  justify-content: space-evenly;
+}
+.content-legenda {
+  display: flex;
+  justify-content: center;
+  height: 55%;
+  flex-direction: column;
+  gap: 7px;
   align-items: center;
 }
 
-.container-conteudo { 
-    height: 91%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.box-legenda {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
-.content-informacoes { 
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
+.titulo-legendas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 31%;
 }
 
-.box-config { 
-    font-size: 13px;
-}
-.botao-excluir-maquina { 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f13232;
-    border-radius: 10px;
-    height: 29px;
-    width: 173px;
-}
-.botao-excluir-maquina > span { 
-    color: white;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 15px;
-
+.titulo-legendas > span {
+  font-weight: 600;
 }
 
-.container-grafico-cpu { 
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
+.conteudo-legenda {
+  display: flex;
+  justify-content: center;
+  height: 28%;
+  flex-direction: column;
+  gap: 7px;
+  align-items: center;
 }
 
-.box-grafico { 
-    width: 80%;
-    height: 86%;
-    background-color: white;
-    border-radius: 10px;
+.fundo-legenda-status {
+  display: flex;
+  background: white;
+  width: 80%;
+  height: 100%;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
 
-.container-cpu { 
-    height: 100%;
-    width: 100%;
-    display: flex;
+.fundo-legenda-condicao1 {
+  justify-content: space-around;
+  height: 100%;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  align-items: center;
+  background-color: var(--cor-verde);
+  display: flex;
+  width: 26%;
 }
-/* scroll */
 
+.fundo-legenda-condicao2 {
+  justify-content: space-around;
+  height: 100%;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  align-items: center;
+  background-color: rgba(252, 249, 74, 0.897);
+  display: flex;
+  width: 26%;
+}
+
+.fundo-legenda-condicao3 {
+  justify-content: space-around;
+  height: 100%;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  align-items: center;
+  background-color: rgba(252, 80, 74, 0.897);
+  display: flex;
+  width: 26%;
+}
+
+.container-2-legenda {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  height: 31%;
+}
+.legenda-status1 > span,
+.legenda-status2 > span,
+.legenda-status3 > span {
+  font-size: 14px;
+}
+
+.legenda-status1,
+.legenda-status2,
+.legenda-status3 {
+  display: flex;
+  align-items: center;
+}
+
+.icon-status {
+  width: 27px;
+  display: flex;
+  justify-content: center;
+}
+
+.icon-status img {
+  width: 20px;
+}
+
+.content-titulo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 25%;
+}
+
+.icon-cadastrar > img {
+  width: 80px;
+  margin-right: 10px;
+}
+
+.container-titulo {
+  display: flex;
+  height: 50%;
+  align-items: center;
+  justify-content: center;
+}
