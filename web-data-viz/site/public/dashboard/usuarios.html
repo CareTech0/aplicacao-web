@@ -253,22 +253,22 @@
 
             <div class="content-input-modal-novo-usuario">
                 <span> Nome: </span>
-                <input type="text" name="nome">
+                <input type="text" name="nome" id="ipt_nome">
             </div>
 
             <div class="content-input-modal-novo-usuario">
                 <span> E-mail:</span>
-                <input type="text" name="email">
+                <input type="text" name="email" id="ipt_email">
             </div>
 
             <div class="content-input-modal-novo-usuario">
                 <span> Senha: </span>
-                <input type="password">
+                <input type="password" id="ipt_senha">
             </div>
 
             <div class="content-input-modal-novo-usuario">
                 <span> Confirmar senha:</span>
-                <input type="password">
+                <input type="password" id="ipt_repetir_senha">
             </div>
 
 
@@ -291,7 +291,7 @@
                 </div>
 
                 <div class="content-input-modal">
-                    <select id="perfil" name="perfil">
+                    <select id="perfil" name="perfil" id="slct_tipo_user">
                         <option value="administrador">Administrador</option>
                         <option value="usuario">Usuário comum</option>
                     </select>
@@ -299,7 +299,7 @@
 
 
             </div>
-            <button type="submit" id="saveNewUser">SALVAR</button>
+            <button id="save_new_user">SALVAR</button>
 
 
 
@@ -390,7 +390,7 @@
 
 
             </div>
-            <button type="submit" id="saveNewUser">SALVAR</button>
+            <button id="saveNewUser">SALVAR</button>
 
 
 
@@ -402,7 +402,7 @@
 
 <script>
 
-    var menuItem = document.querySelectorAll(".item-menu");
+    let menuItem = document.querySelectorAll(".item-menu");
 
     function selectLink() {
         menuItem.forEach((item) => item.classList.remove("ativo"));
@@ -427,6 +427,9 @@
 
     // botões de fechar dos modais
     const closeButtons = document.querySelectorAll('.close');
+
+    //botão para salvar o usário
+    const saveUser = document.getElementById('save_new_user');
 
     // funcoes para abrir os modais
     function abrirDeleteModal() {
@@ -487,6 +490,67 @@
 
         }
     });
+
+    // Criar novo usuário
+    saveUser.addEventListener('click', function () {
+        const id = sessionStorage.ID_USER;
+        const nome = document.getElementById('ipt_nome').value;
+        const email = document.getElementById('ipt_email').value;
+        const senha = document.getElementById('ipt_senha').value;
+        const repetirSenha = document.getElementById('ipt_repetir_senha').value;
+        const tipoUser = document.getElementById('slct_tipo_user').value;
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const nomeRegex = /\d/;
+        let validacoesCorretas = 4;
+
+        if(nomeRegex.test(nome)){
+            validacoesCorretas --;
+        }
+
+        if(!emailRegex.test(email)){
+            validacoesCorretas --;
+        }
+
+        if(senha.length < 8){
+            validacoesCorretas --;
+        }
+
+        if(senha != repetirSenha){
+            validacoesCorretas --;
+        }
+
+        if(validacoesCorretas == 0){
+            fetch("/dashboard/criarUsuario", {
+                method: "POST",
+                headers: {
+                    "content-Type": "applicattion/json",
+                },
+                body: JSON.stringify({
+                    nome_user: nome,
+                    email_user: email,
+                    senha_user: senha,
+                    tipo_user: tipoUser,
+                }),
+            })
+            .then(function (resposta){
+                if(resposta.ok) {
+                    closeButtons.forEach(function (button) {
+                    button.addEventListener('click', function () {
+                        deleteModal.style.display = 'none';
+                        newUserModal.style.display = 'none';
+                        editModal.style.display = 'none';
+                        successModal.style.display = 'none';
+                    });
+                });
+                }
+            }).catch(function (resposta){
+                console.log(`#ERRO: ${resposta}`);
+                alert("Erro no banco");
+            });
+        }
+    })
+    
 
 
 </script>

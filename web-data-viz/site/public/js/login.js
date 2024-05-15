@@ -39,14 +39,15 @@ formularioLogin.addEventListener('submit', (event) => {
                 sessionStorage.NOME_USER = json.nome;
                 sessionStorage.ID_USER = json.id;
                 sessionStorage.SENHA_USER = json.senha;
+                sessionStorage.TIPO_USER = json.tipo_user;
                 sessionStorage.FK_EMPRESA = json.fk_empresa;
 
                 setTimeout(function () {
-                    window.location = '/dashboard'
+                    window.location = '/dashboard/dashboardVo'
                 }, 1000)
             })
         } else {
-            var element = document.querySelector('.invalid-message');
+            let element = document.querySelector('.invalid-message');
             element.style.display = 'block';
         }
     }).catch(function (erro) {
@@ -74,7 +75,6 @@ formularioCadastro.addEventListener('submit', (event) => {
         }),
     })
     .then(function (resposta){
-        console.log("resposta: ", resposta);
         if(resposta.ok) {
             document.getElementById("cad_razao_social").value = "";
             document.getElementById("cad_email").value = "";
@@ -86,7 +86,7 @@ formularioCadastro.addEventListener('submit', (event) => {
     }).catch(function (resposta){
         console.log(`#ERRO: ${resposta}`);
         alert("Erro no banco");
-    })
+    });
 });
 
 function mascaraCNPJ(campoCNPJ) {

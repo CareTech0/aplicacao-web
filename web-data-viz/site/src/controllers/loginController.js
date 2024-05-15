@@ -15,6 +15,7 @@ function autenticar(req, res){
                     id: resultado[0].id_user,
                     nome: resultado[0].nome,
                     email: resultado[0].email,
+                    tipo_user: resultado[0].tipo_usuario,
                     senha: resultado[0].senha,
                     fk_empresa: resultado[0].fk_empresa
                 })

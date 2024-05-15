@@ -3,7 +3,7 @@ const database = require("../database/config");
 function autenticar(email, senha){
     console.log("loginFinal");
     const instrucao = `
-        select * from usuario where email = '${email}' and senha = '${senha}';
+        select * from usuario where login_email = '${email}' and senha = '${senha}';
     `;
     return database.executar(instrucao);
 }
