@@ -41,8 +41,8 @@ body {
 }
 
 .container-superior {
-  width: 100%;
-  height: 34%;
+  width: 100%;   
+   height: 28%;
   display: flex;
 }
 
@@ -238,8 +238,8 @@ body {
 .container-inferior { 
   display: flex;
     width: 100%;
-    height: 66%;
-    flex-direction: column;
+    height: 72%;
+        flex-direction: column;
 }
 
 .conteudo-superior {
@@ -280,39 +280,37 @@ body {
 }
 
 
-.box-grafico-memoria { 
+.box-grafico-memoria,
+.box-grafico-disco { 
   width: 35%;
   height: 90%;
 }
 
-.titulo-grafico-memoria { 
-}
-
 #graficoDeRoscaMemoria {
   width: 100%;
-  height: 80%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-#graficoDeRoscaMemoria text {
-  fill: #000000; 
-  font-size: 12px; 
-  font-weight: bold; 
-  text-anchor: middle; /* Define a âncora do texto */
-  dominant-baseline: middle; /* Define a linha de base dominante */
-  overflow: hidden; 
+#graficoDeRoscaMemoria text,
+#graficoDeDisco text {
+  fill:#040b11
 }
-
 .container-grafico-esquerda { 
   width: 69%;
   height: 100%;
+  display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+.container-grafico-direita {
+  display: flex;
+  flex-direction: column;
+
+}
 .container-do-grafico { 
   width: 100%;
-  height: 100%;
+  height: 84%;
+  display: flex;
 }
 
 .tamanho-alerta {
@@ -324,11 +322,6 @@ body {
 }
 .tamanho-alerta img { 
   width: 25px;
-}
-
-.box-grafico-disco {
-  width: 40%;
-  height: 90%;
 }
 
 .box-grafico-rede {
