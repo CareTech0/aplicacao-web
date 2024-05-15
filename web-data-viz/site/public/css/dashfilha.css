@@ -42,7 +42,7 @@ body {
 
 .container-superior {
   width: 100%;   
-   height: 28%;
+  height: 27%;
   display: flex;
 }
 
@@ -245,13 +245,13 @@ body {
 .conteudo-superior {
   display: flex;
   width: 100%;
-  height: 50%;
+  height: 63%;
   justify-content: space-evenly;
 }
 
 .conteudo-inferior {
   width: 100%;
-  height: 50%;
+  height: 60%;
   display: flex;
   justify-content: space-evenly;
 }
@@ -298,8 +298,8 @@ body {
   width: 69%;
   height: 100%;
   display: flex;
-    align-items: center;
-    justify-content: center;
+  align-items: center;
+  justify-content: center;
 }
 
 .container-grafico-direita {
@@ -330,6 +330,16 @@ body {
 }
 
 .box-grafico-cpu {
-  width: 40%;
-  height: 90%;
+  width: 48%;
+    height: 95%;
+}
+
+.container-grafico-esquerda-cpu {
+height: 100%;
+width: 69%;
+
+}
+
+.container-grafico-direita-cpu {
+
 }

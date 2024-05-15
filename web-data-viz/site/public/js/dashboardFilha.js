@@ -2,6 +2,7 @@ google.charts.load('current', {'packages':['corechart']});
 
 google.charts.setOnLoadCallback(gerarGraficoMemoriaRamUso);
 google.charts.setOnLoadCallback(gerarGraficoDiscoUso);
+google.charts.setOnLoadCallback(gerarGraficoUtilizacaoCPU);
 
 function gerarGraficoMemoriaRamUso() {
     let totalMemory = 16; // Total de memória RAM disponível (em GB)
@@ -77,3 +78,40 @@ function gerarGraficoDiscoUso() {
     chart.draw(data, options);
 }
 
+function gerarGraficoUtilizacaoCPU() {
+
+    var data = new google.visualization.DataTable();
+    data.addColumn('number', 'Segundos');
+    data.addColumn('number', 'Utilização da CPU (%)');
+
+    // Simular dados de utilização da CPU
+    var dadosUtilizacaoCPU = [
+        [0, 10],
+        [10, 20],
+        [20, 30],
+        [30, 40],
+        [40, 50],
+        [50, 60],
+        [60, 70],
+        [70, 80],
+        [80, 90],
+        [90, 100]
+    ];
+
+    // Adicionar os dados ao DataTable
+    data.addRows(dadosUtilizacaoCPU);
+
+    // Definir as opções do gráfico
+    var options = {
+       
+        curveType: 'function',
+        backgroundColor: 'transparent',
+        legend: { position: 'bottom' },
+        hAxis: { title: 'Segundos' },
+        vAxis: { title: 'Utilização da CPU (%)', minValue: 0, maxValue: 100 },
+        chartArea: { width: '80%', height: '70%' } // Ajustar o tamanho da área do gráfico conforme necessário
+    };
+
+    var chart = new google.visualization.LineChart(document.getElementById('graficoUtilizacaoCPU'));
+    chart.draw(data, options);
+}
