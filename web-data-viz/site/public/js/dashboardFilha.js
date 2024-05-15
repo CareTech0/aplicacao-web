@@ -111,50 +111,61 @@ function gerarGraficoUtilizacaoCPU() {
     data.addRows(dadosUtilizacaoCPU);
 
     // Definir as opções do gráfico
-    var options = {
-       
+    var options = {       
         curveType: 'function',
         backgroundColor: 'transparent',
-        legend: { position: 'bottom' },
+        legend: { position: 'none' },
         hAxis: { title: 'Segundos' },
         vAxis: { title: 'Utilização da CPU (%)', minValue: 0, maxValue: 100 },
-        chartArea: { width: '80%', height: '70%' } // Ajustar o tamanho da área do gráfico conforme necessário
+        chartArea: { width: '80%', height: '60%' }        
     };
 
     var chart = new google.visualization.LineChart(document.getElementById('graficoUtilizacaoCPU'));
     chart.draw(data, options);
 }
 
-function criarGraficosRede() {
-    var ctx1 = document.getElementById('chartRede1').getContext('2d');
-    var doughnutChart1 = new Chart(ctx1, {
-      type: 'doughnut',
-      data: {
-        datasets: [{
-          data: [75, 25],
-          backgroundColor: ["#4CAF50", "#f0f0f0"]
-        }]
-      },
-      options: {
-        rotation: 270, // start angle in degrees
-        circumference: 180, 
-        cutout: '70%'// sweep angle in degrees
-      }
-    });
+            function criarGraficosRede() {
+                var ctx1 = document.getElementById('chartRede1').getContext('2d');
+                var doughnutChart1 = new Chart(ctx1, {
+                type: 'doughnut',
+                data: {
+                    datasets: [{
+                    data: [75, 25],
+                    backgroundColor: ["#4CAF50", "#a7a7a7"]
+                    }]
+                },
+                options: {
+                    rotation: 270, // start angle in degrees
+                    circumference: 180, 
+                    cutout: '70%',// sweep angle in degrees
+                    hover: { mode: null }, // disable hover effect
+                    plugins: {
+                        datalabels: {
+                            formatter: (value, ctx) => {
+                                return value + ' Mbps';
+                            },
+                            color: '#000',
+                            font: {
+                                size: '20'
+                            }
+                        }
+                    }
+                }
+                });
 
-    var ctx2 = document.getElementById('chartRede2').getContext('2d');
-    var doughnutChart2 = new Chart(ctx2, {
-      type: 'doughnut',
-      data: {       
-        datasets: [{
-          data: [50, 50],
-          backgroundColor: ["#2196F3", "#f0f0f0"]
-        }]
-      },
-      options: {
-        rotation: 270, // start angle in degrees
-        circumference: 180, // sweep angle in degrees
-        cutout: '70%'
-      }
-    });
-}
+                var ctx2 = document.getElementById('chartRede2').getContext('2d');
+                var doughnutChart2 = new Chart(ctx2, {
+                type: 'doughnut',
+                data: {       
+                    datasets: [{
+                    data: [50, 50],
+                    backgroundColor: ["#2196F3", "#a7a7a7"]
+                    }]
+                },
+                options: {
+                    rotation: 270, // start angle in degrees
+                    circumference: 180, // sweep angle in degrees
+                    cutout: '70%',
+                }
+                });
+            }

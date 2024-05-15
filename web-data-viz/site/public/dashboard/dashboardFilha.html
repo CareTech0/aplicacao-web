@@ -201,7 +201,9 @@
 
                                     </div>
                                     <div class="container-grafico-direita">
-
+                                        <div class="box-status">
+                                            <span>Status:</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -209,19 +211,23 @@
 
                         <div class="box-grafico-cpu">
                             <div class="fundo-grafico-cpu">
-                                <div class="titulo-grafico-cpu">
-                                    <span>INDICADORES DE USO DA CPU</span>
-                                    <div class="tamanho-alerta">
-                                        <img src="../assets/imgs/alerta.png" id="alertaCPU">
-                                    </div>
-                                </div>
-                                <div class="container-do-grafico">
-                                    <div class="container-grafico-esquerda-cpu">
-                                        <div id="graficoUtilizacaoCPU"> </div>
 
+                                <div class="conteudo">
+                                    <div class="titulo-grafico-cpu">
+                                        <span>INDICADORES DE USO DA CPU</span>
+                                        <div class="tamanho-alerta">
+                                            <img src="../assets/imgs/alerta.png" id="alertaCPU">
+                                        </div>
                                     </div>
-                                    <div class="container-grafico-direita-cpu">
+                                    <div class="container-do-grafico-cpu">
+                                        <div class="container-grafico-esquerda-cpu">
 
+                                            <div id="graficoUtilizacaoCPU"> </div>
+
+                                        </div>
+                                        <div class="container-grafico-direita-cpu">
+
+                                        </div>
                                     </div>
                                 </div>
 
@@ -267,8 +273,10 @@
 
                                 <div class="container-do-grafico-rede">
                                     <div class="container-grafico-esquerda-rede">
-                                        <canvas id="chartRede1"></canvas>
-                                        <canvas id="chartRede2"></canvas>
+                                        <div class="box-dos-graficos-rede">
+                                            <canvas id="chartRede1" width="100" height="200"></canvas>
+                                            <canvas id="chartRede2" width="100" height="200"></canvas>
+                                        </div>
                                     </div>
                                 </div>
 
