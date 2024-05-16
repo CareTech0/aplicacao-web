@@ -141,52 +141,69 @@
                                         <div class="opcoes-filtro">
 
                                             <div class="titulofilter">
-                                                <span style="font-weight: 600;">Status</span>
-                                            </div>
-
-                                            <div class="checkboxfilters">
-                                                <label class="container-checkbox">
-                                                    <input type="checkbox" checked="checked"> Crítico
-
-                                                </label>
-                                                <label class="container-checkbox">
-                                                    <input type="checkbox"> Alerta
-
-                                                </label>
-                                                <label class="container-checkbox">
-                                                    <input type="checkbox"> Ideal
-
-                                                </label>
-                                            </div>
-
-
-                                            <div class="titulofilter">
-                                                <span style="font-weight: 600;">Condição</span>
-                                            </div>
-                                            <div class="checkboxfilters">
-                                                <label class="container-checkbox">
-                                                    <input type="checkbox"> Ligado
-
-                                                </label>
-                                                <label class="container-checkbox">
-                                                    <input type="checkbox"> Desligado
-
-                                                </label>
-                                            </div>
-                                        </div>
-
-                                        <div class="box-botoes-filtro">
-                                            <div class="botao-cancelar">
-                                                <div class="conteudo-botao">
-                                                    <span>
-                                                        CANCELAR
-                                                    </span>
+                                                <div class="caixafilter">
+                                                    <span style="font-weight: 600;">Status</span>
                                                 </div>
                                             </div>
+
+                                            <div class="checkboxfilters">
+                                                <div class="caixacheckbox">
+                                                    <div class="checkbox-wrapper-18">
+                                                        <div class="round">
+                                                            <input type="checkbox" id="checkbox-critico" />
+                                                            <label for="checkbox-critico"></label> <span> Crítico
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="checkbox-wrapper-18">
+                                                        <div class="round">
+                                                            <input type="checkbox" id="checkbox-atencao" />
+                                                            <label for="checkbox-atencao"></label> <span> Atenção
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="checkbox-wrapper-18">
+                                                        <div class="round">
+                                                            <input type="checkbox" id="checkbox-ideal" />
+                                                            <label for="checkbox-ideal"></label> <span> Ideal </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div style="display: flex; flex-direction: column">
+                                                <div class="titulofilter">
+                                                    <div class="caixafilter">
+                                                        <span style="font-weight: 600;">Condição</span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="checkboxfilters">
+                                                    <div class="caixacheckbox">
+                                                        <div class="checkbox-wrapper-18">
+                                                            <div class="round">
+                                                                <input type="checkbox" id="checkbox-ligado" />
+                                                                <label for="checkbox-ligado"></label> <span> Ligado
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="checkbox-wrapper-18">
+                                                            <div class="round">
+                                                                <input type="checkbox" id="checkbox-desligado" />
+                                                                <label for="checkbox-desligado"></label> <span>
+                                                                    Desligado </span>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="container-botoes-filtro">
                                             <div class="botao-confirmar">
                                                 <div class="conteudo-botao-confirmar">
                                                     <span>
-                                                        CONFIRMAR
+                                                        APLICAR
                                                     </span>
                                                 </div>
                                             </div>
@@ -361,7 +378,11 @@
                         </div>
                         <div class="input-group">
                             <label for="senha">Senha:</label>
-                            <input type="text" id="senha">
+                            <input type="password" id="senha">
+                        </div>
+                        <div class="input-group">
+                            <label for="senha">Confirmar senha:</label>
+                            <input type="password" id="senha">
                         </div>
 
                     </div>
@@ -431,5 +452,18 @@
         // Esconder a tela de criação e mostrar a tela de gerenciamento
         telaCriar.style.display = 'none';
         telaGerenciar.style.display = 'block';
+    });
+
+    var checkboxes = document.querySelectorAll('.container-checkbox input[type=checkbox]');
+    var filtro = document.getElementById('filtro');
+
+    checkboxes.forEach(function (checkbox) {
+        checkbox.addEventListener('click', function (event) {
+            event.stopPropagation();
+        });
+    });
+
+    filtro.addEventListener('click', function (event) {
+        event.stopPropagation();
     });
 </script>

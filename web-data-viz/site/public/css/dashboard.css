@@ -274,11 +274,11 @@ body {
 .container-filtro {
   z-index: 2;
   width: 234px;
-  height: 214px;
   position: absolute;
     top: 87%;
     left: 27.61%;
-    
+    height: 229px;
+
 }
 
 
@@ -297,11 +297,14 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-weight: 550;
+  letter-spacing: 1px;
+  height: 12%;
+  font-size: 15px; 
 }
 
 .box-botoes-filtro {
   display: flex;
-  width: 100%;
   justify-content: space-around;
   height: 15%;
 }
@@ -312,15 +315,47 @@ body {
 }
 
 .titulofilter {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 22px;
+}
+
+.caixafilter { 
+  width: 88%;
 }
 
 .checkboxfilters {
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
 }
 
-.container-checkbox {
+.caixacheckbox {
+  width: 80%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 3px;
+}
+
+
+.container-botoes-filtro {
+width: 100%;
+display: flex;
+height: 18%;
+
+align-items: center;
+    justify-content: center;
+}
+
+.container-checkbox  {
+  font-size: 14px; 
 }
 
 .checkbox {
@@ -348,7 +383,7 @@ body {
   border-radius: 5px;
   width: 40%;
   cursor: pointer;
-  height: 90%;
+  height: 55%;
   justify-content: center;
   align-items: center;
   display: flex;
@@ -543,4 +578,57 @@ body {
 ::-webkit-scrollbar-button {
   display: none;
 }
+
+
+.checkbox-wrapper-18 {
+  display: flex;
+}
+
+
+.checkbox-wrapper-18 .round {
+  position: relative;
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.checkbox-wrapper-18 .round label {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 17px;
+    width: 18px;
+  display: block;
+}
+
+.checkbox-wrapper-18 .round label:after {
+  border: 2px solid #fff;
+  border-top: none;
+  border-right: none;
+  content: "";
+  height: 3px;
+  left: 4px;
+  opacity: 0;
+  position: absolute;
+  top: 6px;
+  transform: rotate(-45deg);
+  width: 12px;
+}
+
+.checkbox-wrapper-18 .round input[type="checkbox"] {
+  visibility: hidden;
+  display: none;
+  opacity: 0;
+}
+
+.checkbox-wrapper-18 .round input[type="checkbox"]:checked + label {
+  background-color: #66bb6a;
+  border-color: #66bb6a;
+}
+
+.checkbox-wrapper-18 .round input[type="checkbox"]:checked + label:after {
+  opacity: 1;
+}
+
 
