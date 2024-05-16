@@ -246,6 +246,17 @@ flex-direction: column;
 font-size: 18px;
 font-weight: 500;
 }
+
+.center_rosca {
+  top: 72%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+    position: absolute;
+  align-self:center;
+  font-size: 18px;
+  font-family: poppins, sans-serif;
+  font-weight: 600;
+}
 .container-inferior {
   display: flex;
   width: 100%;
@@ -296,6 +307,7 @@ font-weight: 500;
   align-items: center;
   justify-content: center;
   display: flex;
+  font-weight: 600;
 }
 
 .box-grafico-memoria,
@@ -354,7 +366,7 @@ font-weight: 500;
 
 .container-grafico-esquerda-cpu {
   height: 100%;
-  width: 70%;
+  width: 65%;
 }
 
 .container-do-grafico-cpu { 
@@ -366,30 +378,29 @@ font-weight: 500;
 
 }
 
-.container-grafico-direita-cpu {
 
-  width: 30%;
+
+.container-grafico-direita-cpu {
+  width: 35%;
     height: 100%;
     display: flex;
 }
 
 .container-do-grafico-rede {
-  width: 100%;
-  height: 100%;
+  width: 100%;    height: 84%;
+  display: flex;
+  justify-content: space-evenly;
 }
 
-.container-grafico-esquerda-rede {
-  width: 100%;
+
+.container-grafico-esquerda-rede,
+.container-grafico-direita-rede {
+  width: 50%;
   display: flex;
-  height: 92%;
+  align-items: center;
   justify-content: center;
 }
 
 .box-dos-graficos-rede {
-  width: 79%;
-  display: flex;
-}
-.container-grafico-direita-rede {
-  width: 50%;
-  height: 100%;
+  position: relative;
 }

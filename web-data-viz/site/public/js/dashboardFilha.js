@@ -124,48 +124,69 @@ function gerarGraficoUtilizacaoCPU() {
     chart.draw(data, options);
 }
 
-            function criarGraficosRede() {
-                var ctx1 = document.getElementById('chartRede1').getContext('2d');
-                var doughnutChart1 = new Chart(ctx1, {
-                type: 'doughnut',
-                data: {
-                    datasets: [{
-                    data: [75, 25],
-                    backgroundColor: ["#4CAF50", "#a7a7a7"]
-                    }]
-                },
-                options: {
-                    rotation: 270, // start angle in degrees
-                    circumference: 180, 
-                    cutout: '70%',// sweep angle in degrees
-                    hover: { mode: null }, // disable hover effect
-                    plugins: {
-                        datalabels: {
-                            formatter: (value, ctx) => {
-                                return value + ' Mbps';
-                            },
-                            color: '#000',
-                            font: {
-                                size: '20'
-                            }
-                        }
+function criarGraficosRede() {
+    var ctx1 = document.getElementById('chartRede1').getContext('2d');
+    var doughnutChart1 = new Chart(ctx1, {
+        type: 'doughnut',
+        data: {
+            datasets: [{
+                data: [75, 25],
+                backgroundColor: ["#4CAF50", "#a7a7a7"]
+            }]
+        },
+        options: {
+            rotation: 270,
+            circumference: 180,
+            cutout: '70%',
+            hover: { mode: null },
+            plugins: {
+                datalabels: {
+                    formatter: (value, ctx) => {
+                        return value + ' Mbps';
+                    },
+                    color: '#000',
+                    font: {
+                        size: '20'
                     }
                 }
-                });
-
-                var ctx2 = document.getElementById('chartRede2').getContext('2d');
-                var doughnutChart2 = new Chart(ctx2, {
-                type: 'doughnut',
-                data: {       
-                    datasets: [{
-                    data: [50, 50],
-                    backgroundColor: ["#2196F3", "#a7a7a7"]
-                    }]
-                },
-                options: {
-                    rotation: 270, // start angle in degrees
-                    circumference: 180, // sweep angle in degrees
-                    cutout: '70%',
-                }
-                });
             }
+        }
+    });
+
+    var ctx2 = document.getElementById('chartRede2').getContext('2d');
+    var doughnutChart2 = new Chart(ctx2, {
+        type: 'doughnut',
+        data: {
+            datasets: [{
+                data: [50, 50],
+                backgroundColor: ["#2196F3", "#a7a7a7"]
+            }]
+        },
+        options: {
+            rotation: 270,
+            circumference: 180,
+            cutout: '70%',
+            hover: { mode: null },
+            plugins: {
+                datalabels: {
+                    formatter: (value, ctx) => {
+                        return value + ' Mbps';
+                    },
+                    color: '#000',
+                    font: {
+                        size: '20'
+                    }
+                }
+            }
+        }
+    });
+
+    // Ajustando a posição do texto dentro dos gráficos
+    var textoRede1 = document.getElementById('textoRede1');
+    textoRede1.style.top = (document.getElementById('chartRede1').height / 2 - textoRede1.offsetHeight / 2) + 'px';
+    textoRede1.style.left = (document.getElementById('chartRede1').width / 2 - textoRede1.offsetWidth / 2) + 'px';
+
+    var textoRede2 = document.getElementById('textoRede2');
+    textoRede2.style.top = (document.getElementById('chartRede2').height / 2 - textoRede2.offsetHeight / 2) + 'px';
+    textoRede2.style.left = (document.getElementById('chartRede2').width / 2 - textoRede2.offsetWidth / 2) + 'px';
+}
