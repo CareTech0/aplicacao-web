@@ -39,7 +39,7 @@ function gerarGraficoMemoriaRamUso() {
             1: { color: '#8ee79a', } // Cor para o total disponível
         },
         legend: 'none', // Ocultar a legenda
-        tooltip: { trigger: 'none' }, // Desativar tooltips
+        tooltip: { trigger: 'hover' }, // Desativar tooltips
         enableInteractivity: false, // Desativar interatividade
         chartArea: {  width: '77%', height: '76%' }, // Definir a área do gráfico para 100% do contêiner
         backgroundColor: 'transparent',
