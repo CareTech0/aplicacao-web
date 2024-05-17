@@ -219,6 +219,21 @@ ul li.ativo {
     justify-content: center;
   }
   
+  .container-edicao-site {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+  }
+  .box-editar-site {   
+    width: 100%;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }  
+
+  
   .input-site-2 input[type="text"] {
     background-color: #f7f7f7;
     border: 1px #d9d9d9 solid;
@@ -307,7 +322,7 @@ ul li.ativo {
 .modal-content-excluir-site {
     background-color: #fefefe;
     margin: 10% auto;
-    padding: 20px;
+    padding: 30px;
     border: 1px solid #888;
     width: 29%;
     border-radius: 20px;
@@ -343,9 +358,17 @@ ul li.ativo {
 .modal-titulo {
     display: flex;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-end;
     border-bottom: 1.5px solid #D9D9D9;
     font-size: 15px;
+}
+
+.modal-titulo span { 
+  width: 27px;
+}
+.modal-titulo span i { 
+  font-size: 20px;
+  width: 50px;
 }
 
 .modal-titulo span h2 {
@@ -384,7 +407,7 @@ ul li.ativo {
   
 }
 
-#confirmDelete, #confirmDeslogar, #confirmEdit {
+#confirmDelete, #confirmDeslogar {
     background-color: #F84C4C;
     color: #fff;   
     border: none;    
@@ -392,6 +415,16 @@ ul li.ativo {
     cursor: pointer;   
     border-radius: 15px;    
 
+}
+
+#confirmEdit { 
+  background-color: #049144;
+  color: #fff;   
+  border: none;    
+  width: 140px;
+  height: 30px;   
+  cursor: pointer;   
+  border-radius: 15px; 
 }
 
 .botao {
