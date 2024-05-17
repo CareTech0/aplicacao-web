@@ -257,7 +257,12 @@ flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-
+.container-bread2 { 
+  width: 100%;
+  height: 36%;
+  display: flex;
+  align-items: center;
+}
 .box-patrimonio-maquina > span {
   font-weight: 700;
 }
@@ -290,7 +295,8 @@ font-weight: 600;
 .container-inferior {
   display: flex;
   width: 100%;
-  height: 80%;
+  height: 75%;
+
   flex-direction: column;
 }
 

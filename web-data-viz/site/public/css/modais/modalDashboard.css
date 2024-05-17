@@ -33,15 +33,14 @@
     width: 27%;
     border-radius: 20px;
     height: 71%;
-
 }
 
 .input-group { 
     
 }
 .container-inputs-gerenciar {
-    width: 100%;  
-      height: 68%;
+    width: 100%;
+    height: 100%;
 }
 
 
@@ -51,14 +50,31 @@
 }
 
 .container-modal { 
-    height: 80%;
+    height: 342px;
+    display: flex;
+    flex-direction: column;
+} 
+
+.boxCriar {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    justify-content: space-evenly;
-} 
+    height: 100%;
+    gap: 6px;
+    width: 96%;
+}
 
+.linha-localizacao > span {
+font-weight: 500;
+}
+
+.boxGerenciar {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
 
 .titulo-cadastrar {
     font-size: 20px;
@@ -79,6 +95,19 @@
     justify-content: center;
   }
 
+  .box-inputs { 
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 369px;
+  }
+  
+  .input-group { 
+    width: 80%;
+  }
+
 .box-botao-gerenciar { 
     display: flex;
     width: 50%;
@@ -88,7 +117,7 @@
 
   .container-botao-modal { 
     display: flex;
-    height: 11%;
+    height: 37px;
     width: 100%;
   }
 
@@ -170,7 +199,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 31%;
+    height: 12%;
 }
 
 .modal-botao-cadastrar button a {
