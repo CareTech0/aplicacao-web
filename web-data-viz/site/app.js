@@ -16,6 +16,7 @@ app.use(cors());
 
 const indexRouter = require("./src/routes/index");
 const dashboardRouter = require("./src/routes/dashboard");
+const usuarioRouter = require("./src/routes/usuario");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -24,6 +25,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/index", indexRouter);
 app.use("/dashboard", dashboardRouter);
+app.use("/usuario", usuarioRouter);
 
 app.listen(PORTA, function () {
     console.log(`Servidor do seu site já está rodando! Acesse o caminho a seguir para visualizar: http://localhost:${PORTA} \n

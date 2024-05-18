@@ -15,5 +15,9 @@ router.post('/cadastrar', function (req, res) {
     loginController.cadastrar(req, res);
 });
 
+router.post('/buscarPlanos', function (req, res){
+    loginController.buscarPlanos(req, res);
+});
+
 
 module.exports = router;

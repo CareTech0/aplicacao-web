@@ -42,6 +42,8 @@ formularioLogin.addEventListener('submit', (event) => {
                 sessionStorage.TIPO_USER = json.tipo_user;
                 sessionStorage.FK_EMPRESA = json.fk_empresa;
 
+                buscarPlanos(json.fk_plano);
+
                 setTimeout(function () {
                     window.location = '/dashboard/dashboardVo'
                 }, 1000)
@@ -88,6 +90,31 @@ formularioCadastro.addEventListener('submit', (event) => {
         alert("Erro no banco");
     });
 });
+
+function buscarPlanos(fkPlano){
+    fetch("/index/buscarPlanos", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            fk_plano: fkPlano,
+        }),
+    })
+    .then(function (resposta){
+        if(resposta.ok){
+            resposta.json().then(json => {
+                sessionStorage.NOME_PLANO = json.nome;
+                sessionStorage.VALOR_PLANO = json.valor;
+                sessionStorage.QTD_MAQUINAS_PLANO = json.qtd_maquinas;
+                sessionStorage.QTD_USUARIOS_PLANO = json.qtd_usuarios;
+            });
+        }
+    })
+    .catch(function (resposta){
+        console.log(`#ERRO: ${resposta}`)
+    });
+}
 
 function mascaraCNPJ(campoCNPJ) {
     campoCNPJ.value = campoCNPJ.value.replace(/\D/g, ''); // Remove tudo que não é dígito

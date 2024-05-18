@@ -112,7 +112,7 @@
                                 </div>
                             </div>
                             <div class="content-visualizar-usuarios">
-                                <div class="box-usuarios">
+                                <div class="box-usuarios" id="box_usuarios">
                                     <div class="titulo-box-usuarios">
 
                                         <div class="tipo-box-usuarios">
@@ -127,86 +127,8 @@
                                         <div class="perfil-box-usuarios">
                                             <h1>Editar</h1>
                                         </div>
-
-
                                     </div>
-
-                                    <div class="conteudo-usuario">
-                                        <div class="dados-usuario">
-                                            <h1>Tiago Silva</h1>
-                                            <p>thiago.nascimento@sptech.school
-                                            <p>
-                                        </div>
-
-                                        <div class="perfil-usuario">
-                                            <div class="perf-type">
-                                                <h1>Administrador</h1>
-                                            </div>
-                                            <div class="box-tooltip-principal">
-                                                <div class="tooltip-container-principal">
-                                                    <span class="tooltip-icon-principal">i</span>
-                                                    <div class="tooltip-text-principal"><b>Administradores:</b> têm
-                                                        controle
-                                                        total
-                                                        sobre máquinas,
-                                                        usuários e bloqueio de sites.
-                                                        <br>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-
-                                        <div class="opcoes-usuario">
-                                            <span class="delete-user" data-target="#deleteModal"><i
-                                                    class="bi bi-trash3"></i></i></span>
-                                            <span class="edit-user" data-target="#editModal"><i
-                                                    class="bi bi-pencil-square"></i></span>
-                                        </div>
-                                    </div>
-
-                                    <div class="conteudo-usuario">
-                                        <div class="dados-usuario">
-                                            <h1>Wandik Menezes</h1>
-                                            <p>Wandik.Menezes@sptech.school
-                                            <p>
-                                        </div>
-
-                                        <div class="perfil-usuario">
-                                            <div class="perf-type">
-                                                <h1>Visualização</h1>
-                                            </div>
-                                            <div class="box-tooltip-principal">
-                                                <div class="tooltip-container-principal">
-                                                    <span class="tooltip-icon-principal">i</span>
-                                                    <div class="tooltip-text-principal">
-                                                        <span><b>Usuário comum:</b>
-                                                            Apenas visualização da dashboard <br> </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-
-                                        <div class="opcoes-usuario">
-                                            <span class="delete-user" data-target="#deleteModal"><i
-                                                    class="bi bi-trash3"></i></i></span>
-                                            <span class="edit-user" data-target="#editModal"><i
-                                                    class="bi bi-pencil-square"></i></span>
-                                        </div>
-                                    </div>
-
-                                    <div class="conteudo-usuario" id="usuariosContainer"></div>
-
-                                    <div class="conteudo-usuario" id="usuariosContainer"></div>
-                                    <div class="conteudo-usuario" id="usuariosContainer"></div>
-
                                 </div>
-
-
-
                             </div>
                         </div>
                     </div>                    
@@ -291,7 +213,7 @@
                 </div>
 
                 <div class="content-input-modal">
-                    <select id="perfil" name="perfil" id="slct_tipo_user">
+                    <select name="perfil" id="slct_tipo_user">
                         <option value="administrador">Administrador</option>
                         <option value="usuario">Usuário comum</option>
                     </select>
@@ -381,7 +303,7 @@
                     </div>
                 </div>
 
-                <div class="content-input-modal">
+                <div class="content-input-modal" id="1">
                     <select id="perfil" name="perfil">
                         <option value="administrador">Administrador</option>
                         <option value="usuario">Usuário comum</option>
@@ -401,7 +323,7 @@
 </html>
 
 <script>
-
+    buscarUsuarios();
     let menuItem = document.querySelectorAll(".item-menu");
 
     function selectLink() {
@@ -491,58 +413,116 @@
         }
     });
 
+    let qtdUsuarios = 0;
+
+    //Puxar usuários do banco de dados
+    function buscarUsuarios(){
+        fetch(`/usuario/buscarUsuarios/${sessionStorage.FK_EMPRESA}`, { cache: 'no-store' }).then(function (resposta){
+            if(resposta.ok) {
+                resposta.json().then(function (resposta){
+                    const boxUsuarios = document.getElementById("box_usuarios");
+                    let i = 0;
+
+                    for (; i < resposta.length; i++) {
+                        const usuario = resposta[i];
+                        let textoToogle = "controle total sobre máquinas, usuários e bloqueio de sites.";
+
+                        
+                        boxUsuarios.innerHTML += `
+                        <div class="conteudo-usuario">
+                                        <div class="dados-usuario">
+                                            <h1>${usuario.nome}</h1>
+                                            <p>${usuario.login_email}</p>
+                                        </div>
+
+                                        <div class="perfil-usuario">
+                                            <div class="perf-type">
+                                                <h1>${usuario.tipo_usuario}</h1>
+                                            </div>
+                                            <div class="box-tooltip-principal">
+                                                <div class="tooltip-container-principal">
+                                                    <span class="tooltip-icon-principal">i</span>
+                                                    <div class="tooltip-text-principal"><b>${resposta.tipo_usuario}:</b> têm
+                                                        
+                                                        <br>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="opcoes-usuario">
+                                            <span class="delete-user" data-target="#deleteModal"><i
+                                                    class="bi bi-trash3"></i></i></span>
+                                            <span class="edit-user" data-target="#editModal"><i
+                                                    class="bi bi-pencil-square"></i></span>
+                                        </div>
+                                    </div>
+                        `;
+
+                    }
+                    qtdUsuarios = i;
+                })
+            }
+        })
+        .catch(function (resposta){
+            console.log(`#ERRO: ${resposta}`);
+            alert("Erro no banco");
+        });
+    }
+
     // Criar novo usuário
     saveUser.addEventListener('click', function () {
-        const id = sessionStorage.ID_USER;
+        const qtdUsuariosPlano = sessionStorage.QTD_USUARIOS_PLANO;
         const nome = document.getElementById('ipt_nome').value;
         const email = document.getElementById('ipt_email').value;
         const senha = document.getElementById('ipt_senha').value;
         const repetirSenha = document.getElementById('ipt_repetir_senha').value;
         const tipoUser = document.getElementById('slct_tipo_user').value;
 
+
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         const nomeRegex = /\d/;
-        let validacoesCorretas = 4;
+        let validacoesCorretas = 5;
 
-        if(nomeRegex.test(nome)){
+        if(!nomeRegex.test(nome)){
             validacoesCorretas --;
         }
 
-        if(!emailRegex.test(email)){
+        if(emailRegex.test(email)){
             validacoesCorretas --;
         }
 
-        if(senha.length < 8){
+        if(senha.length >= 8){
             validacoesCorretas --;
         }
 
-        if(senha != repetirSenha){
+        if(senha == repetirSenha){
+            validacoesCorretas --;
+        }
+
+        if(qtdUsuariosPlano >= qtdUsuarios){
             validacoesCorretas --;
         }
 
         if(validacoesCorretas == 0){
-            fetch("/dashboard/criarUsuario", {
+            fetch("/usuario/criarUsuario", {
                 method: "POST",
                 headers: {
-                    "content-Type": "applicattion/json",
+                    "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
                     nome_user: nome,
                     email_user: email,
                     senha_user: senha,
                     tipo_user: tipoUser,
+                    fk_empresa: sessionStorage.FK_EMPRESA
                 }),
             })
             .then(function (resposta){
                 if(resposta.ok) {
-                    closeButtons.forEach(function (button) {
-                    button.addEventListener('click', function () {
-                        deleteModal.style.display = 'none';
-                        newUserModal.style.display = 'none';
-                        editModal.style.display = 'none';
-                        successModal.style.display = 'none';
-                    });
-                });
+                    window.location = "/usuario"
                 }
             }).catch(function (resposta){
                 console.log(`#ERRO: ${resposta}`);
