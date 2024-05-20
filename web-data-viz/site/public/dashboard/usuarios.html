@@ -442,7 +442,7 @@
                                             <div class="box-tooltip-principal">
                                                 <div class="tooltip-container-principal">
                                                     <span class="tooltip-icon-principal">i</span>
-                                                    <div class="tooltip-text-principal"><b>${resposta.tipo_usuario}:</b> têm
+                                                    <div class="tooltip-text-principal"><b>${usuario.tipo_usuario}:</b> têm
                                                         
                                                         <br>
                                                     </div>
@@ -453,7 +453,7 @@
 
 
                                         <div class="opcoes-usuario">
-                                            <span class="delete-user" data-target="#deleteModal"><i
+                                            <span class="delete-user" onclick="deletarUsuario(${usuario.id_user})" data-target="#deleteModal"><i
                                                     class="bi bi-trash3"></i></i></span>
                                             <span class="edit-user" data-target="#editModal"><i
                                                     class="bi bi-pencil-square"></i></span>
@@ -466,7 +466,7 @@
                 })
             }
         })
-            .catch(function (resposta) {
+            .catch(function (usuario) {
                 console.log(`#ERRO: ${resposta}`);
                 alert("Erro no banco");
             });
@@ -529,7 +529,30 @@
                     alert("Erro no banco");
                 });
         }
-    })
+   })
+
+
+    
+    //Deletar Usuário
+    function deletarUsuario(idUser){
+        fetch(`/usuario/deletarUsuario/${idUser}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(function (resposta){
+            if (resposta.ok){
+                window.location = "/usuario";
+            } else if (resposta.status == 404){
+                console.log("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        })
+    }
+
 
 
 

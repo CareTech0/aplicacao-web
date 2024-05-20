@@ -15,4 +15,8 @@ router.post("/criarUsuario", function (req, res) {
     usuarioController.criarUsuario(req, res);
 });
 
+router.delete("/deletarUsuario/:idUser", function (req, res) {
+    usuarioController.deletarUsuario(req, res);
+});
+
 module.exports = router;

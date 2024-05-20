@@ -16,4 +16,12 @@ function criarUsuario(nome, email, senha, tipoUser, fkEmpresa){
     return database.executar(instrucao);
 }
 
-module.exports = { buscarUsuarios, criarUsuario }
+function deletarUsuario(idUser){
+    const instrucao = `
+        delete from usuario where id_user = ${idUser}
+    `;
+
+    return database.executar(instrucao);
+}
+
+module.exports = { buscarUsuarios, criarUsuario, deletarUsuario }
