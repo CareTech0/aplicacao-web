@@ -163,6 +163,11 @@ font-weight: 500;
     padding: 10px;
 }
 
+.modal-titulo-deslogar span i {
+    font-size: 24px;
+    padding: 10px;
+}
+
 .inputs-modal {
     display: flex;
     flex-direction: column;

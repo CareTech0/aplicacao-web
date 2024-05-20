@@ -1,3 +1,4 @@
+function abrirModalDeslogar() {
 const deslogarModal = document.getElementById("deslogarModal");
 const closeButtons = document.querySelectorAll(".closeDeslogar");
 const spanDeslogar = document.querySelector(".item-menu-deslogar");
@@ -21,3 +22,4 @@ window.addEventListener("click", function (event) {
     deslogarModal.style.display = "none";
   }
 });
+}

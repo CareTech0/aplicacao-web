@@ -32,6 +32,11 @@
     display: flex;
     justify-content: center;
   }
+
+  .modal-titulo-deslogar span i {
+    font-size: 24px;
+    padding: 10px;
+  }
   
   .menu {
     background-color: #f5f5f5;
