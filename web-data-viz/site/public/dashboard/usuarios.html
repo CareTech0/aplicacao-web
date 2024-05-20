@@ -65,7 +65,7 @@
 
                         </ul>
 
-                        <div class="box-deslogar" >
+                        <div class="box-deslogar">
                             <div class="item-menu-deslogar" onclick="abrirModalDeslogar()">
                                 <span class="icon"><i class="bi bi-box-arrow-right"></i></span>
                                 <span class="txt-link">
@@ -244,8 +244,8 @@
             <p>Tem certeza que deseja encerrar sua sessão?</p>
         </div>
 
-        <div class="modal-botao-deslogar">
-            <button id="confirmarDeslogar"> <a href="../login.html">DESLOGAR SESSÃO</a></button>
+        <div class="modal-botao-deslogar" onclick="sairConta()">
+            <button id="confirmarDeslogar"> <a>DESLOGAR SESSÃO</a></button>
         </div>
     </div>
 
@@ -321,7 +321,7 @@
 </div>
 
 </html>
-
+<script src="../js/session.js"></script>
 <script>
     buscarUsuarios();
     let menuItem = document.querySelectorAll(".item-menu");

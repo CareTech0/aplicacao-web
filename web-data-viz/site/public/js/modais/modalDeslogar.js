@@ -22,4 +22,6 @@ window.addEventListener("click", function (event) {
     deslogarModal.style.display = "none";
   }
 });
+
+
 }
