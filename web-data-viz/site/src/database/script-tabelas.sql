@@ -6,104 +6,103 @@
 comandos para mysql - banco local - ambiente de desenvolvimento
 */
 
-CREATE DATABASE aquatech;
+CREATE database caretech; 
 
-USE aquatech;
+use caretech; 
 
-CREATE TABLE empresa (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	razao_social VARCHAR(50),
-	cnpj CHAR(14)
+create table plano(
+    id_plano   int auto_increment primary key,
+    nome varchar(45),
+    valor double,
+    qtd_maquinas int,
+    qtd_usuarios int
 );
 
-CREATE TABLE usuario (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	nome VARCHAR(50),
-	email VARCHAR(50),
-	senha VARCHAR(50),
-	fk_empresa INT,
-	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
+create table empresa(
+    id_empresa    int auto_increment primary key,
+    razao_social  varchar(45),
+    cnpj varchar(45),
+    fk_plano int,
+    constraint fk_plano foreign key (fk_plano) references plano (id_plano)
 );
 
-CREATE TABLE aviso (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	titulo VARCHAR(100),
-	descricao VARCHAR(150),
-	fk_usuario INT,
-	FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
+create table computador
+(
+    id_computador   int auto_increment primary key,
+    estacao_de_trabalho varchar(45),
+    login varchar(45),
+    senha varchar(16),
+    nome_computador varchar(45),
+    chave_acesso    varchar(45),
+    fk_empresa int,
+    constraint fk_empresa_comp
+    foreign key (fk_empresa) references empresa (id_empresa)
 );
 
-create table aquario (
-/* em nossa regra de negócio, um aquario tem apenas um sensor */
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	descricao VARCHAR(300),
-	fk_empresa INT,
-	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
+create table hardware(
+    id_hardware INT PRIMARY KEY AUTO_INCREMENT,
+    nome_hardware varchar(45),
+    capacidade_total double,
+    fk_computador INT,
+    constraint fk_computador_hardware foreign key (fk_computador) references computador(id_computador)
 );
 
-/* esta tabela deve estar de acordo com o que está em INSERT de sua API do arduino - dat-acqu-ino */
-
-create table medida (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	dht11_umidade DECIMAL,
-	dht11_temperatura DECIMAL,
-	luminosidade DECIMAL,
-	lm35_temperatura DECIMAL,
-	chave TINYINT,
-	momento DATETIME,
-	fk_aquario INT,
-	FOREIGN KEY (fk_aquario) REFERENCES aquario(id)
+create table registros(
+    id_registros int auto_increment,
+    horario datetime default current_timestamp,
+    qtd_processos INT,
+    fk_hardware INT,
+    constraint fk_hardware foreign key (fk_hardware) references hardware(id_hardware),
+    primary key(id_registros, fk_hardware)
 );
 
-insert into empresa (razao_social, cnpj) values ('Empresa 1', '00000000000000');
-insert into aquario (descricao, fk_empresa) values ('Aquário de Estrela-do-mar', 1);
-
-/*
-comando para sql server - banco remoto - ambiente de produção
-*/
-
-CREATE TABLE empresa (
-	id INT PRIMARY KEY IDENTITY(1,1),
-	razao_social VARCHAR(50),
-	cnpj CHAR(14)
+create table sites_bloqueados(
+    id_sites   int auto_increment,
+    nome varchar(45),
+    url varchar(45),
+    fk_empresa int,
+    primary key (id_sites, fk_empresa),
+    constraint fk_empresa foreign key (fk_empresa) references empresa (id_empresa)
 );
 
-CREATE TABLE usuario (
-	id INT PRIMARY KEY IDENTITY(1,1),
-	nome VARCHAR(50),
-	email VARCHAR(50),
-	senha VARCHAR(50),
-	fk_empresa INT FOREIGN KEY REFERENCES empresa(id)
+create table usuario(
+    id_user      int auto_increment primary key,
+    nome         varchar(45),
+    login_email  varchar(30),
+    senha        varchar(12),
+    fk_empresa   int,
+    tipo_usuario varchar(45),
+    constraint fk_empresa_user foreign key (fk_empresa) references empresa (id_empresa)
 );
 
-CREATE TABLE aviso (
-	id INT PRIMARY KEY IDENTITY(1,1),
-	titulo VARCHAR(100),
-	descricao VARCHAR(150),
-	fk_usuario INT FOREIGN KEY REFERENCES usuario(id)
-);
+INSERT INTO plano (nome, valor, qtd_maquinas, qtd_usuarios) VALUES ('Plano Básico', 50.00, 3, 3);
 
-create table aquario (
-/* em nossa regra de negócio, um aquario tem apenas um sensor */
-	id INT PRIMARY KEY IDENTITY(1,1),
-	descricao VARCHAR(300),
-	fk_empresa INT FOREIGN KEY REFERENCES empresa(id)
-);
+-- Inserir plano 2
+INSERT INTO plano (nome, valor, qtd_maquinas, qtd_usuarios) VALUES ('Plano Standard', 100.00, 4, 4);
 
-/* esta tabela deve estar de acordo com o que está em INSERT de sua API do arduino - dat-acqu-ino */
+-- Inserir plano 3
+INSERT INTO plano (nome, valor, qtd_maquinas, qtd_usuarios) VALUES ('Plano Premium', 150.00, 5, 5);
 
-CREATE TABLE medida (
-	id INT PRIMARY KEY IDENTITY(1,1),
-	dht11_umidade DECIMAL,
-	dht11_temperatura DECIMAL,
-	luminosidade DECIMAL,
-	lm35_temperatura DECIMAL,
-	chave TINYINT,
-	momento DATETIME,
-	fk_aquario INT FOREIGN KEY REFERENCES aquario(id)
-);
+-- Inserir usuário 1
+INSERT INTO usuario (nome, login_email, senha, fk_empresa, tipo_usuario)
+VALUES ('João Silva', 'joao@example.com', 'senha123', 1, 'administrador');
 
-insert into empresa (razao_social, cnpj) values ('Empresa 1', '00000000000000');
+-- Inserir usuário 2
+INSERT INTO usuario (nome, login_email, senha, fk_empresa, tipo_usuario)
+VALUES ('Maria Santos', 'maria@example.com', 'senha456', 1, 'funcionario');
+
+-- Inserir usuário 3
+INSERT INTO usuario (nome, login_email, senha, fk_empresa, tipo_usuario)
+VALUES ('Pedro Oliveira', 'pedro@example.com', 'senha789', 2, 'administrador');
+
+select * from empresa;
+
+select usuario.*, empresa.fk_plano from usuario join empresa on fk_empresa = empresa.id_empresa;
+
+update empresa set fk_plano = 1 where id_empresa = 1;
+
+
+
 
 /*
 comandos para criar usuário em banco de dados azure, sqlserver,

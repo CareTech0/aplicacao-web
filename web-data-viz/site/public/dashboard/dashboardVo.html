@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../css/modais/modalDeslogar.css">
     <link rel="icon" href="../assets/icon/icon.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-   
+
     <script src="../js/scriptDash.js"></script>
     <script src="../js/modais/modalDeslogar.js" defer></script>
 </head>
@@ -42,7 +42,7 @@
                                     </a>
                                 </div>
                             </li>
-                            
+
                             <li class="item-menu">
                                 <div class="caixa-cor">
                                     <a href="..\dashboard\usuarios.html">
@@ -83,14 +83,14 @@
 
         <div class="caixa-container">
             <div class="container">
-                
-                <div class="all-content">                    
-                    
+
+                <div class="all-content">
+
                     <div class="div-titulos">
                         <div class="box-title-content">
                             <span>VISÃO GERAL DAS MÁQUINAS</span>
                         </div>
-                                          </div>
+                    </div>
 
                     <div class="container-one">
                         <div class="row">
@@ -165,7 +165,7 @@
                     </div>
                 </div>
 
-                 <div class="container-two">
+                <div class="container-two">
                     <div class="box-chart-two">
                         <div class="chart-two">
                             <div id="chart2">
@@ -225,7 +225,7 @@
                             </div>
                         </div>
                     </div>
-                </div> 
+                </div>
             </div>
         </div>
     </div>
@@ -257,55 +257,55 @@
         google.charts.load("current", { packages: ["corechart"] });
         google.charts.setOnLoadCallback(drawChart1);
         google.charts.setOnLoadCallback(drawChart2);
-      
+
         function drawChart1() {
-          var data = google.visualization.arrayToDataTable([
-            ["Data", "Quantidade"],
-            ["Segunda", 10],
-            ["Terça", 35],
-            ["Quarta", 10],
-            ["Quinta", 30],
-            ["Sexta", 25],
-          ]);
-      
-          var options = {
-            title: "MÁQUINAS COM PROBLEMAS RECORRENTES NA SEMANA",
-            width: "100%",
-            height: "100%",
-            legend: { position: "bottom" },
-          };
-      
-          var chart = new google.visualization.LineChart(
-            document.getElementById("chart1")
-          );
-      
-          chart.draw(data, options);
+            var data = google.visualization.arrayToDataTable([
+                ["Data", "Quantidade"],
+                ["Segunda", 10],
+                ["Terça", 35],
+                ["Quarta", 10],
+                ["Quinta", 30],
+                ["Sexta", 25],
+            ]);
+
+            var options = {
+                title: "MÁQUINAS COM PROBLEMAS RECORRENTES NA SEMANA",
+                width: "100%",
+                height: "100%",
+                legend: { position: "bottom" },
+            };
+
+            var chart = new google.visualization.LineChart(
+                document.getElementById("chart1")
+            );
+
+            chart.draw(data, options);
         }
-      
+
         function drawChart2() {
             console.log("aaaaaaaaa")
-          var data = google.visualization.arrayToDataTable([
-            ["Dia", "Percentual"],
-            ["Segunda", 20],
-            ["Terça", 35],
-            ["Quarta", 45],
-            ["Quinta", 60],
-          ]);
-      
-          var options = {
-            title: "LOGIN FORA DO HORÁRIO ESPERADO NA ÚLTIMA SEMANA",
-            legend: { position: "none" },
-            width: "100%",
-            height: "100%",
-          };
-      
-          var chart = new google.visualization.BarChart(
-            document.getElementById("chart2")
-          );
-      
-          chart.draw(data, options);
-        }           
-        
-      });
-      
+            var data = google.visualization.arrayToDataTable([
+                ["Dia", "Percentual"],
+                ["Segunda", 20],
+                ["Terça", 35],
+                ["Quarta", 45],
+                ["Quinta", 60],
+            ]);
+
+            var options = {
+                title: "LOGIN FORA DO HORÁRIO ESPERADO NA ÚLTIMA SEMANA",
+                legend: { position: "none" },
+                width: "100%",
+                height: "100%",
+            };
+
+            var chart = new google.visualization.BarChart(
+                document.getElementById("chart2")
+            );
+
+            chart.draw(data, options);
+        }
+
+    });
+
 </script>

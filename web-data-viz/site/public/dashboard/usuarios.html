@@ -131,7 +131,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>                    
+                    </div>
                 </div>
             </div>
 </body>
@@ -221,7 +221,7 @@
 
 
             </div>
-            <button id="save_new_user">SALVAR</button>
+            <button  class="botao-adicionar" id="save_new_user">SALVAR</button>
 
 
 
@@ -312,7 +312,7 @@
 
 
             </div>
-            <button id="saveNewUser">SALVAR</button>
+            <button class="botao-adicionar" id="saveNewUser">SALVAR</button>
 
 
 
@@ -416,10 +416,10 @@
     let qtdUsuarios = 0;
 
     //Puxar usuários do banco de dados
-    function buscarUsuarios(){
-        fetch(`/usuario/buscarUsuarios/${sessionStorage.FK_EMPRESA}`, { cache: 'no-store' }).then(function (resposta){
-            if(resposta.ok) {
-                resposta.json().then(function (resposta){
+    function buscarUsuarios() {
+        fetch(`/usuario/buscarUsuarios/${sessionStorage.FK_EMPRESA}`, { cache: 'no-store' }).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (resposta) {
                     const boxUsuarios = document.getElementById("box_usuarios");
                     let i = 0;
 
@@ -427,7 +427,7 @@
                         const usuario = resposta[i];
                         let textoToogle = "controle total sobre máquinas, usuários e bloqueio de sites.";
 
-                        
+
                         boxUsuarios.innerHTML += `
                         <div class="conteudo-usuario">
                                         <div class="dados-usuario">
@@ -466,10 +466,10 @@
                 })
             }
         })
-        .catch(function (resposta){
-            console.log(`#ERRO: ${resposta}`);
-            alert("Erro no banco");
-        });
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+                alert("Erro no banco");
+            });
     }
 
     // Criar novo usuário
@@ -486,27 +486,27 @@
         const nomeRegex = /\d/;
         let validacoesCorretas = 5;
 
-        if(!nomeRegex.test(nome)){
-            validacoesCorretas --;
+        if (!nomeRegex.test(nome)) {
+            validacoesCorretas--;
         }
 
-        if(emailRegex.test(email)){
-            validacoesCorretas --;
+        if (emailRegex.test(email)) {
+            validacoesCorretas--;
         }
 
-        if(senha.length >= 8){
-            validacoesCorretas --;
+        if (senha.length >= 8) {
+            validacoesCorretas--;
         }
 
-        if(senha == repetirSenha){
-            validacoesCorretas --;
+        if (senha == repetirSenha) {
+            validacoesCorretas--;
         }
 
-        if(qtdUsuariosPlano >= qtdUsuarios){
-            validacoesCorretas --;
+        if (qtdUsuariosPlano >= qtdUsuarios) {
+            validacoesCorretas--;
         }
 
-        if(validacoesCorretas == 0){
+        if (validacoesCorretas == 0) {
             fetch("/usuario/criarUsuario", {
                 method: "POST",
                 headers: {
@@ -520,17 +520,17 @@
                     fk_empresa: sessionStorage.FK_EMPRESA
                 }),
             })
-            .then(function (resposta){
-                if(resposta.ok) {
-                    window.location = "/usuario"
-                }
-            }).catch(function (resposta){
-                console.log(`#ERRO: ${resposta}`);
-                alert("Erro no banco");
-            });
+                .then(function (resposta) {
+                    if (resposta.ok) {
+                        window.location = "/usuario"
+                    }
+                }).catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                    alert("Erro no banco");
+                });
         }
     })
-    
+
 
 
 </script>
