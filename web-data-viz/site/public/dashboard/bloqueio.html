@@ -64,7 +64,7 @@
                         </ul>
 
                         <div class="box-deslogar">
-                            <div class="item-menu-deslogar" onclick="abrirModalDeslogar()">
+                            <div class="item-menu-deslogar">
                                 <span class="icon"><i class="bi bi-box-arrow-right"></i></span>
                                 <span class="txt-link">
                                     <span>Deslogar</span>
@@ -105,86 +105,7 @@
 
                                 <div class="container-sites-cadastrados">
 
-                                    <div class="box-site">
-
-                                        <div class="conteudo-site">
-                                            <div class="url-site">
-                                                <span class="titulo-sites"> Instagram</span>
-                                                <span class="sub-sites">www.instagram.com</span>
-                                            </div>
-
-                                            <div class="opcoes-usuario">
-                                                <span class="delete-user" data-target="#deleteModal"><i
-                                                        class="bi bi-trash3"></i></i></span>
-                                                <span class="edit-user" data-target="#editModal"><i
-                                                        class="bi bi-pencil-square"></i></span>
-                                            </div>
-                                        </div>
-
-                                        <div class="box-site">
-                                            <div class="conteudo-site">
-                                                <div class="url-site">
-                                                    <span class="titulo-sites"> Shein</span>
-                                                    <span class="sub-sites">www.shein.com</span>
-                                                </div>
-
-                                                <div class="opcoes-usuario">
-                                                    <span class="delete-user" data-target="#deleteModal"><i
-                                                            class="bi bi-trash3"></i></i></span>
-                                                    <span class="edit-user" data-target="#editModal"><i
-                                                            class="bi bi-pencil-square"></i></span>
-                                                </div>
-                                            </div>
-
-                                            <div class="box-site">
-                                                <div class="conteudo-site">
-                                                    <div class="url-site">
-                                                        <span class="titulo-sites">Facebook</span>
-                                                        <span class="sub-sites">www.facebook.com</span>
-                                                    </div>
-
-                                                    <div class="opcoes-usuario">
-                                                        <span class="delete-user" data-target="#deleteModal"><i
-                                                                class="bi bi-trash3"></i></i></span>
-                                                        <span class="edit-user" data-target="#editModal"><i
-                                                                class="bi bi-pencil-square"></i></span>
-                                                    </div>
-                                                </div>
-
-                                                <div class="box-site">
-                                                    <div class="conteudo-site">
-                                                        <div class="url-site">
-                                                            <span class="titulo-sites"> Youtube</span>
-                                                            <span class="sub-sites">www.youtube.com</span>
-                                                        </div>
-                                                        <div class="opcoes-usuario">
-                                                            <span class="delete-user" data-target="#deleteModal"><i
-                                                                    class="bi bi-trash3"></i></i></span>
-                                                            <span class="edit-user" data-target="#editModal"><i
-                                                                    class="bi bi-pencil-square"></i></span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="box-site">
-                                                        <div class="conteudo-site">
-                                                            <div class="url-site">
-                                                                <span class="titulo-sites">Mercado Livre</span>
-                                                                <span class="sub-sites">www.mercadolivre.com</span>
-                                                            </div>
-                                                            <div class="opcoes-usuario">
-                                                                <span class="delete-user" data-target="#deleteModal"><i
-                                                                        class="bi bi-trash3"></i></i></span>
-                                                                <span class="edit-user" data-target="#editModal"><i
-                                                                        class="bi bi-pencil-square"></i></span>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-                                        </div>
+                                    <div class="box-site" id="lista_de_sites">
 
                                     </div>
                                 </div>
@@ -290,6 +211,8 @@
 
 <script>
 
+    buscarSites();
+
     // Elementos dos modais
     const deleteModal = document.getElementById('deleteModal');
     const editModal = document.getElementById('editModal');
@@ -341,4 +264,37 @@
             editModal.style.display = 'none';
         }
     });
+
+    function buscarSites(){
+        fetch(`/bloqueioSites/buscarSites/${sessionStorage.FK_EMPRESA}`, { cache: 'no-store' }).then(function (resposta) {
+            if(resposta.ok){
+                resposta.json().then(function (resposta) {
+                    const listaSites = document.getElementById('lista_de_sites');
+                    
+                    for(let i = 0; i < resposta.length; i++){
+                        const site = resposta[i];
+                        listaSites.innerHTML += `
+                        <div class="conteudo-site">
+                            <div class="url-site">
+                                <span class="titulo-sites">${site.nome}</span>
+                                <span class="sub-sites">${site.url}</span>
+                            </div>
+
+                            <div class="opcoes-usuario">
+                                <span class="delete-user" onclick="deletarSite(${site.id_sites})" data-target="#deleteModal"><i
+                                        class="bi bi-trash3"></i></i></span>
+                                <span class="edit-user" data-target="#editModal"><i
+                                        class="bi bi-pencil-square"></i></span>
+                            </div>
+                        </div>
+                        `;
+                    }
+                });
+            }
+        })
+        .catch(function (usuario){
+            console.log(`#ERRO: ${resposta}`);
+            alert("Erro no banco");
+        });
+    }
 </script>
