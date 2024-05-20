@@ -7,8 +7,7 @@ function init() {
     gerarGraficoMemoriaRamUso();
     gerarGraficoDiscoUso();
     gerarGraficoUtilizacaoCPU();
-    criarGraficosRede();
-    
+    criarGraficosRede();    
 }
 
 
@@ -86,9 +85,7 @@ function gerarGraficoDiscoUso() {
     var chart = new google.visualization.PieChart(document.getElementById('graficoDeDisco'));
     chart.draw(data, options);
 }
-
 function gerarGraficoUtilizacaoCPU() {
-
     var data = new google.visualization.DataTable();
     data.addColumn('number', 'Segundos');
     data.addColumn('number', 'Utilização da CPU (%)');
@@ -97,32 +94,33 @@ function gerarGraficoUtilizacaoCPU() {
     var dadosUtilizacaoCPU = [
         [0, 10],
         [10, 20],
-        [20, 30],
+        [25, 30],
         [30, 40],
         [40, 50],
-        [50, 60],
+        [50, 20],
         [60, 70],
         [70, 80],
         [80, 90],
-        [90, 100]
+        [90, 20]
     ];
 
     // Adicionar os dados ao DataTable
     data.addRows(dadosUtilizacaoCPU);
 
     // Definir as opções do gráfico
-    var options = {       
+    var options = {
         curveType: 'function',
         backgroundColor: 'transparent',
         legend: { position: 'none' },
         hAxis: { title: 'Segundos' },
         vAxis: { title: 'Utilização da CPU (%)', minValue: 0, maxValue: 100 },
-        chartArea: { width: '80%', height: '60%' }        
+        chartArea: { width: '80%', height: '70%' }
     };
 
     var chart = new google.visualization.LineChart(document.getElementById('graficoUtilizacaoCPU'));
     chart.draw(data, options);
 }
+
 
 function criarGraficosRede() {
     var ctx1 = document.getElementById('chartRede1').getContext('2d');
