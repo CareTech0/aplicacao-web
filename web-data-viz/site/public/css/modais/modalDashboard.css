@@ -121,6 +121,13 @@ font-weight: 500;
     width: 100%;
   }
 
+  .fundo-gerenciar { 
+    width: 86%;
+    display: flex;
+    justify-content: space-between;
+    height: 26px;
+    align-items: center;
+  }
   .fundo-botao-gerenciar {
     background-color: var(--cor-principal);
     color: white;
@@ -224,9 +231,12 @@ font-weight: 500;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 18%;
 }
 
 .caixa-gerenciar-cadastrados { 
+    width: 100%;
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
 }
