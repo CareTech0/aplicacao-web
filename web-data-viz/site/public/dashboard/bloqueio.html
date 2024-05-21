@@ -297,4 +297,24 @@
             alert("Erro no banco");
         });
     }
+
+    //Deletar Usuário
+    function deletarSite(idSite){
+        fetch(`/bloqueioSites/deletarSite/${idSite}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(function (resposta){
+            if (resposta.ok){
+                window.location = "/bloqueioSites";
+            } else if (resposta.status == 404){
+                console.log("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        })
+    }
 </script>

@@ -8,4 +8,12 @@ function buscarSites(fkEmpresa){
     return database.executar(instrucao);
 }
 
-module.exports = { buscarSites }
+function deletarSite(idSite){
+    const instrucao = `
+        delete from sites_bloqueados where id_sites = ${idSite}
+    `;
+
+    return database.executar(instrucao);
+}
+
+module.exports = { buscarSites, deletarSite }

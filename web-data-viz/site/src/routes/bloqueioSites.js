@@ -11,5 +11,9 @@ router.get("/buscarSites/:fkEmpresa", function (req, res){
     sitesController.buscarSites(req, res);
 })
 
+router.delete("/deletarSite/:idSite", function(req, res) {
+    sitesController.deletarSite(req, res);
+})
+
 
 module.exports = router;
