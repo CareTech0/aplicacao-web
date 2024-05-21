@@ -1,6 +1,26 @@
 const { json } = require("express");
 const sitesModel = require("../models/sitesModel");
 
+
+function inserirSite(req, res){
+    const nomeSite = req.body.nome_site;
+    const urlSite = req.body.url_site;
+    const fkEmpresa = req.body.fkEmpresa;
+
+    sitesModel.inserirSite(nomeSite, urlSite, fkEmpresa).then(function (resultado) {
+        if(resultado.length > 0){
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum Resultado encontrado!");
+        }
+    })
+    .catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 function buscarSites(req, res){
     const fkEmpresa =  req.params.fkEmpresa;
 
@@ -35,4 +55,4 @@ function deletarSite(req, res){
     )
 }
 
-module.exports = { buscarSites, deletarSite }
+module.exports = { buscarSites, deletarSite, inserirSite }

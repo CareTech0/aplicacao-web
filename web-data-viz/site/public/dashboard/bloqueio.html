@@ -117,17 +117,17 @@
                                         </div>
                                         <div class="box-adicionar-site">
                                             <div class="input-site-2">
-                                                <span>Nome:</span> <input type="text">
+                                                <span>Nome:</span> <input type="text" id="ipt_nome_site">
                                             </div>
                                             <div class="input-site-2">
-                                                <span>Endereço do site:</span><input type="text">
+                                                <span>Endereço do site:</span><input type="text" id="ipt_url_site">
                                             </div>
                                         </div>
                                     </div>
 
 
                                     <div class="botao">
-                                        <div class="botao-conteudo">
+                                        <div class="botao-conteudo" id="btn_inserir_site">
                                             <span>ADICIONAR</span>
                                         </div>
                                     </div>
@@ -225,17 +225,9 @@
     // Botões de fechar dos modais
     const closeButtons = document.querySelectorAll('.close');
 
-    // Função para abrir o modal de exclusão
-    function abrirDeleteModal() {
-        deleteModal.style.display = 'block';
-    }
+    // Botão de inserir site
+    const inserirSite = document.getElementById('btn_inserir_site');
 
-    function abrirEditModal() {
-        editModal.style.display = 'block';
-    }
-
-
-    // Eventos de clique nos botões que abrem os modais
     deleteButtons.forEach(function (button) {
         button.addEventListener('click', function () {
             abrirDeleteModal();
@@ -297,6 +289,32 @@
             alert("Erro no banco");
         });
     }
+
+    //Inserir site
+
+    inserirSite.addEventListener('click', function () {
+        const nomeSite = document.getElementById('ipt_nome_site').value;
+        const urlSite = document.getElementById('ipt_url_site').value;
+        
+        fetch("/bloqueioSites/inserirSite", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                nome_site: nomeSite,
+                url_site: urlSite,
+                fkEmpresa: sessionStorage.FK_EMPRESA
+            }),
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                window.location = "/bloqueioSites"
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            alert("Erro no banco");
+        });
+    })
 
     //Deletar Usuário
     function deletarSite(idSite){
