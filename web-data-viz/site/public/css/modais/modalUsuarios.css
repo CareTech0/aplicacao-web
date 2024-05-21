@@ -1,4 +1,8 @@
 /* modais a partir daqui */
+.hidden {
+    display: none;
+}
+
 .close {
     color: #aaa;
     float: right;
@@ -121,79 +125,8 @@ justify-content: center;
 }
 
 
-/* modal de editar 
+/* modal de editar */
 
-.modal-content {
-    background-color: #fefefe;
-    margin: 10% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 27%;
-    border-radius: 20px;
-
-}
-
-
-n.inputs-modal {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    gap: 15px;
-}
-
-.inputs-modal label {
-    margin-bottom: 5px;
-    text-align: left;
-}
-
-.content-input-modal input {
-    width: 278px;
-    height: 10px;
-    padding: 10px;
-    border: 1px solid #D9D9D9;
-    border-radius: 15px;
-    box-shadow: 0 1px 1px rgba(231, 101, 101, 0.1);
-    background-color: #F7F7F7;
-    font-size: 13px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.content-input-modal span {
-    margin-right: 10px;
-    font-weight: 600;
-    color: #747474;
-}
-
-.content-input input:focus {
-    outline: none;
-    border-color: #c0c0c0;
-}
-
-.content-input-modal>select {
-    background-color: #F7F7F7;
-    border: 1px solid #D9D9D9;
-
-    border-radius: 20px;
-    padding: 10px;
-
-}
-
-.modal-content button[type="submit"] {
-    background-color: #8FC9FB;
-    color: #fff;
-    border: none;
-    padding: 7px 15px;
-    cursor: pointer;
-    border-radius: 10px;
-    width: 38%;
-    font-size: 13px;
-} */
-
-/* adicionar usuario */
-/* modal adicionar usuário */
 
 .modal {
     display: none;
@@ -227,6 +160,16 @@ n.inputs-modal {
     width: 27%;
     border-radius: 20px;
 }
+
+.modal-content-editar-usuario {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 27%;
+    border-radius: 20px;
+}
+
 
 .modal-titulo-novo-usuario {
     display: flex;

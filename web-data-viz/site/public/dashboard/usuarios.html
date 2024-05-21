@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,11 +8,10 @@
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/modais/modalDeslogar.css">
     <link rel="stylesheet" href="../css/modais/modalUsuarios.css">
-
     <link rel="icon" href="../assets/icon/icon.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-   
+    
+    <script src="../js/session.js"></script>
     <script src="../js/modais/modalDeslogar.js" defer></script>
 </head>
 
@@ -234,26 +232,22 @@
 <div class="modalDeslogar" id="deslogarModal">
     <div class="modal-content-deslogar">
         <span class="closeDeslogar">&times;</span>
-
         <div class="modal-titulo-deslogar">
-            <span> <i class="bi bi-box-arrow-right"></i></span>
+            <span><i class="bi bi-box-arrow-right"></i></span>
             <h2>DESLOGAR DA CONTA</h2>
         </div>
-
         <div class="modal-mensagem-deslogar">
             <p>Tem certeza que deseja encerrar sua sessão?</p>
         </div>
-
-        <div class="modal-botao-deslogar" onclick="sairConta()">
-            <button id="confirmarDeslogar"> <a>DESLOGAR SESSÃO</a></button>
+        <div class="modal-botao-deslogar">
+            <button id="confirmarDeslogar" onclick="sairConta()">DESLOGAR SESSÃO</button>
         </div>
     </div>
-
 </div>
 
 <!-- modal editar usuario -->
 <div class="modal" id="editModal">
-    <div class="modal-content-novo-usuario">
+    <div class="modal-content-editar-usuario">
 
         <span class="close">&times;</span>
 
@@ -321,8 +315,9 @@
 </div>
 
 </html>
-<script src="../js/session.js"></script>
+
 <script>
+   
     buscarUsuarios();
     let menuItem = document.querySelectorAll(".item-menu");
 
@@ -363,7 +358,7 @@
     }
 
     function abrirEditModal() {
-        editModal.style.display = 'block';
+        editModal.style.display = 'flex';
         console.log('Entrei no abrirEditModal')
     }
 
@@ -455,7 +450,7 @@
                                         <div class="opcoes-usuario">
                                             <span class="delete-user" onclick="deletarUsuario(${usuario.id_user})" data-target="#deleteModal"><i
                                                     class="bi bi-trash3"></i></i></span>
-                                            <span class="edit-user" data-target="#editModal"><i
+                                            <span class="edit-user" onclick="abrirEditModal()" data-target="#editModal"><i
                                                     class="bi bi-pencil-square"></i></span>
                                         </div>
                                     </div>
