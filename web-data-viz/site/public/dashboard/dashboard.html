@@ -269,9 +269,9 @@
 
                 <div class="container-inferior">
                     <div class="box-maquinas">
-                        <div class="background-maquinas">
+                        <div class="background-maquinas" id="background_maquinas">
                             <!-- conteudo das maquinas abaixo -->
-                            <div class="container-maquinas">
+                            <!-- <div class="container-maquinas">
                                 <div class="coluna-maquinas">
                                     <div class="caixa-maquina">
                                         <div class="box-icon-maquina">
@@ -296,7 +296,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
 
 
@@ -366,12 +366,8 @@
                     <div class="box-inputs">
                         <div class="boxCriar">
                             <div class="input-group">
-                                <label for="patrimonio">Patrimônio:</label>
-                                <input type="text" id="patrimonio">
-                            </div>
-                            <div class="input-group">
-                                <label for="localizacao">Localização:</label>
-                                <input type="text" id="localizacao">
+                                <label for="localizacao">Estação de trabalho:</label>
+                                <input type="text" id="estacao_de_trabalho">
                             </div>
                             <div class="input-group">
                                 <label for="login">Login:</label>
@@ -383,12 +379,12 @@
                             </div>
                             <div class="input-group">
                                 <label for="senha">Confirmar senha:</label>
-                                <input type="password" id="senha">
+                                <input type="password" id="repetir_senha">
                             </div>
 
 
                             <div class="modal-botao-cadastrar">
-                                <button id="confirmCadastrar"> <a href="../login.html">CADASTRAR</a></button>
+                                <button id="confirmCadastrar"> <a>CADASTRAR</a></button>
                             </div>
                         </div>
 
@@ -411,7 +407,7 @@
                             </div>
                         </div>
 
-                        <div class="container-gerenciar">
+                        <div class="container-gerenciar" id="lista_computadores">
                             <div>
                                 <div>
                                     <div class="box-localizacao">
@@ -445,11 +441,14 @@
 </html>
 
 <script>
+    buscarMaquinas();
+
     // Selecionando os elementos relevantes
     const telaCriar = document.getElementById('telaCriar');
     const telaGerenciar = document.getElementById('telaGerenciar');
     const botaoCriar = document.querySelector('.box-botao-criar');
     const botaoGerenciar = document.querySelector('.box-botao-gerenciar');
+    const btnCriarMaquina = document.getElementById('confirmCadastrar');
 
     // Adicionando eventos de clique aos botões
     botaoCriar.addEventListener('click', function () {
@@ -476,4 +475,140 @@
     filtro.addEventListener('click', function (event) {
         event.stopPropagation();
     });
+
+    //Buscar máquinas
+    let qtdComputadores = 0;
+
+    function buscarMaquinas(){
+        fetch(`/dashboard/buscarMaquinas/${sessionStorage.FK_EMPRESA}`, { cache: 'no-store' }).then(function (resposta) {
+            if(resposta.ok){
+                const computadorLista = document.getElementById('lista_computadores');
+                const computadorQuadro = document.getElementById('background_maquinas');
+
+                resposta.json().then(function (resposta){
+                    for(;qtdComputadores < resposta.length; qtdComputadores++){    
+                        const computador = resposta[qtdComputadores];
+                        
+                        computadorLista.innerHTML += `
+                            <div>
+                                <div>
+                                    <div class="box-localizacao">
+                                        <span>LOCALIZAÇÃO</span>
+                                    </div>
+
+                                    <div class="caixa-gerenciar-cadastrados">
+                                        <div class="fundo-gerenciar">
+                                            <div class="linha-localizacao">
+                                                <span>${computador.estacao_de_trabalho}</span>
+                                            </div>
+                                            <div class="opcoes-usuario">
+                                                <span class="delete-user" onclick="deletarComputador(${computador.id_computador})" data-target="#deleteModal"><i
+                                                        class="bi bi-trash3"></i></i></span>
+                                                <span class="edit-user" onclick="modalDelete(${computador.id_computador})" data-target="#editModal"><i
+                                                        class="bi bi-pencil-square"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>`;
+
+                            computadorQuadro.innerHTML += `
+                            <div class="container-maquinas">
+                                <div class="coluna-maquinas">
+                                    <div class="caixa-maquina">
+                                        <div class="box-icon-maquina">
+                                            <div class="imagem-maquina">
+                                                <img src="../assets/imgs/pngMaquina.png">
+                                            </div>
+                                        </div>
+                                        <div class="box-info-maquina">
+                                            <div class="caixadotitulo">
+                                                <span class="patrimonio-titulo">${computador.estacao_de_trabalho}</span>
+                                            </div>
+                                            <div class="box-informacoes">
+                                                <div class="caixa-status">
+                                                    <img class="imagemstatus" src="../assets/imgs/alerta.png">
+                                                    <span><b>Status: </b></span> <span id="status">Alerta </span>
+                                                </div>
+                                                <div class="caixa-condicao">
+                                                    <img class="imagemcondicao" src="../assets/imgs/ligado.png">
+                                                    <span><b>Condição: </b></span> <span id="condicao">Ligada </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            `;
+                        }
+                    });
+                }
+            });
+        }
+        
+    //Inserir máquina 
+
+    btnCriarMaquina.addEventListener('click', function () {
+        const qtdComputadoesPlano = sessionStorage.QTD_COMPUTADORES_PLANO;
+        const estacaoDeTrabalho = document.getElementById('estacao_de_trabalho').value;
+        const login = document.getElementById('login').value;
+        const senha = document.getElementById('senha').value;
+        const repetirSenha = document.getElementById('repetir_senha').value;
+
+        let validacoesCorretas = 3;
+
+        if (senha.length >= 8) {
+            validacoesCorretas--;
+        }
+
+        if (senha == repetirSenha) {
+            validacoesCorretas--;
+        }
+
+        if (qtdComputadoesPlano >= qtdComputadores) {
+            validacoesCorretas--;
+        }
+
+        if (validacoesCorretas == 0) {
+
+        fetch("/dashboard/inserirMaquina", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                estacao_de_trabalho: estacaoDeTrabalho,
+                login: login,
+                senha: senha,
+                fkEmpresa: sessionStorage.FK_EMPRESA
+            }),
+            }).then( function (resposta) {
+                if(resposta.ok){
+                    window.location = "/dashboard/dashboard";
+                }
+            }).catch(function (resposta){
+                console.log(`#ERRO: ${resposta}`);
+            });
+        }
+    });
+
+    //Deletar computador
+    function deletarComputador(idComputador){
+        fetch(`/dashboard/deletarComputador/${idComputador}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(function (resposta){
+            if (resposta.ok){
+                window.location = "/dashboard/dashboard";
+            } else if (resposta.status == 404){
+                console.log("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        })
+    }
 </script>

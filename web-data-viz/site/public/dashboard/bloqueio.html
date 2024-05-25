@@ -312,11 +312,10 @@
             }
         }).catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
-            alert("Erro no banco");
         });
     })
 
-    //Deletar Usuário
+    //Deletar Site  
     function deletarSite(idSite){
         fetch(`/bloqueioSites/deletarSite/${idSite}`, {
             method: "DELETE",
