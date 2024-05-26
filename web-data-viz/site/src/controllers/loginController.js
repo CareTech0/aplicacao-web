@@ -1,5 +1,5 @@
 const { json } = require("express");
-const loginModel = require("../models/loginModel")
+const loginModel = require("../models/loginModel");
 
 function autenticar(req, res){
     const emailLogin = req.body.emailLoginServer;

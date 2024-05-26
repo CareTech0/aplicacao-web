@@ -1,14 +1,8 @@
--- Arquivo de apoio, caso você queira criar tabelas como as aqui criadas para a API funcionar.
--- Você precisa executar os comandos no banco de dados para criar as tabelas,
--- ter este arquivo aqui não significa que a tabela em seu BD estará como abaixo!
+DROP DATABASE IF EXISTS caretech;
 
-/*
-comandos para mysql - banco local - ambiente de desenvolvimento
-*/
+CREATE DATABASE caretech;
 
-CREATE database caretech; 
-
-use caretech; 
+use caretech;
 
 create table plano(
     id_plano   int auto_increment primary key,
@@ -18,6 +12,13 @@ create table plano(
     qtd_usuarios int
 );
 
+INSERT INTO plano (nome, valor, qtd_maquinas, qtd_usuarios) VALUES ('Plano Básico', 50.00, 3, 3);
+
+INSERT INTO plano (nome, valor, qtd_maquinas, qtd_usuarios) VALUES ('Plano Standard', 100.00, 4, 4);
+
+INSERT INTO plano (nome, valor, qtd_maquinas, qtd_usuarios) VALUES ('Plano Premium', 150.00, 5, 5);
+
+
 create table empresa(
     id_empresa    int auto_increment primary key,
     razao_social  varchar(45),
@@ -26,34 +27,43 @@ create table empresa(
     constraint fk_plano foreign key (fk_plano) references plano (id_plano)
 );
 
-create table computador
-(
+INSERT INTO empresa (razao_social, cnpj, fk_plano) values
+    ("Empresa 1", "1231232123", 1);
+
+
+create table computador(
     id_computador   int auto_increment primary key,
     estacao_de_trabalho varchar(45),
     login varchar(45),
     senha varchar(16),
-    nome_computador varchar(45),
-    chave_acesso    varchar(45),
     fk_empresa int,
     constraint fk_empresa_comp
     foreign key (fk_empresa) references empresa (id_empresa)
 );
 
+INSERT INTO computador (estacao_de_trabalho, login, senha, fk_empresa) values ("area_a_1", "ti_user", "ti_password", 1);
+
 create table hardware(
-    id_hardware INT PRIMARY KEY AUTO_INCREMENT,
+    id_hardware INT AUTO_INCREMENT,
     nome_hardware varchar(45),
     capacidade_total double,
+    min double,
+    max double,
     fk_computador INT,
-    constraint fk_computador_hardware foreign key (fk_computador) references computador(id_computador)
+    constraint fk_computador_hardware foreign key (fk_computador) references computador(id_computador),
+    primary key (id_hardware, fk_computador)
 );
 
 create table registros(
     id_registros int auto_increment,
+    uso_capacidade DOUBLE,
     horario datetime default current_timestamp,
     qtd_processos INT,
     fk_hardware INT,
     constraint fk_hardware foreign key (fk_hardware) references hardware(id_hardware),
-    primary key(id_registros, fk_hardware)
+    fk_computador INT,
+    constraint fk_computador_hard_regis foreign key (fk_computador) references computador(id_computador),
+    primary key(id_registros, fk_hardware, fk_computador)
 );
 
 create table sites_bloqueados(
@@ -75,46 +85,34 @@ create table usuario(
     constraint fk_empresa_user foreign key (fk_empresa) references empresa (id_empresa)
 );
 
-INSERT INTO plano (nome, valor, qtd_maquinas, qtd_usuarios) VALUES ('Plano Básico', 50.00, 3, 3);
-
--- Inserir plano 2
-INSERT INTO plano (nome, valor, qtd_maquinas, qtd_usuarios) VALUES ('Plano Standard', 100.00, 4, 4);
-
--- Inserir plano 3
-INSERT INTO plano (nome, valor, qtd_maquinas, qtd_usuarios) VALUES ('Plano Premium', 150.00, 5, 5);
-
--- Inserir usuário 1
 INSERT INTO usuario (nome, login_email, senha, fk_empresa, tipo_usuario)
 VALUES ('João Silva', 'joao@example.com', 'senha123', 1, 'administrador');
 
--- Inserir usuário 2
-INSERT INTO usuario (nome, login_email, senha, fk_empresa, tipo_usuario)
-VALUES ('Maria Santos', 'maria@example.com', 'senha456', 1, 'funcionario');
+DELIMITER $$
+CREATE PROCEDURE deletarComputador(IN idDoComputador INT)
+BEGIN
 
--- Inserir usuário 3
-INSERT INTO usuario (nome, login_email, senha, fk_empresa, tipo_usuario)
-VALUES ('Pedro Oliveira', 'pedro@example.com', 'senha789', 2, 'administrador');
+    declare fkHardware INT;
+
+    SELECT hardware.id_hardware into fkHardware from hardware where fk_computador = idDoComputador;
+
+    DELETE FROM registros WHERE  fk_hardware = fkHardware;
+    DELETE FROM hardware WHERE  fk_computador = idDoComputador;
+    DELETE FROM computador WHERE id_computador = idDoComputador;
+
+END $$;
+
+-- DROP PROCEDURE IF EXISTS deletarComputador;
+-- call deletarComputador(1);
+
+select * from plano;
 
 select * from empresa;
 
-select usuario.*, empresa.fk_plano from usuario join empresa on fk_empresa = empresa.id_empresa;
+select * from computador;
 
-update empresa set fk_plano = 1 where id_empresa = 1;
+SELECT * FROM hardware;
 
+select * from registros;
 
-
-
-/*
-comandos para criar usuário em banco de dados azure, sqlserver,
-com permissão de insert + update + delete + select
-*/
-
-CREATE USER [usuarioParaAPIWebDataViz_datawriter_datareader]
-WITH PASSWORD = '#Gf_senhaParaAPIWebDataViz',
-DEFAULT_SCHEMA = dbo;
-
-EXEC sys.sp_addrolemember @rolename = N'db_datawriter',
-@membername = N'usuarioParaAPIWebDataViz_datawriter_datareader';
-
-EXEC sys.sp_addrolemember @rolename = N'db_datareader',
-@membername = N'usuarioParaAPIWebDataViz_datawriter_datareader';
+select * from usuario;
