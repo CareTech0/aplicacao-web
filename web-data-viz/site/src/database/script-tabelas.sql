@@ -100,7 +100,7 @@ BEGIN
     DELETE FROM hardware WHERE  fk_computador = idDoComputador;
     DELETE FROM computador WHERE id_computador = idDoComputador;
 
-END $$;
+END $$
 
 -- DROP PROCEDURE IF EXISTS deletarComputador;
 -- call deletarComputador(1);
