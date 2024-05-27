@@ -129,6 +129,7 @@ body {
   align-items: center;
   border-radius: 5px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  flex-direction: row-reverse;
 }
 
 .fundo-legenda-condicao1 {
@@ -168,8 +169,7 @@ body {
   display: flex;
   width: 100%;
   justify-content: space-evenly;
-  height: 32%;
-  flex-direction: row-reverse;
+  height: 32%;  
 }
 .legenda-status1 > span,
 .legenda-status2 > span,
