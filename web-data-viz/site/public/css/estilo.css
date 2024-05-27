@@ -524,7 +524,7 @@ color: #ffffff;
 
 .section-contact {
   height: 80vh;
-  background-color: #f5f5f5;
+  background-color: #ffffff;
 }
 
 .container-contact {
@@ -596,7 +596,7 @@ color: #ffffff;
   width: 40px;
 }
 footer {
-  background-color: #444;
+  background-color: #3f8ebf;
   height: 20vh;
   width: 100%;
   display: flex;
@@ -645,7 +645,7 @@ footer h1 {
 }
 
 .container-forms {
-  background-color: #445e96;
+  background-color: #f5f5f5;
   height: 100%;
   width: 60%;
   display: flex;
@@ -653,13 +653,14 @@ footer h1 {
   align-items: center;
   justify-content: center;
   gap: 2rem;
+  box-shadow: 50px 2px 9px rgba(1, 0, 2, 0.2);
 }
 
 .text-forms {
   display: flex;
   flex-direction: column;
   text-align: center;
-  color: #FFF;
+  color: #3f8ebf;
   gap: 0.5rem;
 }
 
@@ -718,20 +719,20 @@ footer h1 {
   width: 70%;
   height: 84%;
   cursor: pointer;
-  background-color: #d3d3d3;
+  background-color: #3f8ebf;
   padding: 5px;
   border-radius: 20px;
   font-size: 15px;
   font-weight: 600;
   border: none;
-  color: #444444;
+  color: #ffffff;
 }
 
 .button-forms button:hover {
   transition: 0.5s ease;
   transform: scale(1.03);
-  background-color: #aeb7c4a2;
-  color: white;
+  background-color: #124b9ba2;
+  color: rgb(255, 255, 255);
 }
 
 footer .ph {
