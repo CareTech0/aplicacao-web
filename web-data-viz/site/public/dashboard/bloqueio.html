@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../css/modais/modalDeslogar.css">
     <link rel="icon" href="../assets/icon/icon.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <script src="../js/scriptDash.js"></script>
+    <!-- <script src="../js/scriptDash.js"></script> -->
     <script src="../js/modais/modalDeslogar.js" defer></script>
 
 
@@ -157,29 +157,7 @@
                         </div>
 
                         <!-- Modal editar site -->
-                        <div class="modal-editar-site" id="editModal">
-                            <div class="modal-content-editar-site">
-                                <span class="close">&times;</span>
-                                <div class="modal-titulo">
-                                    <span><i class="bi bi-person-x-fill"></i></span>
-                                    <h2>EDITAR SITE</h2>
-                                </div>
-                                <div class="container-edicao-site">
-                                    <div class="box-editar-site">
-                                        <div class="input-site-2">
-                                            <span>Nome:</span> <input type="text">
-                                        </div>
-                                        <div class="input-site-2">
-                                            <span>Endereço do site:</span><input type="text">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-botao-editar-site">
-                                    <button id="confirmEdit">SALVAR EDIÇÃO</button>
-                                </div>
-                            </div>
-                        </div>
-
+                        <div id="edit_modal"></div>
                     </div>
                 </div>
             </div>
@@ -215,7 +193,7 @@
 
     // Elementos dos modais
     const deleteModal = document.getElementById('deleteModal');
-    const editModal = document.getElementById('editModal');
+    const editModal = document.getElementById('edit_modal');
 
     // Botões que abrem os modais
     const deleteButtons = document.querySelectorAll('.delete-user');
@@ -234,13 +212,6 @@
         });
     });
 
-    editButtons.forEach(function (button) {
-        button.addEventListener('click', function () {
-            abrirEditModal();
-
-        });
-    });
-
     // Evento de clique nos botões de fechar dos modais
     closeButtons.forEach(function (button) {
         button.addEventListener('click', function () {
@@ -251,11 +222,71 @@
 
     // Fechar o modal quando clicar fora dele
     window.addEventListener('click', function (event) {
-        if (event.target == deleteModal) {
+        if (event.target.className == "close") {
             deleteModal.style.display = 'none';
             editModal.style.display = 'none';
         }
     });
+
+    function editarMaquinaModal(id, nome, url, fkEmpresa){
+
+        editModal.innerHTML = `
+            <div class="modal-editar-site" id="editarSite">
+                <div class="modal-content-editar-site">
+                    <span class="close">&times;</span>
+                    <div class="modal-titulo">
+                        <span><i class="bi bi-person-x-fill"></i></span>
+                        <h2>EDITAR SITE</h2>
+                    </div>
+                    <div class="container-edicao-site">
+                        <div class="box-editar-site">
+                            <div class="input-site-2">
+                                <span>Nome:</span> <input type="text" id="nome_site_edit" value="${nome}">
+                            </div>
+                            <div class="input-site-2">
+                                <span>Endereço do site:</span><input type="text" id="url_site_edit" value="${url}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-botao-editar-site">
+                        <button id="confirmEdit" onclick="editarSite(${id})">SALVAR EDIÇÃO</button>
+                    </div>
+                </div>
+            </div>
+
+        `;
+
+        const modalEditarSite = document.getElementById('editarSite');
+        modalEditarSite.style.display = 'block';
+        editModal.style.display = 'block';
+    }
+
+    function editarSite(id){
+        const nome = document.getElementById('nome_site_edit').value;
+        const url = document.getElementById('url_site_edit').value;
+
+        fetch(`/bloqueioSites/editarSite/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                nome: nome,
+                url: url
+            })
+        })
+        .then(function (resposta) {
+            if (resposta.ok) {
+                window.location = "/bloqueioSites"
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+    }
 
     function buscarSites(){
         fetch(`/bloqueioSites/buscarSites/${sessionStorage.FK_EMPRESA}`, { cache: 'no-store' }).then(function (resposta) {
@@ -275,7 +306,7 @@
                             <div class="opcoes-usuario">
                                 <span class="delete-user" onclick="deletarSite(${site.id_sites})" data-target="#deleteModal"><i
                                         class="bi bi-trash3"></i></i></span>
-                                <span class="edit-user" data-target="#editModal"><i
+                                <span class="edit-user" onclick="editarMaquinaModal(${site.id_sites}, '${site.nome}', '${site.url}', ${site.fk_empresa})"><i
                                         class="bi bi-pencil-square"></i></span>
                             </div>
                         </div>

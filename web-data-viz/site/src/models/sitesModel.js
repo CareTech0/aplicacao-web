@@ -24,4 +24,12 @@ function deletarSite(idSite){
     return database.executar(instrucao);
 }
 
-module.exports = { inserirSite , buscarSites, deletarSite }
+function editarSite(idSite, nome, url){
+    const instrucao = `
+        update sites_bloqueados set nome = '${nome}', url = '${url}' where id_sites = ${idSite}
+    `;
+
+    return database.executar(instrucao);
+}
+
+module.exports = { inserirSite , buscarSites, deletarSite, editarSite }

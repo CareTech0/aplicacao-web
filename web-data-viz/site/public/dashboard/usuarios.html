@@ -247,71 +247,7 @@
 
 <!-- modal editar usuario -->
 <div class="modal" id="editModal">
-    <div class="modal-content-editar-usuario">
-
-        <span class="close">&times;</span>
-
-        <div class="modal-titulo-novo-usuario">
-            <span class="icon"><i class="bi bi-person-gear"></i></span>
-            <h2>EDITAR USUÁRIO</h2>
-        </div>
-
-        <div class="inputs-modal-novo-usuario">
-
-            <div class="content-input-modal-novo-usuario">
-                <span> Nome: </span>
-                <input type="text" name="nome">
-            </div>
-
-            <div class="content-input-modal-novo-usuario">
-                <span> E-mail:</span>
-                <input type="text" name="email">
-            </div>
-
-            <div class="content-input-modal-novo-usuario">
-                <span> Senha: </span>
-                <input type="password">
-            </div>
-
-            <div class="content-input-modal-novo-usuario">
-                <span> Confirmar senha:</span>
-                <input type="password">
-            </div>
-
-
-            <div class="content-input-modal-novo-usuario-tooltip">
-
-                <div class="titulo-tipo-acesso">
-                    <span> Tipo de acesso:</span>
-                </div>
-
-                <div class="box-tooltip">
-                    <div class="tooltip-container">
-                        <span class="tooltip-icon">i</span>
-                        <div class="tooltip-text"><b>Administradores:</b> têm controle total sobre
-                            máquinas,
-                            usuários e bloqueio de sites.
-                            <br> <br>
-                            <b>Usuário comum:</b> Apenas visualização da dashboard.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="content-input-modal" id="1">
-                    <select id="perfil" name="perfil">
-                        <option value="administrador">Administrador</option>
-                        <option value="usuario">Usuário comum</option>
-                    </select>
-                </div>
-
-
-            </div>
-            <button class="botao-adicionar" id="saveNewUser">SALVAR</button>
-
-
-
-        </div>
-    </div>
+    
 </div>
 
 </html>
@@ -357,11 +293,6 @@
         newUserModal.style.display = 'block';
     }
 
-    function abrirEditModal() {
-        editModal.style.display = 'flex';
-        console.log('Entrei no abrirEditModal')
-    }
-
     function abrirSuccessModal() {
         successModal.style.display = 'block';
     }
@@ -376,14 +307,6 @@
 
     newButton.addEventListener('click', function () {
         abrirNewUserModal();
-    });
-
-
-    editButtons.forEach(function (button) {
-        button.addEventListener('click', function () {
-            abrirEditModal();
-            console.log('entrou no evento de clique do editModal')
-        });
     });
 
 
@@ -450,7 +373,7 @@
                                         <div class="opcoes-usuario">
                                             <span class="delete-user" onclick="deletarUsuario(${usuario.id_user})" data-target="#deleteModal"><i
                                                     class="bi bi-trash3"></i></i></span>
-                                            <span class="edit-user" onclick="abrirEditModal()" data-target="#editModal"><i
+                                            <span class="edit-user" onclick="abrirEditModal(${usuario.id_user}, '${usuario.nome}', '${usuario.login_email}', '${usuario.senha}')" data-target="#editModal"><i
                                                     class="bi bi-pencil-square"></i></span>
                                         </div>
                                     </div>
@@ -465,6 +388,127 @@
                 console.log(`#ERRO: ${resposta}`);
                 alert("Erro no banco");
             });
+    }
+
+    //Editar Usuário
+    function abrirEditModal(id, nome, email, senha){
+        editModal.style.display = 'block';
+        editModal.innerHTML = `
+            <div class="modal-content-editar-usuario">
+
+                <span class="close">&times;</span>
+
+                <div class="modal-titulo-novo-usuario">
+                    <span class="icon"><i class="bi bi-person-gear"></i></span>
+                    <h2>EDITAR USUÁRIO</h2>
+                </div>
+
+                <div class="inputs-modal-novo-usuario">
+
+                    <div class="content-input-modal-novo-usuario">
+                        <span> Nome: </span>
+                        <input type="text" name="nome" value="${nome}" id="nome_usuario_edit">
+                    </div>
+
+                    <div class="content-input-modal-novo-usuario">
+                        <span> E-mail:</span>
+                        <input type="text" name="email" value="${email}" id="email_usuario_edit">
+                    </div>
+
+                    <div class="content-input-modal-novo-usuario">
+                        <span> Senha: </span>
+                        <input type="password" id="senha_usuario_edit" value="${senha}">
+                    </div>
+
+                    <div class="content-input-modal-novo-usuario">
+                        <span> Confirmar senha:</span>
+                        <input type="password" id="repetirSenha_usuario_edit" value="${senha}">
+                    </div>
+
+
+                    <div class="content-input-modal-novo-usuario-tooltip">
+
+                        <div class="titulo-tipo-acesso">
+                            <span> Tipo de acesso:</span>
+                        </div>
+
+                        <div class="box-tooltip">
+                            <div class="tooltip-container">
+                                <span class="tooltip-icon">i</span>
+                                <div class="tooltip-text"><b>Administradores:</b> têm controle total sobre
+                                    máquinas,
+                                    usuários e bloqueio de sites.
+                                    <br> <br>
+                                    <b>Usuário comum:</b> Apenas visualização da dashboard.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="content-input-modal" id="1">
+                            <select id="perfil_usuario_edit" name="perfil">
+                                <option value="administrador">Administrador</option>
+                                <option value="usuario">Usuário comum</option>
+                            </select>
+                        </div>
+
+
+                    </div>
+                    <button class="botao-adicionar" onclick="editarUsuario(${id})">SALVAR</button>
+                </div>
+            </div>
+        `;
+    }
+
+    function editarUsuario(id){
+        const nome = document.getElementById('nome_usuario_edit').value;
+        const email = document.getElementById('email_usuario_edit').value;
+        const senha = document.getElementById('senha_usuario_edit').value;
+        const repetirSenha = document.getElementById('repetirSenha_usuario_edit').value;
+        const tipoUser = document.getElementById('perfil_usuario_edit').value;
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const nomeRegex = /\d/;
+        let validacoesCorretas = 4;
+
+        if (!nomeRegex.test(nome)) {
+            validacoesCorretas--;
+        }
+
+        if (emailRegex.test(email)) {
+            validacoesCorretas--;
+        }
+
+        if (senha.length >= 8) {
+            validacoesCorretas--;
+        }
+
+        if (senha == repetirSenha) {
+            validacoesCorretas--;
+        }
+
+        if(validacoesCorretas == 0){
+            fetch(`/usuario/editarUsuario/${id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    nome: nome,
+                    email: email,
+                    senha: senha,
+                    tipoUser: tipoUser
+                })
+            })
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    window.location = "/usuario"
+                }
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+                alert("Erro no banco");
+            });
+        }
+
     }
 
     // Criar novo usuário

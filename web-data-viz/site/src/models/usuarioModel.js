@@ -1,4 +1,5 @@
 const database = require("../database/config");
+const { editarSite } = require("./sitesModel");
 
 function buscarUsuarios(fkEmpresa){
     const instrucao = `
@@ -24,4 +25,12 @@ function deletarUsuario(idUser){
     return database.executar(instrucao);
 }
 
-module.exports = { buscarUsuarios, criarUsuario, deletarUsuario }
+function editarUsuario(nome, email, senha, tipoUser, idUser){
+    const instrucao = `
+        UPDATE usuario SET nome = '${nome}', login_email = '${email}', senha = '${senha}', tipo_usuario = '${tipoUser}' WHERE id_user = ${idUser}
+    `;
+
+    return database.executar(instrucao);
+}
+
+module.exports = { buscarUsuarios, criarUsuario, deletarUsuario, editarUsuario }

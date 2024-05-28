@@ -20,5 +20,9 @@ router.delete("/deletarSite/:idSite", function(req, res) {
     sitesController.deletarSite(req, res);
 });
 
+router.put("/editarSite/:idSite", function(req, res){
+    sitesController.editarSite(req, res);
+})
+
 
 module.exports = router;

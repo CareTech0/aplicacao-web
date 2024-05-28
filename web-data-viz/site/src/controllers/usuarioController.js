@@ -26,8 +26,6 @@ function criarUsuario(req, res){
     const tipoUser = req.body.tipo_user;
     const fkEmpresa = req.body.fk_empresa;
 
-    console.log(nome);
-
     usuarioModel.criarUsuario(nome, email, senha, tipoUser, fkEmpresa)
     .then(
         function (resultado) {
@@ -61,4 +59,24 @@ function deletarUsuario(req, res){
     )
 }
 
-module.exports = { buscarUsuarios, criarUsuario, deletarUsuario }
+function editarUsuario(req, res){
+    const idUser = req.params.idUser;
+    const nome = req.body.nome;
+    const email = req.body.email;
+    const senha = req.body.senha;
+    const tipoUser = req.body.tipoUser;
+
+
+    usuarioModel.editarUsuario(nome, email, senha, tipoUser, idUser)
+    .then(
+        function (resultado) {
+            res.json(resultado);
+        }
+    )
+    .catch (function (erro){
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+module.exports = { buscarUsuarios, criarUsuario, deletarUsuario, editarUsuario }
