@@ -58,6 +58,16 @@ body {
   font-weight: bold;
   pointer-events: none; 
 }
+.center-text-mem {
+  position: absolute;
+  top: 44%;
+  left: 31.4%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+  font-weight: bold;
+  pointer-events: none; 
+}
+
 
 .container-superior {
   width: 100%;
