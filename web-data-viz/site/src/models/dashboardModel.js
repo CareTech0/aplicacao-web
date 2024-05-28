@@ -24,4 +24,12 @@ function deletarComputador(idComputador){
     return database.executar(instruco);
 }
 
-module.exports = { inserirMaquina, buscarMaquinas, deletarComputador }
+function editarMaquina(estacaoDeTrabalho, login, senha){
+    const instrucao = `
+        update computador set estacao_de_trabalho = '${estacaoDeTrabalho}', login = '${login}', senha = '${senha}'
+    `;
+
+    return database.executar(instrucao);
+}
+
+module.exports = { inserirMaquina, buscarMaquinas, deletarComputador, editarMaquina }

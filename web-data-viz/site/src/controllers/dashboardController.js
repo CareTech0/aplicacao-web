@@ -13,7 +13,6 @@ function buscarMaquinas(req, res){
     })
     .catch(function (erro) {
         console.log(erro);
-        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
         res.status(500).json(erro.sqlMessage);
     });
 }
@@ -33,7 +32,6 @@ function inserirMaquina(req, res){
     })
     .catch(function (erro) {
         console.log(erro);
-        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
         res.status(500).json(erro.sqlMessage);
     });
 }
@@ -50,9 +48,27 @@ function deletarComputador(req, res){
     })
     .catch(function (erro) {
         console.log(erro);
-        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
         res.status(500).json(erro.sqlMessage);
     });
 }
 
-module.exports = { inserirMaquina, buscarMaquinas, deletarComputador }
+function editarMaquina(req, res){
+    const estacaoDeTrabalho = req.body.estacaoDeTrabalho;
+    const login = req.body.login;
+    const senha = req.body.senha;
+
+    dashboardModel.editarMaquina(estacaoDeTrabalho, login, senha).then(function (resultado){
+        if(resultado.length > 0){
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum Resultado encontrado!");
+        }
+    })
+    .catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+
+module.exports = { inserirMaquina, buscarMaquinas, deletarComputador, editarMaquina }

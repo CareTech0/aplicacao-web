@@ -29,8 +29,16 @@ router.post("/inserirMaquina", function (req, res) {
     dashboardController.inserirMaquina(req, res);
 });
 
+//deletar máquina ----------------------------------------------------
+
 router.delete("/deletarComputador/:idComputador", function (req, res){
     dashboardController.deletarComputador(req, res);
+});
+
+//Editar máquina -----------------------------------------------------
+
+router.put("/editarMaquina/:idComputador", function (req, res) {
+    dashboardController.editarMaquina(req, res);
 });
 
 module.exports = router;

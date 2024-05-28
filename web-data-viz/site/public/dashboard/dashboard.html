@@ -271,35 +271,6 @@
                     <div class="box-maquinas">
                         <div class="background-maquinas" id="background_maquinas">
                             <!-- conteudo das maquinas abaixo -->
-                            <!-- <div class="container-maquinas">
-                                <div class="coluna-maquinas">
-                                    <div class="caixa-maquina">
-                                        <div class="box-icon-maquina">
-                                            <div class="imagem-maquina">
-                                                <img src="../assets/imgs/pngMaquina.png">
-                                            </div>
-                                        </div>
-                                        <div class="box-info-maquina">
-                                            <div class="caixadotitulo">
-                                                <span class="patrimonio-titulo">bp562801</span>
-                                            </div>
-                                            <div class="box-informacoes">
-                                                <div class="caixa-status">
-                                                    <img class="imagemstatus" src="../assets/imgs/alerta.png">
-                                                    <span><b>Status: </b></span> <span id="status">Alerta </span>
-                                                </div>
-                                                <div class="caixa-condicao">
-                                                    <img class="imagemcondicao" src="../assets/imgs/ligado.png">
-                                                    <span><b>Condição: </b></span> <span id="condicao">Ligada </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
-
-
-
 
                         </div>
                     </div>
@@ -391,7 +362,6 @@
                     </div>
                 </div>
 
-
                 <div id="telaGerenciar" style="display:none;" class="container-inputs-gerenciar">
                     <!-- tela de gerenciamento -->
 
@@ -409,28 +379,14 @@
 
                         <div class="container-gerenciar" id="lista_computadores">
                             <div>
-                                <div>
-                                    <div class="box-localizacao">
-                                        <span>LOCALIZAÇÃO</span>
-                                    </div>
 
-                                    <div class="caixa-gerenciar-cadastrados">
-                                        <div class="fundo-gerenciar">
-                                            <div class="linha-localizacao">
-                                                <span>Mesa 01</span>
-                                            </div>
-                                            <div class="opcoes-usuario">
-                                                <span class="delete-user" data-target="#deleteModal"><i
-                                                        class="bi bi-trash3"></i></i></span>
-                                                <span class="edit-user" data-target="#editModal"><i
-                                                        class="bi bi-pencil-square"></i></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div id="editar_modal" style="display: none;" class="container-inputs-criar">
+                    <!-- Tela de edição da máquina -->
                 </div>
             </div>
         </div>
@@ -445,6 +401,7 @@
 
     // Selecionando os elementos relevantes
     const telaCriar = document.getElementById('telaCriar');
+    const telaEditar = document.getElementById('editar_modal');
     const telaGerenciar = document.getElementById('telaGerenciar');
     const botaoCriar = document.querySelector('.box-botao-criar');
     const botaoGerenciar = document.querySelector('.box-botao-gerenciar');
@@ -460,6 +417,7 @@
     botaoGerenciar.addEventListener('click', function () {
         // Esconder a tela de criação e mostrar a tela de gerenciamento
         telaCriar.style.display = 'none';
+        telaEditar.style.display = 'none';
         telaGerenciar.style.display = 'block';
     });
 
@@ -478,6 +436,81 @@
 
     //Buscar máquinas
     let qtdComputadores = 0;
+
+    //Editar a máquina
+    function modalEditarMaquina(idComputador, estacaoDeTrabalho, login, senha){
+        telaGerenciar.style.display = "none";
+        telaEditar.style.display = "block";
+        telaEditar.innerHTML = `
+            <div class="box-inputs" style="margin-top: 20px;">
+                <h2>Editar Usuário</h2>
+
+                <div class="boxCriar">
+                    <div class="input-group">
+                        <label for="estacao_de_trabalho_editar">Estação de trabalho:</label>
+                        <input type="text" id="estacao_de_trabalho_editar" value="${estacaoDeTrabalho}">
+                    </div>
+                    <div class="input-group">
+                        <label for="login_editar">Login:</label>
+                        <input type="text" id="login_editar" value="${login}">
+                    </div>
+                    <div class="input-group">
+                        <label for="senha_editar">Senha:</label>
+                        <input type="password" id="senha_editar" value="${senha}">
+                    </div>
+                    <div class="input-group">
+                        <label for="repetir_senha_editar">Confirmar senha:</label>
+                        <input type="password" id="repetir_senha_editar" value="${senha}">
+                    </div>
+
+
+                    <div class="modal-botao-cadastrar">
+                        <button onclick="editarComputador(${idComputador})"> <a>EDITAR</a></button>
+                    </div>
+                </div>
+
+            </div>
+        `;
+    }
+
+    function editarComputador(id){
+        const estacaoDeTrabalho = document.getElementById('estacao_de_trabalho_editar').value;
+        const login = document.getElementById('login_editar').value;
+        const senha = document.getElementById('senha_editar').value;
+        const repetirSenha = document.getElementById('repetir_senha_editar').value;
+
+        let validacoesCorretas = 2;
+
+        if (senha.length >= 8) {
+            validacoesCorretas--;
+        }
+
+        if (senha == repetirSenha) {
+            validacoesCorretas--;
+        }
+
+
+        if (validacoesCorretas == 0) {
+            fetch(`/dashboard/editarMaquina/${id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    estacaoDeTrabalho: estacaoDeTrabalho,
+                    login: login,
+                    senha: senha,
+                }),
+            })
+            .then( function (resposta) {
+                if(resposta.ok){
+                    window.location = "/dashboard/dashboard";
+                }
+            }).catch(function (resposta){
+                console.log(`#ERRO: ${resposta}`);
+            });
+        }
+    }
 
     function buscarMaquinas(){
         fetch(`/dashboard/buscarMaquinas/${sessionStorage.FK_EMPRESA}`, { cache: 'no-store' }).then(function (resposta) {
@@ -504,7 +537,7 @@
                                             <div class="opcoes-usuario">
                                                 <span class="delete-user" onclick="deletarComputador(${computador.id_computador})" data-target="#deleteModal"><i
                                                         class="bi bi-trash3"></i></i></span>
-                                                <span class="edit-user" onclick="modalDelete(${computador.id_computador})" data-target="#editModal"><i
+                                                <span class="edit-user" onclick="modalEditarMaquina(${computador.id_computador}, '${computador.estacao_de_trabalho}', '${computador.login}', '${computador.senha}')" data-target="#editModal"><i
                                                         class="bi bi-pencil-square"></i></span>
                                             </div>
                                         </div>
