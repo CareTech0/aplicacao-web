@@ -371,8 +371,8 @@
                         <div class="caixa-buscar">
                             <div class="wrap">
                                 <div class="search">
-                                    <input type="text" class="searchTerm" placeholder="Buscar por localização">
-                                    <button type="submit" class="searchButton">
+                                    <input type="text" class="searchTerm" placeholder="Buscar por localização"  id="searchInput">
+                                    <button type="submit" class="searchButton" onclick="filtrarMaqs()">
                                         <i class="bi bi-search"></i>
                                     </button>
                                 </div>
@@ -491,6 +491,8 @@
         const senha = document.getElementById('senha_editar').value;
         const repetirSenha = document.getElementById('repetir_senha_editar').value;
 
+        
+
         const msgErro = document.getElementById('msgErroEdit');
 
         const qtdComputadores = 1; 
@@ -541,7 +543,7 @@
             });
         }
     }
-
+    let todasMaquinas = []; // usando no filtro
     function buscarMaquinas(){
         fetch(`/dashboard/buscarMaquinas/${sessionStorage.FK_EMPRESA}`, { cache: 'no-store' }).then(function (resposta) {
             if(resposta.ok){
@@ -549,6 +551,7 @@
                 const computadorQuadro = document.getElementById('background_maquinas');
 
                 resposta.json().then(function (resposta){
+                    todasMaquinas = resposta;
                     for(;qtdComputadores < resposta.length; qtdComputadores++){    
                         const computador = resposta[qtdComputadores];
                         
@@ -560,7 +563,7 @@
                                     <div class="caixa-gerenciar-cadastrados">
                                         <div class="fundo-gerenciar">
                                             <div class="linha-localizacao">
-                                                <span>${computador.estacao_de_trabalho}</span>
+                                                <span>${computador.estacao_de_trabalho.toUpperCase()}</span>
                                             </div>
                                             <div class="opcoes-usuario">
                                                 <span class="delete-user" onclick="deletarComputador(${computador.id_computador})" data-target="#deleteModal"><i
@@ -584,7 +587,7 @@
                                         </div>
                                         <div class="box-info-maquina">
                                             <div class="caixadotitulo">
-                                                <span class="patrimonio-titulo">${computador.estacao_de_trabalho}</span>
+                                                <span class="patrimonio-titulo">${computador.estacao_de_trabalho.toUpperCase()}</span>
                                             </div>
                                             <div class="box-informacoes">
                                                 <div class="caixa-status">
@@ -608,6 +611,44 @@
         }
         
     //Inserir máquina 
+
+  
+
+   
+    
+    function filtrarMaqs() {
+        const termoBusca = document.getElementById('searchInput').value.toLowerCase();
+        const maquinasFiltradas = todasMaquinas.filter(function (computador) {
+            return computador.estacao_de_trabalho.toLowerCase().includes(termoBusca);
+        });
+        mostrarMaquinas(maquinasFiltradas);
+    }
+    
+    // Adiciona evento de clique ao botão de busca
+    document.querySelector('.searchButton').addEventListener('click', filtrarMaqs);
+
+    function mostrarMaquinas(maquinas) {
+        const computadorLista = document.getElementById('lista_computadores');
+        computadorLista.innerHTML = '';
+        maquinas.forEach(function (computador) {
+            computadorLista.innerHTML += `
+                <div>
+                    <div class="caixa-gerenciar-cadastrados">
+                        <div class="fundo-gerenciar">
+                            <div class="linha-localizacao">
+                                <span>${computador.estacao_de_trabalho.toUpperCase()}</span>
+                            </div>
+                            <div class="opcoes-usuario">
+                                <span class="delete-user" onclick="deletarComputador(${computador.id_computador})" data-target="#deleteModal"><i
+                                        class="bi bi-trash3"></i></span>
+                                <span class="edit-user" onclick="modalEditarMaquina(${computador.id_computador}, '${computador.estacao_de_trabalho}', '${computador.login}', '${computador.senha}')" data-target="#editModal"><i
+                                        class="bi bi-pencil-square"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+        });
+    }
 
     btnCriarMaquina.addEventListener('click', function () {
         const qtdComputadoesPlano = sessionStorage.QTD_MAQUINAS_PLANO;
