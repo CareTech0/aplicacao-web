@@ -452,7 +452,7 @@
                 
                 <div class="boxCriarEditar" style="display: flex;align-items: center; flex-direction: column;height: 100%;gap: 6px; width: 96%;">
                     <div style="height: 20px; width: 178px;">
-                        <h2 style="font-size: 18px; font-weight:700;">EDITAR MÁQUINA</h2>
+                        <h2 style="font-size: 18px; font-weight:600; ">EDITAR MÁQUINA</h2>
                        </div>
 
                     <div class="input-group">
@@ -516,13 +516,21 @@
         } else {
             validacoesCorretas++;
         }
+
+        if (estacaoDeTrabalho.length == "") {
+            mensagemErro += `<span>É necessário nomear a estação de trabalho.</span><br>`;
+            console.log("erro na validação da senha"); 
+        } else {
+            validacoesCorretas++;
+        }
+
         console.log(`validacoesCorretas: ${validacoesCorretas}`);
         console.log(`mensagemErro: ${mensagemErro}`);
 
         msgErroEdit.innerHTML = mensagemErro;
         
 
-        if (validacoesCorretas == 2) {
+        if (validacoesCorretas == 3) {
             fetch(`/dashboard/editarMaquina/${id}`, {
                 method: "PUT",
                 headers: {
@@ -672,6 +680,13 @@
         } else {
             validacoesCorretas++;
         }
+        
+        if (estacaoDeTrabalho.length == "") {
+            mensagemErro += `<span>É necessário nomear a estação de trabalho.</span><br>`;
+            console.log("erro na validação da senha"); 
+        } else {
+            validacoesCorretas++;
+        }
     
         if (senha !== repetirSenha) {
             mensagemErro += `<span>As senhas não coincidem.</span><br>`;
@@ -694,7 +709,7 @@
 
         msgErro.innerHTML = mensagemErro;
         
-        if (validacoesCorretas == 3) {
+        if (validacoesCorretas == 4) {
             msgErro.innerText = ""; // Limpa mensagem de erro se todas as validações passaram
             fetch("/dashboard/inserirMaquina", {
                 method: "POST",

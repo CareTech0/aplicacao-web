@@ -201,7 +201,7 @@
                 <div class="box-tooltip">
                     <div class="tooltip-container">
                         <span class="tooltip-icon">i</span>
-                        <div class="tooltip-text"><b>Administradores:</b> têm controle total sobre
+                        <div class="tooltip-text"><b>Administradores:</b> Têm controle total sobre
                             máquinas,
                             usuários e bloqueio de sites.
                             <br> <br>
@@ -343,9 +343,17 @@
 
                     for (; i < resposta.length; i++) {
                         const usuario = resposta[i];
-                        let textoToogle = "controle total sobre máquinas, usuários e bloqueio de sites.";
+                        let textoToogle = "";
 
+                        if (usuario.tipo_usuario.toLowerCase() === "administrador") {
+                            textoToogle = "Têm controle total sobre máquinas, usuários e bloqueio de sites.";
+                        } else {
+                            textoToogle = "Apenas visualização da dashboard.";
+                        }
 
+                        const tipoUsuarioCapitalizado = capitalizarPrimeiraLetra(usuario.tipo_usuario);
+
+                      
                         boxUsuarios.innerHTML += `
                         <div class="conteudo-usuario">
                                         <div class="dados-usuario">
@@ -355,12 +363,12 @@
 
                                         <div class="perfil-usuario">
                                             <div class="perf-type">
-                                                <h1>${usuario.tipo_usuario}</h1>
+                                                <h1>${tipoUsuarioCapitalizado}</h1>
                                             </div>
                                             <div class="box-tooltip-principal">
                                                 <div class="tooltip-container-principal">
                                                     <span class="tooltip-icon-principal">i</span>
-                                                    <div class="tooltip-text-principal"><b>${usuario.tipo_usuario}:</b> têm
+                                                    <div class="tooltip-text-principal"><b>${tipoUsuarioCapitalizado}:</b> ${textoToogle}
                                                         
                                                         <br>
                                                     </div>
@@ -390,6 +398,10 @@
             });
     }
 
+    function capitalizarPrimeiraLetra(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+    
     //Editar Usuário
     function abrirEditModal(id, nome, email, senha){
         editModal.style.display = 'block';
@@ -435,7 +447,7 @@
                         <div class="box-tooltip">
                             <div class="tooltip-container">
                                 <span class="tooltip-icon">i</span>
-                                <div class="tooltip-text"><b>Administradores:</b> têm controle total sobre
+                                <div class="tooltip-text"><b>Administradores:</b> Têm controle total sobre
                                     máquinas,
                                     usuários e bloqueio de sites.
                                     <br> <br>
