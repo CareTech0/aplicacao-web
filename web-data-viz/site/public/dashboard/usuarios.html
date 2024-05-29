@@ -216,9 +216,9 @@
                         <option value="usuario">Usuário comum</option>
                     </select>
                 </div>
-
-
+               
             </div>
+            <div style="width:100%; align-items: center; display: flex; flex-direction: column; color: red; font-size: 15px;" id="erromensagem"></div>
             <button  class="botao-adicionar" id="save_new_user">SALVAR</button>
 
 
@@ -480,25 +480,39 @@
 
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         const nomeRegex = /\d/;
-        let validacoesCorretas = 4;
+        let validacoesCorretas = 5;
 
-        if (!nomeRegex.test(nome)) {
+        const errorMessage = document.querySelector('.erromensagem');
+        erromensagem.innerHTML = '';
+
+        if (nome == "") {
+            erromensagem.innerHTML += '<span>O nome é obrigatório. <br></span>';
+            validacoesCorretas--;
+        }
+           
+        if (email == "") {
+            erromensagem.innerHTML += '<span>O email é obrigatório.<br></span>';
+            validacoesCorretas--;
+        } else if (!emailRegex.test(email)) {
+            erromensagem.innerHTML += '<span>O email não é válido.<br></span>';
+            validacoesCorretas--;
+        }
+    
+        if (senha.length < 8) {
+            erromensagem.innerHTML += '<span>A senha deve ter pelo menos 8 caracteres. <br></span>';
             validacoesCorretas--;
         }
 
-        if (emailRegex.test(email)) {
+        if (senha !== repetirSenha) {
+            erromensagem.innerHTML += '<span>As senhas não coincidem.<br></span>';
+            validacoesCorretas--;
+        }
+        if (qtdUsuariosPlano <= qtdUsuarios) {
+            erromensagem.innerHTML += '<span>A quantidade máxima de usuários do plano foi atingida. <br></span>';
             validacoesCorretas--;
         }
 
-        if (senha.length >= 8) {
-            validacoesCorretas--;
-        }
-
-        if (senha == repetirSenha) {
-            validacoesCorretas--;
-        }
-
-        if(validacoesCorretas == 0){
+        if(validacoesCorretas == 5){
             fetch(`/usuario/editarUsuario/${id}`, {
                 method: "PUT",
                 headers: {
@@ -537,27 +551,39 @@
         const nomeRegex = /\d/;
         let validacoesCorretas = 5;
 
-        if (!nomeRegex.test(nome)) {
+        const errorMessage = document.querySelector('.erromensagem');
+        erromensagem.innerHTML = '';
+        
+
+        if (nome == "") {
+            erromensagem.innerHTML += '<span>O nome é obrigatório.</span>';
+            validacoesCorretas--;
+        }
+           
+        if (email == "") {
+            erromensagem.innerHTML += '<span>O email é obrigatório.</span>';
+            validacoesCorretas--;
+        } else if (!emailRegex.test(email)) {
+            erromensagem.innerHTML += '<span>O email não é válido.</span>';
+            validacoesCorretas--;
+        }
+    
+        if (senha.length < 8) {
+            erromensagem.innerHTML += '<span>A senha deve ter pelo menos 8 caracteres.</span>';
             validacoesCorretas--;
         }
 
-        if (emailRegex.test(email)) {
+        if (senha !== repetirSenha) {
+            erromensagem.innerHTML += '<span>As senhas não coincidem.</span>';
+            validacoesCorretas--;
+        }
+        if (qtdUsuariosPlano <= qtdUsuarios) {
+            erromensagem.innerHTML += '<span>A quantidade máxima de usuários do plano foi atingida.</span>';
             validacoesCorretas--;
         }
 
-        if (senha.length >= 8) {
-            validacoesCorretas--;
-        }
-
-        if (senha == repetirSenha) {
-            validacoesCorretas--;
-        }
-
-        if (qtdUsuariosPlano >= qtdUsuarios) {
-            validacoesCorretas--;
-        }
-
-        if (validacoesCorretas == 0) {
+        
+        if (validacoesCorretas == 5) {
             fetch("/usuario/criarUsuario", {
                 method: "POST",
                 headers: {
