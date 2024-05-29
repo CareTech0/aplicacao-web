@@ -394,6 +394,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 </div>
@@ -416,6 +417,7 @@
         // Esconder a tela de gerenciamento e mostrar a tela de criação
         telaGerenciar.style.display = 'none';
         telaCriar.style.display = 'block';
+        telaEditar.style.display = 'none';
     });
 
     botaoGerenciar.addEventListener('click', function () {
@@ -447,9 +449,12 @@
         telaEditar.style.display = "block";
         telaEditar.innerHTML = `
             <div class="box-inputs" style="margin-top: 20px;">
-                <h2>Editar Usuário</h2>
+                
+                <div class="boxCriarEditar" style="display: flex;align-items: center; flex-direction: column;height: 100%;gap: 6px; width: 96%;">
+                    <div style="height: 20px; width: 178px;">
+                        <h2 style="font-size: 18px; font-weight:700;">EDITAR MÁQUINA</h2>
+                       </div>
 
-                <div class="boxCriar">
                     <div class="input-group">
                         <label for="estacao_de_trabalho_editar">Estação de trabalho:</label>
                         <input type="text" id="estacao_de_trabalho_editar" value="${estacaoDeTrabalho}">
@@ -467,6 +472,9 @@
                         <input type="password" id="repetir_senha_editar" value="${senha}">
                     </div>
 
+                    <div id="msgErroEdit" style="color: red; font-size: 14px;">
+                    </div>
+                    
 
                     <div class="modal-botao-cadastrar">
                         <button onclick="editarComputador(${idComputador})"> <a>EDITAR</a></button>
@@ -483,18 +491,36 @@
         const senha = document.getElementById('senha_editar').value;
         const repetirSenha = document.getElementById('repetir_senha_editar').value;
 
-        let validacoesCorretas = 2;
+        const msgErro = document.getElementById('msgErroEdit');
 
-        if (senha.length >= 8) {
-            validacoesCorretas--;
+        const qtdComputadores = 1; 
+    
+        let validacoesCorretas = 0;
+        let mensagemErro = "";
+
+        console.log("começando a validação"); 
+
+    
+        if (senha.length < 8) {
+            mensagemErro += `<span>A senha deve ter no mínimo 8 caracteres.</span><br>`;
+            console.log("erro na validação da senha"); 
+        } else {
+            validacoesCorretas++;
         }
-
-        if (senha == repetirSenha) {
-            validacoesCorretas--;
+    
+        if (senha !== repetirSenha) {
+            mensagemErro += `<span>As senhas não coincidem.</span><br>`;
+            console.log("erro na confirmação da senha");
+        } else {
+            validacoesCorretas++;
         }
+        console.log(`validacoesCorretas: ${validacoesCorretas}`);
+        console.log(`mensagemErro: ${mensagemErro}`);
 
+        msgErroEdit.innerHTML = mensagemErro;
+        
 
-        if (validacoesCorretas == 0) {
+        if (validacoesCorretas == 2) {
             fetch(`/dashboard/editarMaquina/${id}`, {
                 method: "PUT",
                 headers: {
@@ -601,21 +627,21 @@
     
         if (senha.length < 8) {
             mensagemErro += `<span>A senha deve ter no mínimo 8 caracteres.</span><br>`;
-            console.log("Erro na validação da senha"); 
+            console.log("erro na validação da senha"); 
         } else {
             validacoesCorretas++;
         }
     
         if (senha !== repetirSenha) {
             mensagemErro += `<span>As senhas não coincidem.</span><br>`;
-            console.log("Erro na confirmação da senha");
+            console.log("erro na confirmação da senha");
         } else {
             validacoesCorretas++;
         }
     
         if (qtdComputadoesPlano < qtdComputadores) {
             mensagemErro += `<span>Número de computadores excede o plano.</span><br>`;
-            console.log("Erro na validação do plano de computadores"); 
+            console.log("erro na validação do plano de computadores"); 
 
         } else {
             validacoesCorretas++;
