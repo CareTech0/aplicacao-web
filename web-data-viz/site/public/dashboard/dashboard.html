@@ -353,7 +353,9 @@
                                 <input type="password" id="repetir_senha">
                             </div>
 
-
+                           <div id="msgErro" style="color: red; font-size: 14px;">
+                           </div>
+                           
                             <div class="modal-botao-cadastrar">
                                 <button id="confirmCadastrar"> <a>CADASTRAR</a></button>
                             </div>
@@ -379,7 +381,9 @@
 
                         <div class="container-gerenciar" id="lista_computadores">
                             <div>
-
+                                <div class="box-localizacao">
+                                    <span>LOCALIZAÇÃO</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -525,9 +529,7 @@
                         computadorLista.innerHTML += `
                             <div>
                                 <div>
-                                    <div class="box-localizacao">
-                                        <span>LOCALIZAÇÃO</span>
-                                    </div>
+                                  
 
                                     <div class="caixa-gerenciar-cadastrados">
                                         <div class="fundo-gerenciar">
@@ -587,42 +589,65 @@
         const login = document.getElementById('login').value;
         const senha = document.getElementById('senha').value;
         const repetirSenha = document.getElementById('repetir_senha').value;
+        const msgErro = document.getElementById('msgErro');
 
-        let validacoesCorretas = 3;
+        const qtdComputadores = 1; 
+    
+        let validacoesCorretas = 0;
+        let mensagemErro = "";
 
-        if (senha.length >= 8) {
-            validacoesCorretas--;
+        console.log("começando a validação"); 
+
+    
+        if (senha.length < 8) {
+            mensagemErro += `<span>A senha deve ter no mínimo 8 caracteres.</span><br>`;
+            console.log("Erro na validação da senha"); 
+        } else {
+            validacoesCorretas++;
         }
-
-        if (senha == repetirSenha) {
-            validacoesCorretas--;
+    
+        if (senha !== repetirSenha) {
+            mensagemErro += `<span>As senhas não coincidem.</span><br>`;
+            console.log("Erro na confirmação da senha");
+        } else {
+            validacoesCorretas++;
         }
+    
+        if (qtdComputadoesPlano < qtdComputadores) {
+            mensagemErro += `<span>Número de computadores excede o plano.</span><br>`;
+            console.log("Erro na validação do plano de computadores"); 
 
-        if (qtdComputadoesPlano >= qtdComputadores) {
-            validacoesCorretas--;
+        } else {
+            validacoesCorretas++;
         }
+    
 
-        if (validacoesCorretas == 0) {
+        console.log(`validacoesCorretas: ${validacoesCorretas}`);
+        console.log(`mensagemErro: ${mensagemErro}`);
 
-        fetch("/dashboard/inserirMaquina", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                estacao_de_trabalho: estacaoDeTrabalho,
-                login: login,
-                senha: senha,
-                fkEmpresa: sessionStorage.FK_EMPRESA
-            }),
-            }).then( function (resposta) {
-                if(resposta.ok){
+        msgErro.innerHTML = mensagemErro;
+        
+        if (validacoesCorretas == 3) {
+            msgErro.innerText = ""; // Limpa mensagem de erro se todas as validações passaram
+            fetch("/dashboard/inserirMaquina", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    estacao_de_trabalho: estacaoDeTrabalho,
+                    login: login,
+                    senha: senha,
+                    fkEmpresa: sessionStorage.FK_EMPRESA
+                }),
+            }).then(function (resposta) {
+                if (resposta.ok) {
                     window.location = "/dashboard/dashboard";
                 }
-            }).catch(function (resposta){
+            }).catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);
             });
-        }
+        } 
     });
 
     //Deletar computador
