@@ -462,7 +462,8 @@
                                 <option value="usuario">Usuário comum</option>
                             </select>
                         </div>
-
+                        
+                        <div id="erroMensagem3"></div>
 
                     </div>
                     <button class="botao-adicionar" onclick="editarUsuario(${id})">SALVAR</button>
@@ -477,38 +478,39 @@
         const senha = document.getElementById('senha_usuario_edit').value;
         const repetirSenha = document.getElementById('repetirSenha_usuario_edit').value;
         const tipoUser = document.getElementById('perfil_usuario_edit').value;
+        const qtdUsuariosPlano = 10;
 
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         const nomeRegex = /\d/;
         let validacoesCorretas = 5;
 
-        const errorMessage = document.querySelector('.erromensagem');
-        erromensagem.innerHTML = '';
+        const errorMessage = document.getElementById('erroMensagem3');
+        errorMessage.innerHTML = '';
 
         if (nome == "") {
-            erromensagem.innerHTML += '<span>O nome é obrigatório. <br></span>';
+            errorMessage.innerHTML += '<span>O nome é obrigatório. <br></span>';
             validacoesCorretas--;
         }
            
         if (email == "") {
-            erromensagem.innerHTML += '<span>O email é obrigatório.<br></span>';
+            errorMessage.innerHTML += '<span>O email é obrigatório.<br></span>';
             validacoesCorretas--;
         } else if (!emailRegex.test(email)) {
-            erromensagem.innerHTML += '<span>O email não é válido.<br></span>';
+            errorMessage.innerHTML += '<span>O email não é válido.<br></span>';
             validacoesCorretas--;
         }
     
         if (senha.length < 8) {
-            erromensagem.innerHTML += '<span>A senha deve ter pelo menos 8 caracteres. <br></span>';
+            errorMessage.innerHTML += '<span>A senha deve ter pelo menos 8 caracteres. <br></span>';
             validacoesCorretas--;
         }
 
         if (senha !== repetirSenha) {
-            erromensagem.innerHTML += '<span>As senhas não coincidem.<br></span>';
+            errorMessage.innerHTML += '<span>As senhas não coincidem.<br></span>';
             validacoesCorretas--;
         }
         if (qtdUsuariosPlano <= qtdUsuarios) {
-            erromensagem.innerHTML += '<span>A quantidade máxima de usuários do plano foi atingida. <br></span>';
+            errorMessage.innerHTML += '<span>A quantidade máxima de usuários do plano foi atingida. <br></span>';
             validacoesCorretas--;
         }
 
