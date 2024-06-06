@@ -8,7 +8,8 @@ router.get("/dashboardVo", function (req, res) {
 });
 
 router.get("/dashboardFilha", function (req, res) {
-    res.render("./dashboard/dashboardFilha");
+    const idComputador = req.query.idComputador;
+    res.render("dashboard/dashboardFilha", { idComputador });
 });
 
 router.get("/dashboard", function (req, res) {
@@ -16,6 +17,22 @@ router.get("/dashboard", function (req, res) {
 });
 
 //Funcionalidades da dashboard filha ------------------------------------------------
+
+router.get("/buscarDadosRam/:idComputador", function (req, res) {
+    dashboardController.buscarDadosRam(req, res);
+});
+
+router.get("/buscarDadosCpu/:idComputador", function (req, res){
+    dashboardController.buscarDadosCpu(req, res);
+});
+
+router.get("/buscarDiscos/:idComputador", function (req, res) {
+    dashboardController.buscarDiscos(req, res);
+});
+
+router.get("/buscarDadosDisco/:idHardware", function (req, res) {
+    dashboardController.buscarDadosDisco(req, res);
+});
 
 //Buscar máquinas-----------------------------------------------------
 

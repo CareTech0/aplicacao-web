@@ -32,4 +32,45 @@ function editarMaquina(estacaoDeTrabalho, login, senha){
     return database.executar(instrucao);
 }
 
-module.exports = { inserirMaquina, buscarMaquinas, deletarComputador, editarMaquina }
+function buscarDadosRam(idComputador){
+    const instrucao = `
+        select h.nome_hardware, h.capacidade_total, h.id_hardware , r.qtd_processos, r.uso_capacidade, r.horario from hardware as h join registros as r on h.fk_computador = r.fk_hardware where h.id_hardware = ${idComputador} and nome_hardware = 'ram' order by horario DESC LIMIT 1;
+    `;
+
+    return database.executar(instrucao);
+}
+
+function buscarDadosCpu(idComputador){
+    const instrucao = `
+        select h.nome_hardware, h.capacidade_total, h.id_hardware , r.qtd_processos, r.uso_capacidade, r.horario from hardware as h join registros as r on h.id_hardware = r.fk_hardware where h.fk_computador = ${idComputador} and nome_hardware = 'cpu' order by horario DESC LIMIT 1;
+    `;
+
+    return database.executar(instrucao);
+}
+
+function buscarDiscos(idComputador){
+    const instrucao = `
+       select id_hardware, capacidade_total from hardware where fk_computador = ${idComputador} and nome_hardware = 'disco';
+    `;
+
+    return database.executar(instrucao);
+}
+
+function buscarDadosDisco(idHardware){
+    const instrucao = `
+        select registros.uso_capacidade from registros where fk_hardware = ${idHardware} order by horario DESC LIMIT 1;
+    `;
+
+    return database.executar(instrucao);
+}
+
+module.exports = { 
+    inserirMaquina,
+    buscarMaquinas,
+    deletarComputador,
+    editarMaquina,
+    buscarDadosRam,
+    buscarDadosCpu,
+    buscarDiscos,
+    buscarDadosDisco
+}

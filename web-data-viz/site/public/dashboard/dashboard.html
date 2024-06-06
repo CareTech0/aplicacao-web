@@ -585,7 +585,7 @@
                             </div>`;
 
                             computadorQuadro.innerHTML += `
-                            <div class="container-maquinas">
+                            <div class="container-maquinas" onclick="detalhesComputador(${computador.id_computador})">
                                 <div class="coluna-maquinas">
                                     <div class="caixa-maquina">
                                         <div class="box-icon-maquina">
@@ -617,12 +617,12 @@
                 }
             });
         }
-        
+
+        function detalhesComputador(idComputador){
+            window.location = `/dashboard/dashboardFilha?idComputador=${idComputador}`;
+        }
+
     //Inserir máquina 
-
-  
-
-   
     
     function filtrarMaqs() {
         const termoBusca = document.getElementById('searchInput').value.toLowerCase();

@@ -3,21 +3,24 @@
 
     google.charts.setOnLoadCallback(init);
 
+    const urlParams = new URLSearchParams(window.location.search);
+    const idComputador = urlParams.get('idComputador');
+
 function init() {
     gerarGraficoMemoriaRamUso();
-    gerarGraficoDiscoUso();
     gerarGraficoUtilizacaoCPU();
-    criarGraficosRede();    
+    //criarGraficosRede();    
 }
 
+var chartRam;
+var dataRam;
 
 function gerarGraficoMemoriaRamUso() {
     let totalMemory = 16; // Total de memória RAM disponível (em GB)
     let usedMemory = 10; // Memória RAM usada (em GB)
-    let memoryUsage = (usedMemory / totalMemory) * 100; // Uso de memória RAM em porcentagem
 
  
-    var data = google.visualization.arrayToDataTable([
+    dataRam = google.visualization.arrayToDataTable([
         ['Tipo', 'Uso de RAM'],
         ['Usado', usedMemory], // Total utilizado
         ['Livre', totalMemory - usedMemory], // Total disponível
@@ -47,21 +50,20 @@ function gerarGraficoMemoriaRamUso() {
     };
 
   
-    var chart = new google.visualization.PieChart(document.getElementById('graficoDeRoscaMemoria'));
-    chart.draw(data, options);
+    chartRam = new google.visualization.PieChart(document.getElementById('graficoDeRoscaMemoria'));
+    chartRam.draw(dataRam, options);
 
 }
 
-function gerarGraficoDiscoUso() {
-    let totalStorage = 500; // Total de armazenamento disponível (em GB)
-    let usedStorage = 300; // Armazenamento usado (em GB)
-    let storageFree = totalStorage - usedStorage; // Espaço livre (em GB)
+const chartDiscos = [];
+const dataDiscos = [];
 
-    var data = google.visualization.arrayToDataTable([
+function gerarGraficoDiscoUso(idHardware, capacidadeTotal, posicaoGrafico) {  
+    dataDiscos.push(google.visualization.arrayToDataTable([
         ['Tipo', 'Uso de Disco'],
-        ['Usado', usedStorage], // Total utilizado
-        ['Livre', storageFree], // Total disponível
-    ]);
+        ['Usado', capacidadeTotal], // Total utilizado
+        ['Livre', 0], // Total disponível
+    ]));
 
     var options = {
         pieHole: 0.5,
@@ -82,102 +84,185 @@ function gerarGraficoDiscoUso() {
         backgroundColor: 'transparent'
     };
 
-    var chart = new google.visualization.PieChart(document.getElementById('graficoDeDisco'));
-    chart.draw(data, options);
+    document.getElementById('graficoDeDiscoContainer').innerHTML += `<div id="graficoDeDisco${idHardware}"></div>`;
+
+    chartDiscos.push(new google.visualization.PieChart(document.getElementById(`graficoDeDisco${idHardware}`)));
+    chartDiscos[posicaoGrafico].draw(dataDiscos[posicaoGrafico], options);
 }
+
+var charCPU;
+var dataCPU;
+var dadosUtilizacaoCPU = [];
+
 function gerarGraficoUtilizacaoCPU() {
-    var data = new google.visualization.DataTable();
-    data.addColumn('number', 'Segundos');
-    data.addColumn('number', 'Utilização da CPU (%)');
+    dataCPU = new google.visualization.DataTable();
+    dataCPU.addColumn('string', 'tempo');
+    dataCPU.addColumn('number', 'Utilização da CPU (%)');
+
+    let time = new Date();
+    let hora = time.getHours();
+    let minutos = time.getMinutes();
+    let tempo = `${hora}:${minutos}`;
 
     // Simular dados de utilização da CPU
-    var dadosUtilizacaoCPU = [
-        [0, 10],
-        [10, 20],
-        [25, 30],
-        [30, 40],
-        [40, 50],
-        [50, 20],
-        [60, 70],
-        [70, 80],
-        [80, 90],
-        [90, 20]
-    ];
+    dadosUtilizacaoCPU.push([tempo, 0]);
 
     // Adicionar os dados ao DataTable
-    data.addRows(dadosUtilizacaoCPU);
+    dataCPU.addRows(dadosUtilizacaoCPU);
 
     // Definir as opções do gráfico
     var options = {
         curveType: 'function',
         backgroundColor: 'transparent',
         legend: { position: 'none' },
-        hAxis: { title: 'Segundos' },
+        hAxis: { title: 'Tempo' },
         vAxis: { title: 'Utilização da CPU (%)', minValue: 0, maxValue: 100 },
         chartArea: { width: '80%', height: '70%' }
     };
 
-    var chart = new google.visualization.LineChart(document.getElementById('graficoUtilizacaoCPU'));
-    chart.draw(data, options);
+    chartCPU = new google.visualization.LineChart(document.getElementById('graficoUtilizacaoCPU'));
+    chartCPU.draw(dataCPU, options);
 }
 
 
 function criarGraficosRede() {
-    var ctx1 = document.getElementById('chartRede1').getContext('2d');
-    var doughnutChart1 = new Chart(ctx1, {
-        type: 'doughnut',
-        data: {
-            datasets: [{
-                data: [75, 25],
-                backgroundColor: ["#4CAF50", "#a7a7a7"]
-            }]
-        },
-        options: {
-            rotation: 270,
-            circumference: 180,
-            cutout: '70%',
-            hover: { mode: null },
-            plugins: {
-                datalabels: {
-                    formatter: (value, ctx) => {
-                        return value + ' Mbps';
-                    },
-                    color: '#000',
-                    font: {
-                        size: '20'
+        var ctx1 = document.getElementById('chartRede1').getContext('2d');
+        var doughnutChart1 = new Chart(ctx1, {
+            type: 'doughnut',
+            data: {
+                datasets: [{
+                    data: [75, 25],
+                    backgroundColor: ["#4CAF50", "#a7a7a7"]
+                }]
+            },
+            options: {
+                rotation: 270,
+                circumference: 180,
+                cutout: '70%',
+                hover: { mode: null },
+                plugins: {
+                    datalabels: {
+                        formatter: (value, ctx) => {
+                            return value + ' Mbps';
+                        },
+                        color: '#000',
+                        font: {
+                            size: '20'
+                        }
                     }
                 }
             }
-        }
-    });
+        });
 
-    var ctx2 = document.getElementById('chartRede2').getContext('2d');
-    var doughnutChart2 = new Chart(ctx2, {
-        type: 'doughnut',
-        data: {
-            datasets: [{
-                data: [50, 50],
-                backgroundColor: ["#2196F3", "#a7a7a7"]
-            }]
-        },
-        options: {
-            rotation: 270,
-            circumference: 180,
-            cutout: '70%',
-            hover: { mode: null },
-            plugins: {
-                datalabels: {
-                    formatter: (value, ctx) => {
-                        return value + ' Mbps';
-                    },
-                    color: '#000',
-                    font: {
-                        size: '20'
+        var ctx2 = document.getElementById('chartRede2').getContext('2d');
+        var doughnutChart2 = new Chart(ctx2, {
+            type: 'doughnut',
+            data: {
+                datasets: [{
+                    data: [50, 50],
+                    backgroundColor: ["#2196F3", "#a7a7a7"]
+                }]
+            },
+            options: {
+                rotation: 270,
+                circumference: 180,
+                cutout: '70%',
+                hover: { mode: null },
+                plugins: {
+                    datalabels: {
+                        formatter: (value, ctx) => {
+                            return value + ' Mbps';
+                        },
+                        color: '#000',
+                        font: {
+                            size: '20'
+                        }
                     }
                 }
             }
+        });
+    }
+    
+    setInterval(() => {
+        fetch(`/dashboard/buscarDadosRam/${idComputador}`, { cache: 'no-store' }).then(function (resposta){
+            if(resposta.ok){
+                resposta.json().then(function (resposta) {
+                    dataRam.setValue(0, 1, resposta[0].capacidade_total);
+                    dataRam.setValue(1, 1, resposta[0].capacidade_total - resposta[0].uso_capacidade);
+                    chartRam.draw(dataRam, null);
+                });
+            }
+        });
+
+        fetch(`/dashboard/buscarDadosCpu/${idComputador}`, { cache: 'no-store' }).then(function (resposta){
+            if(resposta.ok){
+                resposta.json().then(function (resposta) {
+                    let time = new Date();
+                    let hora = time.getHours();
+                    let minutos = time.getMinutes();
+                    let tempo = `${hora}:${minutos}`;
+
+                    dataCPU.removeRows(0, dataCPU.getNumberOfRows());
+                    
+                    if(dadosUtilizacaoCPU.length == 7){
+                        dadosUtilizacaoCPU.shift;
+                    }
+
+                    dadosUtilizacaoCPU.push([tempo, resposta[0].uso_capacidade])
+                    dataCPU.addRows(dadosUtilizacaoCPU);
+
+                    chartCPU.draw(dataCPU, null);
+                });
+            }
+        });
+
+        
+
+                fetch(`/dashboard/buscarDiscos/${idComputador}`, { cache: 'no-store' }).then(function (resposta){
+                    if(resposta.ok){
+                        resposta.json().then(function (resposta) {
+                            const listaDeDiscos = resposta;
+                            let i = 0;
+                            listaDeDiscos.forEach(disco => {
+                                if(chartDiscos.length < listaDeDiscos.length) {
+                                    gerarGraficoDiscoUso(disco.id_hardware, disco.capacidade_total, i)
+                                }
+                                i++;
+                            });
+                            buscarDadosDiscos(listaDeDiscos);
+                        });
+                    }
+                });
+            
+        
+    }, 3000);
+
+    function buscarDadosDiscos(listaDeDiscos){
+        for(let i = 0; i < listaDeDiscos.length; i++){
+            fetch(`/dashboard/buscarDadosDisco/${listaDeDiscos[i].id_hardware}`, { cache: 'no-store' }).then(function (resposta){
+                if(resposta.ok){
+                    resposta.json().then(function (resposta) {
+                        if(resposta.length > 0){
+                            dataDiscos[i].setValue(0, 1, listaDeDiscos[i].capacidade_total);
+                            dataDiscos[i].setValue(1, 1, resposta[0].uso_capacidade);
+                            chartDiscos[i].draw(dataDiscos[i], null);
+                        } else {
+                            dataDiscos[i].setValue(0, 1, listaDeDiscos[i].capacidade_total);
+                            dataDiscos[i].setValue(1, 1, 0);
+                            chartDiscos[i].draw(dataDiscos[i], null);
+                        }
+                    })
+                    .catch(function (erro) {
+                        console.error('Erro ao buscar dados do disco:', erro);
+                    });
+                    
+                    
+                }
+            });
         }
-    });
+    }
+
+
 
     // Ajustando a posição do texto dentro dos gráficos
     var textoRede1 = document.getElementById('textoRede1');
@@ -187,4 +272,3 @@ function criarGraficosRede() {
     var textoRede2 = document.getElementById('textoRede2');
     textoRede2.style.top = (document.getElementById('chartRede2').height / 2 - textoRede2.offsetHeight / 2) + 'px';
     textoRede2.style.left = (document.getElementById('chartRede2').width / 2 - textoRede2.offsetWidth / 2) + 'px';
-}
