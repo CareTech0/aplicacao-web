@@ -104,8 +104,7 @@ function gerarGraficoUtilizacaoCPU() {
     let minutos = time.getMinutes();
     let tempo = `${hora}:${minutos}`;
 
-    // Simular dados de utilização da CPU
-    dadosUtilizacaoCPU.push([tempo, 0]);
+    
 
     // Adicionar os dados ao DataTable
     dataCPU.addRows(dadosUtilizacaoCPU);
