@@ -1021,8 +1021,9 @@ padding: 10px;
   }
 
   .extra-info-1 {
-    background-image: url('../assets/imgs/image\ 31.png');
+    background-image: url('../assets/imgs/v1responsible.png');
     background-repeat: none;
+    max-width: 100%;
   }
 
   .container-extra-info-itens {
@@ -1042,7 +1043,7 @@ padding: 10px;
   }
 
   .extra-info-3 {
-    background-image: url('../assets/imgs/Rectangle\ 183.png');
+    background-image: url('../assets/imgs/v2responsible.png');
     background-size: 100% 100%;
   }
 
