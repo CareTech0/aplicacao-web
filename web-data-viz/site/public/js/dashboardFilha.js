@@ -183,6 +183,7 @@ function criarGraficosRede() {
     }
     
     setInterval(() => {
+        
         fetch(`/dashboard/buscarDadosRam/${idComputador}`, { cache: 'no-store' }).then(function (resposta){
             if(resposta.ok){
                 resposta.json().then(function (resposta) {

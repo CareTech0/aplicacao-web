@@ -551,6 +551,28 @@
             });
         }
     }
+
+    setInterval(()=> {
+        fetch(`/dashboard/buscarDadosDaMaquina/${sessionStorage.FK_EMPRESA}`, {cache: 'no-store'}).then(function (resposta){
+            if(resposta.ok){
+                resposta.json().then(function (resposta){
+                    todasMaquinas.forEach(maquina => {
+                        resposta.forEach(dadosMaquina => {
+                                if(dadosMaquina.fk_computador == maquina.id_computador){
+                                    const condicao = document.getElementById(`condicao${dadosMaquina.fk_computador}`);
+                                    const status = document.getElementById(`status${dadosMaquina.fk_computador}`);
+                                    const imgCondicao = document.getElementById(`imgCondicao${dadosMaquina.fk_computador}`);
+                                    const imgStatus = document.getElementById(`imgCondicao${dadosMaquina.fk_computador}`);
+
+                                    status.innerHTML = "teste";
+                                }
+                            })
+                        })
+                    })
+                }
+            })
+    }, 3000)
+
     let todasMaquinas = []; // usando no filtro
     function buscarMaquinas(){
         fetch(`/dashboard/buscarMaquinas/${sessionStorage.FK_EMPRESA}`, { cache: 'no-store' }).then(function (resposta) {
@@ -599,12 +621,12 @@
                                             </div>
                                             <div class="box-informacoes">
                                                 <div class="caixa-status">
-                                                    <img class="imagemstatus" src="../assets/imgs/alerta.png">
-                                                    <span><b>Status: </b></span> <span id="status">Alerta </span>
+                                                    <img class="imagemstatus" id="imgStatus${computador.id_computador}" src="../assets/imgs/alerta.png">
+                                                    <span><b>Status: </b></span> <span id="status${computador.id_computador}">Alerta </span>
                                                 </div>
                                                 <div class="caixa-condicao">
-                                                    <img class="imagemcondicao" src="../assets/imgs/ligado.png">
-                                                    <span><b>Condição: </b></span> <span id="condicao">Ligada </span>
+                                                    <img class="imagemcondicao" id="imgCondicao${computador.id_computador}" src="../assets/imgs/ligado.png">
+                                                    <span><b>Condição: </b></span> <span id="condicao${computador.id_computador}">Ligada </span>
                                                 </div>
                                             </div>
                                         </div>

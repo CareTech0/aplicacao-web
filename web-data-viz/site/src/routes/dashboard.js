@@ -40,6 +40,10 @@ router.get("/buscarMaquinas/:fkEmpresa", function (req, res) {
     dashboardController.buscarMaquinas(req, res);
 });
 
+router.get("/buscarDadosDaMaquina/:fkEmpresa", function (req, res) {
+    dashboardController.buscarDadosDaMaquina(req, res);
+})
+
 //Inserir máquinas ---------------------------------------------------
 
 router.post("/inserirMaquina", function (req, res) {

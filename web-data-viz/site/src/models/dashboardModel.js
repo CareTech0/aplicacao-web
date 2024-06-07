@@ -64,6 +64,14 @@ function buscarDadosDisco(idHardware){
     return database.executar(instrucao);
 }
 
+function buscarDadosDaMaquina(fkEmpresa){
+    const instrucao = `
+    select * from hardware as h join computador c on h.fk_computador = c.id_computador join registros as r on h.id_hardware = r.fk_hardware WHERE r.horario BETWEEN DATE_SUB(NOW(), INTERVAL 5 MINUTE) AND NOW() AND fk_empresa = ${fkEmpresa};
+    `;
+
+    return database.executar(instrucao);
+}
+
 module.exports = { 
     inserirMaquina,
     buscarMaquinas,
@@ -72,5 +80,6 @@ module.exports = {
     buscarDadosRam,
     buscarDadosCpu,
     buscarDiscos,
-    buscarDadosDisco
+    buscarDadosDisco,
+    buscarDadosDaMaquina
 }
