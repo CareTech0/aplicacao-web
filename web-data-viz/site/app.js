@@ -3,6 +3,7 @@ process.env.AMBIENTE_PROCESSO = "desenvolvimento";
 
 const express = require("express");
 const cors = require("cors");
+const bodyParser = require('body-parser');
 const path = require("path");
 const app = express();
 
@@ -22,6 +23,9 @@ const bloqueioSites = require("./src/routes/bloqueioSites");
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 
 app.use("/index", indexRouter);
