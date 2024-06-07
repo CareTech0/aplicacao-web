@@ -216,6 +216,14 @@ function criarGraficosRede() {
     }
     
     setInterval(() => {
+
+        fetch(`/dashboard/buscarDadosRede/${idComputador}`, { cache: 'no-store' }).then(function (resposta){
+            if(resposta.ok){
+                resposta.json().then(function (resposta) {
+                    console.log(resposta);
+                });
+            }
+        });
         
         fetch(`/dashboard/buscarDadosRam/${idComputador}`, { cache: 'no-store' }).then(function (resposta){
             if(resposta.ok){

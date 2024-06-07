@@ -61,6 +61,36 @@ ORDER BY
     return database.executar(instrucao);
 }
 
+function buscarDadosRede(idComputador){
+    // const instrucao = `
+    // select r.id_registros, h.nome_hardware, h.capacidade_total, h.id_hardware , r.qtd_processos, r.uso_capacidade, r.horario from hardware as h join registros as r on h.id_hardware = r.fk_hardware where h.fk_computador = ${idComputador} and nome_hardware = 'ram' order by horario DESC LIMIT 1;
+    // `;
+    const instrucao = `
+    SELECT TOP 1 
+    r.id_registros, 
+    h.nome_hardware, 
+    h.capacidade_total, 
+    h.id_hardware, 
+    r.qtd_processos, 
+    r.uso_capacidade, 
+    r.horario 
+FROM 
+    hardware AS h 
+JOIN 
+    registros AS r 
+ON 
+    h.id_hardware = r.fk_hardware 
+WHERE 
+    h.fk_computador = ${idComputador} 
+    AND nome_hardware = 'rede' 
+ORDER BY 
+    r.horario DESC;
+    `
+
+    return database.executar(instrucao);
+}
+
+
 function buscarDadosCpu(idComputador){  
     // const instrucao = `
     //     select h.nome_hardware, h.capacidade_total, h.id_hardware , r.qtd_processos, r.uso_capacidade, r.horario from hardware as h join registros as r on h.id_hardware = r.fk_hardware where h.fk_computador = ${idComputador} and nome_hardware = 'cpu' order by horario DESC LIMIT 1;
@@ -148,7 +178,9 @@ ON
     h.id_hardware = r.fk_hardware 
 WHERE 
     r.horario BETWEEN DATEADD(MINUTE, -5, GETDATE()) AND GETDATE() 
-    AND fk_empresa = ${fkEmpresa};
+    AND fk_empresa = ${fkEmpresa}
+    ORDER BY 
+    horario DESC
     `
 
     return database.executar(instrucao);
@@ -163,5 +195,6 @@ module.exports = {
     buscarDadosCpu,
     buscarDiscos,
     buscarDadosDisco,
-    buscarDadosDaMaquina
+    buscarDadosDaMaquina,
+    buscarDadosRede
 }

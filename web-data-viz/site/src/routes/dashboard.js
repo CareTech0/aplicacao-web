@@ -18,6 +18,10 @@ router.get("/dashboard", function (req, res) {
 
 //Funcionalidades da dashboard filha ------------------------------------------------
 
+router.get("/buscarDadosRede/:idComputador", function (req, res) {
+    dashboardController.buscarDadosRede(req, res);
+});
+
 router.get("/buscarDadosRam/:idComputador", function (req, res) {
     dashboardController.buscarDadosRam(req, res);
 });

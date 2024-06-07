@@ -564,7 +564,7 @@
                       
                         resposta.forEach(dadosMaquina => {
 
-                            if(dadosMaquina.fk_computador == maquina.id_computador){
+                            if(dadosMaquina.fk_computador[0] == maquina.id_computador){
                                 condicao.innerText = "Ligada";
                                 imgCondicao.src = "../assets/imgs/ligado.png";
 
@@ -628,7 +628,7 @@
                 });
             }
         })
-    }, 3000)
+    }, 10000)
 
     let todasMaquinas = []; // usando no filtro
     function buscarMaquinas(){

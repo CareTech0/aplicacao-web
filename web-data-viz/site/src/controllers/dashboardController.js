@@ -87,6 +87,23 @@ function buscarDadosRam(req, res){
     
 }
 
+function buscarDadosRede(req, res){
+    const idComputador = req.params.idComputador;
+
+    dashboardModel.buscarDadosRede(idComputador).then (function (resultado) {
+        if(resultado.length > 0){
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum Resultado encontrado!");
+        }
+    })
+    .catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+    
+}
+
 function buscarDadosCpu(req, res){
     const idComputador = req.params.idComputador;
 
@@ -163,5 +180,6 @@ module.exports = {
     buscarDadosCpu,
     buscarDiscos,
     buscarDadosDisco,
-    buscarDadosDaMaquina
+    buscarDadosDaMaquina,
+    buscarDadosRede
 }
