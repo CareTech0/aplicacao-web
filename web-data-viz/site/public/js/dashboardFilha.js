@@ -276,14 +276,10 @@ function criarGraficosRede() {
                 if(resposta.ok){
                     resposta.json().then(function (resposta) {
                         if(resposta.length > 0){
-                            dataDiscos[i].setValue(0, 1, listaDeDiscos[i].capacidade_total);
-                            dataDiscos[i].setValue(1, 1, resposta[0].uso_capacidade);
+                            dataDiscos[i].setValue(0, 1, resposta[0].uso_capacidade);
+                            dataDiscos[i].setValue(1, 1, listaDeDiscos[i].capacidade_total - resposta[0].uso_capacidade);
                             chartDiscos[i].draw(dataDiscos[i], null);
-                        } else {
-                            dataDiscos[i].setValue(0, 1, listaDeDiscos[i].capacidade_total);
-                            dataDiscos[i].setValue(1, 1, 0);
-                            chartDiscos[i].draw(dataDiscos[i], null);
-                        }
+                        } 
                     })
                     .catch(function (erro) {
                         console.error('Erro ao buscar dados do disco:', erro);
