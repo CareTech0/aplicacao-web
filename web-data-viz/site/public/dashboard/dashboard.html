@@ -126,12 +126,12 @@
                                 </div>
                             </div>
                             <div class="box-botao-filtro" id="botaoFiltro" onclick="abrirFiltro()">
-                                <div class="fundo-botao-filtro">
+                                <!-- <div class="fundo-botao-filtro">
                                     <div class="flex-filter">
                                         <span class="icon"><i class="bi bi-funnel"></i></span>
                                         <span class="textfilter">FILTRO</span>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="container-filtro">
                                     <div class="fundo-filtro" id="filtro">
                                         <div class="box-do-filtro">
@@ -557,20 +557,77 @@
             if(resposta.ok){
                 resposta.json().then(function (resposta){
                     todasMaquinas.forEach(maquina => {
+                        const condicao = document.getElementById(`condicao${maquina.id_computador}`);
+                        const status = document.getElementById(`status${maquina.id_computador}`);
+                        const imgCondicao = document.getElementById(`imgCondicao${maquina.id_computador}`);
+                        const imgStatus = document.getElementById(`imgStatus${maquina.id_computador}`);
+                      
                         resposta.forEach(dadosMaquina => {
-                                if(dadosMaquina.fk_computador == maquina.id_computador){
-                                    const condicao = document.getElementById(`condicao${dadosMaquina.fk_computador}`);
-                                    const status = document.getElementById(`status${dadosMaquina.fk_computador}`);
-                                    const imgCondicao = document.getElementById(`imgCondicao${dadosMaquina.fk_computador}`);
-                                    const imgStatus = document.getElementById(`imgCondicao${dadosMaquina.fk_computador}`);
 
-                                    status.innerHTML = "teste";
+                            if(dadosMaquina.fk_computador == maquina.id_computador){
+                                condicao.innerText = "Ligada";
+                                imgCondicao.src = "../assets/imgs/ligado.png";
+
+                                const agora = new Date();
+                                const cincoMinutosAtras = new Date(agora.getTime() - 300000);
+                                const horarioMaquina = new Date(dadosMaquina.horario);
+                                console.log(`
+                                    ${agora} ${cincoMinutosAtras} ${horarioMaquina}
+                                `)
+                                if(dadosMaquina.nome_hardware != "rede"){
+                                    if(horarioMaquina >= cincoMinutosAtras && horarioMaquina <= agora){
+                                        let dados = dadosMaquina.uso_capacidade;
+
+                                        if(dadosMaquina.nome_hardware == "disco" || dadosMaquina.nome_hardware == "ram") dadosDisco = (dadosMaquina.uso_capacidade * 100) / dadosMaquina.capacidade_total;
+                                        
+                                        if(dados > 80 && dados <= 90){
+                                            status.innerText = "Alerta";
+                                            imgStatus.src = "../assets/imgs/alerta.png";
+
+                                        } else if(dados > 90){
+                                            status.innerText = "Crítico";
+                                            imgStatus.src = "../assets/imgs/x.png";
+                                            
+                                        } else {
+                                            status.innerText = "Ideal";
+                                            imgStatus.src = "../assets/imgs/check.png";
+                                        }
+                                    } else {
+                                        status.innerText = "---";
+                                        imgStatus.src = "../assets/imgs/x.png";
+                                        condicao.innerText = "Desligada";
+                                        imgCondicao.src = "../assets/imgs/off.png";
+                                    }
                                 }
-                            })
-                        })
+                            } 
+                        });
                     })
-                }
-            })
+                }).catch(function (erro) {
+                    console.error('Erro ao buscar dados do disco:', erro);
+                    const imagemstatus = document.querySelectorAll('.imagemstatus');
+                    const imagemcondicao = document.querySelectorAll('.imagemcondicao');
+                    const condicoesTot = document.querySelectorAll('.condicoesTot');
+                    const statusTot = document.querySelectorAll('.statusTot');
+
+                    imagemcondicao.forEach(imgCondicao => {
+                        imgCondicao.src = "../assets/imgs/off.png";
+                    });
+
+                    imagemstatus.forEach(imgStatus => {
+                        imgStatus.src = "../assets/imgs/x.png"
+                    });
+
+                    condicoesTot.forEach(condicoesTotal => {
+                        condicoesTotal.innerText="Desligada";
+                    })
+
+                    statusTot.forEach(statusTotal => {
+                        statusTotal.innerText="---";
+                    })
+
+                });
+            }
+        })
     }, 3000)
 
     let todasMaquinas = []; // usando no filtro
@@ -621,12 +678,12 @@
                                             </div>
                                             <div class="box-informacoes">
                                                 <div class="caixa-status">
-                                                    <img class="imagemstatus" id="imgStatus${computador.id_computador}" src="../assets/imgs/alerta.png">
-                                                    <span><b>Status: </b></span> <span id="status${computador.id_computador}">Alerta </span>
+                                                    <img class="imagemstatus" id="imgStatus${computador.id_computador}" src="../assets/imgs/x.png">
+                                                    <span><b>Status: </b></span> <span class="statusTot" id="status${computador.id_computador}">--- </span>
                                                 </div>
                                                 <div class="caixa-condicao">
-                                                    <img class="imagemcondicao" id="imgCondicao${computador.id_computador}" src="../assets/imgs/ligado.png">
-                                                    <span><b>Condição: </b></span> <span id="condicao${computador.id_computador}">Ligada </span>
+                                                    <img class="imagemcondicao" id="imgCondicao${computador.id_computador}" src="../assets/imgs/off.png">
+                                                    <span><b>Condição: </b></span> <span class="condicoesTot" id="condicao${computador.id_computador}">Desligada </span>
                                                 </div>
                                             </div>
                                         </div>
