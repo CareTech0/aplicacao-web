@@ -15,44 +15,77 @@ function init() {
 var chartRam;
 var dataRam;
 
-function gerarGraficoMemoriaRamUso() {
-    let totalMemory = 16; // Total de memória RAM disponível (em GB)
-    let usedMemory = 10; // Memória RAM usada (em GB)
+// function gerarGraficoMemoriaRamUso() {
+//     let totalMemory = 16; // Total de memória RAM disponível (em GB)
+//     let usedMemory = 10; // Memória RAM usada (em GB)
 
  
-    dataRam = google.visualization.arrayToDataTable([
-        ['Tipo', 'Uso de RAM'],
-        ['Usado', usedMemory], // Total utilizado
-        ['Livre', totalMemory - usedMemory], // Total disponível
+//     dataRam = google.visualization.arrayToDataTable([
+//         ['Tipo', 'Uso de RAM'],
+//         ['Usado', usedMemory], // Total utilizado
+//         ['Livre', totalMemory - usedMemory], // Total disponível
        
-    ]);
+//     ]);
 
    
+//     var options = {
+//         pieHole: 0.5,
+//         pieSliceText: 'percentage', 
+//         pieSliceTextStyle: {
+//             color: '#000000',
+//             fontSize: '12px',
+//             bold: true
+//         },
+//         slices: {
+//             0: { color: '#FFDC83',  }, // Cor para o total utilizado
+//             1: { color: '#8ee79a', } // Cor para o total disponível
+//         },
+//         legend: 'none', // Ocultar a legenda
+//         tooltip: { trigger: 'hover' }, // Desativar tooltips
+//         enableInteractivity: false, // Desativar interatividade
+//         chartArea: {  width: '77%', height: '76%' }, // Definir a área do gráfico para 100% do contêiner
+//         backgroundColor: 'transparent',
+        
+     
+//     };
+
+  
+//     chartRam = new google.visualization.PieChart(document.getElementById('graficoDeRoscaMemoria'));
+//     chartRam.draw(dataRam, options);
+
+// }
+
+function gerarGraficoMemoriaRamUso() {
+    // Inicializa dataRam sem dados
+    dataRam = new google.visualization.DataTable();
+    dataRam.addColumn('string', 'Tipo');
+    dataRam.addColumn('number', 'Uso de RAM');
+    dataRam.addRows([
+        ['Usado', 0],
+        ['Livre', 0]
+    ]);
+
     var options = {
         pieHole: 0.5,
-        pieSliceText: 'percentage', 
+        pieSliceText: 'percentage',
         pieSliceTextStyle: {
             color: '#000000',
             fontSize: '12px',
             bold: true
         },
         slices: {
-            0: { color: '#FFDC83',  }, // Cor para o total utilizado
-            1: { color: '#8ee79a', } // Cor para o total disponível
+            0: { color: '#FFDC83' }, // Cor para o total utilizado
+            1: { color: '#8ee79a' } // Cor para o total disponível
         },
         legend: 'none', // Ocultar a legenda
         tooltip: { trigger: 'hover' }, // Desativar tooltips
         enableInteractivity: false, // Desativar interatividade
-        chartArea: {  width: '77%', height: '76%' }, // Definir a área do gráfico para 100% do contêiner
-        backgroundColor: 'transparent',
-        
-     
+        chartArea: { width: '77%', height: '76%' }, // Definir a área do gráfico para 100% do contêiner
+        backgroundColor: 'transparent'
     };
 
-  
     chartRam = new google.visualization.PieChart(document.getElementById('graficoDeRoscaMemoria'));
     chartRam.draw(dataRam, options);
-
 }
 
 const chartDiscos = [];
