@@ -353,9 +353,9 @@
                                 <input type="password" id="repetir_senha">
                             </div>
 
-                           <div id="msgErro" style="color: red; font-size: 14px;">
-                           </div>
-                           
+                            <div id="msgErro" style="color: red; font-size: 14px;">
+                            </div>
+
                             <div class="modal-botao-cadastrar">
                                 <button id="confirmCadastrar"> <a>CADASTRAR</a></button>
                             </div>
@@ -371,7 +371,8 @@
                         <div class="caixa-buscar">
                             <div class="wrap">
                                 <div class="search">
-                                    <input type="text" class="searchTerm" placeholder="Buscar por localização"  id="searchInput">
+                                    <input type="text" class="searchTerm" placeholder="Buscar por localização"
+                                        id="searchInput">
                                     <button type="submit" class="searchButton" onclick="filtrarMaqs()">
                                         <i class="bi bi-search"></i>
                                     </button>
@@ -445,7 +446,7 @@
     let qtdComputadores = 0;
 
     //Editar a máquina
-    function modalEditarMaquina(idComputador, estacaoDeTrabalho, login, senha){
+    function modalEditarMaquina(idComputador, estacaoDeTrabalho, login, senha) {
         telaGerenciar.style.display = "none";
         telaEditar.style.display = "block";
         telaEditar.innerHTML = `
@@ -486,31 +487,31 @@
         `;
     }
 
-    function editarComputador(id){
+    function editarComputador(id) {
         const estacaoDeTrabalho = document.getElementById('estacao_de_trabalho_editar').value;
         const login = document.getElementById('login_editar').value;
         const senha = document.getElementById('senha_editar').value;
         const repetirSenha = document.getElementById('repetir_senha_editar').value;
 
-        
+
 
         const msgErro = document.getElementById('msgErroEdit');
 
-        const qtdComputadores = 1; 
-    
+        const qtdComputadores = 1;
+
         let validacoesCorretas = 0;
         let mensagemErro = "";
 
-        console.log("começando a validação"); 
+        console.log("começando a validação");
 
-    
+
         if (senha.length < 8) {
             mensagemErro += `<span>A senha deve ter no mínimo 8 caracteres.</span><br>`;
-            console.log("erro na validação da senha"); 
+            console.log("erro na validação da senha");
         } else {
             validacoesCorretas++;
         }
-    
+
         if (senha !== repetirSenha) {
             mensagemErro += `<span>As senhas não coincidem.</span><br>`;
             console.log("erro na confirmação da senha");
@@ -520,7 +521,7 @@
 
         if (estacaoDeTrabalho.length == "") {
             mensagemErro += `<span>É necessário nomear a estação de trabalho.</span><br>`;
-            console.log("erro na validação da senha"); 
+            console.log("erro na validação da senha");
         } else {
             validacoesCorretas++;
         }
@@ -529,7 +530,7 @@
         console.log(`mensagemErro: ${mensagemErro}`);
 
         msgErroEdit.innerHTML = mensagemErro;
-        
+
 
         if (validacoesCorretas == 3) {
             fetch(`/dashboard/editarMaquina/${id}`, {
@@ -543,29 +544,30 @@
                     senha: senha,
                 }),
             })
-            .then( function (resposta) {
-                if(resposta.ok){
-                    window.location = "/dashboard/dashboard";
-                }
-            }).catch(function (resposta){
-                console.log(`#ERRO: ${resposta}`);
-            });
+                .then(function (resposta) {
+                    if (resposta.ok) {
+                        window.location = "/dashboard/dashboard";
+                    }
+                }).catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                });
         }
     }
 
-    setInterval(()=> {
-        fetch(`/dashboard/buscarDadosDaMaquina/${sessionStorage.FK_EMPRESA}`, {cache: 'no-store'}).then(function (resposta){
-            if(resposta.ok){
-                resposta.json().then(function (resposta){
+    setInterval(() => {
+        fetch(`/dashboard/buscarDadosDaMaquina/${sessionStorage.FK_EMPRESA}`, { cache: 'no-store' }).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (resposta) {
                     todasMaquinas.forEach(maquina => {
                         const condicao = document.getElementById(`condicao${maquina.id_computador}`);
                         const status = document.getElementById(`status${maquina.id_computador}`);
                         const imgCondicao = document.getElementById(`imgCondicao${maquina.id_computador}`);
                         const imgStatus = document.getElementById(`imgStatus${maquina.id_computador}`);
-                      
+                        const caixaMaquina = document.getElementById(`maquina${maquina.id_computador}`);
+
                         resposta.forEach(dadosMaquina => {
                             const fkComputador = dadosMaquina.fk_computador[0];
-                            if(fkComputador == maquina.id_computador){
+                            if (fkComputador == maquina.id_computador) {
                                 condicao.innerText = "Ligada";
                                 imgCondicao.src = "../assets/imgs/ligado.png";
 
@@ -575,20 +577,25 @@
                                 console.log(`
                                     ${agora} ${cincoMinutosAtras} ${horarioMaquina}
                                 `)
-                                if(dadosMaquina.nome_hardware != "rede"){
-                                    if(horarioMaquina >= cincoMinutosAtras && horarioMaquina <= agora){
+                                if (dadosMaquina.nome_hardware != "rede") {
+                                    if (horarioMaquina >= cincoMinutosAtras && horarioMaquina <= agora) {
                                         let dados = dadosMaquina.uso_capacidade;
 
-                                        if(dadosMaquina.nome_hardware == "disco" || dadosMaquina.nome_hardware == "ram") dadosDisco = (dadosMaquina.uso_capacidade * 100) / dadosMaquina.capacidade_total;
-                                        
-                                        if(dados > 80 && dados <= 90){
+                                        if (dadosMaquina.nome_hardware == "disco" || dadosMaquina.nome_hardware == "ram") dadosDisco = (dadosMaquina.uso_capacidade * 100) / dadosMaquina.capacidade_total;
+
+                                        console.log(`Uso da memória: ${dados}%`);
+
+
+                                        if (dados > 80 && dados <= 90) {
                                             status.innerText = "Alerta";
                                             imgStatus.src = "../assets/imgs/alerta.png";
-
-                                        } else if(dados > 90){
+                                            caixaMaquina.classList.add("borda-alerta");
+                                            caixaMaquina.classList.add("sombra-alerta");
+                                        } else if (dados > 90) {
                                             status.innerText = "Crítico";
                                             imgStatus.src = "../assets/imgs/x.png";
-                                            
+                                            caixaMaquina.classList.add("borda-critico");
+                                            caixaMaquina.classList.add("borda-critico");
                                         } else {
                                             status.innerText = "Ideal";
                                             imgStatus.src = "../assets/imgs/check.png";
@@ -600,7 +607,7 @@
                                         imgCondicao.src = "../assets/imgs/off.png";
                                     }
                                 }
-                            } 
+                            }
                         });
                     })
                 }).catch(function (erro) {
@@ -619,11 +626,11 @@
                     });
 
                     condicoesTot.forEach(condicoesTotal => {
-                        condicoesTotal.innerText="Desligada";
+                        condicoesTotal.innerText = "Desligada";
                     })
 
                     statusTot.forEach(statusTotal => {
-                        statusTotal.innerText="---";
+                        statusTotal.innerText = "---";
                     })
 
                 });
@@ -632,17 +639,17 @@
     }, 3000)
 
     let todasMaquinas = []; // usando no filtro
-    function buscarMaquinas(){
+    function buscarMaquinas() {
         fetch(`/dashboard/buscarMaquinas/${sessionStorage.FK_EMPRESA}`, { cache: 'no-store' }).then(function (resposta) {
-            if(resposta.ok){
+            if (resposta.ok) {
                 const computadorLista = document.getElementById('lista_computadores');
                 const computadorQuadro = document.getElementById('background_maquinas');
 
-                resposta.json().then(function (resposta){
+                resposta.json().then(function (resposta) {
                     todasMaquinas = resposta;
-                    for(;qtdComputadores < resposta.length; qtdComputadores++){    
+                    for (; qtdComputadores < resposta.length; qtdComputadores++) {
                         const computador = resposta[qtdComputadores];
-                        
+
                         computadorLista.innerHTML += `
                             <div>
                                 <div>
@@ -664,11 +671,10 @@
                                 </div>
                             </div>`;
 
-                            computadorQuadro.innerHTML += `
+                        computadorQuadro.innerHTML += `
                             <div class="container-maquinas" onclick="detalhesComputador(${computador.id_computador})">
                                 <div class="coluna-maquinas">
-                                    <div class="caixa-maquina">
-                                        <div class="box-icon-maquina">
+<div class="caixa-maquina" id="maquina${computador.id_computador}" data-id="${computador.id_computador}">                                        <div class="box-icon-maquina">
                                             <div class="imagem-maquina">
                                                 <img src="../assets/imgs/pngMaquina.png">
                                             </div>
@@ -692,18 +698,18 @@
                                 </div>
                             </div>
                             `;
-                        }
-                    });
-                }
-            });
-        }
+                    }
+                });
+            }
+        });
+    }
 
-        function detalhesComputador(idComputador){
-            window.location = `/dashboard/dashboardFilha?idComputador=${idComputador}`;
-        }
+    function detalhesComputador(idComputador) {
+        window.location = `/dashboard/dashboardFilha?idComputador=${idComputador}`;
+    }
 
     //Inserir máquina 
-    
+
     function filtrarMaqs() {
         const termoBusca = document.getElementById('searchInput').value.toLowerCase();
         const maquinasFiltradas = todasMaquinas.filter(function (computador) {
@@ -711,7 +717,7 @@
         });
         mostrarMaquinas(maquinasFiltradas);
     }
-    
+
     // Adiciona evento de clique ao botão de busca
     document.querySelector('.searchButton').addEventListener('click', filtrarMaqs);
 
@@ -746,49 +752,49 @@
         const repetirSenha = document.getElementById('repetir_senha').value;
         const msgErro = document.getElementById('msgErro');
 
-        const qtdComputadores = 1; 
-    
+        const qtdComputadores = 1;
+
         let validacoesCorretas = 0;
         let mensagemErro = "";
 
-        console.log("começando a validação"); 
+        console.log("começando a validação");
 
-    
+
         if (senha.length < 8) {
             mensagemErro += `<span>A senha deve ter no mínimo 8 caracteres.</span><br>`;
-            console.log("erro na validação da senha"); 
+            console.log("erro na validação da senha");
         } else {
             validacoesCorretas++;
         }
-        
+
         if (estacaoDeTrabalho.length == "") {
             mensagemErro += `<span>É necessário nomear a estação de trabalho.</span><br>`;
-            console.log("erro na validação da senha"); 
+            console.log("erro na validação da senha");
         } else {
             validacoesCorretas++;
         }
-    
+
         if (senha !== repetirSenha) {
             mensagemErro += `<span>As senhas não coincidem.</span><br>`;
             console.log("erro na confirmação da senha");
         } else {
             validacoesCorretas++;
         }
-    
+
         if (qtdComputadoesPlano < qtdComputadores) {
             mensagemErro += `<span>Número de computadores excede o plano.</span><br>`;
-            console.log("erro na validação do plano de computadores"); 
+            console.log("erro na validação do plano de computadores");
 
         } else {
             validacoesCorretas++;
         }
-    
+
 
         console.log(`validacoesCorretas: ${validacoesCorretas}`);
         console.log(`mensagemErro: ${mensagemErro}`);
 
         msgErro.innerHTML = mensagemErro;
-        
+
         if (validacoesCorretas == 4) {
             msgErro.innerText = ""; // Limpa mensagem de erro se todas as validações passaram
             fetch("/dashboard/inserirMaquina", {
@@ -809,20 +815,20 @@
             }).catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);
             });
-        } 
+        }
     });
 
     //Deletar computador
-    function deletarComputador(idComputador){
+    function deletarComputador(idComputador) {
         fetch(`/dashboard/deletarComputador/${idComputador}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
             }
-        }).then(function (resposta){
-            if (resposta.ok){
+        }).then(function (resposta) {
+            if (resposta.ok) {
                 window.location = "/dashboard/dashboard";
-            } else if (resposta.status == 404){
+            } else if (resposta.status == 404) {
                 console.log("Deu 404!");
             } else {
                 throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
