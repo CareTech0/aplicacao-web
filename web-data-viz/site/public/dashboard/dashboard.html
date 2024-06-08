@@ -18,6 +18,7 @@
 
 
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script src="../js/scriptDash.js" defer></script>
     <script src="../js/modais/modalDeslogar.js" defer></script>
@@ -235,7 +236,7 @@
                                             <div class="icon-status">
                                                 <img src="../assets/imgs/alerta.png">
                                             </div>
-                                            <span>Alerta</span>
+                                            <span>Atenção</span>
                                         </div>
                                         <div class="legenda-status3">
                                             <div class="icon-status">
@@ -563,7 +564,6 @@
                         const status = document.getElementById(`status${maquina.id_computador}`);
                         const imgCondicao = document.getElementById(`imgCondicao${maquina.id_computador}`);
                         const imgStatus = document.getElementById(`imgStatus${maquina.id_computador}`);
-                        const caixaMaquina = document.getElementById(`maquina${maquina.id_computador}`);
 
                         resposta.forEach(dadosMaquina => {
                             const fkComputador = dadosMaquina.fk_computador[0];
@@ -581,21 +581,18 @@
                                     if (horarioMaquina >= cincoMinutosAtras && horarioMaquina <= agora) {
                                         let dados = dadosMaquina.uso_capacidade;
 
-                                        if (dadosMaquina.nome_hardware == "disco" || dadosMaquina.nome_hardware == "ram") dadosDisco = (dadosMaquina.uso_capacidade * 100) / dadosMaquina.capacidade_total;
+                                        if (dadosMaquina.nome_hardware == "disco" || dadosMaquina.nome_hardware == "ram") dados = (dadosMaquina.uso_capacidade * 100) / dadosMaquina.capacidade_total;
 
                                         console.log(`Uso da memória: ${dados}%`);
 
 
                                         if (dados > 80 && dados <= 90) {
-                                            status.innerText = "Alerta";
+                                            status.innerText = "Atenção";
                                             imgStatus.src = "../assets/imgs/alerta.png";
-                                            caixaMaquina.classList.add("borda-alerta");
-                                            caixaMaquina.classList.add("sombra-alerta");
                                         } else if (dados > 90) {
                                             status.innerText = "Crítico";
+                                            console.log(`Entrou no crítico`);
                                             imgStatus.src = "../assets/imgs/x.png";
-                                            caixaMaquina.classList.add("borda-critico");
-                                            caixaMaquina.classList.add("borda-critico");
                                         } else {
                                             status.innerText = "Ideal";
                                             imgStatus.src = "../assets/imgs/check.png";
@@ -674,7 +671,7 @@
                         computadorQuadro.innerHTML += `
                             <div class="container-maquinas" onclick="detalhesComputador(${computador.id_computador})">
                                 <div class="coluna-maquinas">
-<div class="caixa-maquina" id="maquina${computador.id_computador}" data-id="${computador.id_computador}">                                        <div class="box-icon-maquina">
+                                     <div class="caixa-maquina" id="maquina${computador.id_computador}" data-id="${computador.id_computador}">                                        <div class="box-icon-maquina">
                                             <div class="imagem-maquina">
                                                 <img src="../assets/imgs/pngMaquina.png">
                                             </div>

@@ -164,7 +164,7 @@ function buscarDadosDaMaquina(fkEmpresa){
     // `;
 
     const instrucao = `
-    SELECT 
+    SELECT TOP 1
     *
 FROM 
     hardware AS h 
@@ -180,7 +180,7 @@ WHERE
     r.horario BETWEEN DATEADD(MINUTE, -5, GETDATE()) AND GETDATE() 
     AND fk_empresa = ${fkEmpresa}
     ORDER BY 
-    horario ASC
+    horario DESC
     `
 
     return database.executar(instrucao);
