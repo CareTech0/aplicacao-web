@@ -15,7 +15,13 @@ setInterval(()=>{
     fetch(`/dashboard/buscarMaquinas/${sessionStorage.FK_EMPRESA}`, { cache: 'no-store' }).then(function (resposta) {
         if(resposta.ok){
             resposta.json().then(function (resposta){
-                buscarDadosAlerta(resposta);    
+                //DashVô
+                const tabelaCriticosHoje = document.getElementById('comp_estado_critico_hoje_table');
+                if(tabelaCriticosHoje != undefined){
+                    buscarCriticosDoDia(resposta);
+                }
+                //alerta
+                buscarDadosAlerta(resposta);
             });
         }
     });
@@ -27,7 +33,7 @@ function buscarDadosAlerta(dadosDasMaquinas){
             if(resposta.ok){
                 resposta.json().then(function (resposta){
                     resposta.forEach(dados => {
-                        const tabelaCriticosHoje = document.getElementById('comp_estado_critico_hoje_table');
+                        
                         const capacidadeTotal = dados.capacidade_total;
                         const usoCapacidade = dados.uso_capacidade;
                         const nomeHardware = dados.nome_hardware;
@@ -41,6 +47,7 @@ function buscarDadosAlerta(dadosDasMaquinas){
                         console.log(`
                             ${capacidadeTotal} ${usoCapacidade} ${nomeHardware} ${usoPorcentagem}
                         `);
+
 
                     });  
                 });

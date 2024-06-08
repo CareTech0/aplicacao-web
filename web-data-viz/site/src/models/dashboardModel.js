@@ -180,7 +180,7 @@ WHERE
     r.horario BETWEEN DATEADD(MINUTE, -5, GETDATE()) AND GETDATE() 
     AND fk_empresa = ${fkEmpresa}
     ORDER BY 
-    horario DESC
+    horario ASC
     `
 
     return database.executar(instrucao);

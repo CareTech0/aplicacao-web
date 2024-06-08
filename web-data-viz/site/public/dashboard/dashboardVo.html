@@ -196,7 +196,7 @@
                                             <th>DISCO</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="comp_estado_critico_hoje_table">
                                         <tr>
                                             <td class="number-maquina"><a href="dashboardFilhaCPU.html">1</a></td>
                                             <td>80%</td>
@@ -316,5 +316,56 @@
         }
 
     });
+
+    function buscarCriticosDoDia(dadosDaMaquina){
+        dadosDaMaquina.forEach(maquina => {
+            fetch(`/dashboard/buscarCriticosDoDia/${maquina.id_computador}`, { cache: 'no-store' }).then(function (resposta) {
+                if(resposta.ok){
+                    resposta.json().then(function (resposta){
+                        resposta.forEach(dados => {
+                            const capacidadeTotal = dados.capacidade_total;
+                            const usoCapacidade = dados.uso_capacidade;
+                            const nomeHardware = dados.nome_hardware;
+                            const idHardware = dados.id_hardware
+
+                            let usoPorcentagem = 0;
+                            if(nomeHardware != 'rede'){
+                                if(nomeHardware == 'disco' || nomeHardware == 'ram') usoPorcentagem = (usoCapacidade * 100) / capacidadeTotal;
+                                else usoPorcentagem = usoCapacidade;
+                            }
+
+                            const tabelaComputador = document.getElementById(maquina.id_computador);
+
+                            if(tabelaComputador == undefined){   
+                                tabelaCriticosHoje.innerHTML = `
+                                    <tr id="${maquina.id_computador}">
+                                        <td class="number-maquina"><a onclick="window.location = '/dashboard/dashboardFilha?idComputador=${maquina.id_computador}'>${maquina.id_computador}</a></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                `;
+                            }
+
+                            if(tabelaComputador != undefined){
+                                if(nomeHardware == 'ram'){
+                                    if(tabelaComputador.childNodes[1].innerHTML == '') tabelaComputador.childNodes[1].innerHTML = `${usoPorcentagem}%`;
+                                } 
+                                
+                                if(nomeHardware == 'cpu'){
+                                    if(tabelaComputador.childNodes[2].innerHTML == '') tabelaComputador.childNodes[2].innerHTML = `${usoPorcentagem}%`;
+                                } 
+
+                                if(nomeHardware == 'disco') {
+                                    if(tabelaComputador.childNodes[3].innerHTML == '') tabelaComputador.childNodes[3].innerHTML = `${usoPorcentagem}%`;
+                                }
+                            }
+
+                        });
+                    });
+                }
+            });
+        });
+    }
 
 </script>
