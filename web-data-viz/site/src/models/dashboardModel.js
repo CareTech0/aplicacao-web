@@ -67,25 +67,13 @@ function buscarDadosRede(idComputador){
     // select r.id_registros, h.nome_hardware, h.capacidade_total, h.id_hardware , r.qtd_processos, r.uso_capacidade, r.horario from hardware as h join registros as r on h.id_hardware = r.fk_hardware where h.fk_computador = ${idComputador} and nome_hardware = 'ram' order by horario DESC LIMIT 1;
     // `;
     const instrucao = `
-    SELECT TOP 1 
-    r.id_registros, 
-    h.nome_hardware, 
-    h.capacidade_total, 
-    h.id_hardware, 
-    r.qtd_processos, 
-    r.uso_capacidade, 
-    r.horario 
-FROM 
-    hardware AS h 
-JOIN 
-    registros AS r 
-ON 
-    h.id_hardware = r.fk_hardware 
-WHERE 
-    h.fk_computador = ${idComputador} 
-    AND nome_hardware = 'rede' 
-ORDER BY 
-    r.horario DESC;
+    select top 10 
+h.nome_hardware,
+r.uso_capacidade,
+r.horario,
+h.fk_computador from hardware as h join registros as r on id_hardware=fk_hardware
+where h.fk_computador = ${idComputador} and h.nome_hardware = 'rede'
+order by horario desc;
     `
 
     return database.executar(instrucao);
@@ -98,24 +86,13 @@ function buscarDadosCpu(idComputador){
     // `;
 
     const instrucao = `
-    SELECT TOP 1 
-    h.nome_hardware, 
-    h.capacidade_total, 
-    h.id_hardware, 
-    r.qtd_processos, 
-    r.uso_capacidade, 
-    r.horario 
-FROM 
-    hardware AS h 
-JOIN 
-    registros AS r 
-ON 
-    h.id_hardware = r.fk_hardware 
-WHERE 
-    h.fk_computador = ${idComputador} 
-    AND nome_hardware = 'cpu' 
-ORDER BY 
-    r.horario DESC;
+    select top 10 
+h.nome_hardware,
+r.uso_capacidade,
+r.horario,
+h.fk_computador from hardware as h join registros as r on id_hardware=fk_hardware
+where h.fk_computador = ${idComputador} and h.nome_hardware = 'cpu'
+order by horario desc;
     `
 
     return database.executar(instrucao);

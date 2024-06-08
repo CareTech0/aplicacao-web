@@ -1,34 +1,120 @@
     const urlParams = new URLSearchParams(window.location.search);
     const idComputador = urlParams.get('idComputador');
 
+    const usoCpu = [];
+    const lableCpu = [];
+
+    const usoRede = [];
+    const lableRede = [];
+
     function mudarCor(){
         graficoRam.config.data.datasets[0].data = [10, 6]
         graficoRam.config.data.datasets[0].backgroundColor[0] = 'yellow';
         graficoRam.update();
     }
-
-    setInterval(() => {
-        console.log(urlParams.get('idComputador'))
+    //Carrega os graficos ao carregar a página, função sendo chamada na abertura da tag Body
+    function carregarGraficos(){
+        //Busca e adiciona no gráfico os ultimos dados registrados de memória RAM
         fetch(`/dashboard/buscarDadosRam/${idComputador}`, { cache: 'no-store' }).then(function (resposta){
-                     if(resposta.ok){
-                         resposta.json().then(function (resposta) {
-                             graficoRam.config.data.datasets[0].data = [resposta[0].uso_capacidade, resposta[0].capacidade_total - resposta[0].uso_capacidade]
-                             graficoRam.update();
-                         });
-                     }
-                 });
+            if(resposta.ok){
+                resposta.json().then(function (resposta) {
+                    graficoRam.config.data.datasets[0].data = [resposta[0].uso_capacidade, resposta[0].capacidade_total - resposta[0].uso_capacidade]
+                    graficoRam.update();
+                });
+            }
+        });
+        //Busca e adiciona no gráfico os ultimos dados registrados de Disco
+        fetch(`/dashboard/buscarDadosDisco/${idComputador}`, { cache: 'no-store' }).then(function (resposta){
+            if(resposta.ok){
+                resposta.json().then(function (resposta) {
+                   graficoDisco.config.data.datasets[0].data = [resposta[0].uso_capacidade, resposta[0].capacidade_total - resposta[0].uso_capacidade]
+                   graficoDisco.update();
+                });
+            }
+        });
+        //Busca e adiciona no gráfico os ultimos dados registrados de CPU
+        fetch(`/dashboard/buscarDadosCpu/${idComputador}`, { cache: 'no-store' }).then(function (resposta){
+            if(resposta.ok){
+                resposta.json().then(function (resposta) {
+                    console.log(resposta)
+                    for(let i = resposta.length - 1; i > 0; i--){
+                        const lableHoraMinutos = resposta[i].horario;
+                        const date = new Date(lableHoraMinutos);
+                        
+                        let usoCapacidadeCpu = resposta[i].uso_capacidade;
+                        let usoCapacidadeCpuFormatado = usoCapacidadeCpu.toFixed(1)
+
+                        // Obter a hora e os minutos
+                        const hours = date.getUTCHours().toString().padStart(2, '0');
+                        const minutes = date.getUTCMinutes().toString().padStart(2, '0');
+
+                        const time = `${hours}:${minutes}`;
+                        console.log(time);
+                        lableCpu.push(time)
+                        usoCpu.push(usoCapacidadeCpuFormatado)
+                    }
+                    console.log(lableCpu)
+                    console.log(usoCpu)
+                    graficoCpu.config.data.datasets[0].data = usoCpu;
+                    graficoCpu.config.data.labels = lableCpu;
+                    graficoCpu.update();
+                });
+            }
+        });
+
+        fetch(`/dashboard/buscarDadosRede/${idComputador}`, { cache: 'no-store' }).then(function (resposta){
+            if(resposta.ok){
+                resposta.json().then(function (resposta) {
+                    console.log(resposta)
+                    for(let i = resposta.length - 1; i > 0; i--){
+                        const lableHoraMinutos = resposta[i].horario;
+                        const date = new Date(lableHoraMinutos);
+                        
+                        let usoCapacidadeRede = resposta[i].uso_capacidade;
+                        let usoCapacidadeRedeFormatado = usoCapacidadeRede.toFixed(1)
+
+                        // Obter a hora e os minutos
+                        const hours = date.getUTCHours().toString().padStart(2, '0');
+                        const minutes = date.getUTCMinutes().toString().padStart(2, '0');
+
+                        const time = `${hours}:${minutes}`;
+                        console.log(time);
+                        lableRede.push(time)
+                        usoRede.push(usoCapacidadeRedeFormatado)
+                    }
+                    console.log(lableCpu)
+                    console.log(usoCpu)
+                    graficoRede.config.data.datasets[0].data = usoRede;
+                    graficoRede.config.data.labels = lableRede;
+                    graficoRede.update();
+                });
+            }
+        });
+
+    }
+
+    // setInterval(() => {
+    //     console.log(urlParams.get('idComputador'))
+    //     fetch(`/dashboard/buscarDadosRam/${idComputador}`, { cache: 'no-store' }).then(function (resposta){
+    //                  if(resposta.ok){
+    //                      resposta.json().then(function (resposta) {
+    //                          graficoRam.config.data.datasets[0].data = [resposta[0].uso_capacidade, resposta[0].capacidade_total - resposta[0].uso_capacidade]
+    //                          graficoRam.update();
+    //                      });
+    //                  }
+    //              });
 
                  
-                 fetch(`/dashboard/buscarDadosDisco/${idComputador}`, { cache: 'no-store' }).then(function (resposta){
-                             if(resposta.ok){
-                                 resposta.json().then(function (resposta) {
-                                    graficoDisco.config.data.datasets[0].data = [resposta[0].uso_capacidade, resposta[0].capacidade_total - resposta[0].uso_capacidade]
-                                    graficoDisco.update();
-                                 });
-                             }
-                         });
+    //              fetch(`/dashboard/buscarDadosDisco/${idComputador}`, { cache: 'no-store' }).then(function (resposta){
+    //                          if(resposta.ok){
+    //                              resposta.json().then(function (resposta) {
+    //                                 graficoDisco.config.data.datasets[0].data = [resposta[0].uso_capacidade, resposta[0].capacidade_total - resposta[0].uso_capacidade]
+    //                                 graficoDisco.update();
+    //                              });
+    //                          }
+    //                      });
 
-    }, 5000)
+    // }, 5000)
 
     // setInterval(() => {
 

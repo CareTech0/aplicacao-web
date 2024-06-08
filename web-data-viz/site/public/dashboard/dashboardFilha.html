@@ -19,7 +19,7 @@
 
 </head>
 
-<body>
+<body onload="carregarGraficos()">
 
     <div class="container-global">
         <div class="box-menu">
@@ -197,17 +197,25 @@
                                     <div class="container-grafico-esquerda">
                                         <div id="graficoDeRoscaMemoriaContainer">
                                             <div id="graficoDeRoscaMemoria">
-                                                <button onclick="mudarCor()">testeCor</button>
                                                 <canvas id="graficoMemoria" style="position: relative; height: 12vh; width: 12vw;"></canvas></div>
                                         </div>
                                     </div>
                                     <div class="container-grafico-direita">
                                         <div class="box-status">
                                             <span style="font-weight: 600;">Status:</span>
+                                            <div id="statusMemoria"></div>
                                         </div>
                                         <div class="box-status">
                                             <span style="font-weight: 600;">Utilização:</span>
                                             <div id="utilizacaoMemoria"></div>
+                                        </div>
+                                        <div class="box-status">
+                                            <span style="font-weight: 600;">Total memória:</span>
+                                            <div id="totalMemoria"></div>
+                                        </div>
+                                        <div class="box-status">
+                                            <span style="font-weight: 600;">Disponível:</span>
+                                            <div id="disponivelMemoria"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -226,13 +234,16 @@
                                     <div class="container-do-grafico-cpu">
                                         <div class="container-grafico-esquerda-cpu">
                                             <div class="caixa-cpu">
-                                                <div id="graficoUtilizacaoCPU"><canvas id="graficoCpu"></canvas></div>
+                                                <div id="graficoUtilizacaoCPU"><canvas id="graficoCpu" style="position: relative; height: 30vh; width: 30vw;"></canvas></div>
                                             </div>
                                         </div>
                                         <div class="container-grafico-direita-cpu">
                                             <div class="box-status">
                                                 <span style="font-weight: 600;">Status:</span>
+                                            </div>
+                                            <div class="box-status">
                                                 <span style="font-weight: 600;">Utilização:</span>
+                                                <div id="utiilizacaoCpu"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -265,10 +276,19 @@
                                     <div class="container-grafico-direita">
                                         <div class="box-status">
                                             <span style="font-weight: 600;">Status:</span>
+                                            <div id="statusDisco"></div>
                                         </div>
                                         <div class="box-status">
                                             <span style="font-weight: 600;">Utilização:</span>
                                             <div id="utilizacaoDisco"></div>
+                                        </div>
+                                        <div class="box-status">
+                                            <span style="font-weight: 600;">Total livre:</span>
+                                            <div id="totalDisco"></div>
+                                        </div>
+                                        <div class="box-status">
+                                            <span style="font-weight: 600;">Total disponível:</span>
+                                            <div id="disponivelDisco"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -288,16 +308,25 @@
                                 <div class="container-do-grafico-rede">
                                     <div class="container-grafico-esquerda-rede">
                                         <div class="box-dos-graficos-rede">
-                                            <div class="center_mpbs"><div id="qtdMBPS_Download"></div>Mbps</div>
-                                            <div class="center_rosca">Download</div>
-                                            <canvas id="chartRede1" width="150" height="200"></canvas>
+                                            <canvas id="chartRedeDownload" style="position: relative; height: 30vh; width: 30vw;"></canvas>
                                         </div>
                                     </div>
                                     <div class="container-grafico-direita-rede">
-                                        <div class="box-dos-graficos-rede">
-                                            <div class="center_mpbs"><div id="qtdMBPS_Upload"></div>Mbps</div>
-                                            <div class="center_rosca">Upload</div>
-                                            <canvas id="chartRede2" width="150" height="200"></canvas>
+                                        <div class="box-status">
+                                            <span style="font-weight: 600;">Status:</span>
+                                            <div id="statusRede"></div>
+                                        </div>
+                                        <div class="box-status">
+                                            <span style="font-weight: 600;">Máximo hoje:</span>
+                                            <div id="maxRede"></div>
+                                        </div>
+                                        <div class="box-status">
+                                            <span style="font-weight: 600;">Mínimo hoje:</span>
+                                            <div id="minRede"></div>
+                                        </div>
+                                        <div class="box-status">
+                                            <span style="font-weight: 600;">Média hoje:</span>
+                                            <div id="mediarede"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -380,6 +409,77 @@ const configRam = {
         
     }
 }        
+
+const dataCpu = {
+    labels: [],
+    datasets: [{
+        label: 'Uso Cpu',
+        data: [],
+        backgroundColor: [
+            'rgb(255, 99, 132)'
+        ],
+        hoverOffset: 4 
+    }]
+}
+
+const configCpu = {
+    type: 'line',
+    data: dataCpu,
+    options: {
+        scales: {
+                    x: {
+                        grid: {
+                            display: false // Remove a grade do eixo X
+                        }
+                    },
+                    y: {
+                        grid: {
+                            display: false, // Remove a grade do eixo Y
+                        },
+                        min: 0, // Define o valor mínimo do eixo Y
+                        max: 100, // Define o valor máximo do eixo Y
+                        ticks: {
+                            stepSize: 10 // Define a cada quantos valores os rótulos são mostrados
+                        }
+                    }
+                }
+    }
+    
+}   
+
+const dataRede = {
+    labels: [],
+    datasets: [{
+        data: [],
+        backgroundColor: ["#4CAF50"],
+        hoverOffset: 4 
+    }]
+}
+
+const configRede = {
+    type: 'line',
+    data: dataRede,
+    options: {
+        scales: {
+                    x: {
+                        grid: {
+                            display: false // Remove a grade do eixo X
+                        }
+                    },
+                    y: {
+                        grid: {
+                            display: false, // Remove a grade do eixo Y
+                        },
+                        ticks: {
+                            stepSize: 10 // Define a cada quantos valores os rótulos são mostrados
+                        }
+                    }
+                }
+    }
+    
+}
+
+
 </script>
 <script>
     const graficoRam = new Chart(
@@ -389,5 +489,13 @@ const configRam = {
     const graficoDisco = new Chart(
         document.getElementById('graficoDisco'),
         configDisco
+    )
+    const graficoCpu = new Chart(
+        document.getElementById('graficoCpu'),
+        configCpu
+    )
+    const graficoRede = new Chart(
+        document.getElementById('chartRedeDownload'),
+        configRede
     )
 </script>
