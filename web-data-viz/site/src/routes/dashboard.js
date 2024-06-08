@@ -48,6 +48,10 @@ router.get("/buscarDadosDaMaquina/:fkEmpresa", function (req, res) {
     dashboardController.buscarDadosDaMaquina(req, res);
 })
 
+router.get("/buscarDadosAlerta/:idComputador", function (req, res) {
+    dashboardController.buscarDadosAlerta(req, res);
+});
+
 //Inserir máquinas ---------------------------------------------------
 
 router.post("/inserirMaquina", function (req, res) {

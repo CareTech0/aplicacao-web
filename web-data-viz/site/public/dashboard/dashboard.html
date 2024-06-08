@@ -21,7 +21,7 @@
 
     <script src="../js/scriptDash.js" defer></script>
     <script src="../js/modais/modalDeslogar.js" defer></script>
-
+    <script src="../js/session.js"></script>
 
 
 </head>
@@ -295,7 +295,7 @@
         </div>
 
         <div class="modal-botao-deslogar">
-            <button id="confirmarDeslogar"> <a href="../login.html">DESLOGAR SESSÃO</a></button>
+            <button id="confirmarDeslogar"> <a onclick="sairConta()">DESLOGAR SESSÃO</a></button>
         </div>
     </div>
 </div>
@@ -402,6 +402,7 @@
 </html>
 
 <script>
+    validarSessao()
     buscarMaquinas();
 
     // Selecionando os elementos relevantes
@@ -563,8 +564,8 @@
                         const imgStatus = document.getElementById(`imgStatus${maquina.id_computador}`);
                       
                         resposta.forEach(dadosMaquina => {
-
-                            if(dadosMaquina.fk_computador[0] == maquina.id_computador){
+                            const fkComputador = dadosMaquina.fk_computador[0];
+                            if(fkComputador == maquina.id_computador){
                                 condicao.innerText = "Ligada";
                                 imgCondicao.src = "../assets/imgs/ligado.png";
 
@@ -628,7 +629,7 @@
                 });
             }
         })
-    }, 10000)
+    }, 3000)
 
     let todasMaquinas = []; // usando no filtro
     function buscarMaquinas(){

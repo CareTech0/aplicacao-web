@@ -171,6 +171,22 @@ function buscarDadosDaMaquina(req, res){
     });
 }
 
+function buscarDadosAlerta(req, res){
+    const idComputador = req.params.idComputador;
+
+    dashboardModel.buscarDadosAlerta(idComputador).then (function (resultado) {
+        if(resultado.length > 0){
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum Resultado encontrado!");
+        }
+    })
+    .catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 module.exports = { 
     inserirMaquina,
     buscarMaquinas,
@@ -181,5 +197,6 @@ module.exports = {
     buscarDiscos,
     buscarDadosDisco,
     buscarDadosDaMaquina,
-    buscarDadosRede
+    buscarDadosRede,
+    buscarDadosAlerta
 }

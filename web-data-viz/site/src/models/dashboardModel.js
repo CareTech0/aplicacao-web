@@ -186,6 +186,35 @@ WHERE
     return database.executar(instrucao);
 }
 
+function buscarDadosAlerta(idComputador){
+    // const instrucao = `
+    // select r.id_registros, h.nome_hardware, h.capacidade_total, h.id_hardware , r.qtd_processos, r.uso_capacidade, r.horario from hardware as h join registros as r on h.id_hardware = r.fk_hardware where h.fk_computador = ${idComputador} and nome_hardware = 'ram' order by horario DESC LIMIT 1;
+    // `;
+    const instrucao = `
+    SELECT TOP 4
+    r.id_registros, 
+    h.nome_hardware, 
+    h.capacidade_total, 
+    h.id_hardware, 
+    r.qtd_processos, 
+    r.uso_capacidade, 
+    r.horario 
+FROM 
+    hardware AS h 
+JOIN 
+    registros AS r 
+ON 
+    h.id_hardware = r.fk_hardware 
+WHERE 
+    h.fk_computador = ${idComputador} 
+ORDER BY 
+    r.horario DESC;
+    `
+
+    return database.executar(instrucao);
+}
+
+
 module.exports = { 
     inserirMaquina,
     buscarMaquinas,
@@ -196,5 +225,6 @@ module.exports = {
     buscarDiscos,
     buscarDadosDisco,
     buscarDadosDaMaquina,
-    buscarDadosRede
+    buscarDadosRede,
+    buscarDadosAlerta
 }
