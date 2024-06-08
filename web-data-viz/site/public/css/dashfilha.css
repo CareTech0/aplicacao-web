@@ -393,7 +393,7 @@ font-weight: 600;
   fill: #040b11;
 }
 .container-grafico-esquerda {
-  width: 50%;
+  width: 70%;
   height: 100%;
   display: flex;
   align-items: center;
@@ -403,7 +403,7 @@ font-weight: 600;
 .container-grafico-direita {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 30%;
 }
 .container-do-grafico {
   width: 100%;

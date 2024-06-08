@@ -36,6 +36,7 @@ function buscarDadosRam(idComputador){
     // const instrucao = `
     // select r.id_registros, h.nome_hardware, h.capacidade_total, h.id_hardware , r.qtd_processos, r.uso_capacidade, r.horario from hardware as h join registros as r on h.id_hardware = r.fk_hardware where h.fk_computador = ${idComputador} and nome_hardware = 'ram' order by horario DESC LIMIT 1;
     // `;
+    console.log("Model: idComputador = " + idComputador)
     const instrucao = `
     SELECT TOP 1 
     r.id_registros, 
@@ -139,20 +140,29 @@ WHERE
     return database.executar(instrucao);
 }
 
-function buscarDadosDisco(idHardware){
+function buscarDadosDisco(idComputador){
     // const instrucao = `
     //     select registros.uso_capacidade from registros where fk_hardware = ${idHardware} order by horario DESC LIMIT 1;
     // `;
 
     const instrucao = `
     SELECT TOP 1 
-    uso_capacidade 
+    h.nome_hardware, 
+    h.capacidade_total, 
+    h.id_hardware,
+    r.uso_capacidade, 
+    r.horario 
 FROM 
-    registros 
+    hardware AS h 
+JOIN 
+    registros AS r 
+ON 
+    h.id_hardware = r.fk_hardware 
 WHERE 
-    fk_hardware = ${idHardware} 
+    h.fk_computador = ${idComputador} 
+    AND nome_hardware = 'disco' 
 ORDER BY 
-    horario DESC;
+    r.horario DESC;
     `
 
     return database.executar(instrucao);

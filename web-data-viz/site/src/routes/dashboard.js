@@ -34,7 +34,7 @@ router.get("/buscarDiscos/:idComputador", function (req, res) {
     dashboardController.buscarDiscos(req, res);
 });
 
-router.get("/buscarDadosDisco/:idHardware", function (req, res) {
+router.get("/buscarDadosDisco/:idComputador", function (req, res) {
     dashboardController.buscarDadosDisco(req, res);
 });
 

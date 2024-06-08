@@ -139,9 +139,9 @@ function buscarDiscos(req, res){
 }
 
 function buscarDadosDisco(req, res){
-    const idHardware = req.params.idHardware;
+    const idComputador = req.params.idComputador;
 
-    dashboardModel.buscarDadosDisco(idHardware).then (function (resultado) {
+    dashboardModel.buscarDadosDisco(idComputador).then (function (resultado) {
         if(resultado.length > 0){
             res.status(200).json(resultado);
         } else {
