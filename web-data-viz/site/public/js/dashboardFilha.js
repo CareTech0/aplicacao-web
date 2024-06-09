@@ -1,302 +1,446 @@
-    google.charts.load('current', {'packages':['corechart']});
-    google.charts.load('current', {'packages':['gauge']});
-
-    google.charts.setOnLoadCallback(init);
-
     const urlParams = new URLSearchParams(window.location.search);
     const idComputador = urlParams.get('idComputador');
 
-function init() {
-    gerarGraficoMemoriaRamUso();
-    gerarGraficoUtilizacaoCPU();
-    //criarGraficosRede();    
-}
+    const usoCpu = [];
+    const lableCpu = [];
+    const idRegistroCpu = []
 
-var chartRam;
-var dataRam;
-
-// function gerarGraficoMemoriaRamUso() {
-//     let totalMemory = 16; // Total de memória RAM disponível (em GB)
-//     let usedMemory = 10; // Memória RAM usada (em GB)
-
- 
-//     dataRam = google.visualization.arrayToDataTable([
-//         ['Tipo', 'Uso de RAM'],
-//         ['Usado', usedMemory], // Total utilizado
-//         ['Livre', totalMemory - usedMemory], // Total disponível
-       
-//     ]);
-
-   
-//     var options = {
-//         pieHole: 0.5,
-//         pieSliceText: 'percentage', 
-//         pieSliceTextStyle: {
-//             color: '#000000',
-//             fontSize: '12px',
-//             bold: true
-//         },
-//         slices: {
-//             0: { color: '#FFDC83',  }, // Cor para o total utilizado
-//             1: { color: '#8ee79a', } // Cor para o total disponível
-//         },
-//         legend: 'none', // Ocultar a legenda
-//         tooltip: { trigger: 'hover' }, // Desativar tooltips
-//         enableInteractivity: false, // Desativar interatividade
-//         chartArea: {  width: '77%', height: '76%' }, // Definir a área do gráfico para 100% do contêiner
-//         backgroundColor: 'transparent',
-        
-     
-//     };
-
-  
-//     chartRam = new google.visualization.PieChart(document.getElementById('graficoDeRoscaMemoria'));
-//     chartRam.draw(dataRam, options);
-
-// }
-
-function gerarGraficoMemoriaRamUso() {
-    // Inicializa dataRam sem dados
-    dataRam = new google.visualization.DataTable();
-    dataRam.addColumn('string', 'Tipo');
-    dataRam.addColumn('number', 'Uso de RAM');
-    dataRam.addRows([
-        ['Usado', 0],
-        ['Livre', 0]
-    ]);
-
-    var options = {
-        pieHole: 0.5,
-        pieSliceText: 'percentage',
-        pieSliceTextStyle: {
-            color: '#000000',
-            fontSize: '12px',
-            bold: true
-        },
-        slices: {
-            0: { color: '#FFDC83' }, // Cor para o total utilizado
-            1: { color: '#8ee79a' } // Cor para o total disponível
-        },
-        legend: 'none', // Ocultar a legenda
-        tooltip: { trigger: 'hover' }, // Desativar tooltips
-        enableInteractivity: false, // Desativar interatividade
-        chartArea: { width: '77%', height: '76%' }, // Definir a área do gráfico para 100% do contêiner
-        backgroundColor: 'transparent'
-    };
-
-    chartRam = new google.visualization.PieChart(document.getElementById('graficoDeRoscaMemoria'));
-    chartRam.draw(dataRam, options);
-}
-
-const chartDiscos = [];
-const dataDiscos = [];
-
-function gerarGraficoDiscoUso(idHardware, capacidadeTotal, posicaoGrafico) {  
-    dataDiscos.push(google.visualization.arrayToDataTable([
-        ['Tipo', 'Uso de Disco'],
-        ['Usado', capacidadeTotal], // Total utilizado
-        ['Livre', 0], // Total disponível
-    ]));
-
-    var options = {
-        pieHole: 0.5,
-        pieSliceText: 'percentage',        
-        pieSliceTextStyle: {
-            color: '#ffffff',
-            fontSize: '12px',
-            bold: true
-        },
-        slices: {
-            0: { color: '#FFDC83' }, // Cor para o total utilizado
-            1: { color: '#8ee79a' } // Cor para o total disponível
-        },
-        legend: 'none', // Ocultar a legenda
-        tooltip: { trigger: 'hover' }, // Desativar tooltips
-        enableInteractivity: false, // Desativar interatividade
-        chartArea: { width: '77%', height: '76%' }, // Definir a área do gráfico para 100% do contêiner
-        backgroundColor: 'transparent'
-    };
-
-    document.getElementById('graficoDeDiscoContainer').innerHTML += `<div id="graficoDeDisco${idHardware}"></div>`;
-
-    chartDiscos.push(new google.visualization.PieChart(document.getElementById(`graficoDeDisco${idHardware}`)));
-    chartDiscos[posicaoGrafico].draw(dataDiscos[posicaoGrafico], options);
-}
-
-var charCPU;
-var dataCPU;
-var dadosUtilizacaoCPU = [];
-
-function gerarGraficoUtilizacaoCPU() {
-    dataCPU = new google.visualization.DataTable();
-    dataCPU.addColumn('string', 'tempo');
-    dataCPU.addColumn('number', 'Utilização da CPU (%)');
-
-    let time = new Date();
-    let hora = time.getHours();
-    let minutos = time.getMinutes();
-    let tempo = `${hora}:${minutos}`;
+    const usoRede = [];
+    const lableRede = [];
+    const idRegistroRede= []
 
     
+    function atualizarGraficoRam(){
+        fetch(`/dashboard/buscarDadosRam/${idComputador}`, { cache: 'no-store' }).then(function (resposta){
+            if(resposta.ok){
+                resposta.json().then(function (resposta) {
+                    console.log("resposta da query de ram")
+                    console.log(resposta)
+                    console.log("Percentual")
+                    console.log(resposta[0].uso_capacidade / resposta[0].capacidade_total)
+                    graficoRam.config.data.datasets[0].data = [resposta[0].uso_capacidade, resposta[0].capacidade_total - resposta[0].uso_capacidade]
+                    
+                    let utilizacaoPercentual = (resposta[0].uso_capacidade / resposta[0].capacidade_total).toFixed(2);
 
-    // Adicionar os dados ao DataTable
-    dataCPU.addRows(dadosUtilizacaoCPU);
+                    utilizacaoMemoria.innerHTML = `${utilizacaoPercentual * 100}%` 
+                    totalMemoria.innerHTML = `${resposta[0].capacidade_total.toFixed(2)}Gb`
+                    disponivelMemoria.innerHTML = `${(resposta[0].capacidade_total - resposta[0].uso_capacidade).toFixed(1)}Gb`
 
-    // Definir as opções do gráfico
-    var options = {
-        curveType: 'function',
-        backgroundColor: 'transparent',
-        legend: { position: 'none' },
-        hAxis: { title: 'Tempo' },
-        vAxis: { title: 'Utilização da CPU (%)', minValue: 0, maxValue: 100 },
-        chartArea: { width: '80%', height: '70%' }
-    };
-
-    chartCPU = new google.visualization.LineChart(document.getElementById('graficoUtilizacaoCPU'));
-    chartCPU.draw(dataCPU, options);
-}
-
-
-function criarGraficosRede() {
-        var ctx1 = document.getElementById('chartRede1').getContext('2d');
-        var doughnutChart1 = new Chart(ctx1, {
-            type: 'doughnut',
-            data: {
-                datasets: [{
-                    data: [75, 25],
-                    backgroundColor: ["#4CAF50", "#a7a7a7"]
-                }]
-            },
-            options: {
-                rotation: 270,
-                circumference: 180,
-                cutout: '70%',
-                hover: { mode: null },
-                plugins: {
-                    datalabels: {
-                        formatter: (value, ctx) => {
-                            return value + ' Mbps';
-                        },
-                        color: '#000',
-                        font: {
-                            size: '20'
-                        }
+                    if(utilizacaoPercentual <= 0.7){
+                        statusMemoria.innerHTML = `Ideal`
+                        iconeAlertaRam,innerHTML = `<img src="../assets/imgs/check.png">`
+                        graficoRam.config.data.datasets[0].backgroundColor = [`rgb(102, 204, 115)`, 'rgb(54, 162, 235)']
+                    }else if(utilizacaoPercentual <= 0.9){
+                        statusMemoria.innerHTML = `Atenção`
+                        iconeAlertaRam.innerHTML = `<img src="../assets/imgs/alerta.png">`
+                        graficoRam.config.data.datasets[0].backgroundColor = [`rgba(252, 249, 74, 0.897)`, 'rgb(54, 162, 235)']
+                    }else {
+                        statusMemoria.innerHTML = `Crítico`
+                        iconeAlertaRam.innerHTML = `<img src="../assets/imgs/x.png">`
+                        graficoRam.config.data.datasets[0].backgroundColor = [`rgba(252, 80, 74, 0.897)`, 'rgb(54, 162, 235)']
                     }
-                }
-            }
-        });
 
-        var ctx2 = document.getElementById('chartRede2').getContext('2d');
-        var doughnutChart2 = new Chart(ctx2, {
-            type: 'doughnut',
-            data: {
-                datasets: [{
-                    data: [50, 50],
-                    backgroundColor: ["#2196F3", "#a7a7a7"]
-                }]
-            },
-            options: {
-                rotation: 270,
-                circumference: 180,
-                cutout: '70%',
-                hover: { mode: null },
-                plugins: {
-                    datalabels: {
-                        formatter: (value, ctx) => {
-                            return value + ' Mbps';
-                        },
-                        color: '#000',
-                        font: {
-                            size: '20'
-                        }
-                    }
-                }
+
+                    graficoRam.update();
+                });
             }
         });
     }
-    
-    setInterval(() => {
+
+    function atualizarGraficoDisco(){
+        fetch(`/dashboard/buscarDadosDisco/${idComputador}`, { cache: 'no-store' }).then(function (resposta){
+            if(resposta.ok){
+                resposta.json().then(function (resposta) {
+                   graficoDisco.config.data.datasets[0].data = [resposta[0].uso_capacidade, resposta[0].capacidade_total - resposta[0].uso_capacidade]
+
+                   let utilizacaoPercentual = (resposta[0].uso_capacidade / resposta[0].capacidade_total).toFixed(1);
+
+                   utilizacaoDisco.innerHTML = `${(utilizacaoPercentual * 100)}%`
+                   totalDisco.innerHTML = `${resposta[0].capacidade_total.toFixed(1)}Gb`
+                   disponivelDisco.innerHTML = `${(resposta[0].capacidade_total - resposta[0].uso_capacidade).toFixed(1)}Gb` 
+
+                   if(utilizacaoPercentual <= 0.7){
+                        statusDisco.innerHTML = `Ideal`
+                        iconeAlertaDisco.innerHTML = `<img src="../assets/imgs/check.png">`
+                        graficoDisco.config.data.datasets[0].backgroundColor = [`rgb(102, 204, 115)`, 'rgb(54, 162, 235)']
+                    }else if(utilizacaoPercentual <= 0.8){
+                        statusDisco.innerHTML = `Atenção`
+                        iconeAlertaDisco.innerHTML = `<img src="../assets/imgs/alerta.png">`
+                        graficoDisco.config.data.datasets[0].backgroundColor = [`rgba(252, 249, 74, 0.897)`, 'rgb(54, 162, 235)']
+                    }else {
+                        statusDisco.innerHTML = `Crítico`
+                        iconeAlertaDisco.innerHTML = `<img src="../assets/imgs/x.png">`
+                        graficoDisco.config.data.datasets[0].backgroundColor = [`rgba(252, 80, 74, 0.897)`, 'rgb(54, 162, 235)']
+                    }
+
+                   graficoDisco.update();
+                });
+            }
+        });
+    }
+
+
+    //Carrega os graficos ao carregar a página, função sendo chamada na abertura da tag Body
+    function carregarGraficos(){
+        fetch(`/dashboard/buscarNomeEstacao/${idComputador}`, { cache: 'no-store' }).then(function (resposta){
+            if(resposta.ok){
+                resposta.json().then(function (resposta) {
+                    nomeEstacao.innerHTML = `Estação: ${resposta[0].estacao_de_trabalho}`
+                });
+            }
+        });
+
+        //Busca e adiciona no gráfico os ultimos dados registrados de memória RAM
+        atualizarGraficoRam()
+        //Busca e adiciona no gráfico os ultimos dados registrados de Disco
+        atualizarGraficoDisco()
+        //Busca e adiciona no gráfico os ultimos dados registrados de CPU
+        fetch(`/dashboard/buscarDadosCpu/${idComputador}`, { cache: 'no-store' }).then(function (resposta){
+            if(resposta.ok){
+                resposta.json().then(function (resposta) {
+                    console.log(resposta)
+                    let usoCapacidadeCpuFormatado 
+                    for(let i = resposta.length - 1; i >= 0; i--){
+                        const lableHoraMinutos = resposta[i].horario;
+                        const date = new Date(lableHoraMinutos);
+                        
+                        let usoCapacidadeCpu = resposta[i].uso_capacidade;
+                        usoCapacidadeCpuFormatado = usoCapacidadeCpu.toFixed(1)
+
+                        // Obter a hora e os minutos
+                        const hours = date.getUTCHours().toString().padStart(2, '0');
+                        const minutes = date.getUTCMinutes().toString().padStart(2, '0');
+
+                        const time = `${hours}:${minutes}`;
+                        console.log(time);
+                        idRegistroCpu.push(resposta[0].id_registros)
+                        lableCpu.push(time)
+                        usoCpu.push(usoCapacidadeCpuFormatado)
+                    }
+
+                    let utilizacaoPercentual = usoCpu[usoCpu.length-1]
+
+                    utiilizacaoCpu.innerHTML = `${usoCpu[usoCpu.length-1]}%`
+
+                    
+                    if(utilizacaoPercentual <= 70){
+                        statusCpu.innerHTML = `Ideal`
+                        iconeAlertaCpu.innerHTML = `<img src="../assets/imgs/check.png">`;
+                        graficoCpu.config.data.datasets[0].backgroundColor = [`rgb(102, 204, 115)`]
+                    }else if(utilizacaoPercentual <= 80){
+                        statusCpu.innerHTML = `Atenção`
+                        iconeAlertaCpu.innerHTML = `<img src="../assets/imgs/alerta.png">`;
+                        graficoCpu.config.data.datasets[0].backgroundColor = [`rgba(252, 249, 74, 0.897)`]
+                    }else {
+                        statusCpu.innerHTML = `Crítico`
+                        iconeAlertaCpu.innerHTML = `<img src="../assets/imgs/x.png">`;
+                        graficoCpu.config.data.datasets[0].backgroundColor = [`rgba(252, 80, 74, 0.897)`]
+                    }
+
+                    console.log(lableCpu)
+                    console.log(usoCpu)
+                    graficoCpu.config.data.datasets[0].data = usoCpu;
+                    graficoCpu.config.data.labels = lableCpu;
+                    graficoCpu.update();
+                });
+            }
+        });
 
         fetch(`/dashboard/buscarDadosRede/${idComputador}`, { cache: 'no-store' }).then(function (resposta){
             if(resposta.ok){
                 resposta.json().then(function (resposta) {
-                    console.log(resposta);
-                });
-            }
-        });
-        
-        fetch(`/dashboard/buscarDadosRam/${idComputador}`, { cache: 'no-store' }).then(function (resposta){
-            if(resposta.ok){
-                resposta.json().then(function (resposta) {
-                    dataRam.setValue(0, 1, resposta[0].capacidade_total);
-                    dataRam.setValue(1, 1, resposta[0].capacidade_total - resposta[0].uso_capacidade);
-                    chartRam.draw(dataRam, null);
-                });
-            }
-        });
+                    console.log(resposta)
+                    for(let i = resposta.length - 1; i >= 0; i--){
+                        const lableHoraMinutos = resposta[i].horario;
+                        const date = new Date(lableHoraMinutos);
+                        
+                        
+                        let usoCapacidadeRede = resposta[i].uso_capacidade;
+                        let usoCapacidadeRedeFormatado = usoCapacidadeRede.toFixed(1)
+                        
 
-        fetch(`/dashboard/buscarDadosCpu/${idComputador}`, { cache: 'no-store' }).then(function (resposta){
-            if(resposta.ok){
-                resposta.json().then(function (resposta) {
-                    let time = new Date();
-                    let hora = time.getHours();
-                    let minutos = time.getMinutes();
-                    let tempo = `${hora}:${minutos}`;
+                        // Obter a hora e os minutos
+                        const hours = date.getUTCHours().toString().padStart(2, '0');
+                        const minutes = date.getUTCMinutes().toString().padStart(2, '0');
 
-                    dataCPU.removeRows(0, dataCPU.getNumberOfRows());
+                        const time = `${hours}:${minutes}`;
+                        console.log(time);
+                        idRegistroRede.push(resposta[i].id_registros)
+                        lableRede.push(time)
+                        usoRede.push(usoCapacidadeRedeFormatado)
+                    }
                     
-                    if(dadosUtilizacaoCPU.length == 7){
-                        dadosUtilizacaoCPU.shift;
+
+                    buscarMaiorRede()
+                    buscarMinimoRede()
+                    buscarMediaRede()
+
+                    let velRede = usoRede[usoRede.length-1]
+
+                    if(velRede < 1){
+                        statusRede.innerHTML = `Crítico`
+                        iconeAlertaRede.innerHTML = `<img src="../assets/imgs/x.png">`
+                        graficoRede.config.data.datasets[0].backgroundColor = [`rgba(252, 80, 74, 0.897)`]
+                    }else if(velRede < 5){
+                        statusRede.innerHTML = `Atenção`
+                        iconeAlertaRede.innerHTML = `<img src="../assets/imgs/alerta.png">`
+                        graficoRede.config.data.datasets[0].backgroundColor = [`rgba(252, 249, 74, 0.897)`]
+                    }else {
+                        statusRede.innerHTML = `Ideal`
+                        iconeAlertaRede.innerHTML = `<img src="../assets/imgs/check.png">`
+                        graficoRede.config.data.datasets[0].backgroundColor = [`rgb(102, 204, 115)`] 
                     }
 
-                    dadosUtilizacaoCPU.push([tempo, resposta[0].uso_capacidade])
-                    dataCPU.addRows(dadosUtilizacaoCPU);
-
-                    chartCPU.draw(dataCPU, null);
+                    graficoRede.config.data.datasets[0].data = usoRede;
+                    graficoRede.config.data.labels = lableRede;
+                    graficoRede.update();
                 });
             }
         });
 
-        
+        setInterval(() => {
+            console.log(urlParams.get('idComputador'))
+            fetch(`/dashboard/buscarDadosRam/${idComputador}`, { cache: 'no-store' }).then(function (resposta){
+                         if(resposta.ok){
+                             resposta.json().then(function (resposta) {
+                                graficoRam.config.data.datasets[0].data = [resposta[0].uso_capacidade, resposta[0].capacidade_total - resposta[0].uso_capacidade]
 
-                fetch(`/dashboard/buscarDiscos/${idComputador}`, { cache: 'no-store' }).then(function (resposta){
-                    if(resposta.ok){
-                        resposta.json().then(function (resposta) {
-                            const listaDeDiscos = resposta;
-                            let i = 0;
-                            listaDeDiscos.forEach(disco => {
-                                if(chartDiscos.length < listaDeDiscos.length) {
-                                    gerarGraficoDiscoUso(disco.id_hardware, disco.capacidade_total, i)
+                                let utilizacaoPercentual = (resposta[0].uso_capacidade / resposta[0].capacidade_total).toFixed(2);
+
+                                utilizacaoMemoria.innerHTML = `${utilizacaoPercentual * 100}%`
+                                totalMemoria.innerHTML = `${resposta[0].capacidade_total.toFixed(1)}Gb`
+                                disponivelMemoria.innerHTML = `${(resposta[0].capacidade_total - resposta[0].uso_capacidade).toFixed(1)}Gb` 
+
+                                if(utilizacaoPercentual <= 0.7){
+                                    statusMemoria.innerHTML = `Ideal`
+                                    iconeAlertaRam,innerHTML = `<img src="../assets/imgs/check.png">`
+                                    graficoRam.config.data.datasets[0].backgroundColor = [`rgb(102, 204, 115)`, 'rgb(54, 162, 235)']
+                                }else if(utilizacaoPercentual <= 0.9){
+                                    statusMemoria.innerHTML = `Atenção`
+                                    iconeAlertaRam.innerHTML = `<img src="../assets/imgs/alerta.png">`
+                                    graficoRam.config.data.datasets[0].backgroundColor = [`rgba(252, 249, 74, 0.897)`, 'rgb(54, 162, 235)']
+                                }else {
+                                    statusMemoria.innerHTML = `Crítico`
+                                    iconeAlertaRam.innerHTML = `<img src="../assets/imgs/x.png">`
+                                    graficoRam.config.data.datasets[0].backgroundColor = [`rgba(252, 80, 74, 0.897)`, 'rgb(54, 162, 235)']
                                 }
-                                i++;
-                            });
-                            buscarDadosDiscos(listaDeDiscos);
-                        });
-                    }
-                });
-            
-        
-    }, 3000);
 
-    function buscarDadosDiscos(listaDeDiscos){
-        for(let i = 0; i < listaDeDiscos.length; i++){
-            fetch(`/dashboard/buscarDadosDisco/${listaDeDiscos[i].id_hardware}`, { cache: 'no-store' }).then(function (resposta){
+                                graficoRam.update();
+                             });
+                         }
+                     });
+    
+            fetch(`/dashboard/buscarDadosDisco/${idComputador}`, { cache: 'no-store' }).then(function (resposta){
+            if(resposta.ok){
+                resposta.json().then(function (resposta) {
+                   graficoDisco.config.data.datasets[0].data = [resposta[0].uso_capacidade, resposta[0].capacidade_total - resposta[0].uso_capacidade]
+
+                   let utilizacaoPercentual = (resposta[0].uso_capacidade / resposta[0].capacidade_total).toFixed(1);
+
+                   utilizacaoDisco.innerHTML = `${(utilizacaoPercentual * 100)}%`
+                   totalDisco.innerHTML = `${resposta[0].capacidade_total.toFixed(1)}Gb`
+                   disponivelDisco.innerHTML = `${(resposta[0].capacidade_total - resposta[0].uso_capacidade).toFixed(1)}Gb` 
+
+                   if(utilizacaoPercentual <= 0.7){
+                        statusDisco.innerHTML = `Ideal`
+                        iconeAlertaDisco.innerHTML = `<img src="../assets/imgs/check.png">`
+                        graficoDisco.config.data.datasets[0].backgroundColor = [`rgb(102, 204, 115)`, 'rgb(54, 162, 235)']
+                    }else if(utilizacaoPercentual <= 0.8){
+                        statusDisco.innerHTML = `Atenção`
+                        iconeAlertaDisco.innerHTML = `<img src="../assets/imgs/alerta.png">`
+                        graficoDisco.config.data.datasets[0].backgroundColor = [`rgba(252, 249, 74, 0.897)`, 'rgb(54, 162, 235)']
+                    }else {
+                        statusDisco.innerHTML = `Crítico`
+                        iconeAlertaDisco.innerHTML = `<img src="../assets/imgs/x.png">`
+                        graficoDisco.config.data.datasets[0].backgroundColor = [`rgba(252, 80, 74, 0.897)`, 'rgb(54, 162, 235)']
+                    }
+
+                   graficoDisco.update();
+                });
+            }
+        });         
+            
+
+            fetch(`/dashboard/buscarUltimoDadoCpu/${idComputador}`, { cache: 'no-store' }).then(function (resposta){
                 if(resposta.ok){
                     resposta.json().then(function (resposta) {
-                        if(resposta.length > 0){
-                            dataDiscos[i].setValue(0, 1, resposta[0].uso_capacidade);
-                            dataDiscos[i].setValue(1, 1, listaDeDiscos[i].capacidade_total - resposta[0].uso_capacidade);
-                            chartDiscos[i].draw(dataDiscos[i], null);
-                        } 
-                    })
-                    .catch(function (erro) {
-                        console.error('Erro ao buscar dados do disco:', erro);
+                        console.log(resposta)
+                        
+                        const lableHoraMinutos = resposta[0].horario;
+                        const date = new Date(lableHoraMinutos);
+                            
+                        let usoCapacidadeCpu = resposta[0].uso_capacidade;
+                        let usoCapacidadeCpuFormatado = usoCapacidadeCpu.toFixed(1)
+    
+                        // Obter a hora e os minutos
+                        const hours = date.getUTCHours().toString().padStart(2, '0');
+                        const minutes = date.getUTCMinutes().toString().padStart(2, '0');
+                        
+                        const time = `${hours}:${minutes}`;
+                        console.log(time);
+                        if(idRegistroCpu[idRegistroCpu.length-1] != resposta[0].id_registros) {
+                            if(lableCpu.length > 10){
+                                lableCpu.shift()
+                                usoCpu.shift()
+                                idRegistroCpu.shift()
+                            }
+
+                            lableCpu.push(time)
+                            usoCpu.push(usoCapacidadeCpuFormatado)
+                            idRegistroCpu.push(resposta[0].idRegistroCpu)
+                            
+                            console.log(lableCpu)
+                            console.log(usoCpu)
+
+                            utiilizacaoCpu.innerHTML = `${usoCpu[usoCpu.length-1]}%`
+
+                            let utilizacaoPercentual = usoCpu[usoCpu.length-1]
+
+                            
+                            if(utilizacaoPercentual <= 70){
+                                statusCpu.innerHTML = `Ideal`
+                                iconeAlertaCpu.innerHTML = `<img src="../assets/imgs/check.png">`;
+                                graficoCpu.config.data.datasets[0].backgroundColor = [`rgb(102, 204, 115)`]
+                            }else if(utilizacaoPercentual <= 80){
+                                statusCpu.innerHTML = `Atenção`
+                                iconeAlertaCpu.innerHTML = `<img src="../assets/imgs/alerta.png">`;
+                                graficoCpu.config.data.datasets[0].backgroundColor = [`rgba(252, 249, 74, 0.897)`]
+                            }else {
+                                statusCpu.innerHTML = `Crítico`
+                                iconeAlertaCpu.innerHTML = `<img src="../assets/imgs/x.png">`;
+                                graficoCpu.config.data.datasets[0].backgroundColor = [`rgba(252, 80, 74, 0.897)`]
+                            }
+
+                            graficoCpu.config.data.datasets[0].data = usoCpu;
+                            graficoCpu.config.data.labels = lableCpu;
+                            graficoCpu.update();
+                        }
                     });
-                    
-                    
                 }
             });
-        }
+
+            fetch(`/dashboard/buscarUltimoDadoRede/${idComputador}`, { cache: 'no-store' }).then(function (resposta){
+                if(resposta.ok){
+                    resposta.json().then(function (resposta) {
+                        console.log(resposta)
+                        
+                        const lableHoraMinutos = resposta[0].horario;
+                        const date = new Date(lableHoraMinutos);
+                            
+                        let usoCapacidadeRede = resposta[0].uso_capacidade;
+                        let usoCapacidadeCpuFormatado = usoCapacidadeRede.toFixed(1)
+    
+                        // Obter a hora e os minutos
+                        const hours = date.getUTCHours().toString().padStart(2, '0');
+                        const minutes = date.getUTCMinutes().toString().padStart(2, '0');
+                        
+                        const time = `${hours}:${minutes}`;
+                        console.log('rede:');
+                        console.log(idRegistroRede[idRegistroRede.length-1])
+                        console.log(resposta[0].id_registros)
+                        if(idRegistroRede[idRegistroRede.length-1] != resposta[0].id_registros) {
+                            if(lableRede.length >= 10){
+                                lableRede.shift()
+                                usoRede.shift()
+                                idRegistroRede.shift()
+                            }
+                            idRegistroRede.push(resposta[0].id_registros)
+                            lableRede.push(time)
+                            usoRede.push(usoCapacidadeCpuFormatado)
+
+                            buscarMaiorRede()
+                            buscarMinimoRede()
+                            buscarMediaRede()
+
+                            let velRede = usoRede[usoRede.length-1]
+
+                            if(velRede < 1){
+                                statusRede.innerHTML = `Crítico`
+                                iconeAlertaRede.innerHTML = `<img src="../assets/imgs/x.png">`
+                                graficoRede.config.data.datasets[0].backgroundColor = [`rgba(252, 80, 74, 0.897)`]
+                            }else if(velRede < 5){
+                                statusRede.innerHTML = `Atenção`
+                                iconeAlertaRede.innerHTML = `<img src="../assets/imgs/alerta.png">`
+                                graficoRede.config.data.datasets[0].backgroundColor = [`rgba(252, 249, 74, 0.897)`]
+                            }else {
+                                statusRede.innerHTML = `Ideal`
+                                iconeAlertaRede.innerHTML = `<img src="../assets/imgs/check.png">`
+                                graficoRede.config.data.datasets[0].backgroundColor = [`rgb(102, 204, 115)`] 
+                            }
+                            
+                            graficoRede.config.data.datasets[0].data = usoRede;
+                            graficoRede.config.data.labels = lableRede;
+                            graficoRede.update();
+                        }
+                    });
+                }
+            });
+    
+        }, 5000)
+
+    }
+
+
+    function buscarDiaHoje(){
+        let hoje = new Date();
+
+        // Extrair o ano, mês e dia
+        let ano = hoje.getFullYear();
+        let mes = (hoje.getMonth() + 1).toString().padStart(2, '0'); // Os meses são indexados a partir de 0, então adicionamos 1
+        let dia = hoje.getDate().toString().padStart(2, '0');
+
+        // Formatar a data como AAAA-MM-DD
+        let dataFormatada = `${ano}-${mes}-${dia}`;
+        return dataFormatada
+    }
+
+    function buscarMaiorRede(){
+        let hoje = buscarDiaHoje()
+
+        fetch(`/dashboard/buscarMaiorRede/${idComputador}/${hoje}`, { cache: 'no-store' }).then(function (resposta){
+            if(resposta.ok){
+                resposta.json().then(function (resposta) {
+                    console.log("MAXIMO DE REDE")
+                    console.log((resposta[0].max_rede).toFixed(2))
+
+                    let maxHoje = (resposta[0].max_rede).toFixed(2)
+                    maxRede.innerHTML = `${maxHoje}Mb/s`
+                });
+            }
+        });
+        
+    }
+
+    function buscarMinimoRede(){
+        let hoje = buscarDiaHoje()
+
+        fetch(`/dashboard/buscarMinimoRede/${idComputador}/${hoje}`, { cache: 'no-store' }).then(function (resposta){
+            if(resposta.ok){
+                resposta.json().then(function (resposta) {
+                    console.log("MINIMO DE REDE")
+                    console.log((resposta[0].min_rede).toFixed(2))
+
+                    let minHoje = (resposta[0].min_rede).toFixed(2)
+                    minRede.innerHTML = `${minHoje}Mb/s`
+                });
+            }
+        });
+    }
+
+    function buscarMediaRede(){
+        let hoje = buscarDiaHoje()
+
+        fetch(`/dashboard/buscarMediaRede/${idComputador}/${hoje}`, { cache: 'no-store' }).then(function (resposta){
+            if(resposta.ok){
+                resposta.json().then(function (resposta) {
+                    console.log("MEDIA DE REDE")
+                    console.log((resposta[0].med_rede).toFixed(2))
+
+                    let medHoje = (resposta[0].med_rede).toFixed(2)
+                    mediarede.innerHTML = `${medHoje}Mb/s`
+                });
+            }
+        });
     }
 
 

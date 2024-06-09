@@ -121,6 +121,40 @@ function buscarDadosCpu(req, res){
     
 }
 
+function buscarUltimoDadoCpu(req, res){
+    const idComputador = req.params.idComputador;
+
+    dashboardModel.buscarUltimoDadoCpu(idComputador).then (function (resultado) {
+        if(resultado.length > 0){
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum Resultado encontrado!");
+        }
+    })
+    .catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+    
+}
+
+function buscarUltimoDadoRede(req, res){
+    const idComputador = req.params.idComputador;
+
+    dashboardModel.buscarUltimoDadoRede(idComputador).then (function (resultado) {
+        if(resultado.length > 0){
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum Resultado encontrado!");
+        }
+    })
+    .catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+    
+}
+
 function buscarDiscos(req, res){
     const idComputador = req.params.idComputador;
 
@@ -138,10 +172,64 @@ function buscarDiscos(req, res){
     
 }
 
-function buscarDadosDisco(req, res){
-    const idHardware = req.params.idHardware;
+function buscarMaiorRede(req, res){
+    const idComputador = req.params.idComputador;
+    const hoje = req.params.hoje;
 
-    dashboardModel.buscarDadosDisco(idHardware).then (function (resultado) {
+    dashboardModel.buscarMaiorRede(idComputador, hoje).then (function (resultado) {
+        if(resultado.length > 0){
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum Resultado encontrado!");
+        }
+    })
+    .catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+    
+}
+
+function buscarMinimoRede(req, res){
+    const idComputador = req.params.idComputador;
+    const hoje = req.params.hoje;
+
+    dashboardModel.buscarMinimoRede(idComputador, hoje).then (function (resultado) {
+        if(resultado.length > 0){
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum Resultado encontrado!");
+        }
+    })
+    .catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+    
+}
+
+function buscarMediaRede(req, res){
+    const idComputador = req.params.idComputador;
+    const hoje = req.params.hoje;
+
+    dashboardModel.buscarMediaRede(idComputador, hoje).then (function (resultado) {
+        if(resultado.length > 0){
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum Resultado encontrado!");
+        }
+    })
+    .catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+    
+}
+
+function buscarDadosDisco(req, res){
+    const idComputador = req.params.idComputador;
+
+    dashboardModel.buscarDadosDisco(idComputador).then (function (resultado) {
         if(resultado.length > 0){
             res.status(200).json(resultado);
         } else {
@@ -171,10 +259,28 @@ function buscarDadosDaMaquina(req, res){
     });
 }
 
+
+function buscarNomeEstacao(req, res){
+    const idComputador = req.params.idComputador;
+
+    dashboardModel.buscarNomeEstacao(idComputador).then (function (resultado) {
+      if(resultado.length > 0){
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum Resultado encontrado!");
+        }
+    })
+    .catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 function buscarDadosAlerta(req, res){
     const idComputador = req.params.idComputador;
 
     dashboardModel.buscarDadosAlerta(idComputador).then (function (resultado) {
+
         if(resultado.length > 0){
             res.status(200).json(resultado);
         } else {
@@ -230,7 +336,13 @@ module.exports = {
     buscarDadosDisco,
     buscarDadosDaMaquina,
     buscarDadosRede,
+    buscarNomeEstacao,
     buscarDadosAlerta,
     buscarCriticosDoDia,
-    buscarProblemasSemana
+    buscarProblemasSemana,
+    buscarMaiorRede,
+    buscarMinimoRede,
+    buscarUltimoDadoCpu,
+    buscarUltimoDadoRede,
+    buscarMediaRede
 }
