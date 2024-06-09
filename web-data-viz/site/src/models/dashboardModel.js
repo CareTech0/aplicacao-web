@@ -332,8 +332,6 @@ module.exports = {
     buscarMediaRede,
     buscarNomeEstacao,
     buscarDadosAlerta,
-    buscarCriticosDoDia,
-    buscarProblemasSemana,
     buscarUsoDiscoMaquina,
     possibilidadeTravamentoHojeRam,
     possibilidadeTravamentoHojeCpu
