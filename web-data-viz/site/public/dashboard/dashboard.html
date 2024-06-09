@@ -562,6 +562,7 @@
                         const status = document.getElementById(`status${maquina.id_computador}`);
                         const imgCondicao = document.getElementById(`imgCondicao${maquina.id_computador}`);
                         const imgStatus = document.getElementById(`imgStatus${maquina.id_computador}`);
+                        const caixaMaquina = document.querySelector(`#caixa-maquina-${maquina.id_computador}`);
                       
                         let dadosCpu = 0;
                         let dadosRam = 0;
@@ -597,20 +598,24 @@
                                         if(dadosCpu > 80 && dadosCpu <= 90 || dadosDisco > 80 && dadosDisco <= 90 || dadosRam > 80 && dadosRam <= 90){
                                             status.innerText = "Alerta";
                                             imgStatus.src = "../assets/imgs/alerta.png";
-
+                                            caixaMaquina.classList.remove('pulsante-vermelho');
+                                            caixaMaquina.classList.add('pulsante-laranja');
                                         } else if(dadosCpu > 90 || dadosDisco > 90 || dadosRam > 90){
                                             status.innerText = "Crítico";
                                             imgStatus.src = "../assets/imgs/x.png";
-
+                                            caixaMaquina.classList.remove('pulsante-laranja');
+                                            caixaMaquina.classList.add('pulsante-vermelho');
                                         } else {
                                             status.innerText = "Ideal";
                                             imgStatus.src = "../assets/imgs/check.png";
+                                            caixaMaquina.classList.remove('pulsante-laranja', 'pulsante-vermelho');
                                         }
                                     } else {
                                         status.innerText = "---";
                                         imgStatus.src = "../assets/imgs/x.png";
                                         condicao.innerText = "Desligada";
                                         imgCondicao.src = "../assets/imgs/off.png";
+                                        
                                     }
                                 }
                             } 
@@ -680,7 +685,7 @@
                             computadorQuadro.innerHTML += `
                             <div class="container-maquinas" onclick="detalhesComputador(${computador.id_computador})">
                                 <div class="coluna-maquinas">
-                                    <div class="caixa-maquina">
+                                        <div id="caixa-maquina-${computador.id_computador}" class="caixa-maquina">
                                         <div class="box-icon-maquina">
                                             <div class="imagem-maquina">
                                                 <img src="../assets/imgs/pngMaquina.png">

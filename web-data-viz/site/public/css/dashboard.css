@@ -446,6 +446,46 @@ align-items: center;
   box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
   cursor: pointer;
 }
+/* Animação de alerta laranja  */
+@keyframes alertaLaranja {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 165, 0, 0.5);
+  }
+  70% {
+    transform: scale(1.01);
+    box-shadow: 0 0 0 20px rgba(255, 165, 0, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 165, 0, 0);
+  }
+}
+
+/* Animação de alerta vermelho */
+@keyframes alertaVermelho {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.5);
+  }
+  70% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 20px rgba(255, 0, 0, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+  }
+}
+
+/* Classes para aplicar as animações */
+.pulsante-laranja {
+  animation: alertaLaranja 1.5s infinite;
+}
+
+.pulsante-vermelho {
+  animation: alertaVermelho 1.5s infinite;
+}
 
 .box-icon-maquina {
   width: 38%;
