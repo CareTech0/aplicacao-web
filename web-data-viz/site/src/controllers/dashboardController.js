@@ -309,10 +309,10 @@ function buscarDadosAlerta(req, res){
     });
 }
 
-function buscarCriticosDoDia(req, res){
+function possibilidadeTravamentoHojeRam(req, res){
     const idComputador = req.params.idComputador;
 
-    dashboardModel.buscarCriticosDoDia(idComputador).then (function (resultado) {
+    dashboardModel.possibilidadeTravamentoHojeRam(idComputador).then (function (resultado) {
         if(resultado.length > 0){
             res.status(200).json(resultado);
         } else {
@@ -325,10 +325,10 @@ function buscarCriticosDoDia(req, res){
     });
 }
 
-function buscarProblemasSemana(req, res){
+function possibilidadeTravamentoHojeCpu(req, res){
     const idComputador = req.params.idComputador;
 
-    dashboardModel.buscarProblemasSemana(idComputador).then (function (resultado) {
+    dashboardModel.possibilidadeTravamentoHojeCpu(idComputador).then (function (resultado) {
         if(resultado.length > 0){
             res.status(200).json(resultado);
         } else {
@@ -354,12 +354,12 @@ module.exports = {
     buscarDadosRede,
     buscarNomeEstacao,
     buscarDadosAlerta,
-    buscarCriticosDoDia,
-    buscarProblemasSemana,
     buscarMaiorRede,
     buscarMinimoRede,
     buscarUltimoDadoCpu,
     buscarUltimoDadoRede,
     buscarMediaRede,
-    buscarUsoDiscoMaquina
+    buscarUsoDiscoMaquina,
+    possibilidadeTravamentoHojeRam,
+    possibilidadeTravamentoHojeCpu
 }

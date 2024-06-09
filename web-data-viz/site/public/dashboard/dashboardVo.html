@@ -93,7 +93,7 @@
                         </div>
 
                         <div class="box-title-acesso-visao">
-                            <span> <a href="../dashboard/dashboard.html"> ACESSO À VISÃO DETALHADA </a>  </span>
+                            <span> <a href="../dashboard/dashboard.html"> ACESSO À VISÃO DETALHADA </a> </span>
                             <div class="icon-acesso-visao">
                                 <i class="bi bi-arrow-right"></i>
                             </div>
@@ -109,7 +109,7 @@
                                 </div>
 
                                 <div class="box-number">
-                                    <p>2</p>
+                                    <p id="possibilida_travamento_text">0</p>
                                 </div>
 
                                 <div class="box-type">
@@ -296,30 +296,40 @@
 
     }
 
+
+
+    possibilidadeTravamentoHoje();
+    
+    function possibilidadeTravamentoHoje() {
+        const computadoresVerificados = [];
+        let possibilidaText = document.getElementById('possibilida_travamento_text');
+
+        fetch(`/dashboard/possibilidadeTravamentoHojeRam/${sessionStorage.FK_EMPRESA}`, { cache: 'no-store' }).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (resposta) {
+                    resposta.forEach(dados => {
+                        const usoPorcentagem = (dados.uso_capacidade * 100) / dados.capacidade_total;
+                        if(!computadoresVerificados.includes(dados.id_computador) && usoPorcentagem > 70){
+                            computadoresVerificados.push(dados.id_computador);
+                        }
+                    });
+                });
+            }                
+        });
         
 
-    function getWeekdays() {
-        const currentDate = new Date();
-        const dayOfWeek = currentDate.getDay(); // 0 (Sunday) to 6 (Saturday)
-        const dayDifference = (dayOfWeek + 6) % 7; // Calculate days since Monday
-        const monday = new Date(currentDate);
-        monday.setDate(currentDate.getDate() - dayDifference);
-
-        const weekdays = [];
-        for (let i = 0; i < 5; i++) { // Only loop for Monday to Friday
-            const day = new Date(monday);
-            day.setDate(monday.getDate() + i);
-            weekdays.push(day);
-        }
-
-        return weekdays;
+        fetch(`/dashboard/possibilidadeTravamentoHojeCpu/${sessionStorage.FK_EMPRESA}`, { cache: 'no-store' }).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (resposta) {
+                    resposta.forEach(dados => {
+                        if(!computadoresVerificados.includes(dados.id_computador) && dados.uso_capacidade > 70){
+                            computadoresVerificados.push(dados.id_computador);
+                        }
+                        possibilidaText.innerHTML = computadoresVerificados.length;
+                    });
+                });
+            }
+        });
+        
     }
-
-    function isSameDay(date1, date2) {
-        return date1.getFullYear() === date2.getFullYear() &&
-            date1.getMonth() === date2.getMonth() &&
-            date1.getDate() === date2.getDate();
-    }
-
-
 </script>
