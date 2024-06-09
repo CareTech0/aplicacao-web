@@ -10,13 +10,13 @@
     <link rel="stylesheet" href="../css/modais/modalDeslogar.css">
     <link rel="icon" href="../assets/icon/icon.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../js/session.js"></script>
     <script src="../js/scriptDash.js"></script>
     <script src="../js/modais/modalDeslogar.js" defer></script>
 </head>
 
-<body>
+<body onload="buscarKpis()">
     <div class="container-global">
         <div class="box-menu">
             <div class="logomarca">
@@ -133,11 +133,11 @@
 
                             <div class="box">
                                 <div class="box-title">
-                                    <span>COM PROBLEMAS RECORRENTES NA SEMANA</span>
+                                    <span>MÁQUINAS QUE VÃO ATINGIR LIMITE DE DISCO NO PRÓXIMO MÊS</span>
                                 </div>
 
                                 <div class="box-number">
-                                    <p id="total_problemas_semana">0</p>
+                                    <div id="discosProximoLimite">0</div>
                                 </div>
 
                                 <div class="box-type">
@@ -166,7 +166,25 @@
                         <div class="box-chart">
                             <div class="chart">
                                 <div id="chart1">
-
+                                    <div id="tabelaDisco">
+                                        <div class="titulo-chart-table">
+                                            <span>PRÓXIMO AO LIMITE DE DISCO</span>
+                                        </div>
+                                        <div class="graficoT">
+                                            <table>
+                                                <thead>
+                                                    <tr>
+                                                        <th>ESTAÇÃO</th>
+                                                        <th>USO CPU</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tabelaCpuCritico">
+                                                    
+                                                </tbody>
+                                            </table>
+            
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -176,9 +194,7 @@
                 <div class="container-two">
                     <div class="box-chart-two">
                         <div class="chart-two">
-                            <div id="chart2">
-
-                            </div>
+                            
                         </div>
                     </div>
                     <div class="box-chart-two">
@@ -231,61 +247,58 @@
 <script src="https://www.gstatic.com/charts/loader.js"></script>
 <script>
     validarSessao();
+    const idEmpresa = sessionStorage.FK_EMPRESA;
+    const maquinasEmpresa = []
+    
+
+    function buscarKpis(){
+        fetch(`/dashboard/buscarMaquinas/${sessionStorage.FK_EMPRESA}`, { cache: 'no-store' }).then(function (resposta) {
+            if(resposta.ok){
+                resposta.json().then(function (resposta){
+                    
+                    console.log("buscando qtd de máquinas")
+                    numMaquinas = resposta.length;
+                    console.log(resposta)
+                    console.log("Numero de maquinas")
+                    console.log(numMaquinas)
+                    for(let i = 0; i < resposta.length; i++){
+                        maquinasEmpresa.push(resposta[i].id_computador)
+                    }
+                    console.log("Vetor de ids da empresa:")
+                    console.log(maquinasEmpresa)
+                    let maquinasCpuLimite = 0;
+                    for(let i=0; i<maquinasEmpresa.length;i++){
+                        console.log("Entrei no for")
+                        fetch(`/dashboard/buscarUsoDiscoMaquina/${maquinasEmpresa[i]}`, { cache: 'no-store' }).then(function (resposta) {
+                            if(resposta.ok){
+                                resposta.json().then(function (resposta){
+                                    console.log(`Máquina ${i}`)
+                                    console.log(resposta[0].uso_percentual)
+                                    if(resposta[0].uso_percentual>0.9){
+                                        console.log(resposta[0].uso_percentual + "é menor que 0.9")
+                                        maquinasCpuLimite++
+                                        console.log(`variável contador: ` + maquinasCpuLimite)
+                                        let usoPercentual = (resposta[0].uso_percentual*100).toFixed(2)
+                                        discosProximoLimite.innerHTML = `${maquinasCpuLimite}`
+                                        tabelaCpuCritico.innerHTML += `<td>${resposta[0].estacao_de_trabalho}</td>
+                                        <td>${usoPercentual}%</td>`
+                                    }
+                                });
+                            }
+                        });
+                    }
+                    
+                });
+            }
+        });
+
+
+
+    }
+
+
+
     possibilidadeTravamentoHoje();
-    document.addEventListener("DOMContentLoaded", function () {
-        google.charts.load("current", { packages: ["corechart"] });
-        google.charts.setOnLoadCallback(drawChart1);
-        google.charts.setOnLoadCallback(drawChart2);
-
-        function drawChart1() {
-            var data = google.visualization.arrayToDataTable([
-                ["Data", "Quantidade"],
-                ["Segunda", 10],
-                ["Terça", 35],
-                ["Quarta", 10],
-                ["Quinta", 30],
-                ["Sexta", 25],
-            ]);
-
-            var options = {
-                title: "MÁQUINAS COM PROBLEMAS RECORRENTES NA SEMANA",
-                width: "100%",
-                height: "100%",
-                legend: { position: "bottom" },
-            };
-
-            var chart = new google.visualization.LineChart(
-                document.getElementById("chart1")
-            );
-
-            chart.draw(data, options);
-        }
-
-        function drawChart2() {
-            console.log("aaaaaaaaa")
-            var data = google.visualization.arrayToDataTable([
-                ["Dia", "Percentual"],
-                ["Segunda", 20],
-                ["Terça", 35],
-                ["Quarta", 45],
-                ["Quinta", 60],
-            ]);
-
-            var options = {
-                title: "LOGIN FORA DO HORÁRIO ESPERADO NA ÚLTIMA SEMANA",
-                legend: { position: "none" },
-                width: "100%",
-                height: "100%",
-            };
-
-            var chart = new google.visualization.BarChart(
-                document.getElementById("chart2")
-            );
-
-            chart.draw(data, options);
-        }
-
-    });
     
     function possibilidadeTravamentoHoje() {
         const computadoresVerificados = [];
@@ -319,5 +332,4 @@
         });
         
     }
-
 </script>

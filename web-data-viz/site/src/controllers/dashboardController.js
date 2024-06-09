@@ -242,6 +242,22 @@ function buscarDadosDisco(req, res){
     });
 }
 
+function buscarUsoDiscoMaquina(req, res){
+    const idComputador = req.params.idComputador;
+
+    dashboardModel.buscarUsoDiscoMaquina(idComputador).then (function (resultado) {
+        if(resultado.length > 0){
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum Resultado encontrado!");
+        }
+    })
+    .catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 
 function buscarDadosDaMaquina(req, res){
     const fkEmpresa = req.params.fkEmpresa;
@@ -343,6 +359,7 @@ module.exports = {
     buscarUltimoDadoCpu,
     buscarUltimoDadoRede,
     buscarMediaRede,
+    buscarUsoDiscoMaquina,
     possibilidadeTravamentoHojeRam,
     possibilidadeTravamentoHojeCpu
 }

@@ -16,6 +16,21 @@ function buscarMaquinas(fkEmpresa){
     return database.executar(instrucao);
 }
 
+function buscarUsoDiscoMaquina(idComputador){
+    const instrucao = `
+    select top 1
+    c.id_computador,
+    c.estacao_de_trabalho,
+    h.nome_hardware,
+    (r.uso_capacidade / h.capacidade_total) as uso_percentual
+    from computador as c join hardware as h on c.id_computador=h.fk_computador
+    join registros as r on h.id_hardware=r.fk_hardware
+    where c.id_computador=${idComputador} and h.nome_hardware='disco';
+    `;
+
+    return database.executar(instrucao);
+}
+
 function deletarComputador(idComputador){
     const instruco = `
         exec deletarComputador @idDoComputador=${idComputador};
@@ -317,6 +332,9 @@ module.exports = {
     buscarMediaRede,
     buscarNomeEstacao,
     buscarDadosAlerta,
+    buscarCriticosDoDia,
+    buscarProblemasSemana,
+    buscarUsoDiscoMaquina,
     possibilidadeTravamentoHojeRam,
     possibilidadeTravamentoHojeCpu
 }
