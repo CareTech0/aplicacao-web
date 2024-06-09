@@ -156,9 +156,11 @@
                                         </span>
                                     </div>
 
-                                    <div class="box-number">
-                                        <p id="estado_critico_hoje">10</p>
-                                    </div>
+
+                                <div class="box-number">
+                                    <p id="estado_critico_hoje">0</p>
+                                </div>
+
 
                                     <div class="box-type">
                                         <span>(quantidade)</span>
@@ -266,6 +268,7 @@
     const maquinasEmpresa = []
 
 
+
     function buscarKpis() {
         fetch(`/dashboard/buscarMaquinas/${sessionStorage.FK_EMPRESA}`, { cache: 'no-store' }).then(function (resposta) {
             if (resposta.ok) {
@@ -274,7 +277,11 @@
                     for (let i = 0; i < resposta.length; i++) {
                         maquinasEmpresa.push(resposta[i].id_computador)
                     }
+                    estadoCriticoHoje(maquinasEmpresa);
+                    console.log("Vetor de ids da empresa:")
+
                     console.log("Maquinas empresa: ")
+
                     console.log(maquinasEmpresa)
                     loginForaDoHorario()
                     let maquinasCpuLimite = 0;
@@ -434,7 +441,7 @@
         const computadoresVerificados = [];
         let possibilidaText = document.getElementById('possibilida_travamento_text');
 
-        fetch(`/dashboard/possibilidadeTravamentoHojeRam/${sessionStorage.FK_EMPRESA}`, { cache: 'no-store' }).then(function (resposta) {
+        fetch(`/dashboard/possibilidadeTravamentoHojeRam/${idEmpresa}`, { cache: 'no-store' }).then(function (resposta) {
             if (resposta.ok) {
                 resposta.json().then(function (resposta) {
                     resposta.forEach(dados => {
@@ -448,7 +455,7 @@
         });
 
 
-        fetch(`/dashboard/possibilidadeTravamentoHojeCpu/${sessionStorage.FK_EMPRESA}`, { cache: 'no-store' }).then(function (resposta) {
+        fetch(`/dashboard/possibilidadeTravamentoHojeCpu/${idEmpresa}`, { cache: 'no-store' }).then(function (resposta) {
             if (resposta.ok) {
                 resposta.json().then(function (resposta) {
                     resposta.forEach(dados => {
@@ -462,7 +469,120 @@
         });
 
     }
+
+
+    function estadoCriticoHoje(listaMaquinas){
+        const listaMaquinasVerificadas = [];
+
+        listaMaquinas.forEach(maquina => {
+            const tabelaCriticos = document.getElementById("comp_estado_critico_hoje_table");
+            const idCedula = document.getElementById(`${maquina}`);
+            let usoRamDaVez = 0;
+            let usoCpuDaVez = 0;
+            let usoDiscoDaVez = 0;
+            let qtdComputadoresCriticos = 0;
+
+            
+            fetch(`/dashboard/estadoCriticoHojeRam/${maquina}`, { cache: 'no-store' }).then(function (resposta) {
+                if (resposta.ok) {
+                    resposta.json().then(function (resposta) {
+                        resposta.forEach(dados => {
+                            usoRamDaVez = dados.uso_porcento;
+                            
+                            if(usoRamDaVez > 90){
+                                if(idCedula == null){
+                                    qtdComputadoresCriticos++;
+                                    document.getElementById('estado_critico_hoje').innerHTML = qtdComputadoresCriticos;
+
+                                    tabelaCriticos.innerHTML = `
+                                        <tr id="${maquina}">
+                                            <td>${maquina}</td>
+                                            <td id="ram${maquina}">${usoRamDaVez.toFixed(2)}%</td>
+                                            <td id="cpu${maquina}">0%</td>
+                                            <td id="disco${maquina}">0%</td>
+                                        </tr>
+                                    `;
+                                } else {
+                                    const idColuna = document.getElementById(`ram${maquina}`);
+                                    if(idColuna.innerHTML == "0%") idColuna.innerHTML = `${usoRamDaVez}%`;
+                                }
+                            }
+                        });
+                    });
+                }
+            });
+
+            fetch(`/dashboard/estadoCriticoHojeCpu/${maquina}`, { cache: 'no-store' }).then(function (resposta) {
+                if (resposta.ok) {
+                    resposta.json().then(function (resposta) {
+                        resposta.forEach(dados => {
+                            usoCpuDaVez = dados.uso_porcento;
+                            
+                            if(usoCpuDaVez > 90){
+                                qtdComputadoresCriticos++;
+                                document.getElementById('estado_critico_hoje').innerHTML = qtdComputadoresCriticos;
+                                if(idCedula == null){
+                                    tabelaCriticos.innerHTML = `
+                                        <tr id="${maquina}">
+                                            <td>${maquina}</td>
+                                            <td id="ram${maquina}">0%</td>
+                                            <td id="cpu${maquina}">${usoCpuDaVez}%</td>
+                                            <td id="disco${maquina}">0%</td>
+                                        </tr>
+                                    `;
+                                } else {
+                                    const idColuna = document.getElementById(`cpu${maquina}`);
+                                    if(idColuna.innerHTML == "0%") idColuna.innerHTML = `${usoCpuDaVez}%`;
+                                }
+                            }
+                        });
+                    });
+                }
+            });
+
+            fetch(`/dashboard/estadoCriticoHojeDisco/${maquina}`, { cache: 'no-store' }).then(function (resposta) {
+                if (resposta.ok) {
+                    resposta.json().then(function (resposta) {
+                        resposta.forEach(dados => {
+                            usoDiscoDaVez = dados.uso_porcento;
+                            qtdComputadoresCriticos++;
+                            document.getElementById('estado_critico_hoje').innerHTML = qtdComputadoresCriticos;
+
+                            if(usoDiscoDaVez > 90){
+                                if(idCedula == null){
+                                    tabelaCriticos.innerHTML = `
+                                        <tr id="${maquina}">
+                                            <td>${maquina}</td>
+                                            <td id="ram${maquina}">0%</td>
+                                            <td id="cpu${maquina}">0%</td>
+                                            <td id="disco${maquina}">${usoDiscoDaVez}%</td>
+                                        </tr>
+                                    `;
+                                } else {
+                                    const idColuna = document.getElementById(`disco${maquina}`);
+                                    if(idColuna.innerHTML == "0%") idColuna.innerHTML = `${usoDiscoDaVez}%`;
+                                }
+                            }
+                        });
+                    });
+                }
+            });
+
+            if(idCedula != null){
+                const idColunaRam = document.getElementById(`ram${maquina}`);
+                const idColunaCpu = document.getElementById(`cpu${maquina}`);
+                const idColunaDisco = document.getElementById(`disco${maquina}`);
+
+                if(idColunaRam.innerHTML = "0%") idColunaRam.innerHTML = `${usoRamDaVez}%`;
+                if(idColunaCpu.innerHTML = "0%") idColunaCpu.innerHTML = `${usoCpuDaVez}%`;
+                if(idColunaDisco.innerHTML = "0%") idColunaDisco.innerHTML = `${usoDiscoDaVez}%`;
+            }
+        });
+    }
+
+
 </script>
+  
 <script>
     const graficoAtrasados = new Chart(
         document.getElementById('graficoAtrasados'),
