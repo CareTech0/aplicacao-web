@@ -94,6 +94,19 @@ router.get("/possibilidadeTravamentoHojeCpu/:idComputador", function (req, res) 
     dashboardController.possibilidadeTravamentoHojeCpu(req, res);
 });
 
+router.get("/estadoCriticoHojeRam/:idComputador", function (req, res) {
+    dashboardController.estadoCriticoHojeRam(req, res);
+});
+
+router.get("/estadoCriticoHojeCpu/:idComputador", function (req, res) {
+    dashboardController.estadoCriticoHojeCpu(req, res);
+});
+
+router.get("/estadoCriticoHojeDisco/:idComputador", function (req, res) {
+    dashboardController.estadoCriticoHojeDisco(req, res);
+});
+
+
 //Inserir máquinas ---------------------------------------------------
 
 router.post("/inserirMaquina", function (req, res) {
