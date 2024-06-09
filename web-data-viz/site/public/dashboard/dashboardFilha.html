@@ -15,7 +15,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../js/dashboardFilha.js"></script>
     <script src="../js/modais/modalDeslogar.js" defer></script>
-
+    <script src="../js/session.js"></script>
 
 </head>
 
@@ -364,12 +364,14 @@
             </div>
     
             <div class="modal-botao-deslogar">
-                <button id="confirmarDeslogar"> <a href="../login.html">DESLOGAR SESSÃO</a></button>
+                <button id="confirmarDeslogar" onclick="sairConta()"> <a>DESLOGAR SESSÃO</a></button>
             </div>
         </div>
     </div>
 </html>
 <script>
+    validarSessao();
+    
     let dataDisco = {
     labels: ["Em uso", "Livre"],
     datasets: [{

@@ -276,79 +276,26 @@ ORDER BY
     return database.executar(instrucao);
 }
 
-function buscarCriticosDoDia(idComputador){
-    // const instrucao = `
-    // select r.id_registros, h.nome_hardware, h.capacidade_total, h.id_hardware , r.qtd_processos, r.uso_capacidade, r.horario from hardware as h join registros as r on h.id_hardware = r.fk_hardware where h.fk_computador = ${idComputador} and nome_hardware = 'ram' order by horario DESC LIMIT 1;
-    // `;
+function possibilidadeTravamentoHojeRam(idComputador){
     const instrucao = `
-    SELECT
-    r.id_registros,
-    h.nome_hardware,
-    h.capacidade_total,
-    h.id_hardware,
-    r.qtd_processos,
-    r.uso_capacidade,
-    r.horario
-FROM
-    hardware AS h
-JOIN
-    registros AS r
-ON
-    h.id_hardware = r.fk_hardware
-JOIN
-    computador AS c
-ON
-    h.fk_computador = c.id_computador
-WHERE
-    c.fk_empresa = 1
-    AND
-    CONVERT(DATE, r.horario) = CONVERT(DATE, GETDATE()) -- Comparação apenas da data, sem a hora
-    AND
-    h.fk_computador = ${idComputador}
-    AND
-    (
-        (h.nome_hardware != 'cpu' AND (r.uso_capacidade * 100) / h.capacidade_total > 10)
-        OR
-        (h.nome_hardware = 'cpu' AND r.uso_capacidade > 10)
-    );`;
+    SELECT * FROM hardware as h JOIN computador as c ON h.fk_computador = c.id_computador JOIN registros as r ON h.id_hardware = r.fk_hardware
+    where c.fk_empresa = ${idComputador} and
+    CONVERT(DATE, r.horario) = CONVERT(DATE, GETDATE()) and
+    h.nome_hardware = 'ram'
+    `;
 
-    return database.executar(instrucao);
+    return database.executar(instrucao)
 }
 
-function buscarProblemasSemana(idComputador){
-    // const instrucao = `
-    // select r.id_registros, h.nome_hardware, h.capacidade_total, h.id_hardware , r.qtd_processos, r.uso_capacidade, r.horario from hardware as h join registros as r on h.id_hardware = r.fk_hardware where h.fk_computador = ${idComputador} and nome_hardware = 'ram' order by horario DESC LIMIT 1;
-    // `;
+function possibilidadeTravamentoHojeCpu(idComputador){
     const instrucao = `
-    SELECT
-    r.id_registros,
-    h.nome_hardware,
-    h.capacidade_total,
-    h.id_hardware,
-    h.fk_computador,
-    r.qtd_processos,
-    r.uso_capacidade,
-    r.horario
-FROM
-    hardware AS h
-JOIN
-    registros AS r
-ON
-    h.id_hardware = r.fk_hardware
-WHERE
-    DATEPART(WEEK, r.horario) = DATEPART(WEEK, GETDATE())
-    AND
-    h.fk_computador = ${idComputador}
-    AND
-    (
-        (h.nome_hardware != 'cpu' AND (h.capacidade_total > 0 AND (r.uso_capacidade * 100) / h.capacidade_total > 10))
-        OR
-        (h.nome_hardware = 'cpu' AND r.uso_capacidade > 10)
-    )
-ORDER BY
-    r.horario ASC;`;
+        SELECT * FROM hardware as h JOIN computador as c ON h.fk_computador = c.id_computador JOIN registros as r ON h.id_hardware = r.fk_hardware
+        where c.fk_empresa = ${idComputador} and
+        CONVERT(DATE, r.horario) = CONVERT(DATE, GETDATE()) and
+        h.nome_hardware = 'ram'
+    `;
 
-    return database.executar(instrucao);
+    return database.executar(instrucao)
 }
 
 
@@ -370,6 +317,6 @@ module.exports = {
     buscarMediaRede,
     buscarNomeEstacao,
     buscarDadosAlerta,
-    buscarCriticosDoDia,
-    buscarProblemasSemana
+    possibilidadeTravamentoHojeRam,
+    possibilidadeTravamentoHojeCpu
 }

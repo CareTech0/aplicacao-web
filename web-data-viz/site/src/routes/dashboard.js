@@ -76,14 +76,13 @@ router.get("/buscarDadosAlerta/:idComputador", function (req, res) {
     dashboardController.buscarDadosAlerta(req, res);
 });
 
-router.get("/buscarCriticosDoDia/:idComputador", function (req, res) {
-    dashboardController.buscarDadosAlerta(req, res);
+router.get("/possibilidadeTravamentoHojeRam/:idComputador", function (req, res) {
+    dashboardController.possibilidadeTravamentoHojeRam(req, res);
 });
 
-router.get("/buscarProblemasSemana/:idComputador", function (req, res) {
-    dashboardController.buscarProblemasSemana(req, res);
+router.get("/possibilidadeTravamentoHojeCpu/:idComputador", function (req, res) {
+    dashboardController.possibilidadeTravamentoHojeCpu(req, res);
 });
-
 
 //Inserir máquinas ---------------------------------------------------
 

@@ -11,25 +11,6 @@ function sairConta(){
     window.location = "/index";
 }
 
-setTimeout(()=> {
-    fetch(`/dashboard/buscarMaquinas/${sessionStorage.FK_EMPRESA}`, { cache: 'no-store' }).then(function (resposta) {
-        if(resposta.ok){
-            resposta.json().then(function (resposta){
-                //DashVô
-                // const tabelaCriticosHoje = document.getElementById('comp_estado_critico_hoje_table');
-                // if(tabelaCriticosHoje.innerHTML == ""){
-                //     buscarCriticosDoDia(resposta);
-
-                // }
-
-
-                buscarProblemasSemana(resposta);
-
-            });
-        }
-    });
-}, 3000)
-
 setInterval(()=>{
     fetch(`/dashboard/buscarMaquinas/${sessionStorage.FK_EMPRESA}`, { cache: 'no-store' }).then(function (resposta) {
         if(resposta.ok){
@@ -57,11 +38,6 @@ function buscarDadosAlerta(dadosDasMaquinas){
                             if(nomeHardware == 'disco' || nomeHardware == 'ram') usoPorcentagem = (usoCapacidade * 100) / capacidadeTotal;
                             else usoPorcentagem = usoCapacidade;
                         }
-
-                        console.log(`
-                            ${capacidadeTotal} ${usoCapacidade} ${nomeHardware} ${usoPorcentagem}
-                        `);
-                        
 
 
                     });  

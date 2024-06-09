@@ -93,7 +93,7 @@
                         </div>
 
                         <div class="box-title-acesso-visao">
-                            <span> <a href="../dashboard/dashboard.html"> ACESSO À VISÃO DETALHADA </a>  </span>
+                            <span> <a href="../dashboard/dashboard.html"> ACESSO À VISÃO DETALHADA </a> </span>
                             <div class="icon-acesso-visao">
                                 <i class="bi bi-arrow-right"></i>
                             </div>
@@ -109,7 +109,7 @@
                                 </div>
 
                                 <div class="box-number">
-                                    <p>2</p>
+                                    <p id="possibilida_travamento_text">0</p>
                                 </div>
 
                                 <div class="box-type">
@@ -231,6 +231,7 @@
 <script src="https://www.gstatic.com/charts/loader.js"></script>
 <script>
     validarSessao();
+    possibilidadeTravamentoHoje();
     document.addEventListener("DOMContentLoaded", function () {
         google.charts.load("current", { packages: ["corechart"] });
         google.charts.setOnLoadCallback(drawChart1);
@@ -285,131 +286,38 @@
         }
 
     });
+    
+    function possibilidadeTravamentoHoje() {
+        const computadoresVerificados = [];
+        let possibilidaText = document.getElementById('possibilida_travamento_text');
 
-    function buscarProblemasSemana(dadosMaquina){
-        let qtdTravamentoSeg = 0;
-        let qtdTravamentoTer = 0;
-        let qtdTravamentoQua = 0;
-        let qtdTravamentoQui = 0;
-        let qtdTravamentoSex = 0;
-
-        const weekdays = getWeekdays();
-        const monday = weekdays[0];
-        const tuesday = weekdays[1];
-        const wednesday = weekdays[2];
-        const thursday = weekdays[3];
-        const friday = weekdays[4];
-                            
-
-        dadosMaquina.forEach(maquina => {
-            fetch(`/dashboard/buscarProblemasSemana/${maquina.id_computador}`, {cache: 'no-store'}).then(function (resposta) {
-                if(resposta.ok){
-                    resposta.json().then(function (resposta){
-                        resposta.forEach(dados => {
-                            const dadosData = new Date(dados.horario);
-                            if(isSameDay(dadosData, monday)) {
-                                qtdTravamentoSeg++;
-                            } else if(isSameDay(dadosData, tuesday)) {
-                                qtdTravamentoTer++;
-                            } else if(isSameDay(dadosData, wednesday)) {
-                                qtdTravamentoQua++;
-                            } else if(isSameDay(dadosData, thursday)) {
-                                qtdTravamentoQui++;
-                            } else if(isSameDay(dadosData, friday)) {
-                                qtdTravamentoSex++;
-                            }
-                        
-                             
-                        });
+        fetch(`/dashboard/possibilidadeTravamentoHojeRam/${sessionStorage.FK_EMPRESA}`, { cache: 'no-store' }).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (resposta) {
+                    resposta.forEach(dados => {
+                        const usoPorcentagem = (dados.uso_capacidade * 100) / dados.capacidade_total;
+                        if(!computadoresVerificados.includes(dados.id_computador) && usoPorcentagem > 70){
+                            computadoresVerificados.push(dados.id_computador);
+                        }
                     });
-                }
-            })
+                });
+            }                
         });
+        
 
-        const textTot = document.getElementById('total_problemas_semana');
-                            textTot.innerHTML = qtdTravamentoSeg + qtdTravamentoQui + qtdTravamentoSex + qtdTravamentoTer + qtdTravamentoQua;
+        fetch(`/dashboard/possibilidadeTravamentoHojeCpu/${sessionStorage.FK_EMPRESA}`, { cache: 'no-store' }).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (resposta) {
+                    resposta.forEach(dados => {
+                        if(!computadoresVerificados.includes(dados.id_computador) && dados.uso_capacidade > 70){
+                            computadoresVerificados.push(dados.id_computador);
+                        }
+                        possibilidaText.innerHTML = computadoresVerificados.length;
+                    });
+                });
+            }
+        });
+        
     }
-
-    function getWeekdays() {
-        const currentDate = new Date();
-        const dayOfWeek = currentDate.getDay(); // 0 (Sunday) to 6 (Saturday)
-        const dayDifference = (dayOfWeek + 6) % 7; // Calculate days since Monday
-        const monday = new Date(currentDate);
-        monday.setDate(currentDate.getDate() - dayDifference);
-
-        const weekdays = [];
-        for (let i = 0; i < 5; i++) { // Only loop for Monday to Friday
-            const day = new Date(monday);
-            day.setDate(monday.getDate() + i);
-            weekdays.push(day);
-        }
-
-        return weekdays;
-    }
-
-    function isSameDay(date1, date2) {
-        return date1.getFullYear() === date2.getFullYear() &&
-            date1.getMonth() === date2.getMonth() &&
-            date1.getDate() === date2.getDate();
-    }
-
-    // function buscarCriticosDoDia(dadosDaMaquina){
-    //     let qtdMaquinasCriticos = 0;
-    //     dadosDaMaquina.forEach(maquina => {
-    //         fetch(`/dashboard/buscarCriticosDoDia/${maquina.id_computador}`, { cache: 'no-store' }).then(function (resposta) {
-    //             if(resposta.ok){
-    //                 resposta.json().then(function (resposta){
-    //                     resposta.forEach(dados => {
-    //                         const tabelaCriticosHoje = document.getElementById('comp_estado_critico_hoje_table');
-    //                         const capacidadeTotal = dados.capacidade_total;
-    //                         const usoCapacidade = dados.uso_capacidade;
-    //                         const nomeHardware = dados.nome_hardware;
-    //                         const idHardware = dados.id_hardware
-
-    //                         let usoPorcentagem = 0;
-    //                         let tabelaComputador = document.getElementById(maquina.id_computador);
-
-    //                         if(nomeHardware != 'rede'){
-    //                             if(nomeHardware == 'disco' || nomeHardware == 'ram') usoPorcentagem = (usoCapacidade * 100) / capacidadeTotal;
-    //                             else usoPorcentagem = usoCapacidade;
-
-    //                             if(tabelaComputador == null){
-    //                                 if(usoPorcentagem > 10) {
-    //                                     qtdMaquinasCriticos++;
-    //                                 }   
-    //                                 tabelaCriticosHoje.innerHTML += `
-    //                                     <tr id="${maquina.id_computador}">
-    //                                         <td class="number-maquina"><a>${maquina.id_computador}</a></td>
-    //                                         <td id="ram${maquina.id_computador}">---</td>
-    //                                         <td id="cpu${maquina.id_computador}">---</td>
-    //                                         <td id="disco${maquina.id_computador}">---</td>
-    //                                     </tr>
-    //                                 `;
-    //                                 tabelaComputador = document.getElementById(maquina.id_computador);
-    //                             }
-    //                         }
-
-
-    //                         if(tabelaComputador != null){
-    //                             if(nomeHardware == "ram"){
-    //                                 if(document.getElementById(`ram${maquina.id_computador}`).innerHTML == '---') document.getElementById(`ram${maquina.id_computador}`) = `${usoPorcentagem.toFixed(2)}%`;
-    //                             } 
-                                
-    //                             if(nomeHardware == "cpu"){
-    //                                 if(document.getElementById(`cpu${maquina.id_computador}`).innerHTML == '---') document.getElementById(`cpu${maquina.id_computador}`) = `${usoPorcentagem.toFixed(2)}%`;
-    //                             } 
-
-    //                             if(nomeHardware == "disco") {
-    //                                 if(document.getElementById(`disco${maquina.id_computador}`).innerHTML == '---') document.getElementById(`disco${maquina.id_computador}`).innerHTML = `${usoPorcentagem.toFixed(2)}%`;
-    //                             }
-    //                         }
-
-    //                     });
-    //                 });
-    //             }
-    //         });
-    //     });
-    //     document.getElementById('estado_critico_hoje').innerText = qtdMaquinasCriticos;
-    // }
 
 </script>
