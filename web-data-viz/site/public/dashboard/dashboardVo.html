@@ -202,8 +202,14 @@
                 <div class="container-two">
                     <div class="box-chart-two">
                         <div class="chart-two">
-                            <canvas id="graficoAtrasados"
-                                style="position: relative; height: 30vh; width: 30vw;"></canvas>
+                            <div class="titulo-chart-two">
+                                <span>LOGIN FORA DO HORÁRIO ESPERADO NESSA SEMANA</span>
+                            </div>
+                            <div class="container-grafico-chart-two">
+                                <div>
+                                    <canvas id="graficoAtrasados" style="height: 90%; width: 30vw;"></canvas>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="box-chart-two">
@@ -387,7 +393,7 @@
     const dataAtrasos = {
         labels: ["Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira"],
         datasets: [{
-            label: 'Atrasos',
+            label: '',
             data: [],
             backgroundColor: [
                 'rgb(255, 99, 132)',
@@ -412,10 +418,14 @@
                     },
                     max: 20
                 }
+            },
+            plugins: {
+                legend: {
+                    display: false // Desabilita a exibição da legenda
+                }
             }
         }
-    }
-
+    };
 
 
     possibilidadeTravamentoHoje();

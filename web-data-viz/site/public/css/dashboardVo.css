@@ -192,6 +192,20 @@ body {
   height: 244px;
   display: flex;
 }
+.titulo-chart-two { 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  background-color:#4ca7f7;
+  border-radius: 0 6px 6px 0;
+}
+
+.titulo-chart-two > span  {
+font-weight: 500;
+color: white;
+}
 
 .box-chart-two {
   width: 50%;
@@ -208,8 +222,16 @@ body {
 
 .chart-two {
   background-color: #ffffff;
-  height: 210px;
+  height: 100%;
   width: 93%;
+}
+
+.container-grafico-chart-two { 
+  width: 100%;
+    height: 91%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .chart-three {
