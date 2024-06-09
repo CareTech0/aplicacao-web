@@ -121,10 +121,98 @@ function buscarDadosCpu(req, res){
     
 }
 
+function buscarUltimoDadoCpu(req, res){
+    const idComputador = req.params.idComputador;
+
+    dashboardModel.buscarUltimoDadoCpu(idComputador).then (function (resultado) {
+        if(resultado.length > 0){
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum Resultado encontrado!");
+        }
+    })
+    .catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+    
+}
+
+function buscarUltimoDadoRede(req, res){
+    const idComputador = req.params.idComputador;
+
+    dashboardModel.buscarUltimoDadoRede(idComputador).then (function (resultado) {
+        if(resultado.length > 0){
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum Resultado encontrado!");
+        }
+    })
+    .catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+    
+}
+
 function buscarDiscos(req, res){
     const idComputador = req.params.idComputador;
 
     dashboardModel.buscarDiscos(idComputador).then (function (resultado) {
+        if(resultado.length > 0){
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum Resultado encontrado!");
+        }
+    })
+    .catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+    
+}
+
+function buscarMaiorRede(req, res){
+    const idComputador = req.params.idComputador;
+    const hoje = req.params.hoje;
+
+    dashboardModel.buscarMaiorRede(idComputador, hoje).then (function (resultado) {
+        if(resultado.length > 0){
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum Resultado encontrado!");
+        }
+    })
+    .catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+    
+}
+
+function buscarMinimoRede(req, res){
+    const idComputador = req.params.idComputador;
+    const hoje = req.params.hoje;
+
+    dashboardModel.buscarMinimoRede(idComputador, hoje).then (function (resultado) {
+        if(resultado.length > 0){
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum Resultado encontrado!");
+        }
+    })
+    .catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+    
+}
+
+function buscarMediaRede(req, res){
+    const idComputador = req.params.idComputador;
+    const hoje = req.params.hoje;
+
+    dashboardModel.buscarMediaRede(idComputador, hoje).then (function (resultado) {
         if(resultado.length > 0){
             res.status(200).json(resultado);
         } else {
@@ -171,6 +259,22 @@ function buscarDadosDaMaquina(req, res){
     });
 }
 
+function buscarNomeEstacao(req, res){
+    const idComputador = req.params.idComputador;
+
+    dashboardModel.buscarNomeEstacao(idComputador).then (function (resultado) {
+        if(resultado.length > 0){
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum Resultado encontrado!");
+        }
+    })
+    .catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 module.exports = { 
     inserirMaquina,
     buscarMaquinas,
@@ -181,5 +285,11 @@ module.exports = {
     buscarDiscos,
     buscarDadosDisco,
     buscarDadosDaMaquina,
-    buscarDadosRede
+    buscarDadosRede,
+    buscarUltimoDadoCpu,
+    buscarUltimoDadoRede,
+    buscarMaiorRede,
+    buscarMinimoRede,
+    buscarMediaRede,
+    buscarNomeEstacao
 }

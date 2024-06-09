@@ -112,8 +112,8 @@
                                     <img src="../assets/imgs/pngMaquina.png">
                                 </div>
                                 <div class="container-informacoes-maquina">
-                                    <div class="box-patrimonio-maquina">
-                                        <span>Patrimônio aqui</span>
+                                    <div class="box-patrimonio-maquina" id="nomeEstacao">
+                                        
                                     </div>
                                     <div class="container-detalhes">
                                         <span>Localização:</span> <span></span>
@@ -189,8 +189,8 @@
                             <div class="fundo-grafico-memoria">
                                 <div class="titulo-grafico-memoria">
                                     <span>INDICADORES DE USO DA MEMÓRIA</span>
-                                    <div class="tamanho-alerta">
-                                        <img src="../assets/imgs/alerta.png" id="alertaMemoria">
+                                    <div class="tamanho-alerta" id="iconeAlertaRam">
+                                        
                                     </div>
                                 </div>
                                 <div class="container-do-grafico">
@@ -227,8 +227,8 @@
                                 <div class="conteudo">
                                     <div class="titulo-grafico-cpu">
                                         <span>INDICADORES DE USO DA CPU</span>
-                                        <div class="tamanho-alerta">
-                                            <img src="../assets/imgs/alerta.png" id="alertaCPU">
+                                        <div class="tamanho-alerta" id="iconeAlertaCpu">
+                                            
                                         </div>
                                     </div>
                                     <div class="container-do-grafico-cpu">
@@ -240,6 +240,7 @@
                                         <div class="container-grafico-direita-cpu">
                                             <div class="box-status">
                                                 <span style="font-weight: 600;">Status:</span>
+                                                <div id="statusCpu"></div>
                                             </div>
                                             <div class="box-status">
                                                 <span style="font-weight: 600;">Utilização:</span>
@@ -261,8 +262,8 @@
                             <div class="fundo-grafico-disco">
                                 <div class="titulo-grafico-disco">
                                     <span>INDICADORES DE USO DO DISCO</span>
-                                    <div class="tamanho-alerta">
-                                        <img src="../assets/imgs/alerta.png" id="alertaDisco">
+                                    <div class="tamanho-alerta" id="iconeAlertaDisco">
+                                        
                                     </div>
                                 </div>
 
@@ -283,11 +284,11 @@
                                             <div id="utilizacaoDisco"></div>
                                         </div>
                                         <div class="box-status">
-                                            <span style="font-weight: 600;">Total livre:</span>
+                                            <span style="font-weight: 600;">Total Disco:</span>
                                             <div id="totalDisco"></div>
                                         </div>
                                         <div class="box-status">
-                                            <span style="font-weight: 600;">Total disponível:</span>
+                                            <span style="font-weight: 600;">Disponível:</span>
                                             <div id="disponivelDisco"></div>
                                         </div>
                                     </div>
@@ -300,8 +301,8 @@
                             <div class="fundo-grafico-rede">
                                 <div class="titulo-grafico-rede">
                                     <span>INDICADORES DE USO DA REDE</span>
-                                    <div class="tamanho-alerta">
-                                        <img src="../assets/imgs/alerta.png" id="alertaRede">
+                                    <div class="tamanho-alerta" id="iconeAlertaRede">
+                                        
                                     </div>
                                 </div>
 

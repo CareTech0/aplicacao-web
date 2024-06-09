@@ -68,6 +68,7 @@ function buscarDadosRede(idComputador){
     // `;
     const instrucao = `
     select top 10 
+r.id_registros,    
 h.nome_hardware,
 r.uso_capacidade,
 r.horario,
@@ -86,12 +87,50 @@ function buscarDadosCpu(idComputador){
     // `;
 
     const instrucao = `
-    select top 10 
+    select top 10
+r.id_registros,     
 h.nome_hardware,
 r.uso_capacidade,
 r.horario,
 h.fk_computador from hardware as h join registros as r on id_hardware=fk_hardware
 where h.fk_computador = ${idComputador} and h.nome_hardware = 'cpu'
+order by horario desc;
+    `
+
+    return database.executar(instrucao);
+}
+
+function buscarUltimoDadoCpu(idComputador){  
+    // const instrucao = `
+    //     select h.nome_hardware, h.capacidade_total, h.id_hardware , r.qtd_processos, r.uso_capacidade, r.horario from hardware as h join registros as r on h.id_hardware = r.fk_hardware where h.fk_computador = ${idComputador} and nome_hardware = 'cpu' order by horario DESC LIMIT 1;
+    // `;
+
+    const instrucao = `
+    select top 1 
+r.id_registros,    
+h.nome_hardware,
+r.uso_capacidade,
+r.horario,
+h.fk_computador from hardware as h join registros as r on id_hardware=fk_hardware
+where h.fk_computador = ${idComputador} and h.nome_hardware = 'cpu'
+order by horario desc;
+    `
+
+    return database.executar(instrucao);
+}
+
+function buscarUltimoDadoRede(idComputador){
+    // const instrucao = `
+    // select r.id_registros, h.nome_hardware, h.capacidade_total, h.id_hardware , r.qtd_processos, r.uso_capacidade, r.horario from hardware as h join registros as r on h.id_hardware = r.fk_hardware where h.fk_computador = ${idComputador} and nome_hardware = 'ram' order by horario DESC LIMIT 1;
+    // `;
+    const instrucao = `
+    select top 1 
+r.id_registros,    
+h.nome_hardware,
+r.uso_capacidade,
+r.horario,
+h.fk_computador from hardware as h join registros as r on id_hardware=fk_hardware
+where h.fk_computador = ${idComputador} and h.nome_hardware = 'rede'
 order by horario desc;
     `
 
@@ -112,6 +151,42 @@ FROM
 WHERE 
     fk_computador = ${idComputador} 
     AND nome_hardware = 'disco';
+    `
+
+    return database.executar(instrucao);
+}
+
+function buscarNomeEstacao(idComputador){
+
+    const instrucao = `
+    SELECT estacao_de_trabalho from computador where id_computador = ${idComputador}
+    `
+
+    return database.executar(instrucao);
+}
+
+function buscarMaiorRede(idComputador, hoje){
+    const instrucao = `
+    select max(uso_capacidade) as max_rede from hardware as h join registros as r on id_hardware=fk_hardware
+    where cast(r.horario as date) = '${hoje}' and h.nome_hardware='rede' and h.fk_computador = ${idComputador};
+    `
+
+    return database.executar(instrucao);
+}
+
+function buscarMinimoRede(idComputador, hoje){
+    const instrucao = `
+    select min(uso_capacidade) as min_rede from hardware as h join registros as r on id_hardware=fk_hardware
+    where cast(r.horario as date) = '${hoje}' and h.nome_hardware='rede' and h.fk_computador = ${idComputador};
+    `
+
+    return database.executar(instrucao);
+}
+
+function buscarMediaRede(idComputador, hoje){
+    const instrucao = `
+    select avg(uso_capacidade) as med_rede from hardware as h join registros as r on id_hardware=fk_hardware
+    where cast(r.horario as date) = '${hoje}' and h.nome_hardware='rede' and h.fk_computador = ${idComputador};
     `
 
     return database.executar(instrucao);
@@ -183,5 +258,11 @@ module.exports = {
     buscarDiscos,
     buscarDadosDisco,
     buscarDadosDaMaquina,
-    buscarDadosRede
+    buscarDadosRede,
+    buscarUltimoDadoCpu,
+    buscarUltimoDadoRede,
+    buscarMaiorRede,
+    buscarMinimoRede,
+    buscarMediaRede,
+    buscarNomeEstacao
 }
