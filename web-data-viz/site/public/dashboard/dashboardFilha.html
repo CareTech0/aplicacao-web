@@ -19,7 +19,7 @@
 
 </head>
 
-<body>
+<body onload="carregarGraficos()">
 
     <div class="container-global">
         <div class="box-menu">
@@ -112,8 +112,8 @@
                                     <img src="../assets/imgs/pngMaquina.png">
                                 </div>
                                 <div class="container-informacoes-maquina">
-                                    <div class="box-patrimonio-maquina">
-                                        <span>Patrimônio aqui</span>
+                                    <div class="box-patrimonio-maquina" id="nomeEstacao">
+                                        
                                     </div>
                                     <div class="container-detalhes">
                                         <span>Localização:</span> <span></span>
@@ -189,20 +189,33 @@
                             <div class="fundo-grafico-memoria">
                                 <div class="titulo-grafico-memoria">
                                     <span>INDICADORES DE USO DA MEMÓRIA</span>
-                                    <div class="tamanho-alerta">
-                                        <img src="../assets/imgs/alerta.png" id="alertaMemoria">
+                                    <div class="tamanho-alerta" id="iconeAlertaRam">
+                                        
                                     </div>
                                 </div>
                                 <div class="container-do-grafico">
                                     <div class="container-grafico-esquerda">
                                         <div id="graficoDeRoscaMemoriaContainer">
-                                            <div id="graficoDeRoscaMemoria"></div>
-                                            <div id="graficoDeRoscaMemoriaTexto" class="center-text-mem">Total: 100%</div>
+                                            <div id="graficoDeRoscaMemoria">
+                                                <canvas id="graficoMemoria" style="position: relative; height: 12vh; width: 12vw;"></canvas></div>
                                         </div>
                                     </div>
                                     <div class="container-grafico-direita">
                                         <div class="box-status">
                                             <span style="font-weight: 600;">Status:</span>
+                                            <div id="statusMemoria"></div>
+                                        </div>
+                                        <div class="box-status">
+                                            <span style="font-weight: 600;">Utilização:</span>
+                                            <div id="utilizacaoMemoria"></div>
+                                        </div>
+                                        <div class="box-status">
+                                            <span style="font-weight: 600;">Total memória:</span>
+                                            <div id="totalMemoria"></div>
+                                        </div>
+                                        <div class="box-status">
+                                            <span style="font-weight: 600;">Disponível:</span>
+                                            <div id="disponivelMemoria"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -214,20 +227,24 @@
                                 <div class="conteudo">
                                     <div class="titulo-grafico-cpu">
                                         <span>INDICADORES DE USO DA CPU</span>
-                                        <div class="tamanho-alerta">
-                                            <img src="../assets/imgs/alerta.png" id="alertaCPU">
+                                        <div class="tamanho-alerta" id="iconeAlertaCpu">
+                                            
                                         </div>
                                     </div>
                                     <div class="container-do-grafico-cpu">
                                         <div class="container-grafico-esquerda-cpu">
                                             <div class="caixa-cpu">
-                                                <div id="graficoUtilizacaoCPU"> </div>
+                                                <div id="graficoUtilizacaoCPU"><canvas id="graficoCpu" style="position: relative; height: 30vh; width: 30vw;"></canvas></div>
                                             </div>
                                         </div>
                                         <div class="container-grafico-direita-cpu">
                                             <div class="box-status">
                                                 <span style="font-weight: 600;">Status:</span>
+                                                <div id="statusCpu"></div>
+                                            </div>
+                                            <div class="box-status">
                                                 <span style="font-weight: 600;">Utilização:</span>
+                                                <div id="utiilizacaoCpu"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -245,21 +262,34 @@
                             <div class="fundo-grafico-disco">
                                 <div class="titulo-grafico-disco">
                                     <span>INDICADORES DE USO DO DISCO</span>
-                                    <div class="tamanho-alerta">
-                                        <img src="../assets/imgs/alerta.png" id="alertaDisco">
+                                    <div class="tamanho-alerta" id="iconeAlertaDisco">
+                                        
                                     </div>
                                 </div>
 
                                 <div class="container-do-grafico">
                                     <div class="container-grafico-esquerda">                                        
                                         <div id="graficoDeDiscoContainer">
-                                            <div id="graficoDeDiscoTexto" class="center-text">Total: 100%</div>
+                                            <div id="graficoDeDisco" ><canvas id="graficoDisco" style="position: relative; height: 12vh; width: 12vw;"></canvas></div>
 
                                         </div>
                                     </div>
                                     <div class="container-grafico-direita">
                                         <div class="box-status">
                                             <span style="font-weight: 600;">Status:</span>
+                                            <div id="statusDisco"></div>
+                                        </div>
+                                        <div class="box-status">
+                                            <span style="font-weight: 600;">Utilização:</span>
+                                            <div id="utilizacaoDisco"></div>
+                                        </div>
+                                        <div class="box-status">
+                                            <span style="font-weight: 600;">Total Disco:</span>
+                                            <div id="totalDisco"></div>
+                                        </div>
+                                        <div class="box-status">
+                                            <span style="font-weight: 600;">Disponível:</span>
+                                            <div id="disponivelDisco"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -271,24 +301,33 @@
                             <div class="fundo-grafico-rede">
                                 <div class="titulo-grafico-rede">
                                     <span>INDICADORES DE USO DA REDE</span>
-                                    <div class="tamanho-alerta">
-                                        <img src="../assets/imgs/alerta.png" id="alertaRede">
+                                    <div class="tamanho-alerta" id="iconeAlertaRede">
+                                        
                                     </div>
                                 </div>
 
                                 <div class="container-do-grafico-rede">
                                     <div class="container-grafico-esquerda-rede">
                                         <div class="box-dos-graficos-rede">
-                                            <div class="center_mpbs"><div id="qtdMBPS_Download"></div>Mbps</div>
-                                            <div class="center_rosca">Download</div>
-                                            <canvas id="chartRede1" width="150" height="200"></canvas>
+                                            <canvas id="chartRedeDownload" style="position: relative; height: 30vh; width: 30vw;"></canvas>
                                         </div>
                                     </div>
                                     <div class="container-grafico-direita-rede">
-                                        <div class="box-dos-graficos-rede">
-                                            <div class="center_mpbs"><div id="qtdMBPS_Upload"></div>Mbps</div>
-                                            <div class="center_rosca">Upload</div>
-                                            <canvas id="chartRede2" width="150" height="200"></canvas>
+                                        <div class="box-status">
+                                            <span style="font-weight: 600;">Status:</span>
+                                            <div id="statusRede"></div>
+                                        </div>
+                                        <div class="box-status">
+                                            <span style="font-weight: 600;">Máximo hoje:</span>
+                                            <div id="maxRede"></div>
+                                        </div>
+                                        <div class="box-status">
+                                            <span style="font-weight: 600;">Mínimo hoje:</span>
+                                            <div id="minRede"></div>
+                                        </div>
+                                        <div class="box-status">
+                                            <span style="font-weight: 600;">Média hoje:</span>
+                                            <div id="mediarede"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -330,3 +369,134 @@
         </div>
     </div>
 </html>
+<script>
+    let dataDisco = {
+    labels: ["Em uso", "Livre"],
+    datasets: [{
+        label: 'Uso Disco',
+        data: [],
+        backgroundColor: [
+            'rgb(255, 99, 132)',
+            'rgb(54, 162, 235)'
+        ],
+        hoverOffset: 4 
+    }]
+}
+
+const configDisco = {
+    type: 'doughnut',
+    data: dataDisco,
+    options: {}
+}
+
+
+const dataRam = {
+    labels: ["Em uso", "Livre"],
+    datasets: [{
+        label: 'Uso RAM',
+        data: [],
+        backgroundColor: [
+            'rgb(255, 99, 132)',
+            'rgb(54, 162, 235)'
+        ],
+        hoverOffset: 4 
+    }]
+}
+
+const configRam = {
+    type: 'doughnut',
+    data: dataRam,
+    options: {
+        
+    }
+}        
+
+const dataCpu = {
+    labels: [],
+    datasets: [{
+        label: 'Uso Cpu',
+        data: [],
+        backgroundColor: [
+            'rgb(255, 99, 132)'
+        ],
+        hoverOffset: 4 
+    }]
+}
+
+const configCpu = {
+    type: 'line',
+    data: dataCpu,
+    options: {
+        scales: {
+                    x: {
+                        grid: {
+                            display: false // Remove a grade do eixo X
+                        }
+                    },
+                    y: {
+                        grid: {
+                            display: false, // Remove a grade do eixo Y
+                        },
+                        min: 0, // Define o valor mínimo do eixo Y
+                        max: 100, // Define o valor máximo do eixo Y
+                        ticks: {
+                            stepSize: 10 // Define a cada quantos valores os rótulos são mostrados
+                        }
+                    }
+                }
+    }
+    
+}   
+
+const dataRede = {
+    labels: [],
+    datasets: [{
+        data: [],
+        backgroundColor: ["#4CAF50"],
+        hoverOffset: 4 
+    }]
+}
+
+const configRede = {
+    type: 'line',
+    data: dataRede,
+    options: {
+        scales: {
+                    x: {
+                        grid: {
+                            display: false // Remove a grade do eixo X
+                        }
+                    },
+                    y: {
+                        grid: {
+                            display: false, // Remove a grade do eixo Y
+                        },
+                        ticks: {
+                            stepSize: 10 // Define a cada quantos valores os rótulos são mostrados
+                        }
+                    }
+                }
+    }
+    
+}
+
+
+</script>
+<script>
+    const graficoRam = new Chart(
+        document.getElementById('graficoMemoria'),
+        configRam
+    )
+    const graficoDisco = new Chart(
+        document.getElementById('graficoDisco'),
+        configDisco
+    )
+    const graficoCpu = new Chart(
+        document.getElementById('graficoCpu'),
+        configCpu
+    )
+    const graficoRede = new Chart(
+        document.getElementById('chartRedeDownload'),
+        configRede
+    )
+</script>

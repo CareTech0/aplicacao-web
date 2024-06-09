@@ -30,12 +30,36 @@ router.get("/buscarDadosCpu/:idComputador", function (req, res){
     dashboardController.buscarDadosCpu(req, res);
 });
 
+router.get("/buscarUltimoDadoCpu/:idComputador", function (req, res){
+    dashboardController.buscarUltimoDadoCpu(req, res);
+});
+
+router.get("/buscarUltimoDadoRede/:idComputador", function (req, res) {
+    dashboardController.buscarUltimoDadoRede(req, res);
+});
+
 router.get("/buscarDiscos/:idComputador", function (req, res) {
     dashboardController.buscarDiscos(req, res);
 });
 
-router.get("/buscarDadosDisco/:idHardware", function (req, res) {
+router.get("/buscarDadosDisco/:idComputador", function (req, res) {
     dashboardController.buscarDadosDisco(req, res);
+});
+
+router.get("/buscarMaiorRede/:idComputador/:hoje", function (req, res) {
+    dashboardController.buscarMaiorRede(req, res);
+});
+
+router.get("/buscarMinimoRede/:idComputador/:hoje", function (req, res) {
+    dashboardController.buscarMinimoRede(req, res);
+});
+
+router.get("/buscarMediaRede/:idComputador/:hoje", function (req, res) {
+    dashboardController.buscarMediaRede(req, res);
+});
+
+router.get("/buscarNomeEstacao/:idComputador", function (req, res) {
+    dashboardController.buscarNomeEstacao(req, res);
 });
 
 //Buscar máquinas-----------------------------------------------------

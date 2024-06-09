@@ -36,6 +36,7 @@ function buscarDadosRam(idComputador){
     // const instrucao = `
     // select r.id_registros, h.nome_hardware, h.capacidade_total, h.id_hardware , r.qtd_processos, r.uso_capacidade, r.horario from hardware as h join registros as r on h.id_hardware = r.fk_hardware where h.fk_computador = ${idComputador} and nome_hardware = 'ram' order by horario DESC LIMIT 1;
     // `;
+    console.log("Model: idComputador = " + idComputador)
     const instrucao = `
     SELECT TOP 1 
     r.id_registros, 
@@ -66,25 +67,14 @@ function buscarDadosRede(idComputador){
     // select r.id_registros, h.nome_hardware, h.capacidade_total, h.id_hardware , r.qtd_processos, r.uso_capacidade, r.horario from hardware as h join registros as r on h.id_hardware = r.fk_hardware where h.fk_computador = ${idComputador} and nome_hardware = 'ram' order by horario DESC LIMIT 1;
     // `;
     const instrucao = `
-    SELECT TOP 1 
-    r.id_registros, 
-    h.nome_hardware, 
-    h.capacidade_total, 
-    h.id_hardware, 
-    r.qtd_processos, 
-    r.uso_capacidade, 
-    r.horario 
-FROM 
-    hardware AS h 
-JOIN 
-    registros AS r 
-ON 
-    h.id_hardware = r.fk_hardware 
-WHERE 
-    h.fk_computador = ${idComputador} 
-    AND nome_hardware = 'rede' 
-ORDER BY 
-    r.horario DESC;
+    select top 10 
+r.id_registros,    
+h.nome_hardware,
+r.uso_capacidade,
+r.horario,
+h.fk_computador from hardware as h join registros as r on id_hardware=fk_hardware
+where h.fk_computador = ${idComputador} and h.nome_hardware = 'rede'
+order by horario desc;
     `
 
     return database.executar(instrucao);
@@ -97,24 +87,51 @@ function buscarDadosCpu(idComputador){
     // `;
 
     const instrucao = `
-    SELECT TOP 1 
-    h.nome_hardware, 
-    h.capacidade_total, 
-    h.id_hardware, 
-    r.qtd_processos, 
-    r.uso_capacidade, 
-    r.horario 
-FROM 
-    hardware AS h 
-JOIN 
-    registros AS r 
-ON 
-    h.id_hardware = r.fk_hardware 
-WHERE 
-    h.fk_computador = ${idComputador} 
-    AND nome_hardware = 'cpu' 
-ORDER BY 
-    r.horario DESC;
+    select top 10
+r.id_registros,     
+h.nome_hardware,
+r.uso_capacidade,
+r.horario,
+h.fk_computador from hardware as h join registros as r on id_hardware=fk_hardware
+where h.fk_computador = ${idComputador} and h.nome_hardware = 'cpu'
+order by horario desc;
+    `
+
+    return database.executar(instrucao);
+}
+
+function buscarUltimoDadoCpu(idComputador){  
+    // const instrucao = `
+    //     select h.nome_hardware, h.capacidade_total, h.id_hardware , r.qtd_processos, r.uso_capacidade, r.horario from hardware as h join registros as r on h.id_hardware = r.fk_hardware where h.fk_computador = ${idComputador} and nome_hardware = 'cpu' order by horario DESC LIMIT 1;
+    // `;
+
+    const instrucao = `
+    select top 1 
+r.id_registros,    
+h.nome_hardware,
+r.uso_capacidade,
+r.horario,
+h.fk_computador from hardware as h join registros as r on id_hardware=fk_hardware
+where h.fk_computador = ${idComputador} and h.nome_hardware = 'cpu'
+order by horario desc;
+    `
+
+    return database.executar(instrucao);
+}
+
+function buscarUltimoDadoRede(idComputador){
+    // const instrucao = `
+    // select r.id_registros, h.nome_hardware, h.capacidade_total, h.id_hardware , r.qtd_processos, r.uso_capacidade, r.horario from hardware as h join registros as r on h.id_hardware = r.fk_hardware where h.fk_computador = ${idComputador} and nome_hardware = 'ram' order by horario DESC LIMIT 1;
+    // `;
+    const instrucao = `
+    select top 1 
+r.id_registros,    
+h.nome_hardware,
+r.uso_capacidade,
+r.horario,
+h.fk_computador from hardware as h join registros as r on id_hardware=fk_hardware
+where h.fk_computador = ${idComputador} and h.nome_hardware = 'rede'
+order by horario desc;
     `
 
     return database.executar(instrucao);
@@ -139,20 +156,65 @@ WHERE
     return database.executar(instrucao);
 }
 
-function buscarDadosDisco(idHardware){
+function buscarNomeEstacao(idComputador){
+
+    const instrucao = `
+    SELECT estacao_de_trabalho from computador where id_computador = ${idComputador}
+    `
+
+    return database.executar(instrucao);
+}
+
+function buscarMaiorRede(idComputador, hoje){
+    const instrucao = `
+    select max(uso_capacidade) as max_rede from hardware as h join registros as r on id_hardware=fk_hardware
+    where cast(r.horario as date) = '${hoje}' and h.nome_hardware='rede' and h.fk_computador = ${idComputador};
+    `
+
+    return database.executar(instrucao);
+}
+
+function buscarMinimoRede(idComputador, hoje){
+    const instrucao = `
+    select min(uso_capacidade) as min_rede from hardware as h join registros as r on id_hardware=fk_hardware
+    where cast(r.horario as date) = '${hoje}' and h.nome_hardware='rede' and h.fk_computador = ${idComputador};
+    `
+
+    return database.executar(instrucao);
+}
+
+function buscarMediaRede(idComputador, hoje){
+    const instrucao = `
+    select avg(uso_capacidade) as med_rede from hardware as h join registros as r on id_hardware=fk_hardware
+    where cast(r.horario as date) = '${hoje}' and h.nome_hardware='rede' and h.fk_computador = ${idComputador};
+    `
+
+    return database.executar(instrucao);
+}
+
+function buscarDadosDisco(idComputador){
     // const instrucao = `
     //     select registros.uso_capacidade from registros where fk_hardware = ${idHardware} order by horario DESC LIMIT 1;
     // `;
 
     const instrucao = `
     SELECT TOP 1 
-    uso_capacidade 
+    h.nome_hardware, 
+    h.capacidade_total, 
+    h.id_hardware,
+    r.uso_capacidade, 
+    r.horario 
 FROM 
-    registros 
+    hardware AS h 
+JOIN 
+    registros AS r 
+ON 
+    h.id_hardware = r.fk_hardware 
 WHERE 
-    fk_hardware = ${idHardware} 
+    h.fk_computador = ${idComputador} 
+    AND nome_hardware = 'disco' 
 ORDER BY 
-    horario DESC;
+    r.horario DESC;
     `
 
     return database.executar(instrucao);
@@ -226,5 +288,12 @@ module.exports = {
     buscarDadosDisco,
     buscarDadosDaMaquina,
     buscarDadosRede,
+    buscarUltimoDadoCpu,
+    buscarUltimoDadoRede,
+    buscarMaiorRede,
+    buscarMinimoRede,
+    buscarMediaRede,
+    buscarNomeEstacao,
     buscarDadosAlerta
+
 }
