@@ -16,6 +16,12 @@ router.get("/dashboard", function (req, res) {
     res.render("./dashboard/dashboard");
 });
 
+//Kpis da dashboard vô
+router.get("/buscarUsoDiscoMaquina/:idComputador", function (req, res) {
+    dashboardController.buscarUsoDiscoMaquina(req, res);
+});
+
+
 //Funcionalidades da dashboard filha ------------------------------------------------
 
 router.get("/buscarDadosRede/:idComputador", function (req, res) {
