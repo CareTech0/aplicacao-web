@@ -207,6 +207,20 @@ function buscarMediaRede(idComputador, hoje){
     return database.executar(instrucao);
 }
 
+function buscarPrimeiroInsert(idComputador, data){
+    const instrucao = `
+    select top 1 
+    c.estacao_de_trabalho,
+    r.horario
+    from registros as r join hardware as h on r.fk_hardware=h.id_hardware
+    join computador as c on c.id_computador=h.fk_computador
+    where cast(horario as date) = '${data}' and id_computador = ${idComputador}
+    order by horario asc;
+    `
+
+    return database.executar(instrucao);
+}
+
 function buscarDadosDisco(idComputador){
     // const instrucao = `
     //     select registros.uso_capacidade from registros where fk_hardware = ${idHardware} order by horario DESC LIMIT 1;
@@ -378,5 +392,6 @@ module.exports = {
     possibilidadeTravamentoHojeCpu,
     estadoCriticoHojeRam,
     estadoCriticoHojeCpu,
-    estadoCriticoHojeDisco
+    estadoCriticoHojeDisco,
+    buscarPrimeiroInsert
 }

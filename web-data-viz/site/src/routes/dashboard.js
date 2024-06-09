@@ -21,6 +21,10 @@ router.get("/buscarUsoDiscoMaquina/:idComputador", function (req, res) {
     dashboardController.buscarUsoDiscoMaquina(req, res);
 });
 
+router.get("/buscarPrimeiroInsert/:idComputador/:data", function (req, res) {
+    dashboardController.buscarPrimeiroInsert(req, res);
+});
+
 
 //Funcionalidades da dashboard filha ------------------------------------------------
 

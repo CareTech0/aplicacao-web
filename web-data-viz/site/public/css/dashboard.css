@@ -419,10 +419,11 @@ align-items: center;
   display: flex;
   flex-wrap: wrap;
   overflow: auto;
+  align-content: center;
 }
 
 .container-maquinas {
-  width: 30%;
+  width: 33%;
   height: 48%;
   display: flex;
   justify-content: center;
@@ -446,6 +447,46 @@ align-items: center;
   box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
   cursor: pointer;
 }
+/* Animação de alerta laranja  */
+@keyframes alertaLaranja {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 165, 0, 0.5);
+  }
+  70% {
+    transform: scale(1.01);
+    box-shadow: 0 0 0 20px rgba(255, 165, 0, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 165, 0, 0);
+  }
+}
+
+/* Animação de alerta vermelho */
+@keyframes alertaVermelho {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.5);
+  }
+  70% {
+    transform: scale(1.03);
+    box-shadow: 0 0 0 20px rgba(255, 0, 0, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+  }
+}
+
+/* Classes para aplicar as animações */
+.pulsante-laranja {
+  animation: alertaLaranja 1.5s infinite;
+}
+
+.pulsante-vermelho {
+  animation: alertaVermelho 1.5s infinite;
+}
 
 .box-icon-maquina {
   width: 38%;
@@ -458,8 +499,8 @@ align-items: center;
 .caixadotitulo {
   display: flex;
   height: 30%;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   width: 100%;
 }
 
@@ -526,12 +567,13 @@ align-items: center;
   flex-direction: column;
   display: flex;
   align-items: center;
-  width: 62%;
+  width: 75%;
 }
 
 .patrimonio-titulo {
-  font-size: 20px;
+  font-size: 19px;
   font-weight: 600;
+  text-align: center;
 }
 
 .caixa-cor-aqui {
