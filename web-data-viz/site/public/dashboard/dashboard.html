@@ -235,7 +235,7 @@
                                             <div class="icon-status">
                                                 <img src="../assets/imgs/alerta.png">
                                             </div>
-                                            <span>Alerta</span>
+                                            <span>Atenção</span>
                                         </div>
                                         <div class="legenda-status3">
                                             <div class="icon-status">
@@ -596,7 +596,7 @@
                                         }
 
                                         if(dadosCpu > 80 && dadosCpu <= 90 || dadosDisco > 80 && dadosDisco <= 90 || dadosRam > 80 && dadosRam <= 90){
-                                            status.innerText = "Alerta";
+                                            status.innerText = "Atenção";
                                             imgStatus.src = "../assets/imgs/alerta.png";
                                             caixaMaquina.classList.remove('pulsante-vermelho');
                                             caixaMaquina.classList.add('pulsante-laranja');
@@ -615,7 +615,6 @@
                                         imgStatus.src = "../assets/imgs/x.png";
                                         condicao.innerText = "Desligada";
                                         imgCondicao.src = "../assets/imgs/off.png";
-                                        
                                     }
                                 }
                             } 
