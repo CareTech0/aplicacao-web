@@ -314,6 +314,47 @@ function possibilidadeTravamentoHojeCpu(idComputador){
 }
 
 
+
+function estadoCriticoHojeRam(idComputador){
+    const instrucao = `
+    select TOP 1 h.nome_hardware, h.id_hardware, h.capacidade_total, r.uso_capacidade, ((r.uso_capacidade * 100) / h.capacidade_total) as uso_porcento from hardware as h join computador as c on h.fk_computador = c.id_computador
+    join registros as r on h.id_hardware = r.fk_hardware where c.id_computador = ${idComputador} and
+        h.nome_hardware = 'ram' and
+        CONVERT(DATE, r.horario) = CONVERT(DATE, GETDATE()) and
+        h.capacidade_total > 0
+        order by r.horario DESC
+    `;
+
+    return database.executar(instrucao)
+}
+
+function estadoCriticoHojeCpu(idComputador){
+    const instrucao = `
+    select TOP 1 h.nome_hardware, h.id_hardware, h.capacidade_total, r.uso_capacidade as uso_porcento from hardware as h join computador as c on h.fk_computador = c.id_computador
+    join registros as r on h.id_hardware = r.fk_hardware where c.id_computador = ${idComputador} and
+        h.nome_hardware = 'cpu' and
+        CONVERT(DATE, r.horario) = CONVERT(DATE, GETDATE()) and
+        h.capacidade_total > 0
+    order by r.horario DESC
+    `;
+
+    return database.executar(instrucao)
+}
+
+function estadoCriticoHojeDisco(idComputador){
+    const instrucao = `
+    select TOP 1 h.nome_hardware, h.id_hardware, h.capacidade_total, r.uso_capacidade, ((r.uso_capacidade * 100) / h.capacidade_total) as uso_porcento from hardware as h join computador as c on h.fk_computador = c.id_computador
+    join registros as r on h.id_hardware = r.fk_hardware where c.id_computador = ${idComputador} and
+        h.nome_hardware = 'disco' and
+        CONVERT(DATE, r.horario) = CONVERT(DATE, GETDATE()) and
+        h.capacidade_total > 0
+    order by r.horario DESC
+    `;
+
+    return database.executar(instrucao)
+}
+
+
 module.exports = { 
     inserirMaquina,
     buscarMaquinas,
@@ -334,5 +375,8 @@ module.exports = {
     buscarDadosAlerta,
     buscarUsoDiscoMaquina,
     possibilidadeTravamentoHojeRam,
-    possibilidadeTravamentoHojeCpu
+    possibilidadeTravamentoHojeCpu,
+    estadoCriticoHojeRam,
+    estadoCriticoHojeCpu,
+    estadoCriticoHojeDisco
 }

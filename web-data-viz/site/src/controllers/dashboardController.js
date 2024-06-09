@@ -341,6 +341,54 @@ function possibilidadeTravamentoHojeCpu(req, res){
     });
 }
 
+function estadoCriticoHojeRam(req, res){
+    const idComputador = req.params.idComputador;
+
+    dashboardModel.estadoCriticoHojeRam(idComputador).then (function (resultado) {
+        if(resultado.length > 0){
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum Resultado encontrado!");
+        }
+    })
+    .catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function estadoCriticoHojeCpu(req, res){
+    const idComputador = req.params.idComputador;
+
+    dashboardModel.estadoCriticoHojeCpu(idComputador).then (function (resultado) {
+        if(resultado.length > 0){
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum Resultado encontrado!");
+        }
+    })
+    .catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function estadoCriticoHojeDisco(req, res){
+    const idComputador = req.params.idComputador;
+
+    dashboardModel.estadoCriticoHojeDisco(idComputador).then (function (resultado) {
+        if(resultado.length > 0){
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum Resultado encontrado!");
+        }
+    })
+    .catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 module.exports = { 
     inserirMaquina,
     buscarMaquinas,
@@ -361,5 +409,8 @@ module.exports = {
     buscarMediaRede,
     buscarUsoDiscoMaquina,
     possibilidadeTravamentoHojeRam,
-    possibilidadeTravamentoHojeCpu
+    possibilidadeTravamentoHojeCpu,
+    estadoCriticoHojeRam,
+    estadoCriticoHojeCpu,
+    estadoCriticoHojeDisco
 }
