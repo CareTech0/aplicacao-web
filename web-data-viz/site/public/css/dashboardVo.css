@@ -245,6 +245,24 @@ color: white;
   overflow-x: hidden;
 }
 
+
+.titulo-chart-table-disco { 
+  width: 100%;
+  height: 30px;
+  background-color: #4586bf;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+  border-radius: 6px 6px 0px 0px;
+}
+
+.titulo-chart-table-disco > span {  
+  color: white;
+  font-size: 15px;
+  font-weight: 300px;
+}
+
 .titulo-chart-table {
   width: 100%;
   height: 17%;
