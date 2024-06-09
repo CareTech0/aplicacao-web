@@ -563,6 +563,10 @@
                         const imgCondicao = document.getElementById(`imgCondicao${maquina.id_computador}`);
                         const imgStatus = document.getElementById(`imgStatus${maquina.id_computador}`);
                       
+                        let dadosCpu = 0;
+                        let dadosRam = 0;
+                        let dadosDisco = 0;
+
                         resposta.forEach(dadosMaquina => {
                             const fkComputador = dadosMaquina.fk_computador[0];
                             if(fkComputador == maquina.id_computador){
@@ -572,23 +576,32 @@
                                 const agora = new Date();
                                 const cincoMinutosAtras = new Date(agora.getTime() - 300000);
                                 const horarioMaquina = new Date(dadosMaquina.horario);
-                                console.log(`
-                                    ${agora} ${cincoMinutosAtras} ${horarioMaquina}
-                                `)
+
+                                
                                 if(dadosMaquina.nome_hardware != "rede"){
                                     if(horarioMaquina >= cincoMinutosAtras && horarioMaquina <= agora){
-                                        let dados = dadosMaquina.uso_capacidade;
 
-                                        if(dadosMaquina.nome_hardware == "disco" || dadosMaquina.nome_hardware == "ram") dadosDisco = (dadosMaquina.uso_capacidade * 100) / dadosMaquina.capacidade_total;
-                                        
-                                        if(dados > 80 && dados <= 90){
+
+                                        if(dadosMaquina.nome_hardware == "disco") dadosDisco = (dadosMaquina.uso_capacidade * 100) / dadosMaquina.capacidade_total;
+                                        if(dadosMaquina.nome_hardware == "ram") dadosRam = (dadosMaquina.uso_capacidade * 100) / dadosMaquina.capacidade_total;
+                                        if(dadosMaquina.nome_hardware == "cpu") dadosCpu = dadosMaquina.uso_capacidade;
+
+                                        if(maquina.estacao_de_trabalho == 'ESTAÇÃO AMANDA'){
+                                            console.log(`
+                                                ${dadosDisco}
+                                                ${dadosCpu}
+                                                ${dadosRam}
+                                            `)
+                                        }
+
+                                        if(dadosCpu > 80 && dadosCpu <= 90 || dadosDisco > 80 && dadosDisco <= 90 || dadosRam > 80 && dadosRam <= 90){
                                             status.innerText = "Alerta";
                                             imgStatus.src = "../assets/imgs/alerta.png";
 
-                                        } else if(dados > 90){
+                                        } else if(dadosCpu > 90 || dadosDisco > 90 || dadosRam > 90){
                                             status.innerText = "Crítico";
                                             imgStatus.src = "../assets/imgs/x.png";
-                                            
+
                                         } else {
                                             status.innerText = "Ideal";
                                             imgStatus.src = "../assets/imgs/check.png";

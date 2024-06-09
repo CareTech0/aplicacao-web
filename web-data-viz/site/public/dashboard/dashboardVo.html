@@ -137,7 +137,7 @@
                                 </div>
 
                                 <div class="box-number">
-                                    <p>5</p>
+                                    <p id="total_problemas_semana">0</p>
                                 </div>
 
                                 <div class="box-type">
@@ -153,7 +153,7 @@
                                 </div>
 
                                 <div class="box-number">
-                                    <p>10</p>
+                                    <p id="estado_critico_hoje">10</p>
                                 </div>
 
                                 <div class="box-type">
@@ -196,38 +196,7 @@
                                             <th>DISCO</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="comp_estado_critico_hoje_table">
-                                        <tr>
-                                            <td class="number-maquina"><a href="dashboardFilhaCPU.html">1</a></td>
-                                            <td>80%</td>
-                                            <td>6</td>
-                                            <td>250</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="number-maquina">3</td>
-                                            <td>70%</td>
-                                            <td>8</td>
-                                            <td>300</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="number-maquina">4</td>
-                                            <td>85%</td>
-                                            <td>4</td>
-                                            <td>350</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="number-maquina">5</td>
-                                            <td>60%</td>
-                                            <td>10</td>
-                                            <td>200</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="number-maquina">7</td>
-                                            <td>75%</td>
-                                            <td>5</td>
-                                            <td>400</td>
-                                        </tr>
-                                    </tbody>
+                                    <tbody id="comp_estado_critico_hoje_table"></tbody>
                                 </table>
 
                             </div>
@@ -317,55 +286,130 @@
 
     });
 
-    function buscarCriticosDoDia(dadosDaMaquina){
-        dadosDaMaquina.forEach(maquina => {
-            fetch(`/dashboard/buscarCriticosDoDia/${maquina.id_computador}`, { cache: 'no-store' }).then(function (resposta) {
+    function buscarProblemasSemana(dadosMaquina){
+        let qtdTravamentoSeg = 0;
+        let qtdTravamentoTer = 0;
+        let qtdTravamentoQua = 0;
+        let qtdTravamentoQui = 0;
+        let qtdTravamentoSex = 0;
+
+        const weekdays = getWeekdays();
+        const monday = weekdays[0];
+        const tuesday = weekdays[1];
+        const wednesday = weekdays[2];
+        const thursday = weekdays[3];
+        const friday = weekdays[4];
+                            
+
+        dadosMaquina.forEach(maquina => {
+            fetch(`/dashboard/buscarProblemasSemana/${maquina.id_computador}`, {cache: 'no-store'}).then(function (resposta) {
                 if(resposta.ok){
                     resposta.json().then(function (resposta){
                         resposta.forEach(dados => {
-                            const capacidadeTotal = dados.capacidade_total;
-                            const usoCapacidade = dados.uso_capacidade;
-                            const nomeHardware = dados.nome_hardware;
-                            const idHardware = dados.id_hardware
-
-                            let usoPorcentagem = 0;
-                            if(nomeHardware != 'rede'){
-                                if(nomeHardware == 'disco' || nomeHardware == 'ram') usoPorcentagem = (usoCapacidade * 100) / capacidadeTotal;
-                                else usoPorcentagem = usoCapacidade;
+                            const dadosData = new Date(dados.horario);
+                            if(isSameDay(dadosData, monday)) {
+                                qtdTravamentoSeg++;
+                            } else if(isSameDay(dadosData, tuesday)) {
+                                qtdTravamentoTer++;
+                            } else if(isSameDay(dadosData, wednesday)) {
+                                qtdTravamentoQua++;
+                            } else if(isSameDay(dadosData, thursday)) {
+                                qtdTravamentoQui++;
+                            } else if(isSameDay(dadosData, friday)) {
+                                qtdTravamentoSex++;
                             }
-
-                            const tabelaComputador = document.getElementById(maquina.id_computador);
-
-                            if(tabelaComputador == undefined){   
-                                tabelaCriticosHoje.innerHTML = `
-                                    <tr id="${maquina.id_computador}">
-                                        <td class="number-maquina"><a onclick="window.location = '/dashboard/dashboardFilha?idComputador=${maquina.id_computador}'>${maquina.id_computador}</a></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                `;
-                            }
-
-                            if(tabelaComputador != undefined){
-                                if(nomeHardware == 'ram'){
-                                    if(tabelaComputador.childNodes[1].innerHTML == '') tabelaComputador.childNodes[1].innerHTML = `${usoPorcentagem}%`;
-                                } 
-                                
-                                if(nomeHardware == 'cpu'){
-                                    if(tabelaComputador.childNodes[2].innerHTML == '') tabelaComputador.childNodes[2].innerHTML = `${usoPorcentagem}%`;
-                                } 
-
-                                if(nomeHardware == 'disco') {
-                                    if(tabelaComputador.childNodes[3].innerHTML == '') tabelaComputador.childNodes[3].innerHTML = `${usoPorcentagem}%`;
-                                }
-                            }
-
+                        
+                             
                         });
                     });
                 }
-            });
+            })
         });
+
+        const textTot = document.getElementById('total_problemas_semana');
+                            textTot.innerHTML = qtdTravamentoSeg + qtdTravamentoQui + qtdTravamentoSex + qtdTravamentoTer + qtdTravamentoQua;
     }
+
+    function getWeekdays() {
+        const currentDate = new Date();
+        const dayOfWeek = currentDate.getDay(); // 0 (Sunday) to 6 (Saturday)
+        const dayDifference = (dayOfWeek + 6) % 7; // Calculate days since Monday
+        const monday = new Date(currentDate);
+        monday.setDate(currentDate.getDate() - dayDifference);
+
+        const weekdays = [];
+        for (let i = 0; i < 5; i++) { // Only loop for Monday to Friday
+            const day = new Date(monday);
+            day.setDate(monday.getDate() + i);
+            weekdays.push(day);
+        }
+
+        return weekdays;
+    }
+
+    function isSameDay(date1, date2) {
+        return date1.getFullYear() === date2.getFullYear() &&
+            date1.getMonth() === date2.getMonth() &&
+            date1.getDate() === date2.getDate();
+    }
+
+    // function buscarCriticosDoDia(dadosDaMaquina){
+    //     let qtdMaquinasCriticos = 0;
+    //     dadosDaMaquina.forEach(maquina => {
+    //         fetch(`/dashboard/buscarCriticosDoDia/${maquina.id_computador}`, { cache: 'no-store' }).then(function (resposta) {
+    //             if(resposta.ok){
+    //                 resposta.json().then(function (resposta){
+    //                     resposta.forEach(dados => {
+    //                         const tabelaCriticosHoje = document.getElementById('comp_estado_critico_hoje_table');
+    //                         const capacidadeTotal = dados.capacidade_total;
+    //                         const usoCapacidade = dados.uso_capacidade;
+    //                         const nomeHardware = dados.nome_hardware;
+    //                         const idHardware = dados.id_hardware
+
+    //                         let usoPorcentagem = 0;
+    //                         let tabelaComputador = document.getElementById(maquina.id_computador);
+
+    //                         if(nomeHardware != 'rede'){
+    //                             if(nomeHardware == 'disco' || nomeHardware == 'ram') usoPorcentagem = (usoCapacidade * 100) / capacidadeTotal;
+    //                             else usoPorcentagem = usoCapacidade;
+
+    //                             if(tabelaComputador == null){
+    //                                 if(usoPorcentagem > 10) {
+    //                                     qtdMaquinasCriticos++;
+    //                                 }   
+    //                                 tabelaCriticosHoje.innerHTML += `
+    //                                     <tr id="${maquina.id_computador}">
+    //                                         <td class="number-maquina"><a>${maquina.id_computador}</a></td>
+    //                                         <td id="ram${maquina.id_computador}">---</td>
+    //                                         <td id="cpu${maquina.id_computador}">---</td>
+    //                                         <td id="disco${maquina.id_computador}">---</td>
+    //                                     </tr>
+    //                                 `;
+    //                                 tabelaComputador = document.getElementById(maquina.id_computador);
+    //                             }
+    //                         }
+
+
+    //                         if(tabelaComputador != null){
+    //                             if(nomeHardware == "ram"){
+    //                                 if(document.getElementById(`ram${maquina.id_computador}`).innerHTML == '---') document.getElementById(`ram${maquina.id_computador}`) = `${usoPorcentagem.toFixed(2)}%`;
+    //                             } 
+                                
+    //                             if(nomeHardware == "cpu"){
+    //                                 if(document.getElementById(`cpu${maquina.id_computador}`).innerHTML == '---') document.getElementById(`cpu${maquina.id_computador}`) = `${usoPorcentagem.toFixed(2)}%`;
+    //                             } 
+
+    //                             if(nomeHardware == "disco") {
+    //                                 if(document.getElementById(`disco${maquina.id_computador}`).innerHTML == '---') document.getElementById(`disco${maquina.id_computador}`).innerHTML = `${usoPorcentagem.toFixed(2)}%`;
+    //                             }
+    //                         }
+
+    //                     });
+    //                 });
+    //             }
+    //         });
+    //     });
+    //     document.getElementById('estado_critico_hoje').innerText = qtdMaquinasCriticos;
+    // }
 
 </script>

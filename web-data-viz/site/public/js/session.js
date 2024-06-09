@@ -11,15 +11,29 @@ function sairConta(){
     window.location = "/index";
 }
 
-setInterval(()=>{
+setTimeout(()=> {
     fetch(`/dashboard/buscarMaquinas/${sessionStorage.FK_EMPRESA}`, { cache: 'no-store' }).then(function (resposta) {
         if(resposta.ok){
             resposta.json().then(function (resposta){
                 //DashVô
-                const tabelaCriticosHoje = document.getElementById('comp_estado_critico_hoje_table');
-                if(tabelaCriticosHoje != undefined){
-                    buscarCriticosDoDia(resposta);
-                }
+                // const tabelaCriticosHoje = document.getElementById('comp_estado_critico_hoje_table');
+                // if(tabelaCriticosHoje.innerHTML == ""){
+                //     buscarCriticosDoDia(resposta);
+
+                // }
+
+
+                buscarProblemasSemana(resposta);
+
+            });
+        }
+    });
+}, 3000)
+
+setInterval(()=>{
+    fetch(`/dashboard/buscarMaquinas/${sessionStorage.FK_EMPRESA}`, { cache: 'no-store' }).then(function (resposta) {
+        if(resposta.ok){
+            resposta.json().then(function (resposta){
                 //alerta
                 buscarDadosAlerta(resposta);
             });
@@ -47,6 +61,7 @@ function buscarDadosAlerta(dadosDasMaquinas){
                         console.log(`
                             ${capacidadeTotal} ${usoCapacidade} ${nomeHardware} ${usoPorcentagem}
                         `);
+                        
 
 
                     });  

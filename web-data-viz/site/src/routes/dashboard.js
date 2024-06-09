@@ -56,6 +56,10 @@ router.get("/buscarCriticosDoDia/:idComputador", function (req, res) {
     dashboardController.buscarDadosAlerta(req, res);
 });
 
+router.get("/buscarProblemasSemana/:idComputador", function (req, res) {
+    dashboardController.buscarProblemasSemana(req, res);
+});
+
 
 //Inserir máquinas ---------------------------------------------------
 
