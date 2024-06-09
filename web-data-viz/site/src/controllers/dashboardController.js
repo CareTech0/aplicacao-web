@@ -259,10 +259,28 @@ function buscarDadosDaMaquina(req, res){
     });
 }
 
+
 function buscarNomeEstacao(req, res){
     const idComputador = req.params.idComputador;
 
     dashboardModel.buscarNomeEstacao(idComputador).then (function (resultado) {
+      if(resultado.length > 0){
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum Resultado encontrado!");
+        }
+    })
+    .catch(function (erro) {
+        console.log(erro);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function buscarDadosAlerta(req, res){
+    const idComputador = req.params.idComputador;
+
+    dashboardModel.buscarDadosAlerta(idComputador).then (function (resultado) {
+
         if(resultado.length > 0){
             res.status(200).json(resultado);
         } else {
@@ -291,5 +309,6 @@ module.exports = {
     buscarMaiorRede,
     buscarMinimoRede,
     buscarMediaRede,
-    buscarNomeEstacao
+    buscarNomeEstacao,
+    buscarDadosAlerta
 }
