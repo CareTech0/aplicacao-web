@@ -18,7 +18,7 @@ function buscarMaquinas(fkEmpresa){
 
 function deletarComputador(idComputador){
     const instruco = `
-        call deletarComputador(${idComputador})
+        exec deletarComputador @idDoComputador=${idComputador};
     `;
 
     return database.executar(instruco);
