@@ -419,10 +419,11 @@ align-items: center;
   display: flex;
   flex-wrap: wrap;
   overflow: auto;
+  align-content: center;
 }
 
 .container-maquinas {
-  width: 30%;
+  width: 33%;
   height: 48%;
   display: flex;
   justify-content: center;
@@ -469,7 +470,7 @@ align-items: center;
     box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.5);
   }
   70% {
-    transform: scale(1.05);
+    transform: scale(1.03);
     box-shadow: 0 0 0 20px rgba(255, 0, 0, 0);
   }
   100% {
@@ -498,8 +499,8 @@ align-items: center;
 .caixadotitulo {
   display: flex;
   height: 30%;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   width: 100%;
 }
 
@@ -566,12 +567,13 @@ align-items: center;
   flex-direction: column;
   display: flex;
   align-items: center;
-  width: 62%;
+  width: 75%;
 }
 
 .patrimonio-titulo {
-  font-size: 20px;
+  font-size: 19px;
   font-weight: 600;
+  text-align: center;
 }
 
 .caixa-cor-aqui {
