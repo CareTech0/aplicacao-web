@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../css/modais/modalDeslogar.css">
     <link rel="stylesheet" href="../css/modais/modalDashboard.css">
 
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <link rel="icon" href="../assets/icon/icon.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
@@ -551,6 +551,7 @@
                 console.log(`#ERRO: ${resposta}`);
             });
         }
+        mostrarSweetAlertEditar();
     }
 
     setInterval(()=> {
@@ -827,7 +828,40 @@
                 console.log(`#ERRO: ${resposta}`);
             });
         } 
+        mostrarSweetAlertSucesso();
     });
+    function mostrarSweetAlertSucesso() {
+        Swal.fire({
+            icon: 'success',
+            title: 'Sucesso',
+            text: 'Máquina adicionada com sucesso!',
+            confirmButtonColor: '#4586bf' 
+        }).then(() => {
+            location.reload(); 
+        });
+    }
+
+   function mostrarSweetAlertEditar() {
+        Swal.fire({
+            icon: 'success',
+            title: 'Máquina editada com sucesso!',
+            timer: 2000, 
+            showConfirmButton: false
+        }).then(() => {
+            location.reload(); 
+        });
+    }
+    
+   function mostrarSweetAlertDeletar() {
+        Swal.fire({
+            icon: 'success',
+            title: 'Máquina deletada com sucesso!',
+            showConfirmButton: false,
+            timer: 3500,                    
+        }).then(() => {   
+            window.location = "/dashboard/dashboard";
+        });
+    }
 
     //Deletar computador
     function deletarComputador(idComputador){
@@ -846,7 +880,8 @@
             }
         }).catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
-            window.location = "/dashboard/dashboard";
+            mostrarSweetAlertDeletar();
         })
+        
     }
 </script>
