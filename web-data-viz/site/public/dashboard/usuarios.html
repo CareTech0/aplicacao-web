@@ -404,13 +404,18 @@
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
+
+    function fecharEditModal() {
+        editModal.style.display = 'none';
+    }
+    
     //Editar Usuário
     function abrirEditModal(id, nome, email, senha) {
         editModal.style.display = 'block';
         editModal.innerHTML = `
             <div class="modal-content-editar-usuario">
 
-                <span class="close">&times;</span>
+                <span class="close" onclick="fecharEditModal()">&times;</span>
 
                 <div class="modal-titulo-novo-usuario">
                     <span class="icon"><i class="bi bi-person-gear"></i></span>
