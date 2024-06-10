@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../css/modais/modalUsuarios.css">
     <link rel="icon" href="../assets/icon/icon.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="../js/session.js"></script>
     <script src="../js/modais/modalDeslogar.js" defer></script>
 </head>
@@ -328,7 +328,6 @@
             deleteModal.style.display = 'none';
             newUserModal.style.display = 'none';
             editModal.style.display = 'none';
-            newModal.style.display = 'none';
 
         }
     });
@@ -530,16 +529,40 @@
                     tipoUser: tipoUser
                 })
             })
-                .then(function (resposta) {
-                    if (resposta.ok) {
-                        window.location = "/usuario"
-                    }
-                }).catch(function (resposta) {
-                    console.log(`#ERRO: ${resposta}`);
-                    alert("Erro no banco");
-                });
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    sweetAlertEditarSite()
+                }
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);               
+                sweetAlertEditarSite()
+            });
         }
 
+    }
+
+    function sweetAlertEditarSite() { 
+        Swal.fire({
+            icon: 'success',
+            title: 'Sucesso!',
+            text: 'Usuário editado com sucesso.',
+            showConfirmButton: false,
+            timer: 1500
+        }).then(() => {
+            window.location.reload();
+        });                
+    }
+
+    function sweetAlertExcluirSite() { 
+        Swal.fire({
+            icon: 'success',
+            title: 'Sucesso!',
+            text: 'Usuário deletado com sucesso.',
+            showConfirmButton: false,
+            timer: 1500
+        }).then(() => {
+            window.location.reload();
+        });                
     }
 
     // Criar novo usuário
@@ -604,7 +627,7 @@
             })
                 .then(function (resposta) {
                     if (resposta.ok) {
-                        window.location = "/usuario"
+                        sweetAlertSalvarUser();
                     }
                 }).catch(function (resposta) {
                     console.log(`#ERRO: ${resposta}`);
@@ -613,6 +636,17 @@
         }
     })
 
+    function sweetAlertSalvarUser() {
+        Swal.fire({
+            icon: 'success',
+            title: 'Sucesso',
+            text: 'Usuário criado com sucesso!',
+            timer: 2000, 
+            showConfirmButton: false
+        }).then(() => {
+            window.location.reload();
+        });
+    }
 
 
     //Deletar Usuário
@@ -624,7 +658,7 @@
             }
         }).then(function (resposta) {
             if (resposta.ok) {
-                window.location = "/usuario";
+                sweetAlertExcluirSite();
             } else if (resposta.status == 404) {
                 console.log("Deu 404!");
             } else {

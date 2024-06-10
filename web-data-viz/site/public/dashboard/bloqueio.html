@@ -283,10 +283,8 @@
                     icon: 'success',
                     showConfirmButton: false,
                     timer: 3000
-                }).then((result) => {
-                   
-                        window.location.reload();
-                   
+                }).then((result) => {                   
+                        window.location.reload();                   
                 });
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
