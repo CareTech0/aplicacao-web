@@ -827,8 +827,11 @@
             }).catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);
             });
-        } 
-        mostrarSweetAlertSucesso();
+        }       
+        if (validacoesCorretas == 4) {
+            mostrarSweetAlertSucesso();
+        }       
+       
     });
     function mostrarSweetAlertSucesso() {
         Swal.fire({
@@ -844,7 +847,8 @@
    function mostrarSweetAlertEditar() {
         Swal.fire({
             icon: 'success',
-            title: 'Máquina editada com sucesso!',
+            title: 'Sucesso!',
+            text: 'Máquina editada com sucesso!',   
             timer: 2000, 
             showConfirmButton: false
         }).then(() => {
@@ -855,7 +859,8 @@
    function mostrarSweetAlertDeletar() {
         Swal.fire({
             icon: 'success',
-            title: 'Máquina deletada com sucesso!',
+            title: 'Sucesso!',
+            text: 'Máquina deletada com sucesso!',           
             showConfirmButton: false,
             timer: 3500,                    
         }).then(() => {   
@@ -864,24 +869,40 @@
     }
 
     //Deletar computador
-    function deletarComputador(idComputador){
-        fetch(`/dashboard/deletarComputador/${idComputador}`, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json"
+    function deletarComputador(idComputador) {
+                    
+        Swal.fire({
+            title: 'Tem certeza que deseja deletar a máquina?',
+            text: 'Esta ação não pode ser desfeita!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Sim, deletar!',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`/dashboard/deletarComputador/${idComputador}`, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                }).then(function (resposta){
+                    if (resposta.ok){
+                        console.log("deu bom")
+                        mostrarSweetAlertDeletar();
+                    } else if (resposta.status == 404){
+                        console.log("Deu 404!");
+                    } else {
+                        throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+                    }
+                }).catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                    mostrarSweetAlertDeletar();
+                });
             }
-        }).then(function (resposta){
-            if (resposta.ok){
-                window.location = "/dashboard/dashboard";
-            } else if (resposta.status == 404){
-                console.log("Deu 404!");
-            } else {
-                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-            mostrarSweetAlertDeletar();
-        })
-        
+        });
+       
     }
+
 </script>
