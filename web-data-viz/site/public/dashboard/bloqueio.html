@@ -277,7 +277,17 @@
         })
         .then(function (resposta) {
             if (resposta.ok) {
-                window.location = "/bloqueioSites"
+                Swal.fire({
+                    title: 'Sucesso!',
+                    text: 'Site editado com sucesso.',
+                    icon: 'success',
+                    showConfirmButton: false,
+                    timer: 3000
+                }).then((result) => {
+                   
+                        window.location.reload();
+                   
+                });
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
             } else {
