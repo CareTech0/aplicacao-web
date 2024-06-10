@@ -547,11 +547,11 @@
                 if (resposta.ok) {
                     resposta.json().then(function (resposta) {
                         resposta.forEach(dados => {
-                            document.getElementById('estado_critico_hoje').innerHTML = qtdComputadoresCriticos;
+                            usoDiscoDaVez = dados.uso_porcento;
                             
                             if(usoDiscoDaVez > 90){
                                 if(idCedula == null){
-                                    usoDiscoDaVez = dados.uso_porcento;
+                                    document.getElementById('estado_critico_hoje').innerHTML = qtdComputadoresCriticos;
                                     qtdComputadoresCriticos++;
                                     tabelaCriticos.innerHTML = `
                                         <tr id="${maquina}">
