@@ -419,7 +419,6 @@ align-items: center;
   display: flex;
   flex-wrap: wrap;
   overflow: auto;
-  align-content: center;
 }
 
 .container-maquinas {

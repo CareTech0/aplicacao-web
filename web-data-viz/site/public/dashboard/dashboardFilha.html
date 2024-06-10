@@ -115,9 +115,9 @@
                                     <div class="box-patrimonio-maquina" id="nomeEstacao">
                                         
                                     </div>
-                                    <div class="container-detalhes">
+                                    <!-- <div class="container-detalhes">
                                         <span>Localização:</span> <span></span>
-                                    </div>
+                                    </div> -->
 
                                 </div>
 
@@ -189,15 +189,15 @@
                             <div class="fundo-grafico-memoria">
                                 <div class="titulo-grafico-memoria">
                                     <span>INDICADORES DE USO DA MEMÓRIA</span>
-                                    <div class="tamanho-alerta" id="iconeAlertaRam">
-                                        
+                                    <div class="tamanho-alerta" id="iconeAlertaRam">                                        
                                     </div>
                                 </div>
                                 <div class="container-do-grafico">
                                     <div class="container-grafico-esquerda">
                                         <div id="graficoDeRoscaMemoriaContainer">
                                             <div id="graficoDeRoscaMemoria">
-                                                <canvas id="graficoMemoria" style="position: relative; height: 12vh; width: 12vw;"></canvas></div>
+                                                <canvas id="graficoMemoria" style="position: relative; height: 80px; width: 200px;"></canvas>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="container-grafico-direita">
@@ -445,6 +445,11 @@ const configCpu = {
                             stepSize: 10 // Define a cada quantos valores os rótulos são mostrados
                         }
                     }
+                },
+                plugins: {
+                    legend: {
+                        display: false // Remove a legenda
+                    }
                 }
     }
     
@@ -464,22 +469,26 @@ const configRede = {
     data: dataRede,
     options: {
         scales: {
-                    x: {
-                        grid: {
-                            display: false // Remove a grade do eixo X
-                        }
-                    },
-                    y: {
-                        grid: {
-                            display: false, // Remove a grade do eixo Y
-                        },
-                        ticks: {
-                            stepSize: 10 // Define a cada quantos valores os rótulos são mostrados
-                        }
-                    }
+            x: {
+                grid: {
+                    display: false // Remove a grade do eixo X
                 }
+            },
+            y: {
+                grid: {
+                    display: false, // Remove a grade do eixo Y
+                },
+                ticks: {
+                    stepSize: 10 // Define a cada quantos valores os rótulos são mostrados
+                }
+            }
+        },
+        plugins: {
+            legend: {
+                display: false // Remove a legenda
+            }
+        }
     }
-    
 }
 
 

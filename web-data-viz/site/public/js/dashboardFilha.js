@@ -85,7 +85,7 @@
         fetch(`/dashboard/buscarNomeEstacao/${idComputador}`, { cache: 'no-store' }).then(function (resposta){
             if(resposta.ok){
                 resposta.json().then(function (resposta) {
-                    nomeEstacao.innerHTML = `Estação: ${resposta[0].estacao_de_trabalho}`
+                    nomeEstacao.innerHTML = `${resposta[0].estacao_de_trabalho}`
                 });
             }
         });
