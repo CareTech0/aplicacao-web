@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +11,7 @@
     <link rel="stylesheet" href="../css/modais/modalUsuarios.css">
     <link rel="icon" href="../assets/icon/icon.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    
+
     <script src="../js/session.js"></script>
     <script src="../js/modais/modalDeslogar.js" defer></script>
 </head>
@@ -216,10 +217,11 @@
                         <option value="usuario">Usuário comum</option>
                     </select>
                 </div>
-               
+
             </div>
-            <div style="width:100%; align-items: center; display: flex; flex-direction: column; color: red; font-size: 15px;" id="erromensagem"></div>
-            <button  class="botao-adicionar" id="save_new_user">SALVAR</button>
+            <div style="width:100%; align-items: center; display: flex; flex-direction: column; color: red; font-size: 15px;"
+                id="erromensagem"></div>
+            <button class="botao-adicionar" id="save_new_user">SALVAR</button>
 
 
 
@@ -247,13 +249,13 @@
 
 <!-- modal editar usuario -->
 <div class="modal" id="editModal">
-    
+
 </div>
 
 </html>
 
 <script>
-   validarSessao();
+    validarSessao();
     buscarUsuarios();
     let menuItem = document.querySelectorAll(".item-menu");
 
@@ -353,14 +355,15 @@
 
                         const tipoUsuarioCapitalizado = capitalizarPrimeiraLetra(usuario.tipo_usuario);
 
-                      
+
                         boxUsuarios.innerHTML += `
                         <div class="conteudo-usuario">
+                                     <div class="containeruser">
                                         <div class="dados-usuario">
                                             <h1>${usuario.nome}</h1>
                                             <p>${usuario.login_email}</p>
                                         </div>
-
+                                    </div>
                                         <div class="perfil-usuario">
                                             <div class="perf-type">
                                                 <h1>${tipoUsuarioCapitalizado}</h1>
@@ -401,9 +404,9 @@
     function capitalizarPrimeiraLetra(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
-    
+
     //Editar Usuário
-    function abrirEditModal(id, nome, email, senha){
+    function abrirEditModal(id, nome, email, senha) {
         editModal.style.display = 'block';
         editModal.innerHTML = `
             <div class="modal-content-editar-usuario">
@@ -472,7 +475,7 @@
         `;
     }
 
-    function editarUsuario(id){
+    function editarUsuario(id) {
         const nome = document.getElementById('nome_usuario_edit').value;
         const email = document.getElementById('email_usuario_edit').value;
         const senha = document.getElementById('senha_usuario_edit').value;
@@ -491,7 +494,7 @@
             errorMessage.innerHTML += '<span>O nome é obrigatório. <br></span>';
             validacoesCorretas--;
         }
-           
+
         if (email == "") {
             errorMessage.innerHTML += '<span>O email é obrigatório.<br></span>';
             validacoesCorretas--;
@@ -499,7 +502,7 @@
             errorMessage.innerHTML += '<span>O email não é válido.<br></span>';
             validacoesCorretas--;
         }
-    
+
         if (senha.length < 8) {
             errorMessage.innerHTML += '<span>A senha deve ter pelo menos 8 caracteres. <br></span>';
             validacoesCorretas--;
@@ -514,7 +517,7 @@
             validacoesCorretas--;
         }
 
-        if(validacoesCorretas == 5){
+        if (validacoesCorretas == 5) {
             fetch(`/usuario/editarUsuario/${id}`, {
                 method: "PUT",
                 headers: {
@@ -527,14 +530,14 @@
                     tipoUser: tipoUser
                 })
             })
-            .then(function (resposta) {
-                if (resposta.ok) {
-                    window.location = "/usuario"
-                }
-            }).catch(function (resposta) {
-                console.log(`#ERRO: ${resposta}`);
-                alert("Erro no banco");
-            });
+                .then(function (resposta) {
+                    if (resposta.ok) {
+                        window.location = "/usuario"
+                    }
+                }).catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                    alert("Erro no banco");
+                });
         }
 
     }
@@ -555,13 +558,13 @@
 
         const errorMessage = document.querySelector('.erromensagem');
         erromensagem.innerHTML = '';
-        
+
 
         if (nome == "") {
             erromensagem.innerHTML += '<span>O nome é obrigatório.</span>';
             validacoesCorretas--;
         }
-           
+
         if (email == "") {
             erromensagem.innerHTML += '<span>O email é obrigatório.</span>';
             validacoesCorretas--;
@@ -569,7 +572,7 @@
             erromensagem.innerHTML += '<span>O email não é válido.</span>';
             validacoesCorretas--;
         }
-    
+
         if (senha.length < 8) {
             erromensagem.innerHTML += '<span>A senha deve ter pelo menos 8 caracteres.</span>';
             validacoesCorretas--;
@@ -584,7 +587,7 @@
             validacoesCorretas--;
         }
 
-        
+
         if (validacoesCorretas == 5) {
             fetch("/usuario/criarUsuario", {
                 method: "POST",
@@ -608,21 +611,21 @@
                     alert("Erro no banco");
                 });
         }
-   })
+    })
 
 
-    
+
     //Deletar Usuário
-    function deletarUsuario(idUser){
+    function deletarUsuario(idUser) {
         fetch(`/usuario/deletarUsuario/${idUser}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
             }
-        }).then(function (resposta){
-            if (resposta.ok){
+        }).then(function (resposta) {
+            if (resposta.ok) {
                 window.location = "/usuario";
-            } else if (resposta.status == 404){
+            } else if (resposta.status == 404) {
                 console.log("Deu 404!");
             } else {
                 throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
