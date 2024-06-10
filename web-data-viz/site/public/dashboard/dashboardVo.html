@@ -329,8 +329,8 @@
         const year = date.getFullYear();
         const month = String(date.getMonth() + 1).padStart(2, '0'); // Adiciona 1 porque os meses são baseados em zero
         const day = String(date.getDate()).padStart(2, '0');
-        let diaDaSemana = 5
-        // let diaDaSemana = date.getDay()
+        //let diaDaSemana = 5
+        let diaDaSemana = date.getDay()
         console.log(`Hoje é ${diaDaSemana} dia ${year}-${month}-${day}`)
 
         const diaBusca = []
@@ -363,26 +363,29 @@
                                 const horas = dataHora.getHours();
                                 const minutos = dataHora.getMinutes();
                                 console.log(`Horas: ${horas}, Minutos: ${minutos}`);
-
-                                if (horas > 8 || horas == 8 && minutos > 0) {
-
-                                    console.log("Estou atrasado")
-                                    console.log("Dia da semana: " + diaSemanabanco)
-                                    if (diaSemanabanco == 1) {
-                                        atrasosSegunda++
-                                    } else if (diaSemanabanco == 2) {
-                                        atrasosTerca++
-                                    } else if (diaSemanabanco == 3) {
-                                        atrasosQuarta++
-                                    } else if (diaSemanabanco == 4) {
-                                        atrasosQuinta++
-                                    } else if (diaSemanabanco == 5) {
-                                        atrasosSexta++
+                                if(diaSemanabanco != 0 && diaSemanabanco!=6){
+                                    if (horas > 8 || horas == 8 && minutos > 0) {
+    
+                                        console.log("Estou atrasado")
+                                        console.log("Dia da semana: " + diaSemanabanco)
+                                        if (diaSemanabanco == 1) {
+                                            atrasosSegunda++
+                                            console.log("Atrasos segunda: " + atrasosSegunda)
+                                        } else if (diaSemanabanco == 2) {
+                                            atrasosTerca++
+                                        } else if (diaSemanabanco == 3) {
+                                            atrasosQuarta++
+                                        } else if (diaSemanabanco == 4) {
+                                            atrasosQuinta++
+                                        } else if (diaSemanabanco == 5) {
+                                            atrasosSexta++
+                                        }
+                                        atrasoNaSemana++
+                                        loginAtrasado.innerHTML = `${atrasoNaSemana}`
+                                        graficoAtrasados.config.data.datasets[0].data = [atrasosSegunda, atrasosTerca, atrasosQuarta, atrasosQuinta, atrasosSexta]
+                                        graficoAtrasados.update()
                                     }
-                                    atrasoNaSemana++
-                                    loginAtrasado.innerHTML = `${atrasoNaSemana}`
-                                    graficoAtrasados.config.data.datasets[0].data = [atrasosSegunda, atrasosTerca, atrasosQuarta, atrasosQuinta, atrasosSexta]
-                                    graficoAtrasados.update()
+
                                 }
 
                             });
