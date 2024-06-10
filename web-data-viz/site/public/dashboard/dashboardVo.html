@@ -125,7 +125,7 @@
                                     </div>
 
                                     <div class="box-number" id="loginAtrasado">
-
+                                        0
                                     </div>
 
                                     <div class="box-type">
@@ -278,7 +278,6 @@
                         maquinasEmpresa.push(resposta[i].id_computador)
                     }
                     estadoCriticoHoje(maquinasEmpresa);
-                    possibilidadeTravamentoHoje(maquinasEmpresa);
                     console.log("Vetor de ids da empresa:")
 
                     console.log("Maquinas empresa: ")
@@ -305,6 +304,7 @@
                             }
                         });
                     }
+                    setTimeout(possibilidadeTravamentoHoje(maquinasEmpresa), 1500);
 
                 });
             }
