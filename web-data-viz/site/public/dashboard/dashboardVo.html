@@ -278,6 +278,7 @@
                         maquinasEmpresa.push(resposta[i].id_computador)
                     }
                     estadoCriticoHoje(maquinasEmpresa);
+                    possibilidadeTravamentoHoje(maquinasEmpresa);
                     console.log("Vetor de ids da empresa:")
 
                     console.log("Maquinas empresa: ")
@@ -434,39 +435,38 @@
         }
     };
 
-
-    possibilidadeTravamentoHoje();
-
-    function possibilidadeTravamentoHoje() {
+    function possibilidadeTravamentoHoje(listaMaquinas) {
         const computadoresVerificados = [];
         let possibilidaText = document.getElementById('possibilida_travamento_text');
 
-        fetch(`/dashboard/possibilidadeTravamentoHojeRam/${idEmpresa}`, { cache: 'no-store' }).then(function (resposta) {
-            if (resposta.ok) {
-                resposta.json().then(function (resposta) {
-                    resposta.forEach(dados => {
-                        const usoPorcentagem = (dados.uso_capacidade * 100) / dados.capacidade_total;
-                        if (!computadoresVerificados.includes(dados.id_computador) && usoPorcentagem > 70) {
-                            computadoresVerificados.push(dados.id_computador);
-                        }
+        listaMaquinas.forEach(idMaquina => {
+            fetch(`/dashboard/possibilidadeTravamentoHojeRam/${idMaquina}`, { cache: 'no-store' }).then(function (resposta) {
+                if (resposta.ok) {
+                    resposta.json().then(function (resposta) {
+                        resposta.forEach(dados => {
+                            const usoPorcentagem = (dados.uso_capacidade * 100) / dados.capacidade_total;
+                            if (!computadoresVerificados.includes(idMaquina) && usoPorcentagem > 70) {
+                                computadoresVerificados.push(idMaquina);
+                            }
+                        });
                     });
-                });
-            }
-        });
+                }
+            });
 
 
-        fetch(`/dashboard/possibilidadeTravamentoHojeCpu/${idEmpresa}`, { cache: 'no-store' }).then(function (resposta) {
-            if (resposta.ok) {
-                resposta.json().then(function (resposta) {
-                    resposta.forEach(dados => {
-                        if (!computadoresVerificados.includes(dados.id_computador) && dados.uso_capacidade > 70) {
-                            computadoresVerificados.push(dados.id_computador);
-                        }
-                        possibilidaText.innerHTML = computadoresVerificados.length;
+            fetch(`/dashboard/possibilidadeTravamentoHojeCpu/${idMaquina}`, { cache: 'no-store' }).then(function (resposta) {
+                if (resposta.ok) {
+                    resposta.json().then(function (resposta) {
+                        resposta.forEach(dados => {
+                            if (!computadoresVerificados.includes(idMaquina) && dados.uso_capacidade > 70) {
+                                computadoresVerificados.push(idMaquina);
+                            }
+                            possibilidaText.innerHTML = computadoresVerificados.length;
+                        });
                     });
-                });
-            }
-        });
+                }
+            });
+        })
 
     }
 

@@ -307,10 +307,10 @@ ORDER BY
 
 function possibilidadeTravamentoHojeRam(idComputador){
     const instrucao = `
-    SELECT * FROM hardware as h JOIN computador as c ON h.fk_computador = c.id_computador JOIN registros as r ON h.id_hardware = r.fk_hardware
-    where c.fk_empresa = ${idComputador} and
-    CONVERT(DATE, r.horario) = CONVERT(DATE, GETDATE()) and
-    h.nome_hardware = 'ram'
+        SELECT h.capacidade_total, r.uso_capacidade FROM hardware as h JOIN computador as c ON h.fk_computador = c.id_computador JOIN registros as r ON h.id_hardware = r.fk_hardware
+        where c.id_computador = ${idComputador} and
+        CONVERT(DATE, r.horario) = CONVERT(DATE, GETDATE()) and
+        h.nome_hardware = 'ram'
     `;
 
     return database.executar(instrucao)
@@ -318,10 +318,10 @@ function possibilidadeTravamentoHojeRam(idComputador){
 
 function possibilidadeTravamentoHojeCpu(idComputador){
     const instrucao = `
-        SELECT * FROM hardware as h JOIN computador as c ON h.fk_computador = c.id_computador JOIN registros as r ON h.id_hardware = r.fk_hardware
-        where c.fk_empresa = ${idComputador} and
+        SELECT r.uso_capacidade FROM hardware as h JOIN computador as c ON h.fk_computador = c.id_computador JOIN registros as r ON h.id_hardware = r.fk_hardware
+        where c.id_computador = ${idComputador} and
         CONVERT(DATE, r.horario) = CONVERT(DATE, GETDATE()) and
-        h.nome_hardware = 'ram'
+        h.nome_hardware = 'cpu'
     `;
 
     return database.executar(instrucao)
