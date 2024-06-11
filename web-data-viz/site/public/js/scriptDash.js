@@ -56,3 +56,6 @@ function abrirModal() {
 document.addEventListener("DOMContentLoaded", function () {
   abrirModal();
 });
+
+document.getElementById('botaoAplicarFiltro').addEventListener('click', aplicarFiltro);
+

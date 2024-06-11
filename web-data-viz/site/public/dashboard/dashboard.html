@@ -126,12 +126,12 @@
                                 </div>
                             </div>
                             <div class="box-botao-filtro" id="botaoFiltro" onclick="abrirFiltro()">
-                                <!-- <div class="fundo-botao-filtro">
+                                <div class="fundo-botao-filtro">
                                     <div class="flex-filter">
                                         <span class="icon"><i class="bi bi-funnel"></i></span>
                                         <span class="textfilter">FILTRO</span>
                                     </div>
-                                </div> -->
+                                </div>
                                 <div class="container-filtro">
                                     <div class="fundo-filtro" id="filtro">
                                         <div class="box-do-filtro">
@@ -201,7 +201,7 @@
                                         </div>
                                         <div class="container-botoes-filtro">
                                             <div class="botao-confirmar">
-                                                <div class="conteudo-botao-confirmar">
+                                                <div class="conteudo-botao-confirmar" id="botaoAplicarFiltro">
                                                     <span>
                                                         APLICAR
                                                     </span>
@@ -722,6 +722,7 @@
 
     //Inserir máquina 
     
+    
     function filtrarMaqs() {
         const termoBusca = document.getElementById('searchInput').value.toLowerCase();
         const maquinasFiltradas = todasMaquinas.filter(function (computador) {
@@ -729,7 +730,41 @@
         });
         mostrarMaquinas(maquinasFiltradas);
     }
+    function moverParaTopo(elemento) {
+        const pai = elemento.parentNode;
+        pai.insertBefore(elemento, pai.firstChild);
+    }
+
+    function aplicarFiltro() {
+        const checkboxCritico = document.getElementById('checkbox-critico').checked;
+        const checkboxAtencao = document.getElementById('checkbox-atencao').checked;
+        const checkboxIdeal = document.getElementById('checkbox-ideal').checked;
+        const checkboxLigado = document.getElementById('checkbox-ligado').checked;
+        const checkboxDesligado = document.getElementById('checkbox-desligado').checked;
     
+        todasMaquinas.forEach(maquina => {
+            const condicao = document.getElementById(`condicao${maquina.id_computador}`).innerText.toLowerCase();
+            const status = document.getElementById(`status${maquina.id_computador}`).innerText.toLowerCase();
+            const caixaMaquina = document.getElementById(`caixa-maquina-${maquina.id_computador}`);
+    
+            let mostrarMaquina = false;
+    
+            if ((checkboxCritico && status === 'crítico') ||
+                (checkboxAtencao && status === 'atenção') ||
+                (checkboxIdeal && status === 'ideal') ||
+                (checkboxLigado && condicao === 'ligada') ||
+                (checkboxDesligado && condicao === 'desligada')) {
+                mostrarMaquina = true;
+            }
+            if (condicao.includes('desligada') && checkboxDesligado) {
+                mostrarMaquina = true;
+            }
+          
+            
+            caixaMaquina.classList.toggle('hidden', !mostrarMaquina);
+        });
+    }
+    document.getElementById('botaoAplicarFiltro').addEventListener('click', aplicarFiltro);
     // Adiciona evento de clique ao botão de busca
     document.querySelector('.searchButton').addEventListener('click', filtrarMaqs);
 

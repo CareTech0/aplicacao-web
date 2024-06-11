@@ -430,22 +430,26 @@ align-items: center;
 }
 
 .coluna-maquinas {
-  width: 90%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  flex: 1 1 calc(33.333% - 10px);
+   box-sizing: border-box;
+   display: flex;
+    justify-content: center;
 }
 
 .caixa-maquina {
   background-color: white;
   border-radius: 15px;
-  width: 100%;
-  height: 87%;
+  width: 93%;
+  height: 178px;
   display: flex;
   box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
   cursor: pointer;
 }
+
+.caixa-maquina.hidden {
+  display: none;
+}
+
 /* Animação de alerta laranja  */
 @keyframes alertaLaranja {
   0% {
