@@ -464,8 +464,8 @@ color: #ffffff;
 }
 
 .section-values {
-  background-color: #34517B;
-  height: 60vh;
+  background-color: #90BEDA;
+    height: 60vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -519,7 +519,7 @@ color: #ffffff;
 .values-num {
   font-weight: bold;
   font-size: 30px;
-  color: #91AFD9;
+  color: #2e2e2e;
 }
 
 .section-contact {
