@@ -24,10 +24,16 @@ Nosso projeto oferece uma solução de monitoramento para otimizar o desempenho 
 
 ![image](https://github.com/CareTech0/aplicacao-web/assets/142369084/24cc1e66-e432-4d7e-9f3f-400a940cfea6)
 ![image](https://github.com/CareTech0/aplicacao-web/assets/142369084/c7974870-28c5-48df-a1e1-914039c96f8d)
-
+![image](https://github.com/CareTech0/aplicacao-web/assets/142369084/c85bd05a-b22a-48dc-8da0-105b1139e3f5)
+![image](https://github.com/CareTech0/aplicacao-web/assets/142369084/21b0abf2-98f0-42e4-9e18-13a5b385679d)
+![image](https://github.com/CareTech0/aplicacao-web/assets/142369084/7990e3a6-154b-4916-838c-798b4dd1cd9e)
+![image](https://github.com/CareTech0/aplicacao-web/assets/142369084/18787744-d581-4403-b94a-e30c5f1864e7)
 
 ![image](https://github.com/CareTech0/aplicacao-web/assets/142369084/503d3b50-e11a-4b9b-9d11-849fb952c0d6)
-![image](https://github.com/CareTech0/aplicacao-web/assets/142369084/6aeb0999-1336-4aac-9c86-50f4fc884472)
+![image](https://github.com/CareTech0/aplicacao-web/assets/142369084/e8215413-d268-43dc-8f3a-4d8a3ab4a1fb)
+
+![image](https://github.com/CareTech0/aplicacao-web/assets/142369084/20efb8a1-0d7a-4d9d-969c-07437ff94043)
+
 
 ## 👥 Equipe 
 
