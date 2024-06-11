@@ -223,7 +223,7 @@
                                 <table>
                                     <thead>
                                         <tr>
-                                            <th>Nº MÁQUINA</th>
+                                            <th>NOME DA MÁQUINA</th>
                                             <th>RAM</th>
                                             <th>CPU</th>
                                             <th>DISCO</th>
@@ -277,7 +277,6 @@
                     for (let i = 0; i < resposta.length; i++) {
                         maquinasEmpresa.push(resposta[i].id_computador)
                     }
-                    estadoCriticoHoje(maquinasEmpresa);
                     console.log("Vetor de ids da empresa:")
 
                     console.log("Maquinas empresa: ")
@@ -305,7 +304,7 @@
                         });
                     }
                     setTimeout(possibilidadeTravamentoHoje(maquinasEmpresa), 1500);
-
+                    setTimeout(estadoCriticoHoje(resposta), 3000);
                 });
             }
         });
@@ -479,14 +478,14 @@
 
         listaMaquinas.forEach(maquina => {
             const tabelaCriticos = document.getElementById("comp_estado_critico_hoje_table");
-            let idCedula = document.getElementById(`cedula${maquina}`);
+            let idCedula = document.getElementById(`cedula${maquina.id_computador}`);
             let usoRamDaVez = 0;
             let usoCpuDaVez = 0;
             let usoDiscoDaVez = 0;
             let qtdComputadoresCriticos = 0;
 
             
-            fetch(`/dashboard/estadoCriticoHojeRam/${maquina}`, { cache: 'no-store' }).then(function (resposta) {
+            fetch(`/dashboard/estadoCriticoHojeRam/${maquina.id_computador}`, { cache: 'no-store' }).then(function (resposta) {
                 if (resposta.ok) {
                     resposta.json().then(function (resposta) {
                         resposta.forEach(dados => {
@@ -497,17 +496,19 @@
                                     qtdComputadoresCriticos++;
                                     document.getElementById('estado_critico_hoje').innerHTML = qtdComputadoresCriticos;
 
-                                    tabelaCriticos.innerHTML = `
-                                        <tr id="cedula${maquina}">
-                                            <td>${maquina}</td>
-                                            <td id="ram${maquina}">${usoRamDaVez.toFixed(2)}%</td>
-                                            <td id="cpu${maquina}">0%</td>
-                                            <td id="disco${maquina}">0%</td>
+                                    tabelaCriticos.innerHTML += `
+                                        <tr id="cedula${maquina.id_computador}">
+                                            <td>${maquina.estacao_de_trabalho}</td>
+                                            <td id="ram${maquina.id_computador}">${usoRamDaVez.toFixed(2)}%</td>
+                                            <td id="cpu${maquina.id_computador}">0%</td>
+                                            <td id="disco${maquina.id_computador}">0%</td>
                                         </tr>
                                     `;
+
+                                    idCedula = document.getElementById(`cedula${maquina.id_computador}`);
                                 } else {
-                                    const idColuna = document.getElementById(`ram${maquina}`);
-                                    if(idColuna.innerHTML == "0%") idColuna.innerHTML = `${usoRamDaVez}%`;
+                                    const idColuna = document.getElementById(`ram${maquina.id_computador}`);
+                                    if(idColuna.innerHTML == "0%") idColuna.innerHTML = `${usoRamDaVez.toFixed(2)}%`;
                                 }
                             }
                         });
@@ -515,27 +516,29 @@
                 }
             });
 
-            fetch(`/dashboard/estadoCriticoHojeCpu/${maquina}`, { cache: 'no-store' }).then(function (resposta) {
+            fetch(`/dashboard/estadoCriticoHojeCpu/${maquina.id_computador}`, { cache: 'no-store' }).then(function (resposta) {
                 if (resposta.ok) {
                     resposta.json().then(function (resposta) {
                         resposta.forEach(dados => {
                             usoCpuDaVez = dados.uso_porcento;
                             
                             if(usoCpuDaVez > 90){
-                                qtdComputadoresCriticos++;
-                                document.getElementById('estado_critico_hoje').innerHTML = qtdComputadoresCriticos;
                                 if(idCedula == null){
-                                    tabelaCriticos.innerHTML = `
-                                        <tr id="cedula${maquina}">
-                                            <td>${maquina}</td>
-                                            <td id="ram${maquina}">0%</td>
-                                            <td id="cpu${maquina}">${usoCpuDaVez}%</td>
-                                            <td id="disco${maquina}">0%</td>
+                                    qtdComputadoresCriticos++;
+                                    document.getElementById('estado_critico_hoje').innerHTML = qtdComputadoresCriticos;
+                                    tabelaCriticos.innerHTML += `
+                                        <tr id="cedula${maquina.id_computador}">
+                                            <td>${maquina.estacao_de_trabalho}</td>
+                                            <td id="ram${maquina.id_computador}">0%</td>
+                                            <td id="cpu${maquina.id_computador}">${usoCpuDaVez.toFixed(2)}%</td>
+                                            <td id="disco${maquina.id_computador}">0%</td>
                                         </tr>
                                     `;
+
+                                    idCedula = document.getElementById(`cedula${maquina.id_computador}`);
                                 } else {
-                                    const idColuna = document.getElementById(`cpu${maquina}`);
-                                    if(idColuna.innerHTML == "0%") idColuna.innerHTML = `${usoCpuDaVez}%`;
+                                    const idColuna = document.getElementById(`cpu${maquina.id_computador}`);
+                                    if(idColuna.innerHTML == "0%") idColuna.innerHTML = `${usoCpuDaVez.toFixed(2)}%`;
                                 }
                             }
                         });
@@ -543,7 +546,7 @@
                 }
             });
 
-            fetch(`/dashboard/estadoCriticoHojeDisco/${maquina}`, { cache: 'no-store' }).then(function (resposta) {
+            fetch(`/dashboard/estadoCriticoHojeDisco/${maquina.id_computador}`, { cache: 'no-store' }).then(function (resposta) {
                 if (resposta.ok) {
                     resposta.json().then(function (resposta) {
                         resposta.forEach(dados => {
@@ -551,37 +554,39 @@
                             
                             if(usoDiscoDaVez > 90){
                                 if(idCedula == null){
-                                    document.getElementById('estado_critico_hoje').innerHTML = qtdComputadoresCriticos;
                                     qtdComputadoresCriticos++;
-                                    tabelaCriticos.innerHTML = `
-                                        <tr id="${maquina}">
-                                            <td>${maquina}</td>
-                                            <td id="ram${maquina}">0%</td>
-                                            <td id="cpu${maquina}">0%</td>
-                                            <td id="disco${maquina}">${usoDiscoDaVez}%</td>
+                                    document.getElementById('estado_critico_hoje').innerHTML = qtdComputadoresCriticos;
+                                    tabelaCriticos.innerHTML += `
+                                        <tr id="${maquina.id_computador}">
+                                            <td>${maquina.estacao_de_trabalho}</td>
+                                            <td id="ram${maquina.id_computador}">0%</td>
+                                            <td id="cpu${maquina.id_computador}">0%</td>
+                                            <td id="disco${maquina.id_computador}">${usoDiscoDaVez.toFixed(2)}%</td>
                                         </tr>
                                     `;
+
+                                    idCedula = document.getElementById(`cedula${maquina.id_computador}`);
                                 } else {
-                                    const idColuna = document.getElementById(`disco${maquina}`);
-                                    if(idColuna.innerHTML == "0%") idColuna.innerHTML = `${usoDiscoDaVez}%`;
+                                    const idColuna = document.getElementById(`disco${maquina.id_computador}`);
+                                    if(idColuna.innerHTML == "0%") idColuna.innerHTML = `${usoDiscoDaVez.toFixed(2)}%`;
+                                }
+                            } else {
+                                let idCedula1 = document.getElementById(`cedula${maquina.id_computador}`);
+
+                                if(idCedula1 != null){
+                                    const idColunaRam = document.getElementById(`ram${maquina.id_computador}`);
+                                    const idColunaCpu = document.getElementById(`cpu${maquina.id_computador}`);
+                                    const idColunaDisco = document.getElementById(`disco${maquina.id_computador}`);
+
+                                    if(idColunaRam.innerHTML == "0%") idColunaRam.innerHTML = `${usoRamDaVez.toFixed(2)}%`;
+                                    if(idColunaCpu.innerHTML == "0%") idColunaCpu.innerHTML = `${usoCpuDaVez.toFixed(2)}%`;
+                                    if(idColunaDisco.innerHTML == "0%") idColunaDisco.innerHTML = `${usoDiscoDaVez.toFixed(2)}%`;
                                 }
                             }
                         });
                     });
                 }
             });
-
-            let idCedula1 = document.getElementById(`cedula${maquina}`);
-
-            if(idCedula1 != null){
-                const idColunaRam = document.getElementById(`ram${maquina}`);
-                const idColunaCpu = document.getElementById(`cpu${maquina}`);
-                const idColunaDisco = document.getElementById(`disco${maquina}`);
-
-                if(idColunaRam.innerHTML = "0%") idColunaRam.innerHTML = `${usoRamDaVez.toFixed(2)}%`;
-                if(idColunaCpu.innerHTML = "0%") idColunaCpu.innerHTML = `${usoCpuDaVez.toFixed(2)}%`;
-                if(idColunaDisco.innerHTML = "0%") idColunaDisco.innerHTML = `${usoDiscoDaVez.toFixed(2)}%`;
-            }
         });
     }
 
