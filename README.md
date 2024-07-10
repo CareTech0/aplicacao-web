@@ -72,16 +72,6 @@ Nosso projeto oferece uma solução de monitoramento para otimizar o desempenho 
 </td>
 
 <td align="center">
-  <a href="https://github.com/mhssouza" style="text-decoration: none;">
-    <img src="/web-data-viz/site/public/assets/equipe/souza.jpeg" style="border-radius: 50%; height: 120px; width: 120px;" /><br />
-    <sub style="font-family: 'Montserrat', sans-serif;"><b>Matheus Souza</b></sub>
-  </a><br />
-  <a href="https://github.com/mhssouza" style="text-decoration: none;">
-    <img src="https://skillicons.dev/icons?i=github&mode=dark" width="25" />
-  </a>
-</td>
-
-<td align="center">
   <a href="https://github.com/thawanBruno" style="text-decoration: none;">
     <img src="/web-data-viz/site/public/assets/equipe/thawan.jpeg" style="border-radius: 50%; height: 120px; width: 120px;" /><br />
     <sub style="font-family: 'Montserrat', sans-serif;"><b>Thawan Bueno</b></sub>
