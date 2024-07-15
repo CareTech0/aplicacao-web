@@ -39,9 +39,9 @@ function deletarComputador(idComputador){
     return database.executar(instruco);
 }
 
-function editarMaquina(estacaoDeTrabalho, login, senha){
+function editarMaquina(estacaoDeTrabalho, login, senha, idComputador){
     const instrucao = `
-        update computador set estacao_de_trabalho = '${estacaoDeTrabalho}', login = '${login}', senha = '${senha}'
+        update computador set estacao_de_trabalho = '${estacaoDeTrabalho}', login = '${login}', senha = '${senha} where id_computador = ${idComputador}'
     `;
 
     return database.executar(instrucao);

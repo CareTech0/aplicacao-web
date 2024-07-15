@@ -53,11 +53,12 @@ function deletarComputador(req, res){
 }
 
 function editarMaquina(req, res){
+    const idComputador = req.params.idComputador;
     const estacaoDeTrabalho = req.body.estacaoDeTrabalho;
     const login = req.body.login;
     const senha = req.body.senha;
 
-    dashboardModel.editarMaquina(estacaoDeTrabalho, login, senha).then(function (resultado){
+    dashboardModel.editarMaquina(estacaoDeTrabalho, login, senha, idComputador).then(function (resultado){
         if(resultado.length > 0){
             res.status(200).json(resultado);
         } else {
